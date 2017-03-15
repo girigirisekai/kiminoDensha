@@ -37,7 +37,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(String a) {
+	public String test() {
 		
 		
 		return "test";

@@ -11,7 +11,7 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>0</x>
+	<x>79</x>
 	<y>0</y>
 	<default_color>
 		<r>128</r>
@@ -89,7 +89,7 @@
 				<is_open_after_saved>true</is_open_after_saved>
 			</export_html_setting>
 			<export_image_setting>
-				<output_file_path></output_file_path>
+				<output_file_path>C:\Users\kita\Desktop\member.png</output_file_path>
 				<category_dir_path></category_dir_path>
 				<with_category_image>true</with_category_image>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2017-03-15 11:00:59</creation_date>
-			<updated_date>2017-03-15 12:24:00</updated_date>
+			<updated_date>2017-03-16 10:13:23</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -418,8 +418,8 @@
 			<width>215</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>144</x>
-			<y>336</y>
+			<x>180</x>
+			<y>293</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -572,7 +572,7 @@
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
 			<x>792</x>
-			<y>84</y>
+			<y>91</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -949,12 +949,12 @@
 		</table>
 		<table>
 			<id>3</id>
-			<height>149</height>
+			<height>170</height>
 			<width>222</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>96</x>
-			<y>72</y>
+			<x>156</x>
+			<y>91</y>
 			<color>
 				<r>128</r>
 				<g>128</g>

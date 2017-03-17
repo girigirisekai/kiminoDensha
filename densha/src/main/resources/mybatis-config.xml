@@ -5,11 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="ikuzo.kimi.densha.vo.Member" alias="Member" />
-	</typeAliases>
-	<typeAliases>
 		<typeAlias type="ikuzo.kimi.densha.vo.Board" alias="Board" />
-	</typeAliases>
-	<typeAliases>
 		<typeAlias type="ikuzo.kimi.densha.vo.Reply" alias="Reply" />
 	</typeAliases>
 	<mappers>

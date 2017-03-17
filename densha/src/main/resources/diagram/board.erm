@@ -89,7 +89,7 @@
 				<is_open_after_saved>true</is_open_after_saved>
 			</export_html_setting>
 			<export_image_setting>
-				<output_file_path>C:\Users\Nuri\Desktop\SUBWAYSYSTEM.png</output_file_path>
+				<output_file_path>C:\Users\kita\Desktop\SUBWAYSYSTEM.png</output_file_path>
 				<category_dir_path></category_dir_path>
 				<with_category_image>true</with_category_image>
 				<is_open_after_saved>false</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2017-03-14 09:42:53</creation_date>
-			<updated_date>2017-03-15 11:45:08</updated_date>
+			<updated_date>2017-03-16 09:30:47</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -616,7 +616,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>6</word_id>
+					<word_id>5</word_id>
 					<id>5</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1033,7 +1033,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>5</word_id>
+					<word_id>6</word_id>
 					<id>16</id>
 					<description></description>
 					<unique_key_name></unique_key_name>

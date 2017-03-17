@@ -12,5 +12,4 @@
 		insert into web3_member (id, password, name) values (#{id}, #{password}, #{name}) 
 	</insert>
 	-->
-	
 </mapper>

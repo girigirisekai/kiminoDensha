@@ -1,4 +1,4 @@
-package ikuzo.kimi.densha;
+package ikuzo.kimi.densha.controller;
 
 import javax.servlet.http.HttpSession;
 

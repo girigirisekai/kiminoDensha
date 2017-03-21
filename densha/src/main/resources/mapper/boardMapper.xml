@@ -6,9 +6,9 @@
 <!-- 게시판 처리 SQL -->
 <mapper namespace="ikuzo.kimi.densha.dao.BoardMapper">
 
-	<insert id="insert" parameterType="Board">
+	<!-- <insert id="insert" parameterType="Board">
 		insert into board()
-	</insert>
+	</insert> -->
 	
 	
 </mapper>

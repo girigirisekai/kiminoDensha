@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="ikuzo.kimi.densha.vo.Member" alias="Member" />
 		<typeAlias type="ikuzo.kimi.densha.vo.Board" alias="Board" />
+		<typeAlias type="ikuzo.kimi.densha.vo.loginCheck" alias="loginCheck" />
 		<typeAlias type="ikuzo.kimi.densha.vo.Reply" alias="Reply" />
 	</typeAliases>
 	<mappers>

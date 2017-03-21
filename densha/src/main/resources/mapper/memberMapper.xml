@@ -4,12 +4,58 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 회원정보 처리 SQL -->
-<mapper namespace="ikuzo.kimi.densha.dao.MemberDAO">
+<mapper namespace="ikuzo.kimi.densha.dao.MemberMapper">
 
 	<!-- 회원 정보 저장 -->
-	<!--
-	<insert id="insert" parameterType="Member">
-		insert into web3_member (id, password, name) values (#{id}, #{password}, #{name}) 
-	</insert>
-	-->
+	
+	<insert id="joinMember" parameterType="Member">
+		insert 
+			into 
+				member(
+						id
+						, password
+						, type
+						, question
+						, answer
+						) 
+				values (
+						#{id}
+						, #{password}
+						, #{type}
+						, #{question}
+						, #{answer} 
+						) 
+	</insert> 
+	
+	<select id="selectId" parameterType="String" resultType="Member">
+		select 
+				id
+						, password
+						, type
+						, question
+						, answer
+			from
+				member
+		 			where
+		 				id = #{id}
+	</select>
+	
+	<select id="login" resultType="Member">
+		select
+			*
+		from
+			member
+		where
+			id = #{0}
+		and	
+			password = #{1}
+	</select>
+	
+ 	<insert id="logincheck" parameterType="loginCheck" > 
+		insert
+			into
+				loginCheck
+			values
+				(#{id},#{ipAddress},sysdate)
+	</insert> 
 </mapper>

@@ -56,7 +56,8 @@ public class StationNameToStationExit {
 					String exitNum = person_E.getChild("rowNum").getValue(); // 출구번호
 					// 출구번호는 0번이 1번이다. 
 					String exitInfo = person_E.getChild("cfrBuild").getValue(); // 출구정보
-					alist.add(new Exit(exitNum,exitInfo)); // 출구번호와 출구정보를 저장
+					String allExit = person_E.getChild("ectrcCnt").getValue(); // 출구정보
+					alist.add(new Exit(exitNum,exitInfo, allExit)); // 출구번호와 출구정보 글
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

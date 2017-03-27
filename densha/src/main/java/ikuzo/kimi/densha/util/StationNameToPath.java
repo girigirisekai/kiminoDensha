@@ -55,45 +55,6 @@ public class StationNameToPath {
 		}
 
 	}
-	
-	public void example(){
-		/*json처리 코드는 다음과 같다.
-		$.ajax({
-			url : 'subway', //url link
-			type : 'post', // 방식
-			data : { // 넘길 역이나 이름
-				station : insertStation
-			},
-			dataType : 'json', // 받는 형식 
-			success : gogo // 처리할 function단
-		})
-		======================================
-		function gogo(result) {
-			var text = '';
-			$.each(result, function(index, item) {
-				$.each(item.row, function(index, items) { // 2개 고정
-					var norikae = items.shtTransferMsg.substr(shtTransferMsg.indexOf(',')+2,shtTransferMsg.indexOf(','));
-					text += '<table>';
-					text += '<td> 거쳐갈 역 : ' + items.shtStatnNm + '</td>';
-					text += '<td> 걸리는 시간: ' + items.shtTransferMsg + '</td>';
-					text += '<td> 최단시간 경유 지하철역수: ' + items.shtStatnCnt + '</td>';
-					text += '<td> 걸리는 시간: ' + items.shtTravelTm + '</td>';
-					text += '<td> 최소환승 경유 지하철역명: ' + items.minStatnNm + '</td>';
-					text += '<td> 최소환승 환승 지하철역명: ' + items.minTransferMsg + '</td>';
-					text += '<td> 최소환승 경유 지하철역수: ' + items.minStatnCnt + '</td>';
-					text += '<td> 최소환승 도착 예정시간: ' + items.minTravelTm + '</td>';
-					
-					
-					text += '</tr>';
-					text += '</table>';
 
-				});
-
-			});
-
-			$('#done').html(text);
-
-		}*/
-	}
 
 }

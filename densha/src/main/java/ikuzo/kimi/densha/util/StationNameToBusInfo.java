@@ -21,8 +21,8 @@ public class StationNameToBusInfo {
 		// EX:http://swopenAPI.seoul.go.kr/api/subway/(인증키)/xml/busLineToTransfer/0/5/서울
 		String seoulGoKr = "http://swopenapi.seoul.go.kr/api/subway/";
 		String openApiKey = "70426c6847696c693633424774786c";
-		String returnData = "/xml/busLineToTransfer/0/120/";
-		String insertStation = URLEncoder.encode(stationName, "UTF-8");; // 역코드
+		String returnData = "/xml/busLineToTransfer/0/20/";
+		String insertStation = URLEncoder.encode(stationName, "UTF-8"); // 역코드
 		
 				
 		String addrResult = seoulGoKr + openApiKey + returnData + insertStation;
@@ -57,10 +57,11 @@ public class StationNameToBusInfo {
 					Element person_E = list.get(i);
 					// 도착시간 급행선 출발지하철 역 도착 지하철 역
 					String exit = person_E.getChild("ectrcNo").getValue();
+					// 출구번호
 					String type = person_E.getChild("rttp").getValue();
 					// rttp (1:공항, 3:간선, 4:지선, 5:순환, 6:광역, 7:인천, 8:경기, 9:폐지, 0:공용)
 					String num = person_E.getChild("rtnm").getValue();
-					
+					// 버스번호
 					alist.add(new BusInformation(num,type,exit)); // 저장
 				}
 			} catch (Exception e) {

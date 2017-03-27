@@ -23,12 +23,12 @@ public class StationCodeToLastTimetable {
 		String seoulGoKr = "http://openAPI.seoul.go.kr:8088/";
 		String openApiKey = "70426c6847696c693633424774786c";
 		String returnData = "/xml/SearchFirstAndLastTrainbyIDService/1/5/";
-		String line = lineNum + "/"; // 호선
-		String yoil = yoils + "/"; // 1 평일, 2 토요일, 3 휴일 공휴일
-		String upDown = upDowns + "/"; // 1. 상행선, 내선 | 2. 하행선, 내선
+		String line = lineNum ; // 호선
+		String yoil = yoils ; // 1 평일, 2 토요일, 3 휴일 공휴일
+		String upDown = upDowns ; // 1. 상행선, 내선 | 2. 하행선, 내선
 		String insertStation = stationCode; // 역코드
 
-		String addrResult = seoulGoKr + openApiKey + returnData + line + yoil + upDown + insertStation;
+		String addrResult = seoulGoKr + openApiKey + returnData + line + "/"+ yoil + "/"+ upDown + "/"+ insertStation;
 		System.out.println(addrResult);
 
 		URL url = new URL(addrResult.toString());

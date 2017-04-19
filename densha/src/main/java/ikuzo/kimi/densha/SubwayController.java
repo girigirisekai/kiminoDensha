@@ -28,6 +28,7 @@ import ikuzo.kimi.densha.util.StationNameToStationExit;
 import ikuzo.kimi.densha.vo.BusInformation;
 import ikuzo.kimi.densha.vo.Exit;
 import ikuzo.kimi.densha.vo.Timetable;
+import ikuzo.kimi.densha.vo.stationDB;
 
 
 
@@ -192,6 +193,7 @@ public class SubwayController {
 		return map;
 	}
 	
+	// ajax 최단경로 
 	@ResponseBody
 	@RequestMapping(value = "path1", method = RequestMethod.GET)
 	public ArrayList<String> path1(String start, String end) {
@@ -218,6 +220,8 @@ public class SubwayController {
 		return sList2;
 	}
 	
+	
+	// ajax인데 주석이 없다 하지만 민호가 달것이다.
 	@ResponseBody
 	@RequestMapping(value = "pars", method = RequestMethod.GET
 					, produces="application/json;charset=UTF-8")
@@ -228,6 +232,19 @@ public class SubwayController {
 		return result;
 	}
 	
+	// 역 코드로 역 이름과 좌표 받는 ajax
+	@ResponseBody
+	@RequestMapping(value = "StationCodeParseName", method = RequestMethod.GET
+					, produces="application/json;charset=UTF-8")
+	public stationDB StationCodeParseName(String stationCode) {
+		
+		stationDB result = sedao.StationCodeParseName(stationCode);
+
+		return result;
+	}
+	
+	
+	// ajax 최소환승
 	@ResponseBody
 	@RequestMapping(value = "path2", method = RequestMethod.GET)
 	public ArrayList<String> path2(String start, String end) {

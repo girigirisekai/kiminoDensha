@@ -9,6 +9,7 @@
 		<typeAlias type="ikuzo.kimi.densha.vo.loginCheck" alias="loginCheck" />
 		<typeAlias type="ikuzo.kimi.densha.vo.Reply" alias="Reply" />
 		<typeAlias  type="ikuzo.kimi.densha.vo.Subway" alias="Subway"/>
+		<typeAlias  type="ikuzo.kimi.densha.vo.stationDB" alias="stationDB"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/memberMapper.xml" />

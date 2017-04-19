@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ikuzo.kimi.densha.vo.stationDB;
+
 @Repository
 public class StartEndDAO {
 
@@ -30,6 +32,15 @@ public class StartEndDAO {
 		
 		return result;
 		
+	}
+
+	public stationDB StationCodeParseName(String stationCode) {
+		// TODO Auto-generated method stub
+		StartEndMapper sem = sqlsession.getMapper(StartEndMapper.class);
+
+		stationDB result = sem.StationCodeParseName(stationCode);
+		
+		return result;
 	}
 	
 }

@@ -1,5 +1,8 @@
 
-
+var insertStation = ''; // 전역변수로 역코드를 받는 부분
+var getStation = ''; // 역코드 - > 역이름 DB get
+var latitude = ''; // 위도 (x)
+var longitude = ''; // 경도 (y)
 /**
  * 
  */
@@ -19,6 +22,23 @@ function station_name_popup(stationCode) { // stationNamePopup
 	layer.style.visibility = "visible";
 	$('#station').attr('stationcode', stationCode);
 	$('#startEnd').attr('stationcode',stationCode);
+	
+	insertStation = $('#station').attr('stationcode');
+	$.ajax({
+		url : 'StationCodeParseName',
+		type : 'get',
+		data : {
+			stationCode : insertStation
+		},
+		dataType : 'json',
+		success : function (item) {
+			getStation = item.station_nm2;
+			latitude = item.xpoint;
+			longitude = item.ypoint;
+			console.log(latitude);
+		
+		}
+	})
 }
 
 // 역 이름 팝업 삭제
@@ -31,10 +51,28 @@ function station_name_down() { // stationNamediv 삭제 역할
 	scode = null;
 }
 
-var insertStation = ''; // 전역변수로 역코드를 받는 부분
+function daummap(){
+	
+	var text= '';
+	var strings = 'daumMap';
+	
+	text += '<script type="text/javascript">';
+	text += 'var mapContainer = document.getElementById('+strings+'),';
+	text += '	mapOption = {';
+	text += '		center : new daum.maps.LatLng('+latitude+','+longitude+'),';
+	text += '		level : 3';
+	text += '	};';
+	text += 'var map = new daum.maps.Map(mapContainer, mapOption);';
+	text += '</script>';
+	
+	$('#daumMap').html(text);
+	
+	
+}
 
 
-//역 정보 (메인기능)
+
+	//역 정보 팝업 띄우기 
 function get_station_popup() { 
 	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
 	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
@@ -50,9 +88,8 @@ function get_station_popup() {
 	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 	layer.style.visibility = "visible";
 
-	insertStation = $('#station').attr('stationcode');
-	//	$('#station_info_popup_layer').modal();
-
+	
+	
 	stationinfo();
 
 	$('#delete_popup').on('click', get_station_down);
@@ -71,13 +108,14 @@ function get_station_down() { // 역 정보 팝업 삭제
 }
 
 //======================여기까지는 팝업담당===========================//
-// 실시간 열차, 둔촌동 부분에 역 이름 넣는 전역변수로 변경하시길(DB)
+
+// 실시간 열차
 function realtimes() {
 	$.ajax({
 		url : 'realTime',
 		type : 'post',
 		data : {
-			station : '둔촌동'
+			station : getStation
 		},
 		dataType : 'json',
 		success : resultRealTime

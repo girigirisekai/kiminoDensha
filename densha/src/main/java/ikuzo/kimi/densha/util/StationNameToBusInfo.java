@@ -11,6 +11,8 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
+import ikuzo.kimi.densha.vo.BusInformation;
+
 public class StationNameToBusInfo {
 
 	public ArrayList<BusInformation> businfo(String stationName)

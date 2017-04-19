@@ -1,4 +1,4 @@
-package ikuzo.kimi.densha.util;
+package ikuzo.kimi.densha.vo;
 
 public class Timetable {
 

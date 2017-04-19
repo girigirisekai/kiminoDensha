@@ -1,5 +1,7 @@
 package ikuzo.kimi.densha.util;
 
+import ikuzo.kimi.densha.vo.StationData;
+
 public class StationCodeToStation {
 	
 	

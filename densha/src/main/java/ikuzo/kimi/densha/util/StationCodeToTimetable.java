@@ -11,6 +11,8 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
+import ikuzo.kimi.densha.vo.Timetable;
+
 public class StationCodeToTimetable {
 
 	public ArrayList<Timetable> timetable(String stationCode, String yoils, String upDowns)

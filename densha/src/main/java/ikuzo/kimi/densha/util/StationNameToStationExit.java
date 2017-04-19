@@ -11,6 +11,8 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
+import ikuzo.kimi.densha.vo.Exit;
+
 public class StationNameToStationExit {
 
 	public ArrayList<Exit> exitInfo(String stationName) throws Exception {

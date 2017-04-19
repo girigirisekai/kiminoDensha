@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ikuzo.kimi.densha.dao.StartEndDAO;
-import ikuzo.kimi.densha.util.BusInformation;
-import ikuzo.kimi.densha.util.Exit;
 import ikuzo.kimi.densha.util.StationCodeToLastTimetable;
 import ikuzo.kimi.densha.util.StationCodeToStationInfo;
 import ikuzo.kimi.densha.util.StationCodeToTimetable;
@@ -27,7 +25,9 @@ import ikuzo.kimi.densha.util.StationNameToPath2;
 import ikuzo.kimi.densha.util.StationNameToPath3;
 import ikuzo.kimi.densha.util.StationNameToRealtimeArrive;
 import ikuzo.kimi.densha.util.StationNameToStationExit;
-import ikuzo.kimi.densha.util.Timetable;
+import ikuzo.kimi.densha.vo.BusInformation;
+import ikuzo.kimi.densha.vo.Exit;
+import ikuzo.kimi.densha.vo.Timetable;
 
 
 

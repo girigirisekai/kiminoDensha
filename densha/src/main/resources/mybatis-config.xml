@@ -8,7 +8,7 @@
 		<typeAlias type="ikuzo.kimi.densha.vo.Board" alias="Board" />
 		<typeAlias type="ikuzo.kimi.densha.vo.loginCheck" alias="loginCheck" />
 		<typeAlias type="ikuzo.kimi.densha.vo.Reply" alias="Reply" />
-		<typeAlias alias="Subway" type="ikuzo.kimi.densha.vo.Subway"/>
+		<typeAlias  type="ikuzo.kimi.densha.vo.Subway" alias="Subway"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/memberMapper.xml" />

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 지하철정보 처리 SQL -->
+<mapper namespace="ikuzo.kimi.densha.dao.SubwayMapper">
+	
+	<!-- 지하철 정보 검색 -->
+	<select id="selectSubway" parameterType="string" resultType="Subway">
+		select 
+			*
+		from
+			subwaydata
+		where 
+			subwaynum=#{0}
+		and
+		 	carnum=#{1}
+	</select>
+	
+		<!-- 지하철 정보 검색 -->
+	<select id="selectSubwayArray" parameterType="string" resultType="Subway">
+		select 
+			*
+		from
+			subwaydata
+		where 
+			subwaynum=#{0}
+		and
+		 	carnum between 1 and 10
+	</select>
+	
+	<!-- 지하철 정보 저장 -->
+	<insert id="insertSubway" parameterType="Subway">
+		insert into 
+			subwaydata
+		values 
+		(
+			#{subwayNum}
+			, #{carNum}
+			, #{humanNum}
+			, #{elderlySeat1}
+			, #{elderlySeat2}
+			, #{elderlySeat3} 
+		)
+		
+	</insert>
+	
+	<!-- 지하철 정보 수정 -->
+	<update id="updateSubway" parameterType="Subway">
+		update 
+			subwaydata
+		set
+			humannum=#{humanNum}
+			, elderlyseat1=#{elderlySeat1}
+			, elderlyseat2=#{elderlySeat2}
+			, elderlyseat3=#{elderlySeat3}
+		where
+			subwaynum=#{subwayNum}
+		and
+			carnum=#{carNum}
+		
+	
+	</update>
+	
+</mapper>

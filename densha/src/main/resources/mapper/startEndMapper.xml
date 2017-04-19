@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="ikuzo.kimi.densha.dao.startEndMapper">
+
+	<!-- 회원 정보 저장 -->
+	<!--
+	<insert id="insert" parameterType="Member">
+		insert into web3_member (id, password, name) values (#{id}, #{password}, #{name}) 
+	</insert>
+	-->
+	
+	<select id="path" parameterType="map" resultType="String">
+	
+		<if test="list.size != 0">
+		select
+			distinct
+			CYBER_ST_CODE
+		from
+			station
+			where
+				STATION_NM in
+				<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+		
+		</if>
+	
+	</select>
+	
+	<select id="select" parameterType="String" resultType="String">
+		
+		select
+			distinct
+			STATION_NM2
+		from
+			station
+			where
+				CYBER_ST_CODE
+				= #{code}
+		
+	
+	</select>
+	
+</mapper>

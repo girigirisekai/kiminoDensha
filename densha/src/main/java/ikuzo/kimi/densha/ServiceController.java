@@ -1,6 +1,7 @@
 package ikuzo.kimi.densha;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,7 +34,7 @@ public class ServiceController {
 //	public String deleteMember() { // 회원삭제
 //		return "Member/deleteMember";
 //	}
-
+//		두 데이터는 다른 컨트롤러로 이관됨
 //	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
 //	public String updateMember() { // 회원수정
 //		return "Member/updateMember";
@@ -42,6 +43,13 @@ public class ServiceController {
 	@RequestMapping(value = "/stationcode", method = RequestMethod.GET)
 	public String stationcode() { // 지하철 지도 페이지, 나중에 subway로 바꿀것
 		return "stationcode";
+	}
+	
+	@RequestMapping(value = "favorite", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public String favorite(Model model) throws Exception {
+
+		return "favorite";
+
 	}
 
 }

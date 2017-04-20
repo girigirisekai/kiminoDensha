@@ -8,7 +8,9 @@
 		<typeAlias type="ikuzo.kimi.densha.vo.Board" alias="Board" />
 		<typeAlias type="ikuzo.kimi.densha.vo.loginCheck" alias="loginCheck" />
 		<typeAlias type="ikuzo.kimi.densha.vo.Reply" alias="Reply" />
+		<typeAlias type="ikuzo.kimi.densha.vo.favorite" alias="favorite" />
 		<typeAlias  type="ikuzo.kimi.densha.vo.Subway" alias="Subway"/>
+		<typeAlias  type="ikuzo.kimi.densha.vo.Station" alias="Station"/>
 		<typeAlias  type="ikuzo.kimi.densha.vo.stationDB" alias="stationDB"/>
 		<typeAlias  type="ikuzo.kimi.densha.vo.checkCode" alias="checkCode"/>
 		
@@ -18,5 +20,6 @@
 		<mapper resource="mapper/boardMapper.xml" />
 		<mapper resource="mapper/startEndMapper.xml" />
 		<mapper resource="mapper/subwayMapper.xml"/>
+		<mapper resource="mapper/favoriteMapper.xml"/>
 	</mappers>
 </configuration>

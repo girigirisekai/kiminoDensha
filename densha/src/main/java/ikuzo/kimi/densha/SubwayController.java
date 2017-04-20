@@ -148,36 +148,8 @@ public class SubwayController {
 
 	}
 
-	@RequestMapping(value = "tests", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public String tests(Model model) throws Exception {
-
-		return "tests";
-
-	}
-
-	@RequestMapping(value = "favorite", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public String favorite(Model model) throws Exception {
-
-		return "favorite";
-
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "FavoriteStationName", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public String FavoriteStationName(String stationName) throws Exception {
-		System.out.println(stationName);
-		// 여기서 찾아주고
-		String stationArray = "";
-		stationArray +="동대문"+",";
-		stationArray +="동대문문화역사공원";
-//		DB단에서 찾은 다음에 
-//		+=로 역이름을 받은다음 +","를 해야 합니다.
-//		그리고 마지막에 받은 단어에서 ,를 삭제해야 함
-		// 배열로 받아서 저장
-		return stationArray;
-
-	}
 	
+	// ???
 	@ResponseBody
 	@RequestMapping(value = "call1", method = RequestMethod.GET)
 	public HashMap<String, Object> call1(String code) {

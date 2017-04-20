@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -46,7 +47,7 @@ public class MemberLoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(HttpSession ss, String loginId, String loginPassword, HttpServletRequest req,Model model) {
+	public String login(HttpSession ss, String loginId, String loginPassword, HttpServletRequest req,Model model, HttpSession ses) {
 		Member member = dao.login(loginId, loginPassword);
 		
 		
@@ -64,7 +65,7 @@ public class MemberLoginController {
 			loginCheck logincheck  = new loginCheck(loginId,ip,null);
 			int logincheck1 = dao.logincheck(logincheck);
 			System.out.println(logincheck1);
-			model.addAttribute("loginCheck",logincheck1);
+			ses.setAttribute("loginCheck", logincheck1); // 세션저장
 			return "home";
 			
 		}else{

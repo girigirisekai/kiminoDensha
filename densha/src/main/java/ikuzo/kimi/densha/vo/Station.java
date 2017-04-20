@@ -3,7 +3,7 @@ package ikuzo.kimi.densha.vo;
 public class Station {
 
 	private String station_cd;
-	private String station_nm;
+	private String station_nm; // 역 이름
 	private String line_num;
 	private String fr_code;
 	private String cyber_st_code;

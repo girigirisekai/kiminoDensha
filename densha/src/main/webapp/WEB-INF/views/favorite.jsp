@@ -9,11 +9,14 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
 
-	$(document).ready(function() {});
+	$(document).ready(function() {
+		
+	$('#newFavorite').on('click',newFavorite);	
+		
+	});
 	
-// 	페이지 접속시 데이터를 model로 보낸후 
-// 	model에서 db에 있는데이터를 가져와서 스프라이트 하면 됩니다. 
-
+	// 	페이지 접속시 데이터를 model로 보낸후 
+	// 	model에서 db에 있는데이터를 가져와서 스프라이트 하면 됩니다. 
 	// 지하철 역 찾기 function, ajax로 옵션값을 바꿔줍니다 (동대문, 동대문문화역사역 같은 케이스)
 	function searchStation() {
 		var searchStationName = $('#searchStation').val(); // 역 이름 검색DB
@@ -36,6 +39,23 @@
 					insertHtml += '</option>'
 				})
 				$('.form-control').html(insertHtml);
+			}
+		});
+	}
+	
+	// 새로운 역 더하기
+	function newFavorite(){
+		var stationName = $('.form-control option:selected').val(); // 선택된 이름
+		
+		$.ajax({
+			url : 'newFavorite',
+			type : 'post',
+			dataType : 'text',
+			data : {
+				statioNameAndLine : stationName
+			},
+			success : function() {
+			 	alert("나랑께");
 			}
 		});
 	}
@@ -232,6 +252,7 @@
 		<div class="col-lg-12">
 			<h3>역 추가하기</h3>
 		</div>
+		
 		<div class="panel-body">
 
 			<div class="form-group">
@@ -243,7 +264,7 @@
 				</div>
 				<div class="col-lg-10">
 					<!-- 					검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
-					<br> <select multiple="" class="form-control">
+					<br> <select multiple="" class="form-control" >
 
 					</select>
 					<!-- 					검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
@@ -253,11 +274,13 @@
 			</div>
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
-					<!-- 						<button type="reset" class="btn btn-default">초기화</button> -->
-					<button type="submit" class="btn btn-primary">등록하기</button>
+											<button type="reset" class="btn btn-default" id = "newFavorite">초기화</button>
+					<a href="javascript:newFavorite()" class="btn btn-success" id = "newFavorite"> 등록하기</a>
+<!-- 					<input type="button" class="btn btn-primary" id = "newFavorite">등록하기</button> -->
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<!-- 	새로운 역 저장 페이지  -->
 

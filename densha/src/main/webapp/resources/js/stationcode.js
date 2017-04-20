@@ -21,9 +21,11 @@ function station_name_popup(stationCode) { // stationNamePopup
 	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 	layer.style.visibility = "visible";
 	$('#station').attr('stationcode', stationCode);
-	$('#startEnd').attr('stationcode',stationCode);
-	
+	$('#startEnd').attr('stationcode', stationCode);
+
 	insertStation = $('#station').attr('stationcode');
+	
+	// 역 코드로 이름 가져오기 
 	$.ajax({
 		url : 'StationCodeParseName',
 		type : 'get',
@@ -31,12 +33,12 @@ function station_name_popup(stationCode) { // stationNamePopup
 			stationCode : insertStation
 		},
 		dataType : 'json',
-		success : function (item) {
+		success : function(item) {
 			getStation = item.station_nm2;
 			latitude = item.xpoint;
 			longitude = item.ypoint;
 			console.log(latitude);
-		
+
 		}
 	})
 }
@@ -51,29 +53,29 @@ function station_name_down() { // stationNamediv 삭제 역할
 	scode = null;
 }
 
-function daummap(){
-	
-	var text= '';
+
+//다음지도 부분인데 아직 작동 구현실패
+function daummap() {
+	var text = '';
 	var strings = 'daumMap';
-	
+
 	text += '<script type="text/javascript">';
-	text += 'var mapContainer = document.getElementById('+strings+'),';
+	text += 'var mapContainer = document.getElementById(' + strings + '),';
 	text += '	mapOption = {';
-	text += '		center : new daum.maps.LatLng('+latitude+','+longitude+'),';
+	text += '		center : new daum.maps.LatLng(' + latitude + ',' + longitude + '),';
 	text += '		level : 3';
 	text += '	};';
 	text += 'var map = new daum.maps.Map(mapContainer, mapOption);';
 	text += '</script>';
-	
+
 	$('#daumMap').html(text);
-	
-	
+
+
 }
 
 
-
-	//역 정보 팝업 띄우기 
-function get_station_popup() { 
+//역 정보 팝업 띄우기 
+function get_station_popup() {
 	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
 	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
 	var layer = document.getElementById("station_info_popup_layer");
@@ -88,17 +90,17 @@ function get_station_popup() {
 	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 	layer.style.visibility = "visible";
 
-	
-	
+
+
 	stationinfo();
 
 	$('#delete_popup').on('click', get_station_down);
 	//팝업 삭제 링크 
-	
+
 	// 탭 전환을 위해서 자동으로 누르기(아직 동작하지 않음, 버그있음) 
-	 $('#firstTeb').attr('aria-expanded','true'); 
+	$('#firstTeb').attr('aria-expanded', 'true');
 
-
+	$('#carNum1').mouseover(get_train_info); // 역열차의 좌석 정보
 }
 
 function get_station_down() { // 역 정보 팝업 삭제 
@@ -108,6 +110,42 @@ function get_station_down() { // 역 정보 팝업 삭제
 }
 
 //======================여기까지는 팝업담당===========================//
+
+//역열차의 좌석 정보를 롤오버로 구현하느 부분
+function get_train_info() {
+	var subwaynum = '2002'; // 열차번호
+	var carnum = '1';// 열차량번호 가져오기
+//	 $(this).attr('trainnum')
+	$.ajax({
+		url : 'realTimeTrainSeat',
+		type : 'post',
+		data : {
+			subwaynum : subwaynum,
+			carnum : carnum
+		},
+		dataType : 'json',
+		success : function(datas) {
+			var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
+			var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
+			var layer = document.getElementById("train_seat_popup");
+			if (_x < 0)
+				_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+			if (_y < 0)
+				_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+
+			layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+			layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+			layer.style.visibility = "visible";
+			
+			//arraylist 받아서 좌석당 돌리기
+			$.each(datas, function(index,item) {
+				var insert = item.elderyseat1 + item.elderyseat2 + item.elderyseat3
+				$('#TrainSeat'+index).val(insert);
+							
+			})
+		}
+	})
+}
 
 // 실시간 열차
 function realtimes() {
@@ -124,9 +162,9 @@ function realtimes() {
 
 function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 	$.each(result.realtimeArrivalList, function(index, items) {
-		
+
 		$('.getStationName').text(items.statnNm);
-		
+
 		if (index == 0) {
 			$('.upstation_real').text(items.arvlMsg2);
 		}
@@ -158,26 +196,30 @@ function stationinfo() {
 }
 
 //아두이노 센서에서 좌석과 혼잡도 테이블 가져오는 function
-function subwaySensorGet(){ // map 이름과 같다. 
+function subwaySensorGet() { // map 이름과 같다. 
+	
+	var subwayNum =  '2002'; // 2호선 2002열차 
 	$.ajax({
 		url : 'subwaySensorGet',
 		type : 'post',
 		data : {
-			subwayNum : '2002' // 2호선 2002열차 
+			subwayNum : subwayNum
 		},
 		dataType : 'json',
 		success : resultSubwaySensorGet
 	});
-	
-	
-}
 
-function resultSubwaySensorGet (datas){
-	$.each(datas, function(index,items){
-		var humanIndex = index+1;
-		var human = items.humanNum;
-		console.log(human);
-		$('#carNum'+humanIndex).text(human);		
+
+}
+// 아두이노 센서에서 좌석과 혼잡도 테이블 가져오는 function 결과
+function resultSubwaySensorGet(datas) {
+	var subwayNum =  '2002'; // 2호선 2002열차 
+	$.each(datas, function(index, items) {
+		var humanIndex = index + 1;
+		var human = '<span class = "train'+index+'" trainNum = "'+index+'">';
+		human += items.humanNum;
+		human += '</span>';
+		$('#carNum' + humanIndex).html(human);
 	});
 }
 
@@ -253,11 +295,11 @@ function stationinforesult(item) {
 
 
 
-//	$('#stationinfo').on('click', stationinfo); // 역정보
-//	$('#stationtimetable').on('click', stationtimetable); // 시간표
-//	$('#stationlasttime').on('click', stationlasttime); // 역 첫차 막차
-//	$('#stationmapinfo').on('click', stationmapinfo); // 역 지도
- 
+	//	$('#stationinfo').on('click', stationinfo); // 역정보
+	//	$('#stationtimetable').on('click', stationtimetable); // 시간표
+	//	$('#stationlasttime').on('click', stationlasttime); // 역 첫차 막차
+	//	$('#stationmapinfo').on('click', stationmapinfo); // 역 지도
+
 
 }
 
@@ -322,8 +364,8 @@ function stationtimetableNexts() { // 역 시간표 평일
 	console.log(yoil);
 	console.log(updown);
 	timeajax(yoil, updown);
-	$('.timetableselect1').attr('yoil','1');
-	$('.timetableselect2').attr('yoil','1');
+	$('.timetableselect1').attr('yoil', '1');
+	$('.timetableselect2').attr('yoil', '1');
 
 }
 function stationtimetableNext2() { // 역 시간표 토요일
@@ -333,8 +375,8 @@ function stationtimetableNext2() { // 역 시간표 토요일
 	console.log(yoil);
 	console.log(updown);
 	timeajax(yoil, updown);
-	$('.timetableselect1').attr('yoil','2');
-	$('.timetableselect2').attr('yoil','2');
+	$('.timetableselect1').attr('yoil', '2');
+	$('.timetableselect2').attr('yoil', '2');
 }
 
 function stationtimetableNext3() { // 역 시간표 일요일
@@ -344,9 +386,9 @@ function stationtimetableNext3() { // 역 시간표 일요일
 	console.log(yoil);
 	console.log(updown);
 	timeajax(yoil, updown);
-	
-	$('.timetableselect1').attr('yoil','3');
-	$('.timetableselect2').attr('yoil','3');
+
+	$('.timetableselect1').attr('yoil', '3');
+	$('.timetableselect2').attr('yoil', '3');
 }
 
 function timeajax(yoil, updown) { // 역 시간표

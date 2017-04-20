@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,20 @@ public class favoriteController {
 	
 	@Autowired
 	favoriteDAO dao;
+	
+	//최초 시작 링크 ,DB 접속해서 이름 이메일 현재 저정된 역 정보 가져오시길
+	@RequestMapping(value = "favorite", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public String favorite(Model model, HttpSession ses) throws Exception {
+		String nowID = (String) ses.getAttribute("loginId"); // id 부르기 
+		ArrayList <favorite> favoriteLists = dao.myFavorites(nowID);
+		
+		
+		model.addAttribute("favoriteLists", favoriteLists);
+		return "favorite";
+
+	}
+
+	
 	@ResponseBody
 	@RequestMapping(value = "FavoriteStationName", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String FavoriteStationName(String stationName) throws Exception {
@@ -60,13 +75,13 @@ public class favoriteController {
 		
 		
 		Station result = dao.DBstation(StationName, line); // 역 결과 받음
-		System.out.println(result.toString());
-	
-		String nowID = (String) ses.getAttribute("loginCheck"); // id 부르기 
-		System.out.println(nowID);
+				
+		String nowID = (String) ses.getAttribute("loginId"); // id 부르기 
+		
 		favorite fa = new favorite(nowID,StationName,result.getStation_cd(),""); 
 		//favorite 대동단결
 		
+		System.out.println(fa.toString());
 		int resultInt = dao.newFavorite(fa);
 		
 		return resultInt;

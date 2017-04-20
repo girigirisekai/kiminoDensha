@@ -133,9 +133,14 @@ iframe {
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#home">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="join">회원가입</a></li>
+
         <li><a href="stationcode">지하철서비스</a></li>
+<!--         로그인 시  -->
+        <c:if test="${loginId !=null}"> 
         <li><a href="favorite">Favorite</a></li>
+         </c:if>
+         <!--         로그인 시  -->
+
         	<li><a href="board">게시판</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">제공 서비스 안내<span class="caret"></span></a>
@@ -157,7 +162,7 @@ iframe {
 <!--         <button type="submit" class="btn btn-default">Submit</button> -->
 <!--       </form> -->
 	
-	<c:if test="${loginCheck eq null || loginCheck eq 0}">
+	<c:if test="${loginId == null}">
        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -207,7 +212,7 @@ iframe {
         </li>
       </ul>
       </c:if>
-      <c:if test="${loginCheck eq 1}">
+      <c:if test="${loginId != null}">
     
       <ul class="nav navbar-nav navbar-right">
      	 <li><a href="logout">로그아웃</a></li>

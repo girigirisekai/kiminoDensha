@@ -26,10 +26,10 @@ public class favoriteDAO {
 	}
 
 	// 내가 추가한 favorite역 보기
-	public ArrayList<favorite> myFavorites(String stationName) {
+	public ArrayList<favorite> myFavorites(String id) {
 
 		favoriteMapper sem = sqlsession.getMapper(favoriteMapper.class);
-		ArrayList<favorite> favoriteList = sem.myFavorites(stationName);
+		ArrayList<favorite> favoriteList = sem.myFavorites(id);
 		return favoriteList;
 
 	}
@@ -43,7 +43,7 @@ public class favoriteDAO {
 
 	}
 
-	// 역 추가하기
+	// 역 추가하고 저장하기
 	public int newFavorite(favorite stationInfo) {
 
 		favoriteMapper sem = sqlsession.getMapper(favoriteMapper.class);
@@ -52,6 +52,7 @@ public class favoriteDAO {
 
 	}
 
+	// 역 찾기 
 	public Station DBstation(String stationName, String line) {
 		favoriteMapper sem = sqlsession.getMapper(favoriteMapper.class);
 		HashMap <String,Object> map = new HashMap<>();

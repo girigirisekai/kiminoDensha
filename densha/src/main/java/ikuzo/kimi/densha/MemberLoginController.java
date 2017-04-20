@@ -59,13 +59,15 @@ public class MemberLoginController {
 		}
 		
 		if(member.getId().equals(loginId) && member.getPassword().equals(loginPassword)){
-			ss.setAttribute("loginId", loginId);
+			
+			ss.setAttribute("loginId", loginId);// 세션저장
+			
 			req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 			String ip = req.getRemoteAddr();
 			loginCheck logincheck  = new loginCheck(loginId,ip,null);
 			int logincheck1 = dao.logincheck(logincheck);
 			System.out.println(logincheck1);
-			ses.setAttribute("loginCheck", logincheck1); // 세션저장
+			model.addAttribute("loginCheck", logincheck1); 
 			return "home";
 			
 		}else{
@@ -83,6 +85,7 @@ public class MemberLoginController {
 	public String logout(HttpSession ss){
 		logger.debug("logout");
 		ss.removeAttribute("loginId");
+		ss.invalidate();
 		return "redirect:/";
 	}
 

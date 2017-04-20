@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ikuzo.kimi.densha.dao.StartEndDAO;
+import ikuzo.kimi.densha.dao.SubwayDAO;
 import ikuzo.kimi.densha.util.StationCodeToLastTimetable;
 import ikuzo.kimi.densha.util.StationCodeToStationInfo;
 import ikuzo.kimi.densha.util.StationCodeToTimetable;
@@ -27,6 +28,7 @@ import ikuzo.kimi.densha.util.StationNameToRealtimeArrive;
 import ikuzo.kimi.densha.util.StationNameToStationExit;
 import ikuzo.kimi.densha.vo.BusInformation;
 import ikuzo.kimi.densha.vo.Exit;
+import ikuzo.kimi.densha.vo.Subway;
 import ikuzo.kimi.densha.vo.Timetable;
 import ikuzo.kimi.densha.vo.stationDB;
 
@@ -40,7 +42,7 @@ public class SubwayController {
 
 	@Autowired
 	StartEndDAO sedao;
-	
+	SubwayDAO dao;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -238,6 +240,20 @@ public class SubwayController {
 		logger.debug("test{}", sList2);
 		
 		return sList2;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "realTimeTrainSeat", method = RequestMethod.POST)
+	public Subway realTimeTrainSeat(String subwaynum, String carnum) {
+		
+		System.out.println("subwaynum: "+ subwaynum);
+		System.out.println("carnum: "+ carnum);
+	
+		Subway subway = dao.select(subwaynum, carnum);
+		
+		// elderyseat1, elderyseat2, elderyseat3 1,0,1
+		
+		return subway;
 	}
 
 }

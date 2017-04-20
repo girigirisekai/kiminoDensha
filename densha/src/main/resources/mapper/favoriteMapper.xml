@@ -22,7 +22,7 @@
 		where station_nm2 = #{name} and line_num= #{line}
 	</select>
 
-	<select id="myFavorite" parameterType="favorite" resultType="favorite">
+	<select id="myFavorites" parameterType="favorite" resultType="favorite">
 		select
 		*
 		from favorite
@@ -33,7 +33,7 @@
 	<insert id="newFavorite" parameterType="favorite">
 		insert into
 		favorite
-		values(#{id},#{favoriteName},#{stationCode},sysdate);
+		values(#{id},#{favoriteName},#{stationCode},sysdate)
 	</insert>
 
 	<delete id="deleteFavorite4" parameterType="favorite">

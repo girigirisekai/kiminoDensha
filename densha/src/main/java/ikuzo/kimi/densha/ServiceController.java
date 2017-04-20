@@ -45,11 +45,5 @@ public class ServiceController {
 		return "stationcode";
 	}
 	
-	@RequestMapping(value = "favorite", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public String favorite(Model model) throws Exception {
-
-		return "favorite";
-
-	}
-
+	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,22 +41,23 @@
 		  +'<path fill="#FFFFFF" d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>';
 	
 	$(document).ready(function() { // 최초 시작점 
+		
 		 $('svg').mousedown(function(e) {
-			// 			alert(e.which); // 1:좌클릭, 2:휠클릭, 3:우클릭
+			// 1:좌클릭, 2:휠클릭, 3:우클릭
 			if (e.which == '1') { // 일반 클릭
-// 				$('#노선 circle').on('click', test1); // fill 채우기 
-// 				$('#station').on('click', get_station_popup); // 역 정보 
 			} else if (e.which != '1') { // 우클릭
 				station_name_down(); // 역 이름 팝업 div 삭제
 				get_station_down(); // 역정보보기 div 삭제
 				
-				
 			}
 		}); 
-		$('#노선 circle').on('click', test1);
+		$('#노선 circle').on('click', test1); 
 		$('#station').on('click', get_station_popup);
+		
 
 	});
+	
+	
 	
 	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
 		
@@ -115,11 +117,8 @@
 			}
 		}); 
 		
-		
-		
 	}
 	
-
 	function test1() { // 채우면서 데이터 보내는 역할
 
 		$('#'+ecode2).attr('fill', '#FFFFFF');
@@ -136,8 +135,6 @@
 		yPoint = $(this).attr('cy');
 		
 		var id = $(this).attr('id');
-// 		orion = id;
-// 		alert(id);
 		station_name_popup(id);
 		pathTest();
 	}
@@ -160,16 +157,7 @@
 		}
 		
 	}
-	
-	
-// 	function test2() { // 채우기 
-// 		$('#노선 circle').attr('fill', '#FFFFFF');
-// 		$(this).attr('fill', 'orange');
-// 	}
 
-// 	function test3() { // 채우기 
-// 		$(this).attr('fill', 'orange');
-// 	}
 </script>
 
 </head>
@@ -227,9 +215,10 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#home">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="join">회원가입</a></li>
         <li><a href="stationcode">지하철서비스</a></li>
+         <c:if test="${loginCheck eq 1}">
         <li><a href="favorite">Favorite</a></li>
+        </c:if>
         	<li><a href="board">게시판</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">제공 서비스 안내<span class="caret"></span></a>
@@ -251,6 +240,7 @@
 <!--         <button type="submit" class="btn btn-default">Submit</button> -->
 <!--       </form> -->
        <ul class="nav navbar-nav navbar-right">
+		<c:if test="${loginId == null }">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
 			<ul id="login-dp" class="dropdown-menu">
@@ -290,6 +280,10 @@
 				</li>
 			</ul>
         </li>
+      </c:if>
+      <c:if test="${loginId != null }">
+      <li><a href="logout">로그아웃</a></li>
+      </c:if>
       </ul>
     </div>
   </div>
@@ -8891,6 +8885,40 @@
 			id="startEnd" stationcode="역코드변환됨">
 	</div>
 	<!-- 	역 정보 띄우는 팝업  -->
+	
+		<!-- 	역 이름 띄우는 팝업 -->
+	<div id="train_seat_popup"
+		style="position: absolute; border: none; top: 100px; left: 100px; width: 50px; height: 30px; z-index: 1; visibility: hidden; background-color: white;">
+		
+		<table>
+		
+		<tr>
+		<td colspan="2">
+			량의 좌석상황
+		</td>
+		</tr>
+		
+		<tr>
+		<td>
+			<span id = "TrainSeat1"></span>
+		</td>
+		<td>
+			<span id = "TrainSeat2"></span>
+		</td>
+		</tr>
+		<tr>
+		<td>
+			<span id = "TrainSeat3"></span>
+		</td>
+		<td>
+			<span id = "TrainSeat4"></span>
+		</td>
+		</tr>
+		
+		</table>
+			
+	</div>
+	<!-- 	역 정보 띄우는 팝업  -->
 
 	<div id="station_info_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 500px; height: 700px; z-index: 1; visibility: hidden; background-color: white;">
@@ -8900,7 +8928,6 @@
 				<h3 class="panel-title">역 이름 넣기</h3>
 			</div>
 			<div class="panel-body">
-
 				<!-- 	실시간 역 상황 보기   -->
 				<div class="stationNames">
 					<div style="">
@@ -8912,8 +8939,16 @@
 							style="position: relative; left: 340px; top: 15px;"></div>
 					</div>
 
+					
+				</div>
 
 
+				<!-- 	실시간 역 상황 보기   -->
+			</div>
+			
+			<div class="panel-body">
+			<div style="">
+		
 					<table width="450">
 						<td colspan="12"><center>혼잡도</center></td>
 						<tr>
@@ -8942,10 +8977,7 @@
 
 						</tr>
 					</table>
-				</div>
-
-
-				<!-- 	실시간 역 상황 보기   -->
+					</div>
 			</div>
 		</div>
 		<!-- 	역 이름 -->

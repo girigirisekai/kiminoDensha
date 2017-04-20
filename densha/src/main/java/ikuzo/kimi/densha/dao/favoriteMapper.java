@@ -10,7 +10,7 @@ import ikuzo.kimi.densha.vo.stationDB;
 
 public interface favoriteMapper {
 
-	public ArrayList<favorite> myFavorites(String stationName);
+	public ArrayList<favorite> myFavorites(String id);
 
 	public int deleteFavortie(String stationName);
 

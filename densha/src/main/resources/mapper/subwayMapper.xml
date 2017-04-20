@@ -59,8 +59,9 @@
 			subwaynum=#{subwayNum}
 		and
 			carnum=#{carNum}
-		
-	
+
 	</update>
+
+	
 	
 </mapper>

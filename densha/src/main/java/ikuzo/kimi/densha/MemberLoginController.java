@@ -63,8 +63,9 @@ public class MemberLoginController {
 			String ip = req.getRemoteAddr();
 			loginCheck logincheck  = new loginCheck(loginId,ip,null);
 			int logincheck1 = dao.logincheck(logincheck);
+			System.out.println(logincheck1);
 			model.addAttribute("loginCheck",logincheck1);
-			return "redirect:/";
+			return "redirect:home";
 			
 		}else{
 			return "home";

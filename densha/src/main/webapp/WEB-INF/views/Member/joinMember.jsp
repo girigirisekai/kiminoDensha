@@ -471,7 +471,7 @@ function testLocalStorageData() {
 <!-- 									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a> -->
 <!-- 								</div> -->
 <!--                                 or -->
-								 <form class="form" role="form" method="post" action="joinMember" accept-charset="UTF-8" id="login-nav">
+								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
 											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
 											 <input type="email" class="form-control" id="loginId" placeholder="Email address" required>
@@ -514,10 +514,10 @@ function testLocalStorageData() {
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin">
+            <form class="form-signin" action = "joinMember" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="id" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <input type="email" id="id" class="form-control" name="id" placeholder="Email address" required autofocus>
+                <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
               <select id="question" name="question">
 						<option>선택하세요</option>
 						<option value="태어난 고향은 어디입니까?">태어난 고향은 어디입니까?</option>

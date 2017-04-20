@@ -156,6 +156,8 @@ iframe {
 <!--         </div> -->
 <!--         <button type="submit" class="btn btn-default">Submit</button> -->
 <!--       </form> -->
+	
+	<c:if test="${loginCheck == null || loginCheck == 0}">
        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -180,7 +182,14 @@ iframe {
                                              <div class="help-block text-right"><a href="forgotpassword">암호를 잊어버리셨나요?</a></div>
 										</div>
 										<div class="form-group">
+										
+											
 											 <button type="submit" class="btn btn-primary btn-block">Login</button>
+											
+											 
+											
+											 
+											 
 										</div>
 <!-- 										<div class="checkbox"> -->
 <!-- 											 <label> -->
@@ -197,6 +206,15 @@ iframe {
 			</ul>
         </li>
       </ul>
+      </c:if>
+      <c:if test="${loginCheck == 1}">
+      ?
+      
+      <ul class="nav navbar-nav navbar-right">
+     	 <li><a href="logout">로그아웃</a></li>
+      
+       	</ul>
+      </c:if>
     </div>
   </div>
 </nav>

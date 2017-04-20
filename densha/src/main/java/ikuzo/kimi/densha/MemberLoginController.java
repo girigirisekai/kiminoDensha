@@ -18,7 +18,7 @@ import ikuzo.kimi.densha.vo.Member;
 import ikuzo.kimi.densha.vo.loginCheck;
 
 @Controller
-@RequestMapping("login")
+//@RequestMapping("login")
 public class MemberLoginController {
 
 	@Autowired
@@ -48,6 +48,15 @@ public class MemberLoginController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(HttpSession ss, String loginId, String loginPassword, HttpServletRequest req,Model model) {
 		Member member = dao.login(loginId, loginPassword);
+		
+	
+		
+		System.out.println(loginId +"//"+loginPassword );
+		
+		if(member.getId()==null){
+			return "redirect:/";
+		}
+		
 		if(member.getId().equals(loginId) && member.getPassword().equals(loginPassword)){
 			ss.setAttribute("loginId", loginId);
 			req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -58,8 +67,21 @@ public class MemberLoginController {
 			return "redirect:/";
 			
 		}else{
-			return "Member/login";
+			return "home";
 		}
+	}
+	
+	
+	/**
+	 * 로그아웃 부분
+	 * @param ss
+	 * @return
+	 */
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession ss){
+		logger.debug("logout");
+		ss.removeAttribute("loginId");
+		return "redirect:/";
 	}
 
 	

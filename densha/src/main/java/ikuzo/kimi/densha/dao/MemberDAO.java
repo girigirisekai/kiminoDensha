@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ikuzo.kimi.densha.vo.Member;
+import ikuzo.kimi.densha.vo.checkCode;
 import ikuzo.kimi.densha.vo.loginCheck;
 
 @Repository
@@ -18,9 +19,26 @@ public class MemberDAO {
 		 */
 		public int joinMember(Member member){
 			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-			int result2 = mapper.joinMember(member);
-			return result2;
+			int result = mapper.joinMember(member);
+			return result;
 		}
+		/**
+		 * 임시 코드등록
+		 */
+		public int code(checkCode checkCode1){
+			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+			int result = mapper.code(checkCode1);
+			return result;
+		}
+		
+		/**
+		 * 임시코드 시간초가 삭제
+		 */
+		public void codeDelete(String id){
+			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+			mapper.codeDelete(id);
+		}
+		
 		
 		/**
 		 * 회원 수정
@@ -32,13 +50,30 @@ public class MemberDAO {
 		}
 		
 		/**
-		 * 회원 삭제 
+		 * 회원 탈퇴 
+		 * 회원 로그인 기록 삭제
 		 */
-		public int deleteMember(Member member){
+		public int deleteMember(String id, String answer){
 			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-			int result = mapper.deleteMember(member);
-			return 0;
+			int result = mapper.deleteMember(id,answer);
+			int result1 = mapper.deleteLoginCheck(id);
+			return result;
 		}
+		/**
+		 * 탈퇴회원 아이디 확인 
+		 */
+		public Member selectId1(String id, String password){
+			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+			Member result = mapper.selectId1(id,password);
+			return result;
+		}
+		
+		public int updateMember(Member member){
+			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+			int result = mapper.updateMember(member);
+			return result;
+		}
+		
 		
 		/**
 		 * 회원 아이디 중복 검사

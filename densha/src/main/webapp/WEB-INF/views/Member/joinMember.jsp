@@ -1,4 +1,4 @@
-
+<%@page import="ikuzo.kimi.densha.email.SendMail"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -471,7 +471,7 @@ function testLocalStorageData() {
 <!-- 									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a> -->
 <!-- 								</div> -->
 <!--                                 or -->
-								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+								 <form class="form" role="form" method="post" action="joinMember" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
 											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
 											 <input type="email" class="form-control" id="loginId" placeholder="Email address" required>

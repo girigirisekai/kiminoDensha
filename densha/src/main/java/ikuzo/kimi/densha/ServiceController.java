@@ -29,15 +29,15 @@ public class ServiceController {
 		return "Member/myAccount";
 	}
 
-	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
-	public String deleteMember() { // 회원삭제
-		return "Member/deleteMember";
-	}
+//	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
+//	public String deleteMember() { // 회원삭제
+//		return "Member/deleteMember";
+//	}
 
-	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
-	public String updateMember() { // 회원수정
-		return "Member/updateMember";
-	}
+//	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+//	public String updateMember() { // 회원수정
+//		return "Member/updateMember";
+//	}
 
 	@RequestMapping(value = "/stationcode", method = RequestMethod.GET)
 	public String stationcode() { // 지하철 지도 페이지, 나중에 subway로 바꿀것

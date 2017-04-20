@@ -16,8 +16,8 @@
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="./resources/js/function.js"></script>
 <body>
-
-<header id="home">
+<!--top header-->
+	<header id="home">
 
 <!-- 		<section class="top-nav hidden-xs"> -->
 <!-- 			<div class="container"> -->
@@ -74,7 +74,7 @@
         <li><a href="favorite">Favorite</a></li>
         	<li><a href="board">게시판</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">제공 서비스 안내<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#service">서비스</a></li>
             <li><a href="#portfolio">API제공 서비스</a></li>
@@ -86,12 +86,12 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+<!--       <form class="navbar-form navbar-left" role="search"> -->
+<!--         <div class="form-group"> -->
+<!--           <input type="text" class="form-control" placeholder="Search"> -->
+<!--         </div> -->
+<!--         <button type="submit" class="btn btn-default">Submit</button> -->
+<!--       </form> -->
        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -107,21 +107,21 @@
 <!--                                 or -->
 								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-											 <input type="email" class="form-control" id="loginId" placeholder="Email address" required>
+											 <label class="sr-only" for="exampleInputEmail2">ID를 입력해주세요</label>
+											 <input type="text" class="form-control" id="loginId" name="loginId" placeholder="id" required>
 										</div>
 										<div class="form-group">
 											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+											 <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Password" required>
+                                             <div class="help-block text-right"><a href="forgotpassword">암호를 잊어버리셨나요?</a></div>
 										</div>
 										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+											 <button type="submit" class="btn btn-primary btn-block">Login</button>
 										</div>
-										<div class="checkbox">
-											 <label>
-											 <input type="checkbox"> keep me logged-in
-											 </label>
+<!-- 										<div class="checkbox"> -->
+<!-- 											 <label> -->
+<!-- 											 <input type="checkbox"> keep me logged-in -->
+<!-- 											 </label> -->
 										</div>
 								 </form>
 							</div>
@@ -129,7 +129,7 @@
 								새롭게 오셨나요? <a href="join"><b>Join Us</b></a>
 							</div>
 					 </div>
-				</li>
+				</li> 
 			</ul>
         </li>
       </ul>

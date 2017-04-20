@@ -1,6 +1,7 @@
 package ikuzo.kimi.densha.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class BoardDAO {
 	public int insert(Board b){
 		
 		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+		
 		int result = mapper.insert(b);
 		
 		return result;

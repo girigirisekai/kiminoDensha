@@ -7,55 +7,124 @@
 <mapper namespace="ikuzo.kimi.densha.dao.MemberMapper">
 
 	<!-- 회원 정보 저장 -->
-	
+
 	<insert id="joinMember" parameterType="Member">
-		insert 
-			into 
-				member(
-						id
-						, password
-						, type
-						, question
-						, answer
-						) 
-				values (
-						#{id}
-						, #{password}
-						, #{type}
-						, #{question}
-						, #{answer} 
-						) 
-	</insert> 
+		insert
+				into
+			member(
+					id
+					, password
+					, type
+					, question
+					, answer
+					)
+			values (
+					#{id}
+					, #{password}
+					, #{type}
+					, #{question}
+					, #{answer}
+					)
+	</insert>
+	<insert id="code" parameterType="checkCode">
+		insert
+			into
+				checkCode
+			values
+					(
+					#{id}
+					,#{password}
+					,#{question}
+					,#{answer}
+					,#{checkCode}
+					,sysdate
+					)
+	</insert>
 	
+	
+	<delete id="codeDelete" parameterType="checkCode">
+		delete
+				checkCode
+			where
+				id = #{id}	
+	</delete>
+	
+
 	<select id="selectId" parameterType="String" resultType="Member">
-		select 
+		select
 				id
-						, password
-						, type
-						, question
-						, answer
+				, password
+				, type
+				, question
+				, answer
 			from
 				member
-		 			where
-		 				id = #{id}
+			where
+				id = #{id}
 	</select>
+
+	<select id="selectId1" parameterType="Member" resultType="Member">
+		select
+				*
+			from
+				member
+			where
+				id = #{0}
+			and
+				password = #{1}
+	</select>
+
+	<delete id="deleteMember" parameterType="Member">
+		delete
+			member
+			where
+				id =#{0}
+			and
+				answer =#{1}
+	</delete>
+
 	
+
+	<delete id="deleteLoginCheck" parameterType="Member">
+		delete
+				loginCheck
+			where
+				id =#{0}
+	</delete>
+
+	<update id="updateMember" parameterType="Member">
+		update
+				member
+			set
+				id=#{id}
+				,password=#{password}
+				,type='personal'
+				,question=#{question}
+				,answer=#{answer}
+			where
+				id=#{id}
+	</update>
+
 	<select id="login" resultType="Member">
 		select
-			*
-		from
-			member
-		where
-			id = #{0}
-		and	
-			password = #{1}
+				*
+			from
+				member
+			where
+				id = #{0}
+			and
+				password = #{1}
 	</select>
-	
- 	<insert id="logincheck" parameterType="loginCheck" > 
+
+	<insert id="logincheck" parameterType="loginCheck">
 		insert
 			into
 				loginCheck
 			values
-				(#{id},#{ipAddress},sysdate)
-	</insert> 
+					(
+					#{id}
+					,#{ipAddress}
+					,sysdate
+					)
+	</insert>
 </mapper>

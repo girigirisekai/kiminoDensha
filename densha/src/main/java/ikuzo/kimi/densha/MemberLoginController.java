@@ -49,12 +49,12 @@ public class MemberLoginController {
 	public String login(HttpSession ss, String loginId, String loginPassword, HttpServletRequest req,Model model) {
 		Member member = dao.login(loginId, loginPassword);
 		
-	
 		
 		System.out.println(loginId +"//"+loginPassword );
 		
-		if(member.getId()==null){
-			return "redirect:/";
+		if(member == null){
+			model.addAttribute("loginCheck","0");
+			return "redirect:home";
 		}
 		
 		if(member.getId().equals(loginId) && member.getPassword().equals(loginPassword)){
@@ -65,10 +65,10 @@ public class MemberLoginController {
 			int logincheck1 = dao.logincheck(logincheck);
 			System.out.println(logincheck1);
 			model.addAttribute("loginCheck",logincheck1);
-			return "redirect:home";
+			return "home";
 			
 		}else{
-			return "home";
+			return "redirect:home";
 		}
 	}
 	

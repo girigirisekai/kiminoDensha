@@ -157,7 +157,7 @@ iframe {
 <!--         <button type="submit" class="btn btn-default">Submit</button> -->
 <!--       </form> -->
 	
-	<c:if test="${loginCheck == null || loginCheck == 0}">
+	<c:if test="${loginCheck eq null || loginCheck eq 0}">
        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -207,9 +207,8 @@ iframe {
         </li>
       </ul>
       </c:if>
-      <c:if test="${loginCheck == 1}">
-      ?
-      
+      <c:if test="${loginCheck eq 1}">
+    
       <ul class="nav navbar-nav navbar-right">
      	 <li><a href="logout">로그아웃</a></li>
       

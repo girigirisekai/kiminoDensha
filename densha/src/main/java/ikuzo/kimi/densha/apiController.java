@@ -9,24 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class ServiceController {
+public class apiController {
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 
-	
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String js_5() { // 가입페이지
-		return "Member/joinMember";
-	}
-
-
-
-	@RequestMapping(value = "/stationcode", method = RequestMethod.GET)
-	public String stationcode() { // 지하철 지도 페이지, 나중에 subway로 바꿀것
-		return "stationcode";
+	@RequestMapping(value = "/api", method = RequestMethod.GET)
+	public String api() { // api 안내 페이지
+		return "api";
 	}
 	
+	@RequestMapping(value = "/apiservice", method = RequestMethod.GET)
+	public String apiservice(Model model) { // api 안내 페이지
+		
+		
+		return "api";
+	}
+
 	
 }

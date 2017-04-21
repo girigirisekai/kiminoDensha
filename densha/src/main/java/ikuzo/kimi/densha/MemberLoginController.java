@@ -88,6 +88,16 @@ public class MemberLoginController {
 		ss.invalidate();
 		return "redirect:/";
 	}
+	
+	// 내 정보 페이지, 개인정보 보여주기
+	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
+	public String myAccount(Model model, HttpSession ses) { // 내 정보 페이지 (개인정보 보여주고 수정과 탈퇴 페이지메뉴)
+		String id = (String) ses.getAttribute("loginId");
+		Member myMember = dao.selectId(id);
+		model.addAttribute("accountInfo", myMember);
+		
+		return "Member/myAccount";
+	}
 
 	
 }

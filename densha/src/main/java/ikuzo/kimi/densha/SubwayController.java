@@ -42,6 +42,8 @@ public class SubwayController {
 
 	@Autowired
 	StartEndDAO sedao;
+	
+	@Autowired
 	SubwayDAO dao;
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -244,13 +246,13 @@ public class SubwayController {
 	
 	@ResponseBody
 	@RequestMapping(value = "realTimeTrainSeat", method = RequestMethod.POST)
-	public Subway realTimeTrainSeat(String subwaynum, String carnum) {
+	public ArrayList<Subway> realTimeTrainSeat(String subwaynum, String carnum) {
 		
 		System.out.println("subwaynum: "+ subwaynum);
 		System.out.println("carnum: "+ carnum);
 	
-		Subway subway = dao.select(subwaynum, carnum);
-		
+		ArrayList<Subway> subway = dao.selectArray(subwaynum, carnum);
+		System.out.println(subway.toString());
 		// elderyseat1, elderyseat2, elderyseat3 1,0,1
 		
 		return subway;

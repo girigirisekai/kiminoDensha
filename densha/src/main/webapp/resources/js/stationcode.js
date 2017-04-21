@@ -24,23 +24,24 @@ function station_name_popup(stationCode) { // stationNamePopup
 	$('#startEnd').attr('stationcode', stationCode);
 
 	insertStation = $('#station').attr('stationcode');
-	
-	// 역 코드로 이름 가져오기 
-	$.ajax({
+
+	// 역 코드로 역 이름 가져오기 
+	$.ajax({ 
 		url : 'StationCodeParseName',
 		type : 'get',
 		data : {
-			stationCode : insertStation
+			stationCode : insertStation // 역 코드 넣기 
 		},
 		dataType : 'json',
 		success : function(item) {
-			getStation = item.station_nm2;
-			latitude = item.xpoint;
-			longitude = item.ypoint;
-			console.log(latitude);
-
+			getStation = item.station_nm2; // 역 이름 받기
+			latitude = item.xpoint; // x좌표 받기
+			longitude = item.ypoint; // y 좌표 받기 
+			
 		}
 	})
+	
+	
 }
 
 // 역 이름 팝업 삭제
@@ -90,9 +91,7 @@ function get_station_popup() {
 	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 	layer.style.visibility = "visible";
 
-
-
-	stationinfo();
+	stationinfo(); // 역 정보 ajax 실행
 
 	$('#delete_popup').on('click', get_station_down);
 	//팝업 삭제 링크 
@@ -100,7 +99,7 @@ function get_station_popup() {
 	// 탭 전환을 위해서 자동으로 누르기(아직 동작하지 않음, 버그있음) 
 	$('#firstTeb').attr('aria-expanded', 'true');
 
-	$('#carNum1').mouseover(get_train_info); // 역열차의 좌석 정보
+	
 }
 
 function get_station_down() { // 역 정보 팝업 삭제 
@@ -111,11 +110,25 @@ function get_station_down() { // 역 정보 팝업 삭제
 
 //======================여기까지는 팝업담당===========================//
 
+// 좌석 상황 div 보여주는 부분
+function train_popup(opt) {
+	if (opt) {
+		train_seat_popup.style.display = "block";
+	} else {
+		train_seat_popup.style.display = "none";
+	}
+	get_train_info();
+}
+
+
 //역열차의 좌석 정보를 롤오버로 구현하느 부분
 function get_train_info() {
 	var subwaynum = '2002'; // 열차번호
-	var carnum = '1';// 열차량번호 가져오기
-//	 $(this).attr('trainnum')
+	var carnum = '2'; // 열차량번호 가져오기
+//	var carnums = $(this).attr('#carNum1');
+	var carnumss = $('#carNum1').attr('trainnum');
+	console.log(this);
+	console.log(carnumss);
 	$.ajax({
 		url : 'realTimeTrainSeat',
 		type : 'post',
@@ -124,25 +137,36 @@ function get_train_info() {
 			carnum : carnum
 		},
 		dataType : 'json',
-		success : function(datas) {
-			var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
-			var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
-			var layer = document.getElementById("train_seat_popup");
-			if (_x < 0)
-				_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
-			if (_y < 0)
-				_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
-
-			layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-			layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-			layer.style.visibility = "visible";
-			
-			//arraylist 받아서 좌석당 돌리기
-			$.each(datas, function(index,item) {
-				var insert = item.elderyseat1 + item.elderyseat2 + item.elderyseat3
-				$('#TrainSeat'+index).val(insert);
-							
-			})
+		success : function(item) {
+			$.each(item, function(index, items) {
+				console.log(index);
+				var int = index +1;
+				var insert = '';
+				var insertTitle = subwaynum +'번호 열차의 ' + carnum +'량 열차 좌석정보';
+				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
+				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
+				
+				if(items.elderlySeat1 == 1){
+					insert += seaton;
+					}else if(items.elderlySeat1 == 0){ // 좌석에 사람이 없다면 
+					insert += seatoff;
+					}
+				
+				if(items.elderlySeat2 == 1){
+					insert += seaton;
+					}else if(items.elderlySeat2 == 0){ // 좌석에 사람이 없다면 
+					insert += seatoff;
+					}
+				
+				if(items.elderlySeat3 == 1){
+					insert += seaton;
+					}else if(items.elderlySeat3 == 0){ // 좌석에 사람이 없다면 
+					insert += seatoff;
+					}
+				
+				$('#trainSeat'+int).html(insert);
+				$('#seatTitle').html(insertTitle);
+			});
 		}
 	})
 }
@@ -197,8 +221,8 @@ function stationinfo() {
 
 //아두이노 센서에서 좌석과 혼잡도 테이블 가져오는 function
 function subwaySensorGet() { // map 이름과 같다. 
-	
-	var subwayNum =  '2002'; // 2호선 2002열차 
+
+	var subwayNum = '2002'; // 2호선 2002열차 
 	$.ajax({
 		url : 'subwaySensorGet',
 		type : 'post',
@@ -213,10 +237,10 @@ function subwaySensorGet() { // map 이름과 같다.
 }
 // 아두이노 센서에서 좌석과 혼잡도 테이블 가져오는 function 결과
 function resultSubwaySensorGet(datas) {
-	var subwayNum =  '2002'; // 2호선 2002열차 
-	$.each(datas, function(index, items) {
+	var subwayNum = '2002'; // 2호선 2002열차 
+	$.each(datas, function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
 		var humanIndex = index + 1;
-		var human = '<span class = "train'+index+'" trainNum = "'+index+'">';
+		var human = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex + '"  onmouseover="train_popup(true)" onmouseout="train_popup(false)">';
 		human += items.humanNum;
 		human += '</span>';
 		$('#carNum' + humanIndex).html(human);
@@ -228,8 +252,11 @@ function resultSubwaySensorGet(datas) {
 function stationinforesult(item) {
 	//중요: 팝업 테이블 채우는 곳 
 	//환승역의 경우 정보를 더 채워야 함 
+	
 	realtimes(); // 실시간 정보 받기 
-	subwaySensorGet();
+	subwaySensorGet(); // 센서 ajax 겟 
+	$('#stationNamebar').text(getStation); // div 팝업 창에 역 이름 넣기 
+	
 	// map 형식으로 받는다, map 형식은 for을 할 필요가 없다.
 	var text = '';
 

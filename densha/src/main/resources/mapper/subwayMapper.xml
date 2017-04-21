@@ -18,6 +18,17 @@
 		 	carnum=#{1}
 	</select>
 	
+	<select id="selectArray" parameterType="string" resultType="Subway">
+		select 
+			*
+		from
+			subwaydata
+		where 
+			subwaynum=#{0}
+		and
+		 	carnum=#{1}
+	</select>
+	
 		<!-- 지하철 정보 검색 -->
 	<select id="selectSubwayArray" parameterType="string" resultType="Subway">
 		select 

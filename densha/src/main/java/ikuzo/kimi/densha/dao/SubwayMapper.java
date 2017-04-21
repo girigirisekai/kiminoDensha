@@ -9,7 +9,7 @@ import ikuzo.kimi.densha.vo.Subway;
 public interface SubwayMapper {
 	
 	//검색 // 실시간 좌석수 
-	public Subway selectSubway(String subwayNum, String carNum) throws Exception;
+	public Subway selectSubway(String subwaynum, String carnum) throws Exception;
 	
 	//전체검색
 	public ArrayList<Subway> selectSubwayArray(String subwayNum) throws Exception;
@@ -19,6 +19,8 @@ public interface SubwayMapper {
 	
 	//수정
 	public int updateSubway(Subway subway) throws Exception;
+
+	public ArrayList<Subway> selectArray(String subwaynum, String carnum);
 
 	
 }

@@ -22,11 +22,11 @@ public class SubwayDAO {
 	 * 입력값: 지하철번호, 칸번호
 	 * 출력값: Subway객체
 	*/
-	public Subway select(String subwayNum, String carNum){
+	public Subway select(String subwaynum, String carnum){
 		Subway result=new Subway();
 		SubwayMapper subwaymapper=sqlsession.getMapper(SubwayMapper.class);
 		try{
-			result=subwaymapper.selectSubway(subwayNum, carNum);
+			result=subwaymapper.selectSubway(subwaynum, carnum);
 		}catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -34,6 +34,7 @@ public class SubwayDAO {
 		return result; 
 	}
 	
+//	전 열차 내부 인원 알기
 	public ArrayList<Subway> selectSubwayArray(String subwayNum){
 		ArrayList<Subway> result = new ArrayList<>();
 		SubwayMapper subwaymapper=sqlsession.getMapper(SubwayMapper.class);
@@ -75,6 +76,18 @@ public class SubwayDAO {
 			e.getStackTrace();
 		}
 		return result;
+	}
+
+	public ArrayList<Subway> selectArray(String subwaynum, String carnum) {
+		ArrayList<Subway> result = new ArrayList<>();
+		SubwayMapper subwaymapper=sqlsession.getMapper(SubwayMapper.class);
+		try{
+			result = subwaymapper.selectArray(subwaynum, carnum);
+		}catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		return result; 
 	}
 
 

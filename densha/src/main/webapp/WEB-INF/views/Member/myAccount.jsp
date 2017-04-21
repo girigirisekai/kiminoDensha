@@ -5,6 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 정보</title>
+<style type="text/css">
+
+body, html {
+	background: url(./resources/image/back/backapi.jpg) no-repeat center
+		center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+.first {
+	overflow : hidden;
+}
+</style>
 </head>
 <link
 	href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Raleway"
@@ -20,27 +36,22 @@
 	<jsp:include page="../header.jsp" />
 	<!--top header-->
 
-<div class="page-header" id="banner">
-        <div class="row">
-          <div class="col-lg-8 col-md-7 col-sm-6">
-            <h3>회원정보</h3>
-            <p class="lead">회원 정보 관리</p>
-          </div>
-          <div class="col-lg-4 col-md-5 col-sm-6">
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-4">
-            <div class="list-group table-of-contents">
-              <a class="list-group-item" href="updateMember">회원정보 수정</a>
-              <a class="list-group-item" href="deleteMember">회원 탈퇴</a>
-              <a class="list-group-item" href="stationMember">역 추가/수정하기</a>
-             
-            </div>
-          </div>
-        </div>
-      </div>
+	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);"
+		class="first">
+		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
+
+			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0);">
+				<h1>개인정보 수정</h1>
+				<p>개인정보 수정</p>
+				
+			</div>
+			
+			
+			
+
+
+		</div>
+	</div>
 <script src="./resources/js/bootstrap.min.js"></script>
 
 </body>

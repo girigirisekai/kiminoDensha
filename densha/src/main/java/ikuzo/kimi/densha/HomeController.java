@@ -4,6 +4,7 @@ package ikuzo.kimi.densha;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
@@ -29,6 +30,15 @@ public class HomeController {
 	public String n2() { // 테스트용으로 쓸것 n2.jsp
 		return "n2";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/n2", method = RequestMethod.POST)
+	public String n22() { // 테스트용으로 쓸것 n2.jsp
+		
+		
+		return "n2";
+	}
+	
 
 	
 	

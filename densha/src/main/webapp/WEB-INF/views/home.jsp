@@ -313,16 +313,15 @@
 					<div class="col-md-7">
 						<div class="service-footer-left">
 							<h3>
-								Need to <span>Consult with us</span> ? Book an appointment
+								API가 <span>필요</span> 하세요?
 							</h3>
-							<p>The Brady Bunch the Brady Bunch that's the way we all
-								became the Brady Bunch</p>
+							<p>지금 API를 써보세요!</p>
 						</div>
 					</div>
 
 					<div class="col-md-5">
 						<div class="service-footer-right">
-							<button class="btn">book now</button>
+							<button class="btn"><a href="api" style="color: white;">API</a></button>
 						</div>
 					</div>
 				</div>

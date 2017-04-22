@@ -6,9 +6,130 @@
 <!-- 게시판 처리 SQL -->
 <mapper namespace="ikuzo.kimi.densha.dao.BoardMapper">
 
-	<!-- <insert id="insert" parameterType="Board">
-		insert into board()
-	</insert> -->
+	<!-- 게시판 글작성하기 -->
+	<insert id="insert" parameterType="Board">
+		insert into board(
+		boardnum
+		, id
+		, type
+		, title
+		, content
+		<if test="originalfile != null and savedfile != null">
+			, originalfile
+			, savedfile
+		</if>
+		<if test="secretpassword !=null">
+			,secretpassword
+		</if>
+
+		)
+		values(
+		board_seq.nextval
+		, #{id}
+		, #{type}
+		, #{title}
+		, #{content}
+		<if test="originalfile != null and savedfile != null">
+			, #{originalfile}
+			, #{savedfile}
+		</if>
+		<if test="secretpassword !=null">
+			, #{secretpassword}
+		</if>
+		)
+	</insert>
+	
+	
+	<!-- 전체 글 개수 가져오기 -->
+	<select id="getTotal" parameterType="map" resultType="integer">
+		select 
+			count (*) 
+		from 
+			board
+		where
+			type = #{type} and title like '%' || #{searchText} || '%'
+	</select>
+	
+	<!-- 게시판 보여주기 -->
+	<select id="list" parameterType="map" resultType="Board">
+		select
+			b.boardnum
+			, b.id
+			, b.title
+			, b.content
+			, to_char(b.inputdate, 'mm-dd') inputdate
+			, b.hits
+			, (select count(*) 
+				from reply r 
+				where r.boardnum = b.boardnum) totalreply
+		from
+			board b
+		where 
+			b.type = #{type} and b.title like '%' || #{searchText} || '%'	
+		order by 1 desc		
+	</select>
+	
+	<!-- 게시판에 있는 글 선택해서 읽기 -->
+	<select id="select" parameterType="int" resultType="Board">
+		select
+			boardnum
+			, id
+			, title
+			, content
+			, to_char(inputdate, 'mm-dd') inputdate
+			, hits
+			, originalfile
+			, savedfile
+		from
+			board
+		where 
+			boardnum = #{boardunm}		
+	</select>
+	
+	<!-- 글 삭제하기 -->
+	<delete id="delete" parameterType="map">
+		delete from 
+			board
+		where id = #{id} and boardnum = #{boardnum} 	
+	</delete>
+
+
+	<!-- 글 수정하기 -->
+	<update id="update" parameterType="Board">
+		update board
+			set	
+				title = #{title}
+				, content = #{content}
+				<if test="originalfile!=null and savedfile != null">
+					, originalfile
+					= #{originalfile}
+					,savedfile
+					= #{savedfile}
+				</if>
+		where 
+			boardnum = #{boardnum}		
+	</update>
+
+	<!-- 댓글달기 -->
+	<insert id="insertReply" parameterType="Reply">
+		insert into reply (replynum, boardnum, id, text) values(reply_seq.nextval, #{boardnum}, #{id}, #{text})
+	</insert>
+
+
+	<!-- 댓글가져오기 -->
+	<select id="selectReply" parameterType="integer" resultType="Reply">
+		select * from reply where boardnum = #{boardnum}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="replyDelete" parameterType="Reply">
+		delete from reply where boardnum = #{boardnum} and replynum = #{replynum}	
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="replyUpdate" parameterType="Reply">
+		update reply set text = #{text} where replynum = #{replynum}
+	</update>
 	
 	
 </mapper>

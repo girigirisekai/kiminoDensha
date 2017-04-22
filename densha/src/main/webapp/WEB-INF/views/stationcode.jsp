@@ -8748,8 +8748,10 @@
 	<div id="station_name_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 50px; height: 30px; z-index: 1; visibility: hidden; background-color: white;">
 
-		<a href="javascript:get_station_popup" class="btn btn-primary btn-sm"
-			id="station">역 정보 보기</a> <input type="button" value="출발역"
+		<a href="javascript:get_station_popup" 
+			id="station">
+			<img src = "./resources/image/menu/stationInfo.jpg">
+			</a> <input type="button" value="출발역"
 			id="startEnd" stationcode="역코드변환됨">
 			
 			

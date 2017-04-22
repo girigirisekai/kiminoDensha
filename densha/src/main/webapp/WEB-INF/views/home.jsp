@@ -198,9 +198,9 @@
 			<div class="row">
 				<div class="col-xs-12 col-md-6 col-md-offset-3">
 					<div class="service-heading">
-						<h2>service</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Praesent metus magna,malesuada porta elementum vitae.</p>
+						<h2>너의 지하철 service</h2>
+						<p>저희의 서비스는 지하철 지도의 제공과 지하철 차량의 총인원, 그리고 칸당 인원과 
+						노약좌석의 상황을 제공합니다. 또한 <strong>api</strong>도 제공을 합니다. 자세한 것은 API 페이지를 참조해 주세요 </p> 
 					</div>
 				</div>
 			</div>
@@ -290,12 +290,12 @@
 							<!--Section Title-->
 							<div class="sec-title aligned-right">
 								<h2>
-									Our Serv<span>ces</span>
+									체험해 <span>보세요</span>
 								</h2>
 							</div>
-							<div class="text">우리의 서비스는 다음과 같습니다.</div>
+							<div class="text">지도 서비스로 참고가 가능합니다.</div>
 
-							<button class="btn">learn more</button>
+							<button class="btn" onclick="location.href='stationcode';">체험하러 가기</button>
 						</div>
 					</div>
 				</div>
@@ -321,7 +321,7 @@
 
 					<div class="col-md-5">
 						<div class="service-footer-right">
-							<button class="btn"><a href="api" style="color: white;">API</a></button>
+							<button class="btn"  onclick="location.href='api';">API</button>
 						</div>
 					</div>
 				</div>
@@ -522,32 +522,44 @@
 			<div class="row">
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/images/client/client1.png"
+					<span></span><img src="./resources/image/company/s1.jpg"
 						alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/images/client/client2.png"
+					<span></span><img src="./resources/image/company/s2.jpg"
 						alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/images/client/client3.png"
+					<span></span><img src="./resources/image/company/s3.jpg"
 						alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/images/client/client4.png"
+					<span></span><img src="./resources/image/company/s4.jpg"
 						alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/images/client/client5.png"
+					<span></span><img src="./resources/image/company/s5.jpg"
 						alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/images/client/client6.png"
+					<span></span><img src="./resources/image/company/s6.jpg"
+						alt="">
+				</div>
+				<div class="col-sm-4 col-md-2">
+					<span></span><img src="./resources/image/company/s7.jpg"
+						alt="">
+				</div>
+				<div class="col-sm-4 col-md-2">
+					<span></span><img src="./resources/image/company/s8.png"
+						alt="">
+				</div>
+				<div class="col-sm-4 col-md-2">
+					<span></span><img src="./resources/image/company/s9.png"
 						alt="">
 				</div>
 
@@ -564,11 +576,10 @@
 						<h3>
 							<span>about</span> us
 						</h3>
-						<p>To explore strange new worlds to seek out new life and new
-							civilizations to boldly go where no man has gone before. It's
-							time to play the music.</p>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry.</p>
+						<p>'너의 지하철'은 32기 SCIT마스터 2차 역량 프로젝트의 일환으로 만들어졌습니다.</p>
+						<p>이 프로젝트는 비영리, 비상업 목적으로서 프로젝트의 완성을 위해서 사용될 것입니다.
+						IoT와 웹을 연동하는 프로젝트로 프로젝트의 조원은 장성길, 이민호, 전누리, 안병호, 조재용입니다.
+							</p>
 					</div>
 				</div>
 
@@ -614,15 +625,10 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="footer-left">
-						&copy; MyBix Theme. All rights reserved
+						&copy; 너의지하철 . All rights reserved
 						<div class="credits">
-							<!-- 
-                                    All the links in the footer should remain intact. 
-                                    You can delete the links only if you purchased the pro version.
-                                    Licensing information: https://bootstrapmade.com/license/
-                                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyBiz
-                                -->
-							Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+						
+							Designed by <a href="http://localhost:8888/densha/">너의 지하철</a>
 						</div>
 					</div>
 				</div>
@@ -630,11 +636,15 @@
 				<div class="col-md-8">
 					<div class="footer-right">
 						<ul class="list-unstyled list-inline pull-right">
-							<li><a href="#home">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#service">Service</a></li>
-							<li><a href="#portfolo">Portfolio</a></li>
-							<li><a href="#contact">Contact</a></li>
+							<li><a href="home">Home</a></li>
+							<li><a href="stationcode">지하철지도</a></li>
+							<li><a href="home#service">Service</a></li>
+							<li><a href="home#api">api</a></li>
+							<li><a href="join">가입하기</a></li>
+							<c:if test="${loginId !=null}"> 
+    					    <li><a href="favorite">Favorite</a></li>
+    					    <li><a href="myAccount">내정보</a></li>
+    					    </c:if>			
 						</ul>
 					</div>
 				</div>

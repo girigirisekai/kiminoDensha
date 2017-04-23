@@ -1,13 +1,12 @@
 
+// 고정변수들, 건들지 말것. 
 var insertStation = ''; // 전역변수로 역코드를 받는 부분
 var getStation = ''; // 역코드 - > 역이름 DB get
 var latitude = ''; // 위도 (x)
 var longitude = ''; // 경도 (y)
-/**
- * 
- */
+var subwayLine = ''; // 지하철 호선
 
-//역 이름 팝업 띄우기 
+//역 이름: 팝업 띄우기 
 function station_name_popup(stationCode) { // stationNamePopup
 	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
 	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
@@ -26,8 +25,8 @@ function station_name_popup(stationCode) { // stationNamePopup
 	insertStation = $('#station').attr('stationcode');
 
 	// 역 코드로 역 이름 가져오기 
-	$.ajax({ 
-		url : 'StationCodeParseName',
+	$.ajax({
+		url : 'StationCodeParseName', // subway
 		type : 'get',
 		data : {
 			stationCode : insertStation // 역 코드 넣기 
@@ -36,15 +35,15 @@ function station_name_popup(stationCode) { // stationNamePopup
 		success : function(item) {
 			getStation = item.station_nm2; // 역 이름 받기
 			latitude = item.xpoint; // x좌표 받기
-			longitude = item.ypoint; // y 좌표 받기 
-			
+			longitude = item.ypoint; // y 좌표 받기
+			subwayLine = item.line_num; // linenum
 		}
 	})
-	
-	
+
+
 }
 
-// 역 이름 팝업 삭제
+// 역 이름: 팝업 삭제
 function station_name_down() { // stationNamediv 삭제 역할 
 	var layer = document.getElementById("station_name_popup_layer");
 	layer.style.visibility = 'hidden';
@@ -55,27 +54,9 @@ function station_name_down() { // stationNamediv 삭제 역할
 }
 
 
-//다음지도 부분인데 아직 작동 구현실패
-function daummap() {
-	var text = '';
-	var strings = 'daumMap';
-
-	text += '<script type="text/javascript">';
-	text += 'var mapContainer = document.getElementById(' + strings + '),';
-	text += '	mapOption = {';
-	text += '		center : new daum.maps.LatLng(' + latitude + ',' + longitude + '),';
-	text += '		level : 3';
-	text += '	};';
-	text += 'var map = new daum.maps.Map(mapContainer, mapOption);';
-	text += '</script>';
-
-	$('#daumMap').html(text);
 
 
-}
-
-
-//역 정보 팝업 띄우기 
+//역 정보: 팝업 띄우기 
 function get_station_popup() {
 	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
 	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
@@ -99,36 +80,87 @@ function get_station_popup() {
 	// 탭 전환을 위해서 자동으로 누르기(아직 동작하지 않음, 버그있음) 
 	$('#firstTeb').attr('aria-expanded', 'true');
 
-	
+
 }
 
-function get_station_down() { // 역 정보 팝업 삭제 
+//역 정보: 팝업 삭제
+function get_station_down() {
 	var layer = document.getElementById('station_info_popup_layer');
 	layer.style.visibility = 'hidden';
 	station_name_down();
 }
 
-//======================여기까지는 팝업담당===========================//
+// 열차량당 좌석: 아래의 기능들은 좌석에 대한 위치팝업
 
-// 좌석 상황 div 보여주는 부분
-function train_popup(opt) {
-	if (opt) {
-		train_seat_popup.style.display = "block";
-	} else {
-		train_seat_popup.style.display = "none";
-	}
+
+// 열차량당 좌석: 팝업on
+function train_popup(e) {
+	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
+	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
+	var layer = document.getElementById("train_seat_popup");
+
+
+	if (_x < 0)
+		_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+	if (_y < 0)
+		_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+
+	layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+	layer.style.visibility = "visible";
 	get_train_info();
 }
+
+
+//열차량당 좌석: 팝업off
+function train_popupOut(e) {
+	var layer = document.getElementById('train_seat_popup');
+	layer.style.visibility = 'hidden';
+}
+
+//======================여기까지는 팝업담당===========================//
+
+//다음지도 부분인데 아직 작동 구현실패
+function daummap() {
+	var text = '';
+	var strings = 'daumMap';
+
+	text += '<script type="text/javascript">';
+	text += 'var mapContainer = document.getElementById(' + strings + '),';
+	text += '	mapOption = {';
+	text += '		center : new daum.maps.LatLng(' + latitude + ',' + longitude + '),';
+	text += '		level : 3';
+	text += '	};';
+	text += 'var map = new daum.maps.Map(mapContainer, mapOption);';
+	text += '</script>';
+
+	$('#daumMap').html(text);
+
+
+}
+
+
+
+//// 좌석 상황 div 보여주는 부분
+//function train_popup(opt) {
+//	if (opt) {
+//		train_seat_popup.style.display = "block";
+//	} else {
+//		train_seat_popup.style.display = "none";
+//	}
+//	get_train_info();
+//}
 
 
 //역열차의 좌석 정보를 롤오버로 구현하느 부분
 function get_train_info() {
 	var subwaynum = '2002'; // 열차번호
 	var carnum = '2'; // 열차량번호 가져오기
-//	var carnums = $(this).attr('#carNum1');
+	//	var carnums = $(this).attr('#carNum1');
 	var carnumss = $('#carNum1').attr('trainnum');
 	console.log(this);
 	console.log(carnumss);
+	
 	$.ajax({
 		url : 'realTimeTrainSeat',
 		type : 'post',
@@ -140,35 +172,35 @@ function get_train_info() {
 		success : function(item) {
 			$.each(item, function(index, items) {
 				console.log(index);
-				var int = index +1;
+				var int = index + 1;
 				var insert = '';
-				var insertTitle = subwaynum +'번호 열차의 ' + carnum +'량 열차 좌석정보';
+				var insertTitle = subwaynum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
 				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
 				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
-				
-				if(items.elderlySeat1 == 1){
+
+				if (items.elderlySeat1 == 1) {
 					insert += seaton;
-					}else if(items.elderlySeat1 == 0){ // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-					}
-				
-				if(items.elderlySeat2 == 1){
+				}
+
+				if (items.elderlySeat2 == 1) {
 					insert += seaton;
-					}else if(items.elderlySeat2 == 0){ // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat2 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-					}
-				
-				if(items.elderlySeat3 == 1){
+				}
+
+				if (items.elderlySeat3 == 1) {
 					insert += seaton;
-					}else if(items.elderlySeat3 == 0){ // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-					}
-				
-				$('#trainSeat'+int).html(insert);
+				}
+
+				$('#trainSeat' + int).html(insert);
 				$('#seatTitle').html(insertTitle);
 			});
 		}
-	})
+	});
 }
 
 // 실시간 열차
@@ -237,26 +269,98 @@ function subwaySensorGet() { // map 이름과 같다.
 }
 // 아두이노 센서에서 좌석과 혼잡도 테이블 가져오는 function 결과
 function resultSubwaySensorGet(datas) {
-	var subwayNum = '2002'; // 2호선 2002열차 
+	var subwayNum = '2002'; // 2호선 2002열차
+	var carHuman = 0;
+	
+	var firstCar0= '<img src ="./resources/image/subwayCar/subway_general.png">';
+	var firstCar20= '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
+	var firstCar40= '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
+	var firstCar60= '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
+	var firstCar80= '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
+	var firstCar100= '';
+	var firstCar120= '';
+	
+	var nextCar0= '';
+	var nextCar20= '';
+	var nextCar40= '';
+	var nextCar60= '';
+	var nextCar80= '';
+	var nextCar100= '';
+	var nextCar120= '';
+	
+	
 	$.each(datas, function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
-		var humanIndex = index + 1;
-		var human = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex + '"  onmouseover="train_popup(true)" onmouseout="train_popup(false)">';
-		human += items.humanNum;
-		human += '</span>';
-		$('#carNum' + humanIndex).html(human);
+		var humanIndex = index + 1; // 1234...\
+		carHuman = Number(items.humanNum) / 160 * 100; 
+		// 한칸당 인원한계는 160명이 된다 그리고 100을곱한다. 이러면 62.5 가 나옴
+		carHuman = Math.round(carHuman); 
+		// 소수점 반올림 62 
+		var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex
+			+ '"  onmouseover="train_popup(event)" onmouseout="train_popupOut(event)">';
+//		inserts += '<div style ="" class = "carColor'+humanIndex+'">';
+		if( 0 <= carHuman && carHuman<20){
+			inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
+		}else if(21 <= carHuman&& carHuman<40){
+			inserts += '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
+		}else if(41 <= carHuman&& carHuman<60){
+			inserts += '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
+		}else if(61 <= carHuman&& carHuman<80){
+			inserts += '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
+		}else if(81 <= carHuman&& carHuman<100){
+			inserts += '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
+		}else if(101 <= carHuman){
+			inserts += '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
+		}
+		
+		
+//		inserts += '</div>';
+		inserts += '</span><br>';
+		
+		inserts += items.humanNum +'명 <br>';
+		inserts += carHuman + '%';
+		
+		$('#carNum' + humanIndex).html(inserts);
+//		$('.carColor' + humanIndex).attr('style','{display: inline-block; position: relative;}; after{  position: absolute;display: block;content: "";top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 255, 0, 0.'+carHuman+');}');
 	});
 }
 
 
 //역 정보 function, 맨 처음 보여지는 기능
 function stationinforesult(item) {
+
+
 	//중요: 팝업 테이블 채우는 곳 
 	//환승역의 경우 정보를 더 채워야 함 
-	
-	realtimes(); // 실시간 정보 받기 
+
+
 	subwaySensorGet(); // 센서 ajax 겟 
+
 	$('#stationNamebar').text(getStation); // div 팝업 창에 역 이름 넣기 
-	
+
+	console.log(subwayLine);
+	//라인에 따른 백그라운드 역 실시간 시간판 교체
+	if (subwayLine == '1') { // 호선
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName1.gif) no-repeat;');
+	} else if (subwayLine == '2') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName2.gif) no-repeat;');
+	} else if (subwayLine == '3') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName3.gif) no-repeat;');
+	} else if (subwayLine == '4') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName4.gif) no-repeat;');
+	} else if (subwayLine == '5') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName5.gif) no-repeat;');
+	} else if (subwayLine == '6') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName6.gif) no-repeat;');
+	} else if (subwayLine == '7') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName7.gif) no-repeat;');
+	} else if (subwayLine == '8') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName8.gif) no-repeat;');
+	} else if (subwayLine == '9') {
+		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat;');
+	}
+
+	realtimes(); // 실시간 정보 받기 
+
 	// map 형식으로 받는다, map 형식은 for을 할 필요가 없다.
 	var text = '';
 

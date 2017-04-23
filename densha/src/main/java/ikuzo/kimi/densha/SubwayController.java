@@ -215,7 +215,8 @@ public class SubwayController {
 	public stationDB StationCodeParseName(String stationCode) {
 		
 		stationDB result = sedao.StationCodeParseName(stationCode);
-
+		System.out.println(result.toString());
+		
 		return result;
 	}
 	

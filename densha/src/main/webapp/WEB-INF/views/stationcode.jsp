@@ -15,11 +15,7 @@
 	pointer-events: all;
 }
 
-/* 이 부분은 역 정보시 실시간 역 정보 지하철 이미지  */
-.stationNames {
-	height: 84px;
-	background: url("./resources/image/subwayStationName.gif") no-repeat;
-}
+
 </style>
 
 <title>지하철 지도 서비스</title>
@@ -8743,7 +8739,8 @@
 			PrintPage.print(PrintPage.location.reload());
 		}
 	</script>
-
+	
+	
 	<!-- 	역 이름 띄우는 팝업 -->
 	<div id="station_name_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 50px; height: 30px; z-index: 1; visibility: hidden; background-color: white;">
@@ -8751,6 +8748,7 @@
 		<a href="javascript:get_station_popup" 
 			id="station">
 			<img src = "./resources/image/menu/stationInfo.jpg">
+			
 			</a> <input type="button" value="출발역"
 			id="startEnd" stationcode="역코드변환됨">
 			
@@ -8758,20 +8756,23 @@
 	</div>
 	<!-- 	역 정보 띄우는 팝업  -->
 	
-	<!-- 	좌석 상황을 띄우는 팝업 -->
+	
+	
 	
 	<!-- 	좌석 상황을 띄우는 팝업 -->
 	
 	<div id="station_info_popup_layer"
-		style="position: absolute; border: none; top: 100px; left: 100px; width: 500px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden;">
+		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden;">
 		<!-- 		역 이름  -->
+		
+		<div style="margin: 11px">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title" ><span id = "stationNamebar">역 이름 넣기?</span></h3>
 			</div>
 			<div class="panel-body">
 				<!-- 	실시간 역 상황 보기   -->
-				<div class="stationNames">
+				<div class="stationNames" style="height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat;">
 					<div style="">
 						<div class="upstation_real"
 							style="position: relative; right: -30px; top: 60px;"></div>
@@ -8788,9 +8789,9 @@
 				<!-- 	실시간 역 상황 보기   -->
 			</div>
 			
-			<div class="panel-body">
+			<div class="panel-body" >
 			<div style="">
-		
+					
 					<table width="450">
 						<td colspan="12"><center>혼잡도</center></td>
 						<tr>
@@ -8805,6 +8806,8 @@
 							<td>9호칸</td>
 							<td>10호칸</td>
 						</tr>
+						
+						
 						<tr>
 							<td id="carNum1"></td>
 							<td id="carNum2"></td>
@@ -8826,38 +8829,7 @@
 		</div>
 		<!-- 	역 이름 -->
 		
-	<div id="train_seat_popup" style="position:absolute; display: none ; width: 600px; height: 400px; background-color: white;">
-		<table>
-		<tr><td><td> </tr>
-		</table>
-		<table>
-		 
-		<tr>
-		<td colspan="2">
-			<span id = "seatTitle"></span>
-		</td>
-		</tr>
 		
-		<tr>
-		<td>
-			<span id = "trainSeat1"></span>
-		</td>
-		<td>
-			<span id = "trainSeat2"></span>
-		</td>
-		</tr>
-		<tr>
-		<td>
-			<span id = "trainSeat3"></span>
-		</td>
-		<td>
-			<span id = "trainSeat4"></span>
-		</td>
-		</tr>
-		
-		</table>
-	</div>
-	
 
 		<!-- 		NAV System -->
 		<ul class="nav nav-tabs">
@@ -9170,7 +9142,7 @@
 				</table>
 			</div>
 
-
+		</div>
 		</div>
 
 		<!--  	 메뉴들 -->
@@ -9190,7 +9162,65 @@
 
 	</div>
 
-
+<!-- 역 좌석 -->
+		<div id="train_seat_popup" style="position:absolute; visibility:hidden; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
+		<div style="margin: 10px;">
+		<table>
+		
+		<tr>
+		<td colspan="2" width="400px">
+			<img src = "./resources/image/menu/subway_seat_and_human.gif"> 
+		</td>
+		</tr>
+		
+		<tr>
+		<td colspan="2" background="./reour" width="400px">
+			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span>
+		</td>
+		</tr>
+		
+		<tr>
+		<td style="text-align: center;">
+			앞 오른쪽 의자
+		</td>
+		<td style="text-align: center;">
+			앞 왼쪽 의자
+		</td>
+		</tr>
+		
+		<tr>
+		<td>
+			<span id = "trainSeat1"></span>
+		</td>
+		<td>
+			<span id = "trainSeat2"></span>
+		</td>
+		</tr>
+		
+		
+		<tr>
+		<td style="text-align: center;">
+			뒤 오른쪽 의자
+		</td>
+		<td style="text-align: center;">
+			뒤 왼쪽 의자
+		</td>
+		</tr>
+		
+		
+		<tr>
+		<td>
+			<span id = "trainSeat3"></span>
+		</td>
+		<td>
+			<span id = "trainSeat4"></span>
+		</td>
+		</tr>
+		
+		</table>
+		</div>
+	</div>
+	<!-- 역 좌석 -->
 
 
 	<script src="./resources/js/bootstrap.min.js"></script>

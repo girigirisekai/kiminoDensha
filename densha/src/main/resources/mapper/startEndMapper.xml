@@ -50,7 +50,7 @@
 		select
 			distinct
 			STATION_NM2
-			,xpoint, ypoint
+			,xpoint, ypoint, line_num
 		from
 			station
 			where

@@ -1,7 +1,12 @@
 package ikuzo.kimi.densha;
 
+import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -297,6 +303,47 @@ public class BoardController {
 		ArrayList<Reply> result=dao.selectReply(boardnum);
 		return result;
 		
+	}
+	
+	/**
+	 * 파일 다운로드
+	 * @param boardnum 첨부된 파일의 본문 글번호
+	 * @return null
+	 */
+	@RequestMapping(value="download", method=RequestMethod.GET)
+	public String filedownload(
+								int boardnum
+								,HttpServletResponse response){
+		//전달된 글 번호로 글정보 검색
+		Board board = dao.select(boardnum);
+		String savefile = board.getSavedfile();
+		//원래의 파일명을 보여줄 준비
+		
+		try {
+			response.setHeader("Content-Disposition", "attachment;filename="
+						+ URLEncoder.encode(board.getOriginalfile(), "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}//앞은 이름 뒤는 값
+		//서버에 저장된 파일을 읽어서
+		//클라이언트로 전달한 출력스트림으로 복사
+		String fullpath = uploadPath+"/"+savefile;
+		
+		try {
+			FileInputStream in = new FileInputStream(fullpath);
+			ServletOutputStream out = response.getOutputStream();
+			
+			
+			
+			FileCopyUtils.copy(in, out);
+			in.close();
+			out.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 }

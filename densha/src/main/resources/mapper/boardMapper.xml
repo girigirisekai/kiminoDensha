@@ -20,6 +20,7 @@
 		</if>
 		<if test="secretpassword !=null">
 			,secretpassword
+			,secret
 		</if>
 
 		)
@@ -35,6 +36,7 @@
 		</if>
 		<if test="secretpassword !=null">
 			, #{secretpassword}
+			, true
 		</if>
 		)
 	</insert>
@@ -130,6 +132,18 @@
 	<update id="replyUpdate" parameterType="Reply">
 		update reply set text = #{text} where replynum = #{replynum}
 	</update>
+	
+	<!-- QnA글 비밀번호 확인 -->
+	<select id="checkPassword" parameterType="Board" resultType="Board">
+		select
+			secretpassword
+		from
+			board
+		where
+			boardnum = #{boardnum}
+	
+	</select>
+	
 	
 	
 </mapper>

@@ -70,13 +70,10 @@
         <li><a href="favorite">Favorite</a></li>
         </c:if>
         <!--         로그인 시  -->
-        <!--         로그인이 아닐시  -->
-        <c:if test="${loginId !=null}"> 
-         <li><a href="myAccount">내 정보</a></li>
-        </c:if>
-         <!--         로그인이 아닐시  -->
+      
 
         	<li><a href="board">게시판</a></li>
+        	<li><a href="api">API</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">제공 서비스<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

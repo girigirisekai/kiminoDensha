@@ -247,12 +247,12 @@ public class SubwayController {
 	
 	@ResponseBody
 	@RequestMapping(value = "realTimeTrainSeat", method = RequestMethod.POST)
-	public ArrayList<Subway> realTimeTrainSeat(String subwaynum, String carnum) {
+	public Subway realTimeTrainSeat(String subwaynum, String carnum) {
 		
 		System.out.println("subwaynum: "+ subwaynum);
 		System.out.println("carnum: "+ carnum);
 	
-		ArrayList<Subway> subway = dao.selectArray(subwaynum, carnum);
+		Subway subway = dao.selectArray(subwaynum, carnum);
 		System.out.println(subway.toString());
 		// elderyseat1, elderyseat2, elderyseat3 1,0,1
 		

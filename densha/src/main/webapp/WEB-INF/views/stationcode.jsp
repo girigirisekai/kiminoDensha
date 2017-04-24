@@ -24,6 +24,7 @@
 
 <!-- 지하철 팝업과 역 정보 팝업등의 자바스크립트 -->
 <script src="./resources/js/stationcode.js"></script>
+<script src="./resources/js/svgMap.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script>
 
@@ -145,8 +146,7 @@
 			$('#startEnd').on('click', pathTest1);
 			
 		}else {
-			
-			
+
 			$('#startEnd').val('도착역');
 			ecode2 = code;
 			$('#startEnd').on('click', pathTest2);
@@ -164,8 +164,8 @@
 	<jsp:include page="header.jsp" />
 	<!--top header-->
 
-
-
+<!-- 지도부분 한번 씌워준다. zoom위해서  -->
+<div class = "svgMap">
 	<svg width="2899.3469772338867" height="2293.159912109375"
 		xmlns="http://www.w3.org/2000/svg">
 <g>
@@ -8713,31 +8713,18 @@
  </g>
 </svg>
 
+</div>
 
-	</script>
 	<script>
 		var svg = d3.select("body > svg > g")
+// 		var svg = d3.select(".svgMap")
 			.call(d3.behavior.zoom().scaleExtent([ 1, 8 ]).on("zoom", zoom));
 	
 		// Zoom
 		function zoom() {
 			svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 		}
-	
-		function pagePrint(Obj) { //인쇄하기 
-			var W = Obj.offsetWidth; //screen.availWidth; 
-			var H = Obj.offsetHeight; //screen.availHeight;
-	
-			var features = "menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=yes,width=" + W + ",height=" + H + ",left=0,top=0";
-			var PrintPage = window.open("about:blank", Obj.id, features);
-	
-			PrintPage.document.open();
-			PrintPage.document.write("<html><head><title></title><style type='text/css'>body, tr, td, input, textarea { font-family:Tahoma; font-size:9pt; }</style>\n</head>\n<body>" + Obj.innerHTML + "\n</body></html>");
-			PrintPage.document.close();
-	
-			PrintPage.document.title = document.domain;
-			PrintPage.print(PrintPage.location.reload());
-		}
+
 	</script>
 	
 	
@@ -8809,16 +8796,89 @@
 						
 						
 						<tr>
-							<td id="carNum1"></td>
-							<td id="carNum2"></td>
-							<td id="carNum3"></td>
-							<td id="carNum4"></td>
-							<td id="carNum5"></td>
-							<td id="carNum6"></td>
-							<td id="carNum7"></td>
-							<td id="carNum8"></td>
-							<td id="carNum9"></td>
-							<td id="carNum10"></td>
+							<td id="carNum1" num = "1"></td>
+							<td id="carNum2" num = "2"></td>
+							<td id="carNum3" num = "3"></td>
+							<td id="carNum4" num = "4"></td>
+							<td id="carNum5" num = "5"></td>
+							<td id="carNum6" num = "6"></td>
+							<td id="carNum7" num = "7"></td>
+							<td id="carNum8" num = "8"></td>
+							<td id="carNum9" num = "9"></td>
+							<td id="carNum10" num = "10"></td>
+				
+						</tr>
+						<tr>
+							<td colspan="10"><div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
+		<div style="margin: 10px;">
+		<table>
+		
+		<tr>
+		<td colspan="2" width="400px">
+			<img src = "./resources/image/menu/subway_seat_and_human.gif"> 
+		</td>
+		</tr>
+		
+		<tr>
+		<td colspan="2" background="./reour" width="400px">
+			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span>
+		</td>
+		</tr>
+		
+		<tr>
+		<td style="text-align: center;">
+			앞 오른쪽 의자
+		</td>
+		<td style="text-align: center;">
+			앞 왼쪽 의자
+		</td>
+		</tr>
+		
+		<tr>
+		<td>
+			<span id = "trainSeat1"></span>
+		</td>
+		<td>
+			<span id = "trainSeat2"></span>
+		</td>
+		</tr>
+		
+		
+		<tr>
+		<td style="text-align: center;">
+			뒤 오른쪽 의자
+		</td>
+		<td style="text-align: center;">
+			뒤 왼쪽 의자
+		</td>
+		</tr>
+		
+		
+		<tr>
+		<td>
+			<span id = "trainSeat3"></span>
+		</td>
+		<td>
+			<span id = "trainSeat4"></span>
+		</td>
+		</tr>
+		
+		</table>
+		</div>
+		</div></td>
+				
+						</tr>
+						<tr>
+							<td id="carNumVar1" num = "1"></td>
+							<td id="carNumVar2" num = "2"></td>
+							<td id="carNumVar3" num = "3"></td>
+							<td id="carNumVar4" num = "4"></td>
+							<td id="carNumVar5" num = "5"></td>
+							<td id="carNumVar6" num = "6"></td>
+							<td id="carNumVar7" num = "7"></td>
+							<td id="carNumVar8" num = "8"></td>
+							<td id="carNumVar9" num = "9"></td>
+							<td id="carNumVar10" num = "10"></td>
 				
 						</tr>
 					</table>
@@ -8835,7 +8895,7 @@
 		<ul class="nav nav-tabs">
 			
 			<li class="active"><a href="#stationInfoTab" data-toggle="tab"
-				aria-expanded="true" onclick="stationinfo()" id="firstTeb">역 정보</a></li>
+				aria-expanded="true" onclick="stationinfo()" id="firstTab">역 정보</a></li>
 			<!-- 			<li class=""><a href="#bus" data-toggle="tab" -->
 			<!-- 				aria-expanded="false">주변 버스정보</a></li> -->
 			<li class=""><a href="#firstlast" data-toggle="tab"
@@ -9163,63 +9223,64 @@
 	</div>
 
 <!-- 역 좌석 -->
-		<div id="train_seat_popup" style="position:absolute; visibility:hidden; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
-		<div style="margin: 10px;">
-		<table>
+<!-- 		<div id="train_seat_popups" style="position:absolute ; visibility:hidden; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;"> -->
 		
-		<tr>
-		<td colspan="2" width="400px">
-			<img src = "./resources/image/menu/subway_seat_and_human.gif"> 
-		</td>
-		</tr>
+<!-- 		<div style="margin: 10px;"> -->
+<!-- 		<table> -->
 		
-		<tr>
-		<td colspan="2" background="./reour" width="400px">
-			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span>
-		</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 		<td colspan="2" width="400px"> -->
+<!-- 			<img src = "./resources/image/menu/subway_seat_and_human.gif">  -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
 		
-		<tr>
-		<td style="text-align: center;">
-			앞 오른쪽 의자
-		</td>
-		<td style="text-align: center;">
-			앞 왼쪽 의자
-		</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 		<td colspan="2" background="./reour" width="400px"> -->
+<!-- 			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span> -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
 		
-		<tr>
-		<td>
-			<span id = "trainSeat1"></span>
-		</td>
-		<td>
-			<span id = "trainSeat2"></span>
-		</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			앞 오른쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			앞 왼쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
 		
-		
-		<tr>
-		<td style="text-align: center;">
-			뒤 오른쪽 의자
-		</td>
-		<td style="text-align: center;">
-			뒤 왼쪽 의자
-		</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat1"></span> -->
+<!-- 		</td> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat2"></span> -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
 		
 		
-		<tr>
-		<td>
-			<span id = "trainSeat3"></span>
-		</td>
-		<td>
-			<span id = "trainSeat4"></span>
-		</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			뒤 오른쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			뒤 왼쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
 		
-		</table>
-		</div>
-	</div>
+		
+<!-- 		<tr> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat3"></span> -->
+<!-- 		</td> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat4"></span> -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		</table> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<!-- 역 좌석 -->
 
 

@@ -78,9 +78,9 @@ public class SubwayDAO {
 		return result;
 	}
 
-	public ArrayList<Subway> selectArray(String subwaynum, String carnum) {
-		ArrayList<Subway> result = new ArrayList<>();
-		SubwayMapper subwaymapper=sqlsession.getMapper(SubwayMapper.class);
+	public Subway selectArray(String subwaynum, String carnum) {
+		Subway result = new Subway();
+		SubwayMapper subwaymapper = sqlsession.getMapper(SubwayMapper.class);
 		try{
 			result = subwaymapper.selectArray(subwaynum, carnum);
 		}catch (Exception e) {

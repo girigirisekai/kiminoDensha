@@ -1,5 +1,7 @@
 package ikuzo.kimi.densha;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -66,7 +68,7 @@ public class MemberLoginController {
 			String ip = req.getRemoteAddr();
 			loginCheck logincheck  = new loginCheck(loginId,ip,null);
 			int logincheck1 = dao.logincheck(logincheck);
-			System.out.println(logincheck1);
+			System.out.println(logincheck1+"들어갔어 안들어갔어 이노무 새키야");
 			model.addAttribute("loginCheck", logincheck1); 
 			return "home";
 			
@@ -90,12 +92,15 @@ public class MemberLoginController {
 	}
 	
 	// 내 정보 페이지, 개인정보 보여주기
+	// 접속 기록 , 접속 아이피주소 보여주기
 	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
 	public String myAccount(Model model, HttpSession ses) { // 내 정보 페이지 (개인정보 보여주고 수정과 탈퇴 페이지메뉴)
 		String id = (String) ses.getAttribute("loginId");
 		Member myMember = dao.selectId(id);
 		model.addAttribute("accountInfo", myMember);
-		
+		ArrayList<loginCheck> loginCheck = dao.logincheck3(id);
+		model.addAttribute("loginCheck3",loginCheck);
+		System.out.println(loginCheck);
 		return "Member/myAccount";
 	}
 

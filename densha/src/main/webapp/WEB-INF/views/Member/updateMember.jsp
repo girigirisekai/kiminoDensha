@@ -178,14 +178,14 @@ function DeleteMember() {
 	</div>
 	
 	<div class="deleteFrom"
-		style="position:relative; top: 240px; left: 320px; width: 70%">
+		style="position:relative; top: 330px; left: 320px; width: 70%">
 		<div class="alert alert-dismissible alert-info">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<strong>회원탈퇴</strong> ${loginId}님 아쉽지만 다음에 만나요 ㅜㅜ.
 		</div>
 		
-		
 		<form class="form-horizontal" method="post">
+		
   <fieldset>
     <legend>암호를 입력해 주세요</legend>
     

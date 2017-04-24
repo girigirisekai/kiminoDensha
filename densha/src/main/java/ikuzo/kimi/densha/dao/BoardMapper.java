@@ -41,4 +41,7 @@ public interface BoardMapper {
 
 	// 댓글 수정하기
 	public int replyUpdate(Reply reply);
+
+	//비밀번호 체크하기
+	public Board checkPassword(Board board);
 }

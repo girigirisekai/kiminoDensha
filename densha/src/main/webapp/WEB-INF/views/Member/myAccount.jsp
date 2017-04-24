@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +13,7 @@ body, html {
 		center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
-	-o-background-size: cover;
+	-o-background-size: cover; 
 	background-size: cover;
 }
 
@@ -41,13 +42,32 @@ body, html {
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 
 			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0);">
-				<h1>개인정보 수정</h1>
-				<p>개인정보 수정</p>
+				<h1>개인정보</h1>
 				
+				 <div class="form-group" >
+    			  <label for="textArea" class="col-lg-2 control-label">아이디</label>
+   	 			 	<div class="col-lg-10">
+     				   ${loginId}
+   	  			 </div>
+    			</div> 
+				
+				<a href="updateMember" class="btn btn-info">개인정보 수정</a>
 			</div>
 			
-			
-			
+			<div>최근 접속 기록</div>
+				<table >
+					<tr>
+						<td>날짜</td>
+						<td>아이피주소</td>
+					</tr>
+				
+			<c:forEach items="${loginCheck3}" var="list">
+					<tr>
+						<td>${list.recentLogin}</td>
+						<td>${list.ipAddress}</td>
+					</tr>
+			</c:forEach>
+				</table>
 
 
 		</div>

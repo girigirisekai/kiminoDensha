@@ -20,7 +20,8 @@ public interface SubwayMapper {
 	//수정
 	public int updateSubway(Subway subway) throws Exception;
 
-	public ArrayList<Subway> selectArray(String subwaynum, String carnum);
+	// 실시간 좌석
+	public Subway selectArray(String subwaynum, String carnum);
 
 	
 }

@@ -127,4 +127,13 @@
 					,sysdate
 					)
 	</insert>
+	
+	<select id="logincheck3" parameterType="String" resultType="loginCheck"> 
+		select
+				ROWNUM, ID, IPADDRESS, RECENTLOGIN
+			from
+				loginCheck
+						where ROWNUM <![CDATA[ < ]]>= 5 and id = #{id}							
+						order by ROWNUM desc	
+	</select> 
 </mapper>

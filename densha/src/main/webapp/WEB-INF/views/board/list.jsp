@@ -16,199 +16,143 @@
 
 	div #menu{
 		padding:20px;
+		float:left;
 	}
 
 	div #gesipan{
 		padding:20px;
-	}
-
-	div{
 		float:left;
 	}
 	
-	ul li.nav{
+	
+	 ul li.nav{
 		float:left; 
 		height:100px;
 		padding:20px;
+	} 
+	
+	#writeButton{
+		float:right;
 	}
-
+	
+	#titleName th{
+		text-align: center;
+	}
+	
 
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
+<script src="./resources/js/jquery-3.1.1.min.js"></script>
+<script src="./resources/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 
-function showmap(spot, num) { 
-	console.log(spot);
-	if(spot.style.visibility=="hidden") {
-	   spot.style.visibility="visible";
-	   aj(num);	
-	   return false;
-	 }
-	 if(spot.style.visibility=="visible") {
-	  spot.style.visibility="hidden";
-	  return false;
-	 }
-	 console.log(spot);
-}
-
-
-
-function aj(num){
-	$.ajax({
-		url:'readReply',
-		type:'GET',
-		data:{boardnum : num},
-		dataType:'json',
-		 success: output
-	})
+	$(document).ready(function() {
 	
-}
+		$('.titleNames').on('click', readPasswordCheckStep1);
+		$('#passwordCheckPopup').css('top', screen.height/4);
+		$('#passwordCheckPopup').css('left', screen.width/2.5);
+		
+	});
+	
+	function readPasswordCheckStep1(){
+		
+		var boardnum = $(this).attr('boardnum');
+		var type = $(this).attr('type');
+		if(type == 'qna'){
+			
+			$('#checkType').val(type);
+			$('#checkBoardnum').val(boardnum);
+			$('#checkButton').on('click', readPasswordCheckStep2);
+			$('#passwordCheckPopup').css('visibility', 'visible');
+			
+		}else {
+			
+			location.href='read?boardnum='+boardnum+'&type='+type+'';
+			
+		}
+		
+	}
+	
+	function readPasswordCheckStep2(){
+		
+		$.ajax({
+			url: 'passwordCheck'
+			, type: 'POST'
+			, data: $('#passwordCheckTable').serialize() 
+			, dataType: 'json'
+			, success: readPasswordCheckStep3
+			, error: function(e){
+				alert("비밀번호가 일치하지 않거나 작성자와 일치하지 않습니다.");
+				$('#passwordCheckPopup').css('visibility', 'hidden');
+				$('#checkPassword').val('');
+				$('#checkButton').off('click', readPasswordCheckStep2);
+			}
+		});
+	}
+	
+	function readPasswordCheckStep3(board){
+		
+		var boardnum = $('#checkBoardnum').val();
+		var type = $('#checkType').val();
+		$('#checkButton').off('click', readPasswordCheckStep2);
+		location.href='read?boardnum='+boardnum+'&type='+type+'';
+		
+	}
+	
+
+	function showmap(spot, num) { 
+		console.log(spot);
+		if(spot.style.visibility=="hidden") {
+		   spot.style.visibility="visible";
+		   aj(num);	 
+		   return false;
+		 }
+		 if(spot.style.visibility=="visible") {
+		  spot.style.visibility="hidden";
+		  return false;
+		 }
+		 console.log(spot);
+	}
 
 
-function output(ob){
-	
-	var str='';
-	//반복문
-	$.each(ob, function(i, item) {
-		str += item.id;
-		str += item.text;
-		str += '<br/>';
-	$("#spot"+item.boardnum).html(str);
-	})
-	
-	
-}
 
-function output2(ob){
-	
-	var str='';
-}
+	function aj(num){
+		$.ajax({
+			url:'readReply',
+			type:'GET',
+			data:{boardnum : num},
+			dataType:'json',
+			 success: output
+		})
+		
+	}
+
+
+	function output(ob){
+		
+		var str='';
+		//반복문
+		$.each(ob, function(i, item) {
+			str += item.id;
+			str += item.text;
+			str += '<br/>';
+		$("#spot"+item.boardnum).html(str);
+		})
+		
+		
+	}
+
+	function output2(ob){
+		
+		var str='';
+	}
 </script>
 </head>
 <body>
-<header id="home">
-
-<!-- 		<section class="top-nav hidden-xs"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-md-6"> -->
-<!-- 						<div class="top-left"> -->
-
-<!-- 							<ul> -->
-<!-- 								<li><a href="#"><i class="fa fa-facebook" -->
-<!-- 										aria-hidden="true"></i></a></li> -->
-<!-- 								<li><a href="#"><i class="fa fa-twitter" -->
-<!-- 										aria-hidden="true"></i></a></li> -->
-<!-- 								<li><a href="#"><i class="fa fa-linkedin" -->
-<!-- 										aria-hidden="true"></i></a></li> -->
-<!-- 								<li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li> -->
-<!-- 								<li><a href="#"><i class="fa fa-instagram" -->
-<!-- 										aria-hidden="true"></i></a></li> -->
-<!-- 							</ul> -->
-
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-<!-- 					<div class="col-md-6"> -->
-<!-- 						<div class="top-right"> -->
-<!-- 							<p> -->
-<!-- 								Location:<span>Main Street 2020, City 3000</span> -->
-<!-- 							</p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</section> -->
-
-		<!--main-nav-->
-
-		<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">브랜드</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#home">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="join">회원가입</a></li>
-        <li><a href="stationcode">지하철서비스</a></li>
-        <li><a href="favorite">Favorite</a></li>
-        	<li><a href="board">게시판</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">제공 서비스 안내<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#service">서비스</a></li>
-            <li><a href="#portfolio">API제공 서비스</a></li>
-<!--             <li><a href="#">Something else here</a></li> -->
-<!--             <li class="divider"></li> -->
-<!--             <li><a href="#">Separated link</a></li> -->
-<!--             <li class="divider"></li> -->
-<!--             <li><a href="#">One more separated link</a></li> -->
-          </ul>
-        </li>
-      </ul>
-<!--       <form class="navbar-form navbar-left" role="search"> -->
-<!--         <div class="form-group"> -->
-<!--           <input type="text" class="form-control" placeholder="Search"> -->
-<!--         </div> -->
-<!--         <button type="submit" class="btn btn-default">Submit</button> -->
-<!--       </form> -->
-       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-			<ul id="login-dp" class="dropdown-menu">
-				<li>
-					 <div class="row">
-							<div class="col-md-12">
-<!-- 								Login via -->
-<!-- 								<div class="social-buttons"> -->
-<!-- 									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a> -->
-<!-- 									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a> -->
-<!-- 								</div> -->
-<!--                                 or -->
-								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">ID를 입력해주세요</label>
-											 <input type="text" class="form-control" id="loginId" name="loginId" placeholder="id" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Password" required>
-                                             <div class="help-block text-right"><a href="forgotpassword">암호를 잊어버리셨나요?</a></div>
-										</div>
-										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block">Login</button>
-										</div>
-<!-- 										<div class="checkbox"> -->
-<!-- 											 <label> -->
-<!-- 											 <input type="checkbox"> keep me logged-in -->
-<!-- 											 </label> -->
-										</div>
-								 </form>
-							</div>
-							<div class="bottom text-center">
-								새롭게 오셨나요? <a href="join"><b>Join Us</b></a>
-							</div>
-					 </div>
-				</li> 
-			</ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-	</header>
+	<!--top header-->
+	<jsp:include page="../header.jsp" />
+	<!--top header-->
 <div id="container" style="width:100%;"> 
 	
 	<div id="menu" class="btn-group-vertical" style="width:10%x;">
@@ -223,13 +167,15 @@ function output2(ob){
 			<td colspan="4" style="margin: auto; text-align: center; font-weight:bold;"><h1>${type}게시판</h1></td>
 		</tr> -->
 		<tr>
-			<td colspan="4">전체글 : ${navi.totalRecordsCount} &nbsp;페이지 :
+			<td colspan="4" height="55">전체글 : ${navi.totalRecordsCount} &nbsp;페이지 :
 				${navi.currentPage}/${navi.totalPageCount}</td>
-			<c:if test="${type=='qna' || type=='freeboard'}">		
-				<td><input type="button" value="글쓰기" class="btn btn-default" onclick="location.href='write';" style="text-align:right;"></td>
-			</c:if>
+			<td id = "writeButton">
+				<c:if test="${(type=='qna' || type=='freeboard') && loginId!=null}">		
+					<input type="button" value="글쓰기" class="btn btn-default" onclick="location.href='write?type=${type}';">
+				</c:if>
+			</td>
 		</tr>
-		<tr>	
+		<tr id="titleName">	
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성자</th>
@@ -241,8 +187,18 @@ function output2(ob){
 		<c:forEach items="${boardlist}" var="list">
 			<tr>
 				<td>${list.boardnum}</td>
-				<td><a href="read?boardnum=${list.boardnum}"
-					value="${list.boardnum}" id="boardnum">${list.title.replace("<", "&lt;") }</a>&nbsp;&nbsp;
+				<td>
+					<%-- <a href="read?boardnum=${list.boardnum}"
+					value="${list.boardnum}" id="boardnum">
+					${list.title.replace("<", "&lt;") }
+					</a> --%>
+					<span
+					class="titleNames" boardnum = "${list.boardnum}" type = "${type}"
+					>
+					${list.title.replace("<", "&lt;") }
+					</span>
+					
+					&nbsp;&nbsp;
 					<a href="#"
 					onclick="showmap(spot${list.boardnum}, ${list.boardnum});"
 					class="dd" num="${list.boardnum }">${list.totalreply }</a>
@@ -277,10 +233,30 @@ function output2(ob){
 		</tbody>
 	</table>
 </div>
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </div>
+
+	<!-- 비밀번호 체크 관련 팝업 -->
+	<div id="passwordCheckPopup"
+		style="position: absolute; border: none; top: 0px; left: 0px; width: 200px; height: 100px; z-index: 1; visibility: hidden; background: #000000; background : rgba(0, 0, 0, 0.5);">
+
+	<table>
+		<form id = "passwordCheckTable">
+			<tr>
+				<th>
+					<input type="hidden" name = "boardnum" id = "checkBoardnum">
+					<input type="hidden" name = "type" id = "checkType">
+					<input type="password" name = "secretpassword" id = "checkPassword">
+				<th>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" value="비밀번호 확인" id = "checkButton">
+				</td>
+			</tr>
+		</form>
+	</table>
+			
+			
+	</div>
 </body>
 </html>

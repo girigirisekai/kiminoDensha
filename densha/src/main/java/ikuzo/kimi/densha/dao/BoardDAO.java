@@ -141,4 +141,17 @@ public class BoardDAO {
 		return result;
 	}
 	
+	/**
+	 * QnA글 비밀번호 체크
+	 * @param board
+	 * @return board
+	 */
+	public Board checkPassword(Board board){
+		
+		BoardMapper mapper=sqlSession.getMapper(BoardMapper.class);
+		Board result = mapper.checkPassword(board);
+				
+		return result;
+	}
+	
 }

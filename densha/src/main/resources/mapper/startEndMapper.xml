@@ -50,11 +50,11 @@
 		select
 			distinct
 			STATION_NM2
-			,xpoint, ypoint
+			,xpoint, ypoint, line_num
 		from
 			station
 			where
-				CYBER_ST_CODE
+				STATION_CD
 				= #{code}
 		
 	

@@ -10,24 +10,21 @@
 <link rel="stylesheet" href="./resources/css/loginModule.css">
 <meta charset="UTF-8">
 <style>
-.overlay {
-	fill: none;
+/* #canvas_background {
 	pointer-events: all;
-}
+} */
+ 
 
-/* 이 부분은 역 정보시 실시간 역 정보 지하철 이미지  */
-.stationNames {
-	height: 84px;
-	background: url("./resources/image/subwayStationName.gif") no-repeat;
-}
 </style>
 
 <title>지하철 지도 서비스</title>
 <script src="resources/js/jquery-3.1.1.min.js"></script>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 <!-- 지하철 팝업과 역 정보 팝업등의 자바스크립트 -->
 <script src="./resources/js/stationcode.js"></script>
+<script src="./resources/js/svgMap.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script>
 
@@ -149,8 +146,7 @@
 			$('#startEnd').on('click', pathTest1);
 			
 		}else {
-			
-			
+
 			$('#startEnd').val('도착역');
 			ecode2 = code;
 			$('#startEnd').on('click', pathTest2);
@@ -168,8 +164,8 @@
 	<jsp:include page="header.jsp" />
 	<!--top header-->
 
-
-
+<!-- 지도부분 한번 씌워준다. zoom위해서  -->
+<div class = "svgMap">
 	<svg width="2899.3469772338867" height="2293.159912109375"
 		xmlns="http://www.w3.org/2000/svg">
 <g>
@@ -8697,53 +8693,36 @@
 			stroke="#1469BE" id="1511" />
   </g>
   <g id="startPoint" transform="translate(1527.666,585.667)">
-  <path fill="#9E1205"
-			d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>
-  <path fill="#9E1205"
-			d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>
-  <path fill="#FFFFFF"
-			d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>
+  
   </g>
   <g id="endPoint" transform="translate(1648.666,585.667)">
-  <path fill="#1961BC"
-			d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>
-  <path fill="#1961BC"
-			d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>
-  <path fill="#FFFFFF"
-			d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>
+  
   </g>
   </g>
  </g>
  </g>
 </svg>
 
+</div>
 
-	</script>
 	<script>
-		var svg = d3.select("body > svg > g")
+		/* var svg = d3.select("svg > g")
 			.call(d3.behavior.zoom().scaleExtent([ 1, 8 ]).on("zoom", zoom));
 	
 		// Zoom
 		function zoom() {
 			svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-		}
-	
-		function pagePrint(Obj) { //인쇄하기 
-			var W = Obj.offsetWidth; //screen.availWidth; 
-			var H = Obj.offsetHeight; //screen.availHeight;
-	
-			var features = "menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=yes,width=" + W + ",height=" + H + ",left=0,top=0";
-			var PrintPage = window.open("about:blank", Obj.id, features);
-	
-			PrintPage.document.open();
-			PrintPage.document.write("<html><head><title></title><style type='text/css'>body, tr, td, input, textarea { font-family:Tahoma; font-size:9pt; }</style>\n</head>\n<body>" + Obj.innerHTML + "\n</body></html>");
-			PrintPage.document.close();
-	
-			PrintPage.document.title = document.domain;
-			PrintPage.print(PrintPage.location.reload());
-		}
-	</script>
+		} */
+		
+		//new 줌 기능
+		var svg = d3.select("svg")
+		.call(d3.zoom().on("zoom", function () {
+	        svg.attr("transform", d3.event.transform)
+		}));
 
+	</script>
+	
+	
 	<!-- 	역 이름 띄우는 팝업 -->
 	<div id="station_name_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 50px; height: 30px; z-index: 1; visibility: hidden; background-color: white;">
@@ -8751,6 +8730,7 @@
 		<a href="javascript:get_station_popup" 
 			id="station">
 			<img src = "./resources/image/menu/stationInfo.jpg">
+			
 			</a> <input type="button" value="출발역"
 			id="startEnd" stationcode="역코드변환됨">
 			
@@ -8758,20 +8738,23 @@
 	</div>
 	<!-- 	역 정보 띄우는 팝업  -->
 	
-	<!-- 	좌석 상황을 띄우는 팝업 -->
+	
+	
 	
 	<!-- 	좌석 상황을 띄우는 팝업 -->
 	
 	<div id="station_info_popup_layer"
-		style="position: absolute; border: none; top: 100px; left: 100px; width: 500px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden;">
+		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden;">
 		<!-- 		역 이름  -->
+		
+		<div style="margin: 11px">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title" ><span id = "stationNamebar">역 이름 넣기?</span></h3>
 			</div>
 			<div class="panel-body">
 				<!-- 	실시간 역 상황 보기   -->
-				<div class="stationNames">
+				<div class="stationNames" style="height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat;">
 					<div style="">
 						<div class="upstation_real"
 							style="position: relative; right: -30px; top: 60px;"></div>
@@ -8788,9 +8771,9 @@
 				<!-- 	실시간 역 상황 보기   -->
 			</div>
 			
-			<div class="panel-body">
+			<div class="panel-body" >
 			<div style="">
-		
+					
 					<table width="450">
 						<td colspan="12"><center>혼잡도</center></td>
 						<tr>
@@ -8805,36 +8788,44 @@
 							<td>9호칸</td>
 							<td>10호칸</td>
 						</tr>
+						
+						
 						<tr>
-							<td id="carNum1"></td>
-							<td id="carNum2"></td>
-							<td id="carNum3"></td>
-							<td id="carNum4"></td>
-							<td id="carNum5"></td>
-							<td id="carNum6"></td>
-							<td id="carNum7"></td>
-							<td id="carNum8"></td>
-							<td id="carNum9"></td>
-							<td id="carNum10"></td>
+							<td id="carNum1" num = "1"></td>
+							<td id="carNum2" num = "2"></td>
+							<td id="carNum3" num = "3"></td>
+							<td id="carNum4" num = "4"></td>
+							<td id="carNum5" num = "5"></td>
+							<td id="carNum6" num = "6"></td>
+							<td id="carNum7" num = "7"></td>
+							<td id="carNum8" num = "8"></td>
+							<td id="carNum9" num = "9"></td>
+							<td id="carNum10" num = "10"></td>
 				
 						</tr>
-					</table>
-					
-	
-					</div>
-			</div>
-		</div>
-		<!-- 	역 이름 -->
+						<tr>
+							<td colspan="10"><div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
+		<div style="margin: 10px;">
+		<table>
 		
-	<div id="train_seat_popup" style="position:absolute; display: none ; width: 600px; height: 400px; background-color: white;">
-		<table>
-		<tr><td><td> </tr>
-		</table>
-		<table>
-		 
 		<tr>
-		<td colspan="2">
-			<span id = "seatTitle"></span>
+		<td colspan="2" width="400px">
+			<img src = "./resources/image/menu/subway_seat_and_human.gif"> 
+		</td>
+		</tr>
+		
+		<tr>
+		<td colspan="2" background="./reour" width="400px">
+			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span>
+		</td>
+		</tr>
+		
+		<tr>
+		<td style="text-align: center;">
+			앞 오른쪽 의자
+		</td>
+		<td style="text-align: center;">
+			앞 왼쪽 의자
 		</td>
 		</tr>
 		
@@ -8846,6 +8837,18 @@
 			<span id = "trainSeat2"></span>
 		</td>
 		</tr>
+		
+		
+		<tr>
+		<td style="text-align: center;">
+			뒤 오른쪽 의자
+		</td>
+		<td style="text-align: center;">
+			뒤 왼쪽 의자
+		</td>
+		</tr>
+		
+		
 		<tr>
 		<td>
 			<span id = "trainSeat3"></span>
@@ -8856,14 +8859,38 @@
 		</tr>
 		
 		</table>
-	</div>
+		</div>
+		</div></td>
+				
+						</tr>
+						<tr>
+							<td id="carNumVar1" num = "1"></td>
+							<td id="carNumVar2" num = "2"></td>
+							<td id="carNumVar3" num = "3"></td>
+							<td id="carNumVar4" num = "4"></td>
+							<td id="carNumVar5" num = "5"></td>
+							<td id="carNumVar6" num = "6"></td>
+							<td id="carNumVar7" num = "7"></td>
+							<td id="carNumVar8" num = "8"></td>
+							<td id="carNumVar9" num = "9"></td>
+							<td id="carNumVar10" num = "10"></td>
+				
+						</tr>
+					</table>
+					
 	
+					</div>
+			</div>
+		</div>
+		<!-- 	역 이름 -->
+		
+		
 
 		<!-- 		NAV System -->
 		<ul class="nav nav-tabs">
 			
 			<li class="active"><a href="#stationInfoTab" data-toggle="tab"
-				aria-expanded="true" onclick="stationinfo()" id="firstTeb">역 정보</a></li>
+				aria-expanded="true" onclick="stationinfo()" id="firstTab">역 정보</a></li>
 			<!-- 			<li class=""><a href="#bus" data-toggle="tab" -->
 			<!-- 				aria-expanded="false">주변 버스정보</a></li> -->
 			<li class=""><a href="#firstlast" data-toggle="tab"
@@ -9170,7 +9197,7 @@
 				</table>
 			</div>
 
-
+		</div>
 		</div>
 
 		<!--  	 메뉴들 -->
@@ -9190,7 +9217,66 @@
 
 	</div>
 
-
+<!-- 역 좌석 -->
+<!-- 		<div id="train_seat_popups" style="position:absolute ; visibility:hidden; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;"> -->
+		
+<!-- 		<div style="margin: 10px;"> -->
+<!-- 		<table> -->
+		
+<!-- 		<tr> -->
+<!-- 		<td colspan="2" width="400px"> -->
+<!-- 			<img src = "./resources/image/menu/subway_seat_and_human.gif">  -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		<tr> -->
+<!-- 		<td colspan="2" background="./reour" width="400px"> -->
+<!-- 			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span> -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		<tr> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			앞 오른쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			앞 왼쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		<tr> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat1"></span> -->
+<!-- 		</td> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat2"></span> -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+		
+<!-- 		<tr> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			뒤 오른쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		<td style="text-align: center;"> -->
+<!-- 			뒤 왼쪽 의자 -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+		
+<!-- 		<tr> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat3"></span> -->
+<!-- 		</td> -->
+<!-- 		<td> -->
+<!-- 			<span id = "trainSeat4"></span> -->
+<!-- 		</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		</table> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	<!-- 역 좌석 -->
 
 
 	<script src="./resources/js/bootstrap.min.js"></script>

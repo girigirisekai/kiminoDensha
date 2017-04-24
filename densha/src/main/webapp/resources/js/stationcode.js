@@ -85,9 +85,15 @@ function get_station_popup() {
 
 //역 정보: 팝업 삭제
 function get_station_down() {
+	// 추가로 tab 초기화 코드 추가
+	location.href='#stationInfoTab';
+	
 	var layer = document.getElementById('station_info_popup_layer');
 	layer.style.visibility = 'hidden';
-	station_name_down();
+	station_name_down(); // 이름 팝업도 삭제
+	
+	
+	
 }
 
 // 열차량당 좌석: 아래의 기능들은 좌석에 대한 위치팝업
@@ -95,20 +101,30 @@ function get_station_down() {
 
 // 열차량당 좌석: 팝업on
 function train_popup(e) {
-	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
-	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
-	var layer = document.getElementById("train_seat_popup");
-
-
-	if (_x < 0)
-		_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
-	if (_y < 0)
-		_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
-
-	layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-	layer.style.visibility = "visible";
-	get_train_info();
+	
+//	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
+//	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
+//	var layer = document.getElementById("train_seat_popup");
+//
+//
+//	if (_x < 0)
+//		_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+//	if (_y < 0)
+//		_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+//
+//	layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+//	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+	
+	if (e) {
+	train_seat_popup.style.display = "block";
+} else {
+	train_seat_popup.style.display = "none";
+}
+//get_train_info();
+//	layer.style.visibility = "visible";
+	console.log(e);
+	var i = $(e).attr('num');
+	get_train_info(3);
 }
 
 
@@ -153,13 +169,14 @@ function daummap() {
 
 
 //역열차의 좌석 정보를 롤오버로 구현하느 부분
-function get_train_info() {
+function get_train_info(e) {
 	var subwaynum = '2002'; // 열차번호
-	var carnum = '2'; // 열차량번호 가져오기
-	//	var carnums = $(this).attr('#carNum1');
-	var carnumss = $('#carNum1').attr('trainnum');
-	console.log(this);
-	console.log(carnumss);
+//	var carnum = '2'; // 열차량번호 가져오기
+
+	
+	var carnum = e;
+//	var carnumss = $('#carNum1').attr('trainnum');
+	console.log(carnum);
 	
 	$.ajax({
 		url : 'realTimeTrainSeat',
@@ -169,36 +186,123 @@ function get_train_info() {
 			carnum : carnum
 		},
 		dataType : 'json',
-		success : function(item) {
-			$.each(item, function(index, items) {
-				console.log(index);
-				var int = index + 1;
+		success : function(items) { //vo
+			
 				var insert = '';
+				var insert2 = '';
+				var insert3 = '';
+				var insert4 = '';
+				
 				var insertTitle = subwaynum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
 				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
 				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
 
-				if (items.elderlySeat1 == 1) {
+				if (items.elderlySeat1 == 1) { // 사람이 있다면
 					insert += seaton;
 				} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-				}
+				} else if (items.elderlySeat1 == null) { // 좌석에 사람이 없다면 
+					
+				} 
 
 				if (items.elderlySeat2 == 1) {
 					insert += seaton;
 				} else if (items.elderlySeat2 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-				}
+				}else if (items.elderlySeat2 == null) { // 좌석에 사람이 없다면 
+					
+				} 
 
-				if (items.elderlySeat3 == 1) {
+				if (items.elderlySeat3 == 1) { //3
 					insert += seaton;
+					$('#trainSeat1').html(insert);
 				} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-				}
-
-				$('#trainSeat' + int).html(insert);
+					$('#trainSeat1').html(insert);
+				}else if (items.elderlySeat3 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat4 == 1) {
+					insert2 += seaton;
+				} else if (items.elderlySeat4 == 0) { // 좌석에 사람이 없다면 
+					insert2 += seatoff;
+				}else if (items.elderlySeat4 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat5 == 1) {
+					insert2 += seaton;
+				} else if (items.elderlySeat5 == 0) { // 좌석에 사람이 없다면 
+					insert2 += seatoff;
+				}else if (items.elderlySeat5 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat6 == 1) {
+					insert2 += seaton;
+					$('#trainSeat2').html(insert2);
+				} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
+					insert2 += seatoff;
+					$('#trainSeat2').html(insert2);
+				}else if (items.elderlySeat6 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat7 == 1) {
+					insert += seaton;
+				} else if (items.elderlySeat7 == 0) { // 좌석에 사람이 없다면 
+					insert += seatoff;
+				}else if (items.elderlySeat7 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat8 == 1) {
+					insert += seaton;
+				} else if (items.elderlySeat8 == 0) { // 좌석에 사람이 없다면 
+					insert += seatoff;
+				}else if (items.elderlySeat8 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat9 == 1) {
+					insert += seaton;
+					$('#trainSeat3').html(insert3);
+				} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
+					insert += seatoff;
+					$('#trainSeat3').html(insert3);
+				}else if (items.elderlySeat9 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				if (items.elderlySeat10 == 1) {
+					insert += seaton;
+				} else if (items.elderlySeat10 == 0) { // 좌석에 사람이 없다면 
+					insert += seatoff;
+				}else if (items.elderlySeat10 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+			
+				if (items.elderlySeat11 == 1) {
+					insert += seaton;
+				} else if (items.elderlySeat11 == 0) { // 좌석에 사람이 없다면 
+					insert += seatoff;
+				}else if (items.elderlySeat11 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				if (items.elderlySeat12 == 1) {
+					insert += seaton;
+					$('#trainSeat4').html(insert4);
+				} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
+					insert += seatoff;
+					$('#trainSeat4').html(insert4);
+				}else if (items.elderlySeat12 == null) { // 좌석에 사람이 없다면 
+					
+				} 
+				
+				
 				$('#seatTitle').html(insertTitle);
-			});
+				
 		}
 	});
 }
@@ -277,8 +381,8 @@ function resultSubwaySensorGet(datas) {
 	var firstCar40= '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
 	var firstCar60= '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
 	var firstCar80= '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
-	var firstCar100= '';
-	var firstCar120= '';
+	var firstCar100= '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
+	var firstCar120= '<img src ="./resources/image/subwayCar/subway_general_red120.png">';
 	
 	var nextCar0= '';
 	var nextCar20= '';
@@ -296,8 +400,9 @@ function resultSubwaySensorGet(datas) {
 		carHuman = Math.round(carHuman); 
 		// 소수점 반올림 62 
 		var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex
-			+ '"  onmouseover="train_popup(event)" onmouseout="train_popupOut(event)">';
-//		inserts += '<div style ="" class = "carColor'+humanIndex+'">';
+			+ '" onmouseover="train_popup(true)" onmouseout="train_popup(false)">';
+//		onmouseover="train_popup(true)" onmouseout="train_popupOut(false)"
+		inserts += '<div style ="" class = "carColor'+humanIndex+'" num="'+humanIndex+'">';
 		if( 0 <= carHuman && carHuman<20){
 			inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
 		}else if(21 <= carHuman&& carHuman<40){
@@ -313,15 +418,25 @@ function resultSubwaySensorGet(datas) {
 		}
 		
 		
-//		inserts += '</div>';
-		inserts += '</span><br>';
+		inserts += '</div>';
+		inserts += '</span>';
 		
-		inserts += items.humanNum +'명 <br>';
-		inserts += carHuman + '%';
+		var insertVar = '';
+		
+		insertVar += items.humanNum +'명 <br>';
+		insertVar += carHuman + '%';
 		
 		$('#carNum' + humanIndex).html(inserts);
+		$('#carNumVar' + humanIndex).html(insertVar);
 //		$('.carColor' + humanIndex).attr('style','{display: inline-block; position: relative;}; after{  position: absolute;display: block;content: "";top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 255, 0, 0.'+carHuman+');}');
 	});
+//	for(var i = 1; i<10; i++){
+//	$('.carColor'+i).hover(train_popup,train_popupOut);
+//	}
+//	$('.carColor1').mouseenter(train_popup);
+//	$('.carColor1').mouseleave(train_popupOut);
+
+	
 }
 
 
@@ -618,4 +733,19 @@ function resultlasttime(item) { // 첫차 막차 (java단에서 2중 for로 계�
 	$('#lastTime32').text(item.lastTime32);
 
 
+}
+
+function pagePrint(Obj) { //인쇄하기 
+	var W = Obj.offsetWidth; //screen.availWidth; 
+	var H = Obj.offsetHeight; //screen.availHeight;
+
+	var features = "menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=yes,resizable=yes,width=" + W + ",height=" + H + ",left=0,top=0";
+	var PrintPage = window.open("about:blank", Obj.id, features);
+
+	PrintPage.document.open();
+	PrintPage.document.write("<html><head><title></title><style type='text/css'>body, tr, td, input, textarea { font-family:Tahoma; font-size:9pt; }</style>\n</head>\n<body>" + Obj.innerHTML + "\n</body></html>");
+	PrintPage.document.close();
+
+	PrintPage.document.title = document.domain;
+	PrintPage.print(PrintPage.location.reload());
 }

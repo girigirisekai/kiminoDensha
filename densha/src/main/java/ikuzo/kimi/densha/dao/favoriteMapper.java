@@ -12,7 +12,7 @@ public interface favoriteMapper {
 
 	public ArrayList<favorite> myFavorites(String id);
 
-	public int deleteFavortie(String stationName);
+	public int deleteFavorite(favorite favorite);
 
 	public int newFavorite(favorite stationInfo);
 

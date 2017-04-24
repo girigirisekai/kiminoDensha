@@ -22,11 +22,13 @@
 		where station_nm2 = #{name} and line_num= #{line}
 	</select>
 
-	<select id="myFavorites" parameterType="favorite" resultType="favorite">
+	<select id="myFavorites" parameterType="string" resultType="favorite">
 		select
-		*
-		from favorite
-		where id = #{id}
+			*
+		from 
+			favorite
+		where 
+			id = #{id}
 	</select>
 
 <!-- 	insert -->
@@ -36,9 +38,13 @@
 		values(#{id},#{favoriteName},#{stationCode},sysdate)
 	</insert>
 
-	<delete id="deleteFavorite4" parameterType="favorite">
-		delete favorite from
-		id = #{id} and favoritename = #{favoriteName}
+	<delete id="deleteFavorite" parameterType="favorite">
+		delete 
+			favorite 
+		where	
+			id = #{id} 
+		and 
+			favoritename = #{favoriteName}
 	</delete>
 
 </mapper>

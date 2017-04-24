@@ -105,7 +105,7 @@
 		console.log(spot);
 		if(spot.style.visibility=="hidden") {
 		   spot.style.visibility="visible";
-		   aj(num);	
+		   aj(num);	 
 		   return false;
 		 }
 		 if(spot.style.visibility=="visible") {

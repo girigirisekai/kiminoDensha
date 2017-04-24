@@ -10,11 +10,10 @@
 <link rel="stylesheet" href="./resources/css/loginModule.css">
 <meta charset="UTF-8">
 <style>
-.overlay {
-	fill: none;
+#canvas_background {
 	pointer-events: all;
 }
-
+ 
 
 </style>
 
@@ -8716,9 +8715,9 @@
 </div>
 
 	<script>
-		var svg = d3.select("body > svg > g")
+		var svg = d3.select("svg > g")
 // 		var svg = d3.select(".svgMap")
-			.call(d3.behavior.zoom().scaleExtent([ 1, 8 ]).on("zoom", zoom));
+			.call(d3.behavior.zoom().scaleExtent([ 0, 8 ]).on("zoom", zoom));
 	
 		// Zoom
 		function zoom() {

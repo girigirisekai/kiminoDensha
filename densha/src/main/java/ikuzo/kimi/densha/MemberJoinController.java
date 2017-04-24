@@ -55,10 +55,12 @@ public class MemberJoinController {
 		member.setType("personal");
 		try{
 		result = dao.joinMember(member);
+		model.addAttribute("joinCheck", result);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
 		
 		return "redirect:/";
 	}

@@ -58,6 +58,7 @@ function station_name_down() { // stationNamediv 삭제 역할
 
 //역 정보: 팝업 띄우기 
 function get_station_popup() {
+	
 	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
 	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
 	var layer = document.getElementById("station_info_popup_layer");
@@ -86,7 +87,7 @@ function get_station_popup() {
 //역 정보: 팝업 삭제
 function get_station_down() {
 	// 추가로 tab 초기화 코드 추가
-	location.href='#stationInfoTab';
+	location.href = '#stationInfoTab';
 	
 	var layer = document.getElementById('station_info_popup_layer');
 	layer.style.visibility = 'hidden';

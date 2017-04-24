@@ -8889,8 +8889,17 @@
 		<!-- 	역 이름 -->
 		
 		
+		
+<!-- 	환승역인 경우   -->
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a href="#" class="btn btn-default">1</a>
+
+  </div>
+<!-- 환승역인 경우 -->
 
 		<!-- 		NAV System -->
+		
 		<ul class="nav nav-tabs">
 			
 			<li class="active"><a href="#stationInfoTab" data-toggle="tab"

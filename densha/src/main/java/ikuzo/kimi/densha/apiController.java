@@ -83,9 +83,11 @@ public class apiController {
 		obj.put("allhuman", allHuman); // 총인원
 		try {
 			JSONArray jArray = new JSONArray();// 배열이 필요할때
+			
 			for (int i = 0; i < subwayList.size(); i++)// 배열
 			{
 				JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
+				
 				sObject.put("subwayNum", subwayList.get(i).getSubwayNum());
 				sObject.put("carNum", subwayList.get(i).getCarNum());
 				sObject.put("humanNum", subwayList.get(i).getHumanNum());
@@ -96,7 +98,16 @@ public class apiController {
 				sObject.put("elderlySeat1", subwayList.get(i).getElderlySeat1());
 				sObject.put("elderlySeat2", subwayList.get(i).getElderlySeat2());
 				sObject.put("elderlySeat3", subwayList.get(i).getElderlySeat3());
-
+				sObject.put("elderlySeat4", subwayList.get(i).getElderlySeat4());
+				sObject.put("elderlySeat5", subwayList.get(i).getElderlySeat5());
+				sObject.put("elderlySeat6", subwayList.get(i).getElderlySeat6());
+				sObject.put("elderlySeat7", subwayList.get(i).getElderlySeat7());
+				sObject.put("elderlySeat8", subwayList.get(i).getElderlySeat8());
+				sObject.put("elderlySeat9", subwayList.get(i).getElderlySeat9());
+				sObject.put("elderlySeat10", subwayList.get(i).getElderlySeat10());
+				sObject.put("elderlySeat11", subwayList.get(i).getElderlySeat11());
+				sObject.put("elderlySeat12", subwayList.get(i).getElderlySeat12());
+				
 				jArray.put(sObject);
 			}
 
@@ -121,6 +132,7 @@ public class apiController {
 		subwayList = dao.selectSubwayArray(subwaynums);
 		int getAllHuman = 0; // 모든 인원
 		String getSubwaynum = "";
+		System.out.println(subwayList.toString());
 		for (int i = 0; i < subwayList.size(); i++) {// 총인원 구하는 부분
 			getAllHuman += Integer.parseInt(subwayList.get(i).getHumanNum());
 			getSubwaynum = subwayList.get(0).getSubwayNum();
@@ -171,6 +183,9 @@ public class apiController {
 			Element elderlyseat8 = new Element("ELDERLYSEAT8");
 			Element elderlyseat9 = new Element("ELDERLYSEAT9");
 			Element elderlyseat10 = new Element("ELDERLYSEAT10");
+			Element elderlyseat11 = new Element("ELDERLYSEAT11");
+			Element elderlyseat12 = new Element("ELDERLYSEAT12");
+			
 			row.addContent(elderlyseat1);
 			row.addContent(elderlyseat2);
 			row.addContent(elderlyseat3);
@@ -181,13 +196,23 @@ public class apiController {
 			row.addContent(elderlyseat8);
 			row.addContent(elderlyseat9);
 			row.addContent(elderlyseat10);
-
+			row.addContent(elderlyseat11);
+			row.addContent(elderlyseat12);
+			
 			carnum.setText(index);
 			humannum.setText(subwayList.get(i).getHumanNum());
 			elderlyseat1.setText(subwayList.get(i).getElderlySeat1());
 			elderlyseat2.setText(subwayList.get(i).getElderlySeat2());
 			elderlyseat3.setText(subwayList.get(i).getElderlySeat3());
-
+			elderlyseat4.setText(subwayList.get(i).getElderlySeat4());
+			elderlyseat5.setText(subwayList.get(i).getElderlySeat5());
+			elderlyseat6.setText(subwayList.get(i).getElderlySeat6());
+			elderlyseat7.setText(subwayList.get(i).getElderlySeat7());
+			elderlyseat8.setText(subwayList.get(i).getElderlySeat8());
+			elderlyseat9.setText(subwayList.get(i).getElderlySeat9());
+			elderlyseat10.setText(subwayList.get(i).getElderlySeat10());
+			elderlyseat11.setText(subwayList.get(i).getElderlySeat11());
+			elderlyseat12.setText(subwayList.get(i).getElderlySeat12());
 		}
 
 		doc.setRootElement(root); // 마지막에 더해주기

@@ -79,11 +79,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="home#service">서비스</a></li>
             <li><a href="home#portfolio">API제공 서비스</a></li>
-<!--             <li><a href="#">Something else here</a></li> -->
-<!--             <li class="divider"></li> -->
-<!--             <li><a href="#">Separated link</a></li> -->
-<!--             <li class="divider"></li> -->
-<!--             <li><a href="#">One more separated link</a></li> -->
+
           </ul>
         </li>
       </ul>

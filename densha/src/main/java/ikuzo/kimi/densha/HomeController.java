@@ -39,6 +39,15 @@ public class HomeController {
 		return "n2";
 	}
 	
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET
+			)
+	public String test() { // 테스트용으로 쓸것 n2.jsp
+		
+		
+		return "test";
+	}
+	
 
 	
 	

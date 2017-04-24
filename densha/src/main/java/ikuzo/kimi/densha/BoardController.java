@@ -49,7 +49,7 @@ public class BoardController {
 
 	
 	
-	
+	 
 	/**
 	 * 게시판 읽어오기 컨트롤러
 	 * 

@@ -2,7 +2,7 @@ package ikuzo.kimi.densha.util;
 
 
 
-public class WordAnalysis 
+public class WordAnalysis  
 {
    public int Analysis(String text){
 	     

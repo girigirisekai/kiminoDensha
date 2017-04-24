@@ -19,32 +19,63 @@ body, html {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-}
+} 
 
-
-.first {
+.first { 
 	overflow : hidden;
 }
+
 </style>
 
 <script type="text/javascript">
-
+	
 	$(document).ready(function() {
-
+		//검색 버튼 동작 실행 메소드 설정
+		$('#searchStations').on('click', searchStation);
+		//검색input태그의 id속성=searchStation, 엔터 키 누를 시 searchStation()메소드 실행
+		$('#searchStation').keypress(function(event){
+			if(event.which==13){
+				searchStation();
+				return false;
+			}
+		});
+		//새로운 즐겨찾기 추가 버튼 동작 실행 메소드 설정
 		$('#newFavorite').on('click', newFavorite);
+		//지하철의 센서 데이터 가져오기
 		subwaySensorGet();
+		//현재 아이디의 즐겨찾기 목록 불러오기
+		searchFavoriteList();
 	});
-
-	function nowStationsTrainInfo() {
+	
+	//현재아이디의 즐겨찾기 목록 불러오기 메소드
+	function searchFavoriteList(){
+		//alert('불러오기 실행');
+		$.ajax({
+			url : 'searchFavoriteList',
+			type : 'post',
+			dataType : 'json',
+			/* complete : function(data){
+				console.log(data);
+ 				printFavoriteStations(data.responseJSON);
+			} */
+				
+			success: function(data) {
+				//alert('불러오기성공');
+ 				printFavoriteStations(data);
+			},
+			error: function(data) {
+				//alert('불러오기실패');
+				printFavoriteStations(data);
+			} 
+		});
 	}
-
+	
 	// 	페이지 접속시 데이터를 model로 보낸후 
 	// 	model에서 db에 있는데이터를 가져와서 스프라이트 하면 됩니다. 
 	// 지하철 역 찾기 function, ajax로 옵션값을 바꿔줍니다 (동대문, 동대문문화역사역 같은 케이스)
 	function searchStation() {
 		var searchStationName = $('#searchStation').val(); // 역 이름 검색DB
 		console.log(searchStationName);
-
 		$.ajax({
 			url : 'FavoriteStationName',
 			type : 'post',
@@ -66,24 +97,97 @@ body, html {
 		});
 	}
 
-	// 새로운 역 더하기
+	//새로운 역을 즐겨찾기 목록에 추가하기
 	function newFavorite() {
+		//alert('즐겨찾기 추가 실행');
 		var stationName = $('.form-control option:selected').val(); // 선택된 이름
-
 		$.ajax({
 			url : 'newFavorite',
 			type : 'post',
-			dataType : 'text',
 			data : {
 				statioNameAndLine : stationName
 			},
-			success : function() {
-				alert("등록이 성공하였습니다.");
-			// 			 	이 부분은 나중에 modal로 교체하시길
+			dataType : 'json',
+			success: function(data) {
+				//alert("등록이 성공하였습니다.");
+				printFavoriteStations(data);
 			}
 		});
 	}
-
+	
+	//불러온 즐겨찾기 리스트 출력하기
+	function printFavoriteStations(favoriteLists){
+		//alert('리스트 출력 실행');
+		var str='';
+		$.each(favoriteLists, function(index, item){
+			str+='<div id='+item.stationCode;
+			str+='style="float: left; margin-right: 20px; width: 520px; height: 320px;">';
+			str+='<div class="panel panel-default">';
+			str+='<div class="panel-heading">';
+			str+='<div class="col-lg-12">';
+			str+='<h3>'+item.favoriteName+'</h3>';
+			str+='</div>';				
+			str+='</div>';
+			str+='<div class="panel-body">';
+			str+='<table>';
+			str+='<tr>';				
+			str+='<td>실시간 열차</td>';
+			str+='</tr>';
+			str+='<tr>';				
+			str+='<td>열차 량 상황</td>';						
+			str+='</tr>';
+			str+='</table>';
+			str+='<table>';
+			str+='<tr>';			
+			str+='<td>';			
+			str+='<table>';					
+			str+='<tr>';						
+			str+='<td>실시간 열차</td>';							
+			str+='</tr>';								
+			str+='<tr>';							
+			str+='<td><table width="450">';							
+			str+='<td colspan="12"><center>혼잡도</center></td>';								
+			str+='<tr>';										
+			str+='<td>1호칸</td>';										
+			str+='<td>2호칸</td>';
+			str+='<td>3호칸</td>';
+			str+='<td>4호칸</td>';
+			str+='<td>5호칸</td>';
+			str+='<td>6호칸</td>';
+			str+='<td>7호칸</td>';
+			str+='<td>8호칸</td>';
+			str+='<td>9호칸</td>';
+			str+='<td>10호칸</td>';
+			str+='</tr>';
+			str+='<tr>';										
+			str+='<td id="carNum1"></td>';
+			str+='<td id="carNum2"></td>';
+			str+='<td id="carNum3"></td>';
+			str+='<td id="carNum4"></td>';
+			str+='<td id="carNum5"></td>';
+			str+='<td id="carNum6"></td>';
+			str+='<td id="carNum7"></td>';
+			str+='<td id="carNum8"></td>';
+			str+='<td id="carNum9"></td>';
+			str+='<td id="carNum10"></td>';
+			str+='</tr>';
+			str+='</table>';										
+			str+='</td>';												
+			str+='</tr>';										
+			str+='</table>';
+			str+='</td>';											
+			str+='</tr>';													
+			str+='</table>';								
+			str+='</div>';						
+			str+='<input type="button" class="btn btn-danger favoriteStations"  atr1="'+item.id+'" atr2="'+item.favoriteName+'" atr3="'+item.stationCode+'" value="삭제하기"';	 					
+			str+='</div>';		
+			str+='</div>';
+		});
+		$('#storedStations').html(str); 
+		$('.favoriteStations').on('click', deleteStation);
+	}
+	
+	//지하철 센서 데이터 불러오기
 	function subwaySensorGet() { // map 이름과 같다. 
 		$.ajax({
 			url : 'subwaySensorGet',
@@ -96,6 +200,7 @@ body, html {
 		});
 	}
 
+	//불러온 지하철 센서 데이터 결과를 출력하기
 	function resultSubwaySensorGet(datas) {
 		$.each(datas, function(index, items) {
 			var humanIndex = index + 1;
@@ -105,18 +210,37 @@ body, html {
 		});
 	}
 
-	// 역 삭제, DB 삭제와 동시에 역 동시 삭제 
-	function deleteStation() {
-		console.log('delete동작');
-
+	// 선택한 즐겨찾기 역 삭제
+	function deleteStation(){
+		//console.log('delete동작');
+		//alert("삭제 실행");
+		var id=$(this).attr('atr1');
+		var stationName=$(this).attr('atr2');
+		var stationCode=$(this).attr('atr3');
+		//alert("삭제할 역정보: "+id+" / "+stationName+" / "+stationCode);
+		$.ajax({
+			url : 'deleteStation',
+			type : 'post',
+			data : {
+				id: id,
+				favoriteName: stationName,
+				stationCode: stationCode
+				},
+			dataType : 'json' ,
+			success : function(data) {
+				//alert("삭제가 성공하였습니다.");
+				printFavoriteStations(data);
+			}
+		});
 	}
-
-	// 역 삭제, DB 삭제와 동시에 역 동시 삭제 
+	
+	//개인정보 수정 동작
 	function modifyPersonInfo() {
 		console.log('개인정보 수정 동작');
-
 	}
+	
 </script>
+
 </head>
 <body>
 	<!--top header-->
@@ -138,22 +262,21 @@ body, html {
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 
 			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0);">
-				<h1>myFavorite</h1>
-				<p>자주 이용하는 역을 추구하세요.</p>
-				
+				<h1>My Favorite</h1>
+				<p>자주 이용하는 역을 추가하세요.</p>
 			</div>
 			
 			
 			<!-- 이 부분은 개인정보에 대한 페이지 -->
 
-			<div style="width: 500px; float: left; margin-right: 30px;"
+			<div style="width: 800px; float: left; margin-right: 30px;"
 				class="float">
 
-				<div class="panel panel-warning">
+				<div class="panel panel-warning ">
 					<div class="panel-heading">
 						<h3 class="panel-title">개인정보 페이지</h3>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body ">
 
 
 						<table>
@@ -187,30 +310,30 @@ body, html {
 
 
 
+		
 
-
-			<div class="panel panel-default"
-				style="width: 550px; height: 320px; float: left;"  class = "float">
-				<div class="col-lg-12">
+			<div class="panel panel-default col-lg-offset-0"
+				style="width: 550px; height: 320px; float: left;"  class = "float" >
+				<div class="col-lg-12 ">
 					<h3>역 추가하기</h3>
 				</div>
 
 				<div class="panel-body">
 
 					<div class="form-group">
-						<label for="inputEmail" class="col-lg-2 control-label">추가할
-							역</label>
-						<div class="col-lg-10">
+						<label for="inputEmail" class="col-lg-3 control-label">추가할 역</label>
+						<div class="col-lg-9">
 							<input type="text" class="form-control" id="searchStation"
-								placeholder="역 이름을 입력해 주세요"> <a
-								href="javascript:searchStation()" class="btn btn-success">검색하기</a>
+								placeholder="역 이름을 입력해 주세요"> 
+								<!--  <a href="javascript:searchStation()" class="btn btn-success">검색하기</a> -->
+								<input type="button" id="searchStations" class="btn btn-success" value="검색하기">
 						</div>
 						<div class="col-lg-10">
-							<!-- 					검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
+							<!-- 검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
 							<br> <select multiple="" class="form-control">
 
 							</select>
-							<!-- 					검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
+							<!-- 검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
 						</div>
 
 
@@ -220,99 +343,15 @@ body, html {
 							<button type="reset" class="btn btn-default" id="newFavorite">초기화</button>
 							<a href="javascript:newFavorite()" class="btn btn-success"
 								id="newFavorite"> 등록하기</a>
-							<!-- 					<input type="button" class="btn btn-primary" id = "newFavorite">등록하기</button> -->
-					</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-
-
-		
-			<!-- 		저장된 역 div로 보이기  -->
-			<c:forEach items="${favoriteLists}" var="station">
-				<div
-					style="float: left; margin-right: 20px; width: 520px; height: 320px;">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<div class="col-lg-12">
-								<!-- 					역이름 -->
-								<h3>${station.favoriteName}</h3>
-							</div>
-							<!-- 				(CSS로 색상을 해야 할수도 있음) -->
-						</div>
-						<div class="panel-body">
-
-
-							<table>
-								<tr>
-									<td>실시간 열차</td>
-								</tr>
-								<tr>
-									<td>열차 량 상황</td>
-								</tr>
-							</table>
-
-							<table>
-								<tr>
-									<td>
-
-										<table>
-											<tr>
-												<td>실시간 열차</td>
-											</tr>
-											<tr>
-												<td><table width="450">
-														<td colspan="12"><center>혼잡도</center></td>
-														<tr>
-															<td>1호칸</td>
-															<td>2호칸</td>
-															<td>3호칸</td>
-															<td>4호칸</td>
-															<td>5호칸</td>
-															<td>6호칸</td>
-															<td>7호칸</td>
-															<td>8호칸</td>
-															<td>9호칸</td>
-															<td>10호칸</td>
-														</tr>
-														<tr>
-															<td id="carNum1"></td>
-															<td id="carNum2"></td>
-															<td id="carNum3"></td>
-															<td id="carNum4"></td>
-															<td id="carNum5"></td>
-															<td id="carNum6"></td>
-															<td id="carNum7"></td>
-															<td id="carNum8"></td>
-															<td id="carNum9"></td>
-															<td id="carNum10"></td>
-
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</table>
-
-									</td>
-
-								</tr>
-							</table>
-						</div>
-						<a href="javascript:deleteStation()" class="btn btn-danger">삭제하기</a>
-					</div>
-				</div>
-			</c:forEach>
-			
-			<!-- 		저장된 역 div로 보이기  -->
-
-
+			<div class="col-lg-10 col-lg-offset-0">
+				<div id='storedStations'></div>
+			</div>
 		</div>
 	</div>
-
-
-
-
 
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>

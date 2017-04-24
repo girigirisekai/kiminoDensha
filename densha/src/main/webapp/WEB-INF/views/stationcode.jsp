@@ -10,16 +10,17 @@
 <link rel="stylesheet" href="./resources/css/loginModule.css">
 <meta charset="UTF-8">
 <style>
-#canvas_background {
+/* #canvas_background {
 	pointer-events: all;
-}
+} */
  
 
 </style>
 
 <title>지하철 지도 서비스</title>
 <script src="resources/js/jquery-3.1.1.min.js"></script>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 <!-- 지하철 팝업과 역 정보 팝업등의 자바스크립트 -->
 <script src="./resources/js/stationcode.js"></script>
@@ -8694,20 +8695,10 @@
 			stroke="#1469BE" id="1511" />
   </g>
   <g id="startPoint" transform="translate(1527.666,585.667)">
-  <path fill="#9E1205"
-			d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>
-  <path fill="#9E1205"
-			d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>
-  <path fill="#FFFFFF"
-			d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>
+  
   </g>
   <g id="endPoint" transform="translate(1648.666,585.667)">
-  <path fill="#1961BC"
-			d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>
-  <path fill="#1961BC"
-			d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>
-  <path fill="#FFFFFF"
-			d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>
+  
   </g>
   </g>
  </g>
@@ -8717,14 +8708,19 @@
 </div>
 
 	<script>
-		var svg = d3.select("svg > g")
-// 		var svg = d3.select(".svgMap")
-			.call(d3.behavior.zoom().scaleExtent([ 0, 8 ]).on("zoom", zoom));
+		/* var svg = d3.select("svg > g")
+			.call(d3.behavior.zoom().scaleExtent([ 1, 8 ]).on("zoom", zoom));
 	
 		// Zoom
 		function zoom() {
 			svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-		}
+		} */
+		
+		//new 줌 기능
+		var svg = d3.select("svg")
+		.call(d3.zoom().on("zoom", function () {
+	        svg.attr("transform", d3.event.transform)
+		}));
 
 	</script>
 	

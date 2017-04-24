@@ -1,5 +1,7 @@
 package ikuzo.kimi.densha.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -98,6 +100,13 @@ public class MemberDAO {
 		public int logincheck (loginCheck logincheck){
 			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 			int result = mapper.logincheck(logincheck);
+			return result;
+		}
+		
+		public ArrayList<loginCheck> logincheck3 (String id){
+			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+			ArrayList<loginCheck> result = mapper.logincheck3(id);
+			System.out.println(result+"가나다라마바사");
 			return result;
 		}
 }

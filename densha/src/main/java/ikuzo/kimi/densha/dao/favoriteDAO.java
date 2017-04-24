@@ -35,12 +35,10 @@ public class favoriteDAO {
 	}
 
 	// 역 삭제
-	public int deleteFavortie(String stationName) {
-
+	public int deleteFavorite(favorite favorite) {
 		favoriteMapper sem = sqlsession.getMapper(favoriteMapper.class);
-		int result = sem.deleteFavortie(stationName);
+		int result = sem.deleteFavorite(favorite);
 		return result;
-
 	}
 
 	// 역 추가하고 저장하기

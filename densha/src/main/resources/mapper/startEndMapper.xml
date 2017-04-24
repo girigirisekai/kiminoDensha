@@ -54,7 +54,7 @@
 		from
 			station
 			where
-				CYBER_ST_CODE
+				STATION_CD
 				= #{code}
 		
 	

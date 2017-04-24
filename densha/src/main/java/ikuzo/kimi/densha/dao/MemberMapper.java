@@ -1,5 +1,7 @@
 package ikuzo.kimi.densha.dao;
 
+import java.util.ArrayList;
+
 import ikuzo.kimi.densha.vo.Member;
 import ikuzo.kimi.densha.vo.checkCode;
 import ikuzo.kimi.densha.vo.loginCheck;
@@ -28,5 +30,5 @@ public interface MemberMapper {
 		
 		public int logincheck (loginCheck logincheck);
 		
-		
+		public ArrayList<loginCheck> logincheck3 (String id);
 }

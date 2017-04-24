@@ -1,32 +1,50 @@
 package ikuzo.kimi.densha.vo;
 
-
 public class Subway {
-	//변수
-	private String subwayNum;	//지하철번호
-	private String carNum;		//칸번호
-	private String humanNum;	//사람수
-	private String elderlySeat1;//노약자석1
-	private String elderlySeat2;//노약자석2
-	private String elderlySeat3;//노약자석3
-	
-	//생성자
-	public Subway(){
+	// 변수
+	private String subwayNum; // 지하철번호
+	private String carNum; // 칸번호
+	private String humanNum; // 사람수
+	private String elderlySeat1;// 노약자석1
+	private String elderlySeat2;// 노약자석2
+	private String elderlySeat3;// 노약자석3
+	private String elderlySeat4;// 노약자석4
+	private String elderlySeat5;// 노약자석5
+	private String elderlySeat6;// 노약자석6
+	private String elderlySeat7;// 노약자석7
+	private String elderlySeat8;// 노약자석8
+	private String elderlySeat9;// 노약자석9
+	private String elderlySeat10;// 노약자석10
+	private String elderlySeat11;// 노약자석11
+	private String elderlySeat12;// 노약자석12
+
+	// 생성자
+	public Subway() {
 		super();
 	}
-	
+
 	public Subway(String subwayNum, String carNum, String humanNum, String elderlySeat1, String elderlySeat2,
-			String elderlySeat3) {
+			String elderlySeat3, String elderlySeat4, String elderlySeat5, String elderlySeat6, String elderlySeat7,
+			String elderlySeat8, String elderlySeat9, String elderlySeat10, String elderlySeat11,
+			String elderlySeat12) {
+		super();
 		this.subwayNum = subwayNum;
 		this.carNum = carNum;
 		this.humanNum = humanNum;
 		this.elderlySeat1 = elderlySeat1;
 		this.elderlySeat2 = elderlySeat2;
 		this.elderlySeat3 = elderlySeat3;
+		this.elderlySeat4 = elderlySeat4;
+		this.elderlySeat5 = elderlySeat5;
+		this.elderlySeat6 = elderlySeat6;
+		this.elderlySeat7 = elderlySeat7;
+		this.elderlySeat8 = elderlySeat8;
+		this.elderlySeat9 = elderlySeat9;
+		this.elderlySeat10 = elderlySeat10;
+		this.elderlySeat11 = elderlySeat11;
+		this.elderlySeat12 = elderlySeat12;
 	}
-	
-	//메소드
-	//get,set메소드
+
 	public String getSubwayNum() {
 		return subwayNum;
 	}
@@ -74,13 +92,87 @@ public class Subway {
 	public void setElderlySeat3(String elderlySeat3) {
 		this.elderlySeat3 = elderlySeat3;
 	}
-	
-	//toString메소드
+
+	public String getElderlySeat4() {
+		return elderlySeat4;
+	}
+
+	public void setElderlySeat4(String elderlySeat4) {
+		this.elderlySeat4 = elderlySeat4;
+	}
+
+	public String getElderlySeat5() {
+		return elderlySeat5;
+	}
+
+	public void setElderlySeat5(String elderlySeat5) {
+		this.elderlySeat5 = elderlySeat5;
+	}
+
+	public String getElderlySeat6() {
+		return elderlySeat6;
+	}
+
+	public void setElderlySeat6(String elderlySeat6) {
+		this.elderlySeat6 = elderlySeat6;
+	}
+
+	public String getElderlySeat7() {
+		return elderlySeat7;
+	}
+
+	public void setElderlySeat7(String elderlySeat7) {
+		this.elderlySeat7 = elderlySeat7;
+	}
+
+	public String getElderlySeat8() {
+		return elderlySeat8;
+	}
+
+	public void setElderlySeat8(String elderlySeat8) {
+		this.elderlySeat8 = elderlySeat8;
+	}
+
+	public String getElderlySeat9() {
+		return elderlySeat9;
+	}
+
+	public void setElderlySeat9(String elderlySeat9) {
+		this.elderlySeat9 = elderlySeat9;
+	}
+
+	public String getElderlySeat10() {
+		return elderlySeat10;
+	}
+
+	public void setElderlySeat10(String elderlySeat10) {
+		this.elderlySeat10 = elderlySeat10;
+	}
+
+	public String getElderlySeat11() {
+		return elderlySeat11;
+	}
+
+	public void setElderlySeat11(String elderlySeat11) {
+		this.elderlySeat11 = elderlySeat11;
+	}
+
+	public String getElderlySeat12() {
+		return elderlySeat12;
+	}
+
+	public void setElderlySeat12(String elderlySeat12) {
+		this.elderlySeat12 = elderlySeat12;
+	}
+
 	@Override
 	public String toString() {
 		return "Subway [subwayNum=" + subwayNum + ", carNum=" + carNum + ", humanNum=" + humanNum + ", elderlySeat1="
-				+ elderlySeat1 + ", elderlySeat2=" + elderlySeat2 + ", elderlySeat3=" + elderlySeat3 + "]";
+				+ elderlySeat1 + ", elderlySeat2=" + elderlySeat2 + ", elderlySeat3=" + elderlySeat3 + ", elderlySeat4="
+				+ elderlySeat4 + ", elderlySeat5=" + elderlySeat5 + ", elderlySeat6=" + elderlySeat6 + ", elderlySeat7="
+				+ elderlySeat7 + ", elderlySeat8=" + elderlySeat8 + ", elderlySeat9=" + elderlySeat9
+				+ ", elderlySeat10=" + elderlySeat10 + ", elderlySeat11=" + elderlySeat11 + ", elderlySeat12="
+				+ elderlySeat12 + "]";
 	}
-	
-	
+
 }

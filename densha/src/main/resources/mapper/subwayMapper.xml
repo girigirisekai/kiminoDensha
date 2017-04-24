@@ -24,9 +24,9 @@
 		from
 			subwaydata
 		where 
-			subwaynum=#{0}
+			subwaynum= #{0}
 		and
-		 	carnum=#{1}
+		 	carnum= #{1}
 	</select>
 	
 		<!-- 지하철 정보 검색 -->

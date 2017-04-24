@@ -49,7 +49,7 @@ public class BoardController {
 
 	
 	
-	
+	 
 	/**
 	 * 게시판 읽어오기 컨트롤러
 	 * 
@@ -143,16 +143,38 @@ public class BoardController {
 	 * @return
 	 */
 	@RequestMapping(value = "read", method = RequestMethod.GET)
-	public String read(int boardnum, Model model) {
-
-		Board b = dao.select(boardnum);
-		if (b == null) {
-			return "redirect:board";
+	public String read(Board board, Model model, HttpSession session) {
+		
+		Board b = null;
+		
+		//QNA와 아닌 글로 분기 나누어줌
+		if(board.getType().equals("qna")){
+			if( session.getAttribute("checkedBoardnum") == null){
+				return "redirect:board";
+			}
+			int checkedNum = (int) session.getAttribute("checkedBoardnum");
+			if(board.getBoardnum() == checkedNum){
+				
+				b = dao.select(board.getBoardnum());
+				if(!(b.getType().equals("qna")) || b == null){
+					return "redirect:board";
+				}
+			}else{
+				return "redirect:board";
+			}
+			
+		}
+		else{
+			b = dao.select(board.getBoardnum());
+			if((b.getType().equals("qna")) || b == null){
+				return "redirect:board";
+			}
 		}
 
+		session.removeAttribute("checkedBoardnum");
 		model.addAttribute("board", b);
 
-		ArrayList<Reply> rlist= dao.selectReply(boardnum);
+		ArrayList<Reply> rlist= dao.selectReply(board.getBoardnum());
 		logger.debug("리플:{}", rlist);
 		model.addAttribute("rlist", rlist);
 		
@@ -171,7 +193,7 @@ public class BoardController {
 
 		// 세션에서 사용자 아이디 읽기
 		String loginID = (String) session.getAttribute("loginId");
-
+		
 		// 해당 글에 첨부된 파일이 있으면 삭제
 		Board board = dao.select(boardnum);
 
@@ -346,4 +368,27 @@ public class BoardController {
 		return null;
 	}
 	
+	/**
+	 * 패스워드 체크 여부 확인 맞으면 세션값에 넣어준다.
+	 * @param boardnum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="passwordCheck", method=RequestMethod.POST)
+	public Board passwordCheck(Board board, HttpSession session){
+
+		String id = (String) session.getAttribute("loginId");
+		
+		board.setId(id);
+		
+		Board result=dao.checkPassword(board);
+		
+		//리턴 값이 있으면 세션에 확인 된 세션을 넣어준다.
+		if(result != null){
+			session.setAttribute("checkedBoardnum", result.getBoardnum());
+		}
+		
+		return result;
+		
+	}
 }

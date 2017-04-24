@@ -21,7 +21,7 @@ body, html {
 	background-size: cover;
 }
 
-.first {
+.first { 
 	overflow : hidden;
 }
 

@@ -19,8 +19,8 @@
 			, savedfile
 		</if>
 		<if test="secretpassword !=null">
-			,secretpassword
-			,secret
+			,SECRET
+			,SECRETPASSWORD
 		</if>
 
 		)
@@ -35,8 +35,8 @@
 			, #{savedfile}
 		</if>
 		<if test="secretpassword !=null">
+			, 'true'
 			, #{secretpassword}
-			, true
 		</if>
 		)
 	</insert>
@@ -82,6 +82,7 @@
 			, hits
 			, originalfile
 			, savedfile
+			, type
 		from
 			board
 		where 
@@ -136,11 +137,13 @@
 	<!-- QnA글 비밀번호 확인 -->
 	<select id="checkPassword" parameterType="Board" resultType="Board">
 		select
-			secretpassword
+			boardnum
 		from
 			board
 		where
-			boardnum = #{boardnum}
+			boardnum = #{boardnum} 
+			and secretpassword = #{secretpassword} 
+			and id = #{id}
 	
 	</select>
 	

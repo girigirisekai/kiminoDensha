@@ -49,25 +49,57 @@
 
 	$(document).ready(function() {
 	
-		$('.titleNames').on('click', readPasswordCheck);
+		$('.titleNames').on('click', readPasswordCheckStep1);
+		$('#passwordCheckPopup').css('top', screen.height/4);
+		$('#passwordCheckPopup').css('left', screen.width/2.5);
 		
 	});
 	
-	function readPasswordCheck(){
+	function readPasswordCheckStep1(){
 		
 		var boardnum = $(this).attr('boardnum');
 		var type = $(this).attr('type');
 		if(type == 'qna'){
-			var check = document.getElementById('passwordCheckPopup');
-			check.style.visibility="visible";
+			
+			$('#checkType').val(type);
+			$('#checkBoardnum').val(boardnum);
+			$('#checkButton').on('click', readPasswordCheckStep2);
+			$('#passwordCheckPopup').css('visibility', 'visible');
 			
 		}else {
 			
-			location.href='read?boardnum='+boardnum+'';
+			location.href='read?boardnum='+boardnum+'&type='+type+'';
 			
 		}
 		
 	}
+	
+	function readPasswordCheckStep2(){
+		
+		$.ajax({
+			url: 'passwordCheck'
+			, type: 'POST'
+			, data: $('#passwordCheckTable').serialize() 
+			, dataType: 'json'
+			, success: readPasswordCheckStep3
+			, error: function(e){
+				alert("비밀번호가 일치하지 않거나 작성자와 일치하지 않습니다.");
+				$('#passwordCheckPopup').css('visibility', 'hidden');
+				$('#checkPassword').val('');
+				$('#checkButton').off('click', readPasswordCheckStep2);
+			}
+		});
+	}
+	
+	function readPasswordCheckStep3(board){
+		
+		var boardnum = $('#checkBoardnum').val();
+		var type = $('#checkType').val();
+		$('#checkButton').off('click', readPasswordCheckStep2);
+		location.href='read?boardnum='+boardnum+'&type='+type+'';
+		
+	}
+	
 
 	function showmap(spot, num) { 
 		console.log(spot);
@@ -205,9 +237,24 @@
 
 	<!-- 비밀번호 체크 관련 팝업 -->
 	<div id="passwordCheckPopup"
-		style="position: absolute; border: none; top: 100px; left: 100px; width: 50px; height: 30px; z-index: 1; visibility: hidden; background-color: white;">
+		style="position: absolute; border: none; top: 0px; left: 0px; width: 200px; height: 100px; z-index: 1; visibility: hidden; background: #000000; background : rgba(0, 0, 0, 0.5);">
 
-		팝업니다 팝업
+	<table>
+		<form id = "passwordCheckTable">
+			<tr>
+				<th>
+					<input type="hidden" name = "boardnum" id = "checkBoardnum">
+					<input type="hidden" name = "type" id = "checkType">
+					<input type="password" name = "secretpassword" id = "checkPassword">
+				<th>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" value="비밀번호 확인" id = "checkButton">
+				</td>
+			</tr>
+		</form>
+	</table>
 			
 			
 	</div>

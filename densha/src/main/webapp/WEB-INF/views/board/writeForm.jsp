@@ -43,12 +43,12 @@ function typeCheck(){
 		var title = $('#title').val(); //글제목
 		var content = $('#content').val(); //글내용
 
-		if(type=='qna'){
+		/* if(type=='qna'){
 			
 			var secretpassword = prompt('비밀번호를 입력해주세요');
 			$("#secretpassword").val(secretpassword);
 			
-		}
+		} */
 		
 		
 		

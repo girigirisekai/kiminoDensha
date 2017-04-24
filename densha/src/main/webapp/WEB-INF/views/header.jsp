@@ -71,7 +71,7 @@
         </c:if>
         <!--         로그인 시  -->
       
-
+ 
         	<li><a href="board">게시판</a></li>
         	<li><a href="api">API</a></li>
         <li class="dropdown">

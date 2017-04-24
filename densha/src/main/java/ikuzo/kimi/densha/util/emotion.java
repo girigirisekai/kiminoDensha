@@ -18,7 +18,7 @@ import java.io.IOException;
 	  public static void main(String[] args) {
 	   HttpClient httpclient = HttpClients.createDefault();
 	   try
-	   { 
+	   {  
 	      URIBuilder builder = new URIBuilder("https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze");
 	      // Specify your subscription key
 	      builder.setParameter("subscription-key", "7e3dfc8819a444d8a399818b898a8e9c");

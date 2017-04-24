@@ -18,7 +18,7 @@ function station_name_popup(stationCode) { // stationNamePopup
 
 	layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-	layer.style.visibility = "visible";
+	layer.style.visibility = "visible"; 
 	$('#station').attr('stationcode', stationCode);
 	$('#startEnd').attr('stationcode', stationCode);
 

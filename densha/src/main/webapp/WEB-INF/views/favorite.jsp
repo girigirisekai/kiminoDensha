@@ -19,7 +19,7 @@ body, html {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-}
+} 
 
 .first { 
 	overflow : hidden;

@@ -101,7 +101,7 @@ function get_station_down() {
 
 
 // 열차량당 좌석: 팝업on
-function train_popup(e) {
+function train_popup() {
 	
 //	var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
 //	var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
@@ -116,23 +116,26 @@ function train_popup(e) {
 //	layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 //	layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
 	
-	if (e) {
+//	if (e) {
 	train_seat_popup.style.display = "block";
-} else {
-	train_seat_popup.style.display = "none";
-}
+//} else {
+//	train_seat_popup.style.display = "none";
+//}
 //get_train_info();
 //	layer.style.visibility = "visible";
-	console.log(e);
-	var i = $(e).attr('num');
-	get_train_info(3);
+
+	console.log(this);
+	var x = $(this).attr('trainnum');
+
+	get_train_info(x);
 }
 
 
 //열차량당 좌석: 팝업off
-function train_popupOut(e) {
-	var layer = document.getElementById('train_seat_popup');
-	layer.style.visibility = 'hidden';
+function train_popupOut() {
+	train_seat_popup.style.display = "none";
+//	var layer = document.getElementById('train_seat_popup');
+//	layer.style.visibility = 'hidden';
 }
 
 //======================여기까지는 팝업담당===========================//
@@ -189,15 +192,17 @@ function get_train_info(e) {
 		dataType : 'json',
 		success : function(items) { //vo
 			
-				var insert = '';
-				var insert2 = '';
-				var insert3 = '';
+				//1 3
+				//2 4
+				var insert = ''; // 왼쪽 위
+				var insert2 = ''; // 오른쪽 위
+				var insert3 = ''; // 
 				var insert4 = '';
 				
 				var insertTitle = subwaynum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
 				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
 				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
-
+				
 				if (items.elderlySeat1 == 1) { // 사람이 있다면
 					insert += seaton;
 				} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
@@ -223,6 +228,7 @@ function get_train_info(e) {
 				}else if (items.elderlySeat3 == null) { // 좌석에 사람이 없다면 
 					
 				} 
+				// 1 end
 				
 				if (items.elderlySeat4 == 1) {
 					insert2 += seaton;
@@ -242,60 +248,62 @@ function get_train_info(e) {
 				
 				if (items.elderlySeat6 == 1) {
 					insert2 += seaton;
-					$('#trainSeat2').html(insert2);
+					$('#trainSeat3').html(insert2);
 				} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
 					insert2 += seatoff;
-					$('#trainSeat2').html(insert2);
+					$('#trainSeat3').html(insert2);
 				}else if (items.elderlySeat6 == null) { // 좌석에 사람이 없다면 
 					
 				} 
+				// 1 end
 				
 				if (items.elderlySeat7 == 1) {
-					insert += seaton;
+					insert3 += seaton;
 				} else if (items.elderlySeat7 == 0) { // 좌석에 사람이 없다면 
-					insert += seatoff;
+					insert3 += seatoff;
 				}else if (items.elderlySeat7 == null) { // 좌석에 사람이 없다면 
 					
 				} 
 				
 				if (items.elderlySeat8 == 1) {
-					insert += seaton;
+					insert3 += seaton;
 				} else if (items.elderlySeat8 == 0) { // 좌석에 사람이 없다면 
-					insert += seatoff;
+					insert3 += seatoff;
 				}else if (items.elderlySeat8 == null) { // 좌석에 사람이 없다면 
 					
 				} 
 				
 				if (items.elderlySeat9 == 1) {
-					insert += seaton;
-					$('#trainSeat3').html(insert3);
+					insert3 += seaton;
+					$('#trainSeat2').html(insert3);
 				} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
-					insert += seatoff;
-					$('#trainSeat3').html(insert3);
+					insert3 += seatoff;
+					$('#trainSeat2').html(insert3);
 				}else if (items.elderlySeat9 == null) { // 좌석에 사람이 없다면 
 					
 				} 
+				// 3 end
 				
 				if (items.elderlySeat10 == 1) {
-					insert += seaton;
+					insert4 += seaton;
 				} else if (items.elderlySeat10 == 0) { // 좌석에 사람이 없다면 
-					insert += seatoff;
+					insert4 += seatoff;
 				}else if (items.elderlySeat10 == null) { // 좌석에 사람이 없다면 
 					
 				} 
 			
 				if (items.elderlySeat11 == 1) {
-					insert += seaton;
+					insert4 += seaton;
 				} else if (items.elderlySeat11 == 0) { // 좌석에 사람이 없다면 
-					insert += seatoff;
+					insert4 += seatoff;
 				}else if (items.elderlySeat11 == null) { // 좌석에 사람이 없다면 
 					
 				} 
 				if (items.elderlySeat12 == 1) {
-					insert += seaton;
+					insert4 += seaton;
 					$('#trainSeat4').html(insert4);
 				} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
-					insert += seatoff;
+					insert4 += seatoff;
 					$('#trainSeat4').html(insert4);
 				}else if (items.elderlySeat12 == null) { // 좌석에 사람이 없다면 
 					
@@ -400,10 +408,11 @@ function resultSubwaySensorGet(datas) {
 		// 한칸당 인원한계는 160명이 된다 그리고 100을곱한다. 이러면 62.5 가 나옴
 		carHuman = Math.round(carHuman); 
 		// 소수점 반올림 62 
-		var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex
-			+ '" onmouseover="train_popup(true)" onmouseout="train_popup(false)">';
+		var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex +'">';
+//		var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex
+//			+ '" onmouseover="train_popup(true)" onmouseout="train_popup(false)">';
 //		onmouseover="train_popup(true)" onmouseout="train_popupOut(false)"
-		inserts += '<div style ="" class = "carColor'+humanIndex+'" num="'+humanIndex+'">';
+//		inserts += '<div style ="" class = "carColor'+humanIndex+'" num="'+humanIndex+'">';
 		if( 0 <= carHuman && carHuman<20){
 			inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
 		}else if(21 <= carHuman&& carHuman<40){
@@ -419,7 +428,7 @@ function resultSubwaySensorGet(datas) {
 		}
 		
 		
-		inserts += '</div>';
+//		inserts += '</div>';
 		inserts += '</span>';
 		
 		var insertVar = '';
@@ -436,8 +445,18 @@ function resultSubwaySensorGet(datas) {
 //	}
 //	$('.carColor1').mouseenter(train_popup);
 //	$('.carColor1').mouseleave(train_popupOut);
-
-	
+	$('.train1').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train2').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train3').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train4').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train5').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train6').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train7').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train8').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train9').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train10').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train11').mouseenter(train_popup).mouseleave(train_popupOut);
+	$('.train12').mouseenter(train_popup).mouseleave(train_popupOut);
 }
 
 

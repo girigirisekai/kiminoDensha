@@ -248,7 +248,7 @@ body, html {
 	<!--top header-->
 
 	<!-- 디자인 바  -->
-		<div class="progress" style="position: relative; top: -22px;">
+		<div class="progress" style="position: relative; top: -23px;">
 			<div class="progress-bar progress-bar-success" style="width: 35%"></div>
 			<div class="progress-bar progress-bar-warning" style="width: 20%"></div>
 			<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
@@ -302,7 +302,7 @@ body, html {
 							</tr>
 
 						</table>
-						<a href="updateMember" class="btn btn-info">개인정보 수정하기</a>
+						<a href="myaccount" class="btn btn-info">개인정보 수정하기</a>
 					</div>
 				</div>
 			</div>

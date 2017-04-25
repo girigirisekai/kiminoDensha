@@ -8739,15 +8739,16 @@
 			
 	</div>
 	<!-- 	역 정보 띄우는 팝업  -->
-	
+	 
 	
 	
 	
 	<!-- 	좌석 상황을 띄우는 팝업 -->
 	
+	<!-- 		역 정보 띄우는 팝업   --> 
 	<div id="station_info_popup_layer"
-		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden;">
-		<!-- 		역 이름  -->
+		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
+		
 		
 		<div style="margin: 11px">
 		<div class="panel panel-primary">
@@ -8770,14 +8771,14 @@
 				</div>
 
 
-				<!-- 	실시간 역 상황 보기   -->
 			</div>
 			
+				<!-- 	실시간 역 상황 보기   -->
 			<div class="panel-body" >
 			<div style="">
 					
 					<table width="450">
-						<td colspan="12"><center>혼잡도</center></td>
+						<td colspan="12"><img src = "./resources/image/menu/station_info_car_menu.png"></td>
 						<tr>
 							<td>1호칸</td>
 							<td>2호칸</td>
@@ -8806,18 +8807,20 @@
 				
 						</tr>
 						<tr>
-							<td colspan="10"><div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
+				<td colspan="10">
+				<div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">
 		<div style="margin: 10px;">
+		
 		<table>
 		
 		<tr>
-		<td colspan="2" width="400px">
+		<td colspan="3" width="400px">
 			<img src = "./resources/image/menu/subway_seat_and_human.gif"> 
 		</td>
 		</tr>
 		
 		<tr>
-		<td colspan="2" background="./reour" width="400px">
+		<td colspan="3" background="./reour" width="400px">
 			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span>
 		</td>
 		</tr>
@@ -8825,6 +8828,11 @@
 		<tr>
 		<td style="text-align: center;">
 			앞 오른쪽 의자
+		</td>
+	
+		<td>
+<!-- 			중간 비우기 -->
+			&nbsp;
 		</td>
 		<td style="text-align: center;">
 			앞 왼쪽 의자
@@ -8834,6 +8842,10 @@
 		<tr>
 		<td>
 			<span id = "trainSeat1"></span>
+		</td>
+		<td >
+<!-- 			중간 비우기 -->
+			&nbsp;
 		</td>
 		<td>
 			<span id = "trainSeat2"></span>
@@ -8845,6 +8857,10 @@
 		<td style="text-align: center;">
 			뒤 오른쪽 의자
 		</td>
+		<td >
+<!-- 			중간 비우기 -->
+			&nbsp;
+		</td>
 		<td style="text-align: center;">
 			뒤 왼쪽 의자
 		</td>
@@ -8854,6 +8870,10 @@
 		<tr>
 		<td>
 			<span id = "trainSeat3"></span>
+		</td>
+		<td >
+<!-- 			중간 비우기 -->
+			&nbsp;
 		</td>
 		<td>
 			<span id = "trainSeat4"></span>
@@ -8888,14 +8908,23 @@
 		
 		
 		
+<!-- 	안내메뉴바   -->
+<div style="margin: 20px">
+<img src = "./resources/image/menu/station_info_car_menu.png">
+<!-- 	안내메뉴바    -->
+
+
 <!-- 	환승역인 경우   -->
+
 <div class="btn-toolbar">
-  <div class="btn-group">
-    <a href="#" class="btn btn-default">1</a>
-
-  </div>
+ <ul class="breadcrumb">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li class="active">3</li>
+</ul>
+</div>
+ 
 <!-- 환승역인 경우 -->
-
 		<!-- 		NAV System -->
 		
 		<ul class="nav nav-tabs">
@@ -9226,7 +9255,7 @@
 
 		<span id="info_text"></span>
 
-	</div>
+	</div></div>
 
 <!-- 역 좌석 -->
 <!-- 		<div id="train_seat_popups" style="position:absolute ; visibility:hidden; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;"> -->

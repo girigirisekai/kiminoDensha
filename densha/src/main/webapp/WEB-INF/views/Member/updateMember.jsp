@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="./resources/css/style.css">
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="./resources/js/function.js"></script>
+
 <script>
 $(document).ready(function(){
 	$('#bt1').on('click',update);
@@ -95,34 +96,50 @@ function DeleteMember() {
 	});
 }
 </script>
+<style type="text/css">
+
+body, html {
+	background: url(./resources/image/back/backapi.jpg) no-repeat center
+		center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+	background-size: cover;
+}
+
+
+.first {
+	overflow : hidden;
+}
+</style>
 </head>
 <body>
 		<!--top header-->
 	<jsp:include page="../header.jsp" />
 	<!--top header-->
-
-	<div class="page-header" id="banner">
-		<div class="row">
-			<div class="col-lg-8 col-md-7 col-sm-6">
-				<h3>회원정보</h3>
-				<p class="lead">회원 정보 관리</p>
-			</div>
-			<div class="col-lg-4 col-md-5 col-sm-6"></div>
+	
+	<!-- 디자인 바  -->
+		<div class="progress" style="position: relative; top: 0px;">
+			<div class="progress-bar progress-bar-success" style="width: 35%"></div>
+			<div class="progress-bar progress-bar-warning" style="width: 20%"></div>
+			<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
 		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-4">
-				<div class="list-group table-of-contents">
-					<a class="list-group-item" href="updateMember">회원정보 수정</a> <a
-						class="list-group-item" href="deleteMember">회원 탈퇴</a> <a
-						class="list-group-item" href="stationMember">역 추가/수정하기</a>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<!-- 디자인 바  -->
+	
+	
+	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);"
+		class="first">
+		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
+			
+	
+	<!--메뉴바-->
+	<jsp:include page="menu.jsp" />
+	<!--메뉴바-->
+	
+	
+	<div style="width: 80%; float: left;">
 	<div class="deleteFrom"
-		style="position: absolute; top: 100px; left: 320px; width: 70%;">
+		>
 		<div class="alert alert-dismissible alert-success">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<strong><h3>회원정보 수정</h3></strong> 회원정보를 수정할 수 있습니다.
@@ -131,7 +148,7 @@ function DeleteMember() {
 		<p>
 		<div style="margin: 20px">
 		
-		<form class="form-horizontal" method="post">
+		<form class="form-horizontal" method="post" action="updateMember">
   <fieldset>
     <legend>회원정보 수정</legend>
     
@@ -174,17 +191,17 @@ function DeleteMember() {
 </form>
 
 		</div>
-		</p>
+		
 	</div>
 	
 	<div class="deleteFrom"
-		style="position:relative; top: 330px; left: 320px; width: 70%">
+		style="width: 80%; float: left;">
 		<div class="alert alert-dismissible alert-info">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<strong>회원탈퇴</strong> ${loginId}님 아쉽지만 다음에 만나요 ㅜㅜ.
 		</div>
 		
-		<form class="form-horizontal" method="post">
+		<form class="form-horizontal" method="post" action="deleteMember">
 		
   <fieldset>
     <legend>암호를 입력해 주세요</legend>
@@ -206,6 +223,9 @@ function DeleteMember() {
   </fieldset>
 </form>
 
+	</div>
+	</div>
+	</div>
 	</div>
 
 

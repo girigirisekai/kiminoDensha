@@ -28,5 +28,10 @@ public class ServiceController {
 		return "stationcode";
 	}
 	
+	@RequestMapping(value = "/myaccount", method = RequestMethod.GET)
+	public String myaccount() { // 지하철 지도 페이지, 나중에 subway로 바꿀것
+		return "Member/myAccount";
+	}
+	
 	
 }

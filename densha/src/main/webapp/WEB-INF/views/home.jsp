@@ -29,59 +29,56 @@
 	<!--top header-->
 
 	<!--slider-->
-	<div id="slider" class="flexslider">
-
-		<ul class="slides">
-			<li>
-<!-- 				<div class="embed-responsive embed-responsive-16by9"> -->
-<!-- 					<iframe class="embed-responsive-item" -->
-<!-- 						src="https://www.youtube.com/embed/a1XuwtF7OJY?autoplay=1&playlist=XLkSQKCEKeE&loop=1&autohide=1&controls=0&showinfo=0&fs=0&rel=0" -->
-<!-- 						frameborder="0" allowfullscreen></iframe> -->
-
-<!-- 				</div> -->
-			<img src="./resources/images/slider/slider1.jpg">
-				<div class="caption">
-					<h2>
-						<span>지금 서울을 가지세요</span>
-					</h2> 
-					<h2>
-						<span>체험하세요</span>
-					</h2>
-					<p>이 좋은걸 모르셨다구요?
-					지금 서울을 가자세요!</p>
-					<button class="btn">Read More</button>
-				</div>
-			</li>
-			<li><img src="./resources/images/slider/slider2.jpg">
-
-				<div class="caption">
-					<h2>
-						<span>yet another slide</span>
-					</h2>
-					<h2>
-						<span>html theme</span>
-					</h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and
-						typesetting industry.</p>
-					<button class="btn">Read More</button>
-				</div></li>
-			<li><img src="./resources/images/slider/slider3.jpg">
-
-				<div class="caption">
-					<h2>
-						<span>one more slide</span>
-					</h2>
-					<h2>
-						<span>html theme</span>
-					</h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and
-						typesetting industry.</p>
-					<button class="btn">Read More</button>
-				</div></li>
-		</ul>
-
-	</div>
-
+	
+	
+	<div id="myCarousel" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="./resources/images/slider/slider3.jpg" style="width:100%" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Bootstrap 3 Carousel Layout</h1>
+          <p></p>
+          <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Learn More</a>
+        </p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://lorempixel.com/2000/600/abstract/1" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Changes to the Grid</h1>
+          <p>Bootstrap 3 still features a 12-column grid, but many of the CSS class names have completely changed.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://placehold.it/1500X500" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Percentage-based sizing</h1>
+          <p>With "mobile-first" there is now only one percentage-based grid.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>  
+</div>
 	<!--about-->
 	<div id="about">
 
@@ -119,21 +116,22 @@
 						<div class="about-right-boot">
 							<div class="about-right-wrapper">
 								<a href="#"><h3>너의 지하철은 다릅니다.</h3></a>
-								<p>아무튼 다름 </p>
+								<p>열차의 전체 인원수와 열차의 칸당 인원수  </p>
+								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알수있습니다.  </p>
 							</div>
 						</div>
 
 						<div class="about-right-best">
 							<div class="about-right-wrapper">
-								<a href="#"><h3>비둘기야 먹자 999999</h3></a>
-								<p>MSG는 한국어로 맛있쪙</p>
+								<a href="#"><h3>API를 사용하고 싶은가요?</h3></a>
+								<p>너의 지하철은 API를 제공하고 있습니다.</p>
 							</div>
 						</div>
 
 						<div class="about-right-support">
 							<div class="about-right-wrapper">
-								<a href="#"><h3>가정이 무너지고 사회가 무너지고</h3></a>
-								<p>이러한 현실속에~</p>
+								<a href="#"><h3>지하철 서비스도 제공</h3></a>
+								<p>지하철 지도로 테스트를 해 보세요!</p>
 							</div>
 						</div>
 
@@ -219,9 +217,8 @@
 									<div class="icon-box">
 										<i class="fa fa-briefcase" aria-hidden="true"></i>
 									</div>
-									<h4>FINANCIAL PLANNING</h4>
-									<div class="text">Leverage agile frameworks to provide a
-										robust synopsis for high level overviews.</div>
+									<h4>api</h4>
+									<div class="text">강력한 API를 제공하며 좌석의 상황과 열차의 인원을 알수 있습니다.</div>
 								</div>
 							</div>
 
@@ -230,9 +227,8 @@
 									<div class="icon-box">
 										<i class="fa fa-bar-chart" aria-hidden="true"></i>
 									</div>
-									<h4>BUSINESS PLANNING</h4>
-									<div class="text">Leverage agile frameworks to provide a
-										robust synopsis for high level overviews.</div>
+									<h4>No Flash</h4>
+									<div class="text">svg를 이용한 HTML5 대응으로 다음과 네이버 지도와 다르게 플래시를 사용하지 않습니다.</div>
 								</div>
 							</div>
 
@@ -241,9 +237,8 @@
 									<div class="icon-box">
 										<i class="fa fa-trophy" aria-hidden="true"></i>
 									</div>
-									<h4>WORK &amp; REDUNDANCY</h4>
-									<div class="text">Leverage agile frameworks to provide a
-										robust synopsis for high level overviews.</div>
+									<h4>즐겨찾기 기능</h4>
+									<div class="text">즐겨찾기 기능이 있어 어느 역이든 추가가 가능합니다.</div>
 								</div>
 							</div>
 
@@ -252,9 +247,8 @@
 									<div class="icon-box">
 										<i class="fa fa-bullhorn" aria-hidden="true"></i>
 									</div>
-									<h4>MORTGAGE ADVISOR</h4>
-									<div class="text">Leverage agile frameworks to provide a
-										robust synopsis for high level overviews.</div>
+									<h4>가벼운 회원정보 </h4>
+									<div class="text">회원정보의 내용은 오직 메일! 회원정보는 중국에 팔지 않습니다.</div>
 								</div>
 							</div>
 
@@ -263,9 +257,8 @@
 									<div class="icon-box">
 										<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 									</div>
-									<h4>RETIREMENT PLANNING</h4>
-									<div class="text">Leverage agile frameworks to provide a
-										robust synopsis for high level overviews.</div>
+									<h4>아우이노 활용</h4>
+									<div class="text">아두이노를 활용한 임베다드로, pc를 이용하지 않아 전력소모와 크기에서 우수한 성능을 가지고 있습니다.</div>
 								</div>
 							</div>
 
@@ -274,9 +267,8 @@
 									<div class="icon-box">
 										<i class="fa fa-money" aria-hidden="true"></i>
 									</div>
-									<h4>SAVING AND INVESTING</h4>
-									<div class="text">Leverage agile frameworks to provide a
-										robust synopsis for high level overviews.</div>
+									<h4>기능은 추가됩니다!</h4>
+									<div class="text">앱으로도 출시될 것이며 기능은 추가될 것입니다!</div>
 								</div>
 							</div>
 						</div>

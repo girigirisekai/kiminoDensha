@@ -30,16 +30,28 @@ margin: auto;
 	<!--top header-->
 	<jsp:include page="header.jsp" />
 	<!--top header--> 
+	<!-- 디자인 바  -->
+		<div class="progress" style="position: relative; top: -23px;">
+			<div class="progress-bar progress-bar-success" style="width: 35%"></div>
+			<div class="progress-bar progress-bar-warning" style="width: 20%"></div>
+			<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
+		</div>
+	<!-- 디자인 바  -->
+	
 	<div style="margin: 50px;  background: rgba(255, 255, 255, 0.85);"> 
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 		
 			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0);">
 				<h1>api Service</h1>
-				<p>'너의 지하철은' api를 제공합니다.</p>
+				<p>'너의 지하철은' api를 제공합니다</p>
+			
 				<p>
 					<a
 						href="http://localhost:8888/densha/apiservice/json?subwaynum=2002"
-						class="btn btn-primary btn-lg">샘플 링크 보기</a>
+						class="btn btn-primary btn-lg">샘플 링크 보기(JSON)</a>
+						<a
+						href="http://localhost:8888/densha/apiservice/xml?subwaynum=2002"
+						class="btn btn-primary btn-lg">샘플 링크 보기(XML)</a>
 				</p>
 			</div>
 
@@ -49,7 +61,7 @@ margin: auto;
 			</div>
 			<table  style="width: 80%; margin: auto;"> 
 				<tr class= "tbl_detail">
-					<td>샘플URL</td>
+					<td><h4>JSON 샘플URL</h4></td>
 				</tr>
 				<tr class= "tbl_detail">
 					<td><a
@@ -59,7 +71,7 @@ margin: auto;
 					<td style="word-break:break-all;">${objJson}</td>
 				</tr>
 				<tr class= "tbl_detail">
-					<td>샘플URL</td>
+					<td><h4>XML 샘플URL</h4></td>
 				</tr>
 				<tr class= "tbl_detail">
 					<td><a
@@ -77,14 +89,14 @@ margin: auto;
 			</div>
 			<table class = "tableCenter">
 				<tr class = "tbl_detail">
-					<td>주소</td>
+					<td><strong>주소</strong></td>
 					<td colspan="2">http://localhost:8888/densha/apiservice?subwaynum=(열차번호)</td>
 					
 				</tr>
 				<tr class = "tbl_detail">
-					<td>변수명</td>
-					<td>타입</td>
-					<td>변수설명</td>
+					<td><strong>변수명</strong></td>
+					<td><strong>타입</strong></td>
+					<td><strong>변수설명</strong></td>
 				</tr>
 				
 				<tr class = "tbl_detail">
@@ -101,9 +113,9 @@ margin: auto;
 			</div>
 			<table  class = "tableCenter">
 				<tr class = "tbl_detail">
-					<td>NO</td>
-					<td>출력명</td>
-					<td>출력설명</td>
+					<td><h5>NO</h5></td>
+					<td><h5>출력명</h5></td>
+					<td><h5>출력설명</h5></td>
 				</tr>
 				<tr class = "tbl_detail">
 					<td>공통</td>
@@ -218,8 +230,8 @@ margin: auto;
 			</div>
 			<table  class = "tableCenter">
 				<tr class = "tbl_detail">
-					<td >변수명</td>
-					<td>값설명</td>
+					<td> <h5>변수명</h5></td>
+					<td><h5>값설명</h5></td>
 
 				</tr>
 				<tr class = "tbl_detail">

@@ -331,8 +331,9 @@ function realtimes() {
 
 function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 	$.each(result.realtimeArrivalList, function(index, items) {
-
-		$('.getStationName').text(items.statnNm);
+		
+		var stationName 
+		$('.getStationName').html('<strong>'+getStation+'</strong>');
 
 		if (index == 0) {
 			$('.upstation_real').text(items.arvlMsg2);

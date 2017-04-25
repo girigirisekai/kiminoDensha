@@ -51,11 +51,13 @@
 		}); 
 		$('#노선 circle').on('click', test1); 
 		$('#station').on('click', get_station_popup);
-		
+	
 
-	});
-	
-	
+		 
+ 
+	}); 
+	   
+	 
 	
 	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
 		
@@ -8804,7 +8806,7 @@
 				
 						</tr>
 						<tr>
-							<td colspan="10"><div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
+							<td colspan="10"><div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;">
 		<div style="margin: 10px;">
 		<table>
 		
@@ -8864,16 +8866,16 @@
 				
 						</tr>
 						<tr>
-							<td id="carNumVar1" num = "1"></td>
-							<td id="carNumVar2" num = "2"></td>
-							<td id="carNumVar3" num = "3"></td>
-							<td id="carNumVar4" num = "4"></td>
-							<td id="carNumVar5" num = "5"></td>
-							<td id="carNumVar6" num = "6"></td>
-							<td id="carNumVar7" num = "7"></td>
-							<td id="carNumVar8" num = "8"></td>
-							<td id="carNumVar9" num = "9"></td>
-							<td id="carNumVar10" num = "10"></td>
+							<td id="carNumVar1" num = "1" class="carNumVar1"></td>
+							<td id="carNumVar2" num = "2" class="carNumVar2"></td>
+							<td id="carNumVar3" num = "3" class="carNumVar3"></td>
+							<td id="carNumVar4" num = "4" class="carNumVar4"></td>
+							<td id="carNumVar5" num = "5" class="carNumVar5"></td>
+							<td id="carNumVar6" num = "6" class="carNumVar6"></td>
+							<td id="carNumVar7" num = "7" class="carNumVar7"></td>
+							<td id="carNumVar8" num = "8" class="carNumVar8"></td>
+							<td id="carNumVar9" num = "9" class="carNumVar9"></td>
+							<td id="carNumVar10" num = "10"  class="carNumVar10"></td>
 				
 						</tr>
 					</table>
@@ -8885,8 +8887,17 @@
 		<!-- 	역 이름 -->
 		
 		
+		
+<!-- 	환승역인 경우   -->
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a href="#" class="btn btn-default">1</a>
+
+  </div>
+<!-- 환승역인 경우 -->
 
 		<!-- 		NAV System -->
+		
 		<ul class="nav nav-tabs">
 			
 			<li class="active"><a href="#stationInfoTab" data-toggle="tab"

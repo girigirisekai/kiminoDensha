@@ -652,6 +652,94 @@
 		</div>
 	</div>
 
+	
+<!-- 	로그인 성공  -->
+	<c:if test="${loginCheck == 1}">
+	
+	<script>
+	$(document).ready(function(){
+	        $(".modal").modal();
+	});
+	</script>
+	
+	<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">로그인 이 성공하였습니다.</h4>
+      </div>
+      <div class="modal-body">
+        <p>로그인 이 성공하였습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+	
+	</c:if>
+	
+	
+<!-- 	로그인실패 -->
+	<c:if test="${loginCheck == 0}">
+	
+	<script>
+	$(document).ready(function(){
+	        $(".modal").modal();
+	});
+	</script>
+	
+	<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">로그인이 실패하였습니다.</h4>
+      </div>
+      <div class="modal-body">
+        <p>로그인 실패하였습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+	
+	</c:if>
+	
+<!-- 	가입완료  -->
+	<c:if test="${joinCheck == 1}">
+	
+	<script>
+	$(document).ready(function(){
+	        $(".modal").modal();
+	});
+	</script>
+	
+	<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">가입이 성공하였습니다.</h4>
+      </div>
+      <div class="modal-body">
+        <p>가입이 성공하였습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+	
+	</c:if>
 
 
 	<!-- jQuery -->

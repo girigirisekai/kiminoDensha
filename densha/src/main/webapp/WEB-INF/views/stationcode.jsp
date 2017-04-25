@@ -8929,7 +8929,7 @@
 		
 		<ul class="nav nav-tabs">
 			
-			<li class="active"><a href="#stationInfoTab" data-toggle="tab"
+			<li class="active" id = "settingHelper"><a href="#stationInfoTab" data-toggle="tab"
 				aria-expanded="true" onclick="stationinfo()" id="firstTab">역 정보</a></li>
 			<!-- 			<li class=""><a href="#bus" data-toggle="tab" -->
 			<!-- 				aria-expanded="false">주변 버스정보</a></li> -->
@@ -9122,10 +9122,10 @@
 			</div>
 
 			<div class="tab-pane fade" id="stationMaps">
-<script type="text/javascript"
-					src="//apis.daum.net/maps/maps3.js?apikey=d88db50722ad2d27f17055251d4e9f3d"></script>
-				<div id="daumMap" style="width: 500px; height: 450px;"></div>
-			
+ 			<script type="text/javascript"
+					src="//apis.daum.net/maps/maps3.js?apikey=894efe2694fb1d8ceb02b9c67534abec"></script> 
+				<div id = "map" style="width: 500px; height: 450px; overflow: hidden;"></div>
+				
 			</div>
 
 

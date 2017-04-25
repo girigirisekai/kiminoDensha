@@ -34,8 +34,8 @@ function station_name_popup(stationCode) { // stationNamePopup
 		dataType : 'json',
 		success : function(item) {
 			getStation = item.station_nm2; // 역 이름 받기
-			latitude = item.xpoint; // x좌표 받기
-			longitude = item.ypoint; // y 좌표 받기
+			latitude = item.xpoint_wgs; // x좌표 받기
+			longitude = item.ypoint_wgs; // y 좌표 받기
 			subwayLine = item.line_num; // linenum
 		}
 	})
@@ -51,6 +51,14 @@ function station_name_down() { // stationNamediv 삭제 역할
 	$('#startPoint').html('');
 	$('#endPoint').html('');
 	scode = null;
+	
+	//탭 종료시 첫번 째 탭으로 이동~~~~~
+	$('#firstTab').attr('aria-expanded', 'true');
+	$('.tab-pane fade active in').addClass('tab-pane fade');
+	$('.tab-pane fade active in').removeClass('tab-pane fade active in');
+	$('.active').removeClass("active");
+	$('#settingHelper').addClass("active");
+	$('#stationInfoTab').addClass("tab-pane fade active in");
 }
 
 
@@ -142,7 +150,7 @@ function train_popupOut() {
 
 //다음지도 부분인데 아직 작동 구현실패
 function daummap() {
-	var text = '';
+	/*var text = '';
 	var strings = 'daumMap';
 
 	text += '<script type="text/javascript">';
@@ -154,7 +162,17 @@ function daummap() {
 	text += 'var map = new daum.maps.Map(mapContainer, mapOption);';
 	text += '</script>';
 
-	$('#daumMap').html(text);
+	$('#daumMap').html(text);*/
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+	console.log(latitude);
+	console.log(longitude);
+	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	var map = new daum.maps.Map(mapContainer, mapOption); 
 
 
 }
@@ -353,7 +371,7 @@ function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 function stationinfo() {
 	$('#exitTable').html(''); // 청소
 	$('#map').html(''); // 청소
-	$('#map').attr('style', ''); // 청소
+	//$('#map').attr('style', ''); // 청소
 	$.ajax({
 		url : 'stationInfo',
 		type : 'post',
@@ -705,7 +723,7 @@ function removehtml() {
 	$('#exitTable').html(''); // 청소
 	$('#realtime').html(''); // 청소
 	$('#map').html(''); // 청소
-	$('#map').attr('style', ''); // 청소
+	//$('#map').attr('style', ''); // 청소
 }
 
 

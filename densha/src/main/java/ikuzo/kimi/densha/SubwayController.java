@@ -59,14 +59,14 @@ public class SubwayController {
 	// 역 최초 최종시간 xml, MAP
 	@ResponseBody
 	@RequestMapping(value = "lastTime", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public HashMap<String, Object> lastTime(String station, Model model) throws Exception {
-		System.out.println("input: " + station);
+	public HashMap<String, Object> lastTime(String station, String line, Model model) throws Exception {
+		System.out.println("line: " + line);
 		StationCodeToLastTimetable lasttime = new StationCodeToLastTimetable();
 		// 1호선
 		// 1 평일, 2 토요일, 3 휴일 공휴일 123
 		// 1. 상행선, 내선 | 2. 하행선, 내선 12
 
-		HashMap<String, Object> map = lasttime.lastTimetable(station, "5");
+		HashMap<String, Object> map = lasttime.lastTimetable(station, line);
 		System.out.println(map.get("statue"));
 		// 역코드 라인넘 요일 123 상 하 12
 

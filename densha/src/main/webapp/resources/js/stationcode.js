@@ -711,11 +711,13 @@ function removehtml() {
 
 function stationlasttime() { // 역 첫차 막차
 	removehtml();
+	console.log(subwayLine);
 	$.ajax({
 		url : 'lastTime',
 		type : 'post',
 		data : {
-			station : insertStation
+			station : insertStation,
+			line : subwayLine
 		},
 		dataType : 'json',
 		success : resultlasttime

@@ -269,7 +269,7 @@ body, html {
 			
 			<!-- 이 부분은 개인정보에 대한 페이지 -->
 
-			<div style="width: 800px; float: left; margin-right: 30px;"
+			<div style="width: 500px; float: left; margin-right: 30px;"
 				class="float">
 
 				<div class="panel panel-warning ">
@@ -312,7 +312,7 @@ body, html {
 
 		
 
-			<div class="panel panel-default col-lg-offset-0"
+			<div class="panel panel-default"
 				style="width: 550px; height: 320px; float: left;"  class = "float" >
 				<div class="col-lg-12 ">
 					<h3>역 추가하기</h3>
@@ -321,8 +321,8 @@ body, html {
 				<div class="panel-body">
 
 					<div class="form-group">
-						<label for="inputEmail" class="col-lg-3 control-label">추가할 역</label>
-						<div class="col-lg-9">
+						<label for="inputEmail" class="col-lg-2 control-label">추가할 역</label>
+						<div class="col-lg-10">
 							<input type="text" class="form-control" id="searchStation"
 								placeholder="역 이름을 입력해 주세요"> 
 								<!--  <a href="javascript:searchStation()" class="btn btn-success">검색하기</a> -->
@@ -347,9 +347,7 @@ body, html {
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-10 col-lg-offset-0">
-				<div id='storedStations'></div>
-			</div>
+			<div id='storedStations'></div>
 		</div>
 	</div>
 

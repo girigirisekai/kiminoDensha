@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="./resources/css/style.css">
 <link rel="stylesheet" href="./resources/css/loginModule.css">
-<title>너의 지하철 </title>
+<title>너의 지하철 : 지하철 맵 </title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -29,56 +29,59 @@
 	<!--top header-->
 
 	<!--slider-->
-	
-	
-	<div id="myCarousel" class="carousel slide">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="./resources/images/slider/slider3.jpg" style="width:100%" class="img-responsive">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Bootstrap 3 Carousel Layout</h1>
-          <p></p>
-          <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Learn More</a>
-        </p>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://lorempixel.com/2000/600/abstract/1" class="img-responsive">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Changes to the Grid</h1>
-          <p>Bootstrap 3 still features a 12-column grid, but many of the CSS class names have completely changed.</p>
-          <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://placehold.it/1500X500" class="img-responsive">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Percentage-based sizing</h1>
-          <p>With "mobile-first" there is now only one percentage-based grid.</p>
-          <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Controls -->
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="icon-prev"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="icon-next"></span>
-  </a>  
-</div>
+	<div id="slider" class="flexslider">
+
+		<ul class="slides">
+			<li>
+<!-- 				<div class="embed-responsive embed-responsive-16by9"> -->
+<!-- 					<iframe class="embed-responsive-item" -->
+<!-- 						src="https://www.youtube.com/embed/a1XuwtF7OJY?autoplay=1&playlist=XLkSQKCEKeE&loop=1&autohide=1&controls=0&showinfo=0&fs=0&rel=0" -->
+<!-- 						frameborder="0" allowfullscreen></iframe> -->
+
+<!-- 				</div> -->
+			<img src="./resources/images/slider/slider1.jpg">
+				<div class="caption">
+					<h2 style="color: white;">
+						지금 서울을 가지세요
+					</h2> 
+					<h2>
+						<span>체험하세요</span>
+					</h2>
+					<p>이 좋은걸 모르셨다구요?
+					지금 서울을 가자세요!</p>
+					<button class="btn">Read More</button>
+				</div>
+			</li>
+			<li><img src="./resources/images/slider/slider2.jpg">
+
+				<div class="caption">
+					<h2>
+						<span>yet another slide</span>
+					</h2>
+					<h2>
+						<span>html theme</span>
+					</h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and
+						typesetting industry.</p>
+					<button class="btn">Read More</button>
+				</div></li>
+			<li><img src="./resources/images/slider/slider3.jpg">
+
+				<div class="caption">
+					<h2>
+						<span>one more slide</span>
+					</h2>
+					<h2>
+						<span>html theme</span>
+					</h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and
+						typesetting industry.</p>
+					<button class="btn">Read More</button>
+				</div></li>
+		</ul>
+
+	</div>
+
 	<!--about-->
 	<div id="about">
 

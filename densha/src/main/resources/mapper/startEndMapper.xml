@@ -48,13 +48,13 @@
 	<select id="StationCodeParseName" parameterType="String" resultType="stationDB">
 		
 		select
-			distinct
+			
 			STATION_NM2
-			,xpoint_wgs, ypoint_wgs, line_num
+			,xpoint_wgs, ypoint_wgs, line_num, station_cd, cyber_st_code
 		from
 			station
 			where
-				STATION_CD
+				cyber_st_code
 				= #{code}
 		
 	

@@ -34,11 +34,11 @@ public class StartEndDAO {
 		
 	}
 
-	public stationDB StationCodeParseName(String stationCode) {
+	public ArrayList<stationDB> StationCodeParseName(String stationCode) {
 		// TODO Auto-generated method stub
 		StartEndMapper sem = sqlsession.getMapper(StartEndMapper.class);
 
-		stationDB result = sem.StationCodeParseName(stationCode);
+		ArrayList <stationDB> result = sem.StationCodeParseName(stationCode);
 		
 		return result;
 	}

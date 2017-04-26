@@ -1,10 +1,15 @@
 
 // 고정변수들, 건들지 말것. 
-var insertStation = ''; // 전역변수로 역코드를 받는 부분
-var getStation = ''; // 역코드 - > 역이름 DB get
+var insertStation = ''; // 전역변수로 최초 누를때 역코드를 받는 부분 (역코드)
+
+var getStation = new Array(); // 역코드 - > 역이름 DB get
 var latitude = ''; // 위도 (x)
 var longitude = ''; // 경도 (y)
 var subwayLine = ''; // 지하철 호선
+var getCode = new Array(); // 역 코드(환승역의 경우 사용하기 때문에 필요하다.)
+var cyber = '';
+
+var realTimeStation = '';
 
 //역 이름: 팝업 띄우기 
 function station_name_popup(stationCode) { // stationNamePopup
@@ -23,7 +28,8 @@ function station_name_popup(stationCode) { // stationNamePopup
 	$('#startEnd').attr('stationcode', stationCode);
 
 	insertStation = $('#station').attr('stationcode');
-
+	cyber = insertStation;
+	
 	// 역 코드로 역 이름 가져오기 
 	$.ajax({
 		url : 'StationCodeParseName', // subway
@@ -32,15 +38,42 @@ function station_name_popup(stationCode) { // stationNamePopup
 			stationCode : insertStation // 역 코드 넣기 
 		},
 		dataType : 'json',
-		success : function(item) {
-			getStation = item.station_nm2; // 역 이름 받기
-			latitude = item.xpoint_wgs; // x좌표 받기
-			longitude = item.ypoint_wgs; // y 좌표 받기
-			subwayLine = item.line_num; // linenum
+		success : function(item) { 
+			// ArrayList로 받는다. 
+			// 환승역이 아닌 경우는 index는 0에서 끝나며
+			//환승역인 경우는 each를 돌린다.
+			var insertLineInfo = '';
+			$.each(item, function(index, items) {
+					getCode[index] = items.station_cd; // 역 코드들
+					getStation[index] = items.station_nm2; // 역 이름 받기
+					subwayLine = items.line_num; // linenum
+					insertLineInfo += '<li><a href="javascript:nowLine('+items.line_num+','+items.station_cd+')" num = "'+items.line_num+'">'+items.line_num+'호선 </a></li>';
+					
+					cyber  = items.cyber_st_code;
+					latitude = items.xpoint_wgs; // x좌표 받기
+					longitude = items.ypoint_wgs; // y 좌표 받기
+					realTimeStation = cyber; // 
+					// |를 구분자로 사용한다. 환승역의 경우 여러개이기 때문
+			});
+			$('.breadcrumb').html(insertLineInfo);
 		}
-	})
+	});
+	
 
 
+
+}
+ 
+function nowLine(nowline,nowcode){ // line은 버튼의 호선을 받는다.
+	var lines = $(this).attr('num');
+	console.log(lines);
+	console.log(nowline);
+	console.log(nowcode);
+	subwayLine = nowline; // 전역변수로 라인을 받고
+	insertStation = nowcode; // 지금 역을 insertStation에 넣는다. 
+	stationlasttime();
+
+	
 }
 
 // 역 이름: 팝업 삭제
@@ -132,7 +165,7 @@ function train_popup() {
 //get_train_info();
 //	layer.style.visibility = "visible";
 
-	console.log(this);
+
 	var x = $(this).attr('trainnum');
 
 	get_train_info(x);
@@ -169,8 +202,7 @@ function daummap() {
         center: new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
-	console.log(latitude);
-	console.log(longitude);
+	
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new daum.maps.Map(mapContainer, mapOption); 
 
@@ -225,7 +257,7 @@ function get_train_info(e) {
 					insert += seaton;
 				} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
 					insert += seatoff;
-				} else if (items.elderlySeat1 == null) { // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat1 == 9) { // 좌석이 없다면 
 					
 				} 
 
@@ -333,25 +365,31 @@ function get_train_info(e) {
 		}
 	});
 }
-
-// 실시간 열차
+ 
+// 실시간 열차 
 function realtimes() {
 	$.ajax({
 		url : 'realTime',
 		type : 'post',
 		data : {
-			station : getStation
+			station : getStation[0]
 		},
 		dataType : 'json',
 		success : resultRealTime
-	})
+	});
 }
 
 function resultRealTime(result) { // 실시간 지하철 상하행선 도착
+	var nowCode= ''; 
 	$.each(result.realtimeArrivalList, function(index, items) {
+		nowCode  = items.statnId.substr(6, 4); // 역코드 
 		
-		var stationName 
-		$('.getStationName').html('<strong>'+getStation+'</strong>');
+		console.log(subwayLine);
+//		if(items.statnId.substr(7, 1) == subwayLine[0]){
+		if(nowCode == insertStation){
+			
+		
+		$('.getStationName').html('<strong>'+subwayLine +'호선 '+getStation[0]+'</strong>');
 
 		if (index == 0) {
 			$('.upstation_real').text(items.arvlMsg2);
@@ -362,7 +400,7 @@ function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 		if (index == 2) {
 			return false;
 		}
-
+		}
 	});
 
 
@@ -376,7 +414,7 @@ function stationinfo() {
 		url : 'stationInfo',
 		type : 'post',
 		data : {
-			station : insertStation // 역 코드 
+			station : cyber // 역 코드 
 		},
 		dataType : 'json',
 		success : stationinforesult // 역 정보 function
@@ -482,16 +520,14 @@ function resultSubwaySensorGet(datas) {
 //역 정보 function, 맨 처음 보여지는 기능
 function stationinforesult(item) {
 
-
 	//중요: 팝업 테이블 채우는 곳 
 	//환승역의 경우 정보를 더 채워야 함 
 
-
 	subwaySensorGet(); // 센서 ajax 겟 
 
-	$('#stationNamebar').text(getStation); // div 팝업 창에 역 이름 넣기 
+	$('#stationNamebar').text(getStation[0]); // div 팝업 창에 역 이름 넣기 
 
-	console.log(subwayLine);
+
 	//라인에 따른 백그라운드 역 실시간 시간판 교체
 	if (subwayLine == '1') { // 호선
 		$('.stationNames').attr('style', 'height: 84px;background: url(./resources/image/lineBack/subwayStationName1.gif) no-repeat;');
@@ -572,7 +608,7 @@ function stationinforesult(item) {
 		url : 'exitInfo',
 		type : 'post',
 		data : {
-			station : item.stationname
+			station : getStation[0]
 		},
 		dataType : 'json',
 		success : resultBusinfo
@@ -626,8 +662,7 @@ function stationtimetableNext() { // 역 시간표 (선택자)
 	removes();
 	var yoil = $('.timetableselect1').attr('yoil');
 	var updown = $('.timetableselect1').attr('updown');
-	console.log(yoil);
-	console.log(updown);
+	
 	timeajax(yoil, updown);
 
 }
@@ -636,8 +671,7 @@ function stationtimetableNextDown() { // 역 시간표 (선택자)
 	removes();
 	var yoil = $('.timetableselect2').attr('yoil');
 	var updown = $('.timetableselect2').attr('updown');
-	console.log(yoil);
-	console.log(updown);
+	
 	timeajax(yoil, updown);
 
 }
@@ -729,12 +763,12 @@ function removehtml() {
 
 function stationlasttime() { // 역 첫차 막차
 	removehtml();
-	console.log(subwayLine);
+//	console.log(insertStation);
 	$.ajax({
 		url : 'lastTime',
 		type : 'post',
 		data : {
-			station : insertStation,
+			stationCode : insertStation,
 			line : subwayLine
 		},
 		dataType : 'json',

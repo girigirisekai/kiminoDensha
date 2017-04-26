@@ -40,44 +40,29 @@
 	
 	$(document).ready(function() { // 최초 시작점 
 		
-		 $('svg').mousedown(function(e) {
+		 $('.svgMap').mousedown(function(e) {
+// 			 console.log(e);
 			// 1:좌클릭, 2:휠클릭, 3:우클릭
-			if (e.which == '1') { // 일반 클릭
-			} else if (e.which != '1') { // 우클릭
+			if (e.which == 1) { // 일반 클릭
+				
+			} else if (e.which == 3) { // 우클릭
 				station_name_down(); // 역 이름 팝업 div 삭제
 				get_station_down(); // 역정보보기 div 삭제
-				
-			}
+				$(this)[0].oncontextmenu = function() { // 우클릭시 띄워치는 contextmenu 막기 
+					return false; 
+				}
+
+			} 
 		}); 
-		$('#노선 circle').on('click', test1); 
+		 $('#노선 circle').on('click', test1); 
 		$('#station').on('click', get_station_popup);
 	
-
-		 
  
 	}); 
 	   
 	 
 	
-	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
-		
-		$('#endPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
-		$('#endPoint').html(endCode);
-		$('#startEnd').off('click', pathTest2);
-		$.each(list, function(index, item){
-			if(item.length > 4){
-				alert(item);	
-			}else {
-			$('#'+item).attr('fill', 'orange');
-			}
-		});
-		scode = null;
-		
-	}
-	
-	
-	
-	function pathTest1(){ // 
+	function pathTest1(){
 		
 		scode = code;
 		 $.ajax({
@@ -86,8 +71,7 @@
 			data : {str: scode},
 			dataType: 'text',
 			success : function(abc){
-				scodes = abc;
-				
+				scodes = abc; // 역 이름
 			}
 		}); 
 		$('#startEnd').off('click', pathTest1);
@@ -98,7 +82,8 @@
 	
 	function pathTest2(){
 		ecode = code;
-		
+			
+		//2중 ajax, 
 		 $.ajax({
 			url : 'pars',
 			type : 'get',
@@ -111,11 +96,33 @@
 						type : 'get',
 						data : {start: scodes, end: ecodes},
 						dataType : 'json',
-						success : pathm
+						success : pathm 
 					});
 				
 			}
 		}); 
+		
+	}
+	
+	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
+		
+		$('#endPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
+		$('#endPoint').html(endCode);
+		$('#startEnd').off('click', pathTest2);
+		$.each(list, function(index, item){ //경로가 modal에 들어가는 부분
+			if(item.length > 4){
+				  $('.modal').modal(); // modal 띄우기
+				  var insertTitleModalPath = scodes +'<->'+ecodes; 
+				  $('.modal-title').text(insertTitleModalPath); // modal제목에 값 넣기 
+				 var kakaruJikan = item.split(',');
+				 
+				  $('.modal-body').html('<h5>'+item+'</h5>'); // modal내용에 값 넣기 
+					 
+			}else {
+			$('#'+item).attr('fill', 'orange');
+			}
+		});
+		scode = null;
 		
 	}
 	
@@ -169,7 +176,7 @@
 <!-- 지도부분 한번 씌워준다. zoom위해서  -->
 <div class = "svgMap">
 	<svg width="2899.3469772338867" height="2293.159912109375"
-		xmlns="http://www.w3.org/2000/svg">
+		xmlns="http://www.w3.org/2000/svg" class = "svgMaps">
 <g>
  <g>
   <title>background</title>
@@ -8749,7 +8756,12 @@
 	<div id="station_info_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
 		
-		
+		<div class="btn-toolbar">
+ <ul class="breadcrumb">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+</ul>
+</div>
 		<div style="margin: 11px">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -8916,13 +8928,7 @@
 
 <!-- 	환승역인 경우   -->
 
-<div class="btn-toolbar">
- <ul class="breadcrumb">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li class="active">3</li>
-</ul>
-</div>
+
  
 <!-- 환승역인 경우 -->
 		<!-- 		NAV System -->
@@ -9318,6 +9324,26 @@
 <!-- 	</div> -->
 	<!-- 역 좌석 -->
 
+	
+		
+	<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">가입이 성공하였습니다.</h4>
+      </div>
+      <div class="modal-body">
+        <p>가입이 성공하였습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+	
 
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>

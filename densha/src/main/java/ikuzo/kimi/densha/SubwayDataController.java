@@ -113,7 +113,7 @@ public class SubwayDataController {
 		try{
 			//옆칸 번호 설정
 			carNum_Int=Integer.parseInt(carNum);
-			carNum_Next_Int=carNum_Int+1;
+			carNum_Next_Int=carNum_Int-1;
 			carNum_Next=Integer.toString(carNum_Next_Int);
 			logger.debug("변환한  옆칸 번호: {}", carNum_Next);
 		

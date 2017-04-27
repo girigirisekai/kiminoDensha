@@ -29,6 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.xml.sax.InputSource;
 
 import ikuzo.kimi.densha.dao.SubwayDAO;
+import ikuzo.kimi.densha.example.SeatAndHuman;
+import ikuzo.kimi.densha.example.realSeatAndHuman;
+import ikuzo.kimi.densha.example.realSeatAndHumanJson;
+import ikuzo.kimi.densha.util.apiMake;
 import ikuzo.kimi.densha.vo.Subway;
 
 @Controller
@@ -37,6 +41,7 @@ public class apiController {
 	@Autowired
 	SubwayDAO dao;
 
+	// api페이지 
 	@RequestMapping(value = "/api", method = RequestMethod.GET)
 	public String api(Model model) { // api 안내 페이지
 
@@ -51,6 +56,7 @@ public class apiController {
 		return "api";
 	}
 
+	// json형식으로 api 만드는 기능, GET형식으로 한다. 
 	@ResponseBody
 	@RequestMapping(value = "/apiservice/json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public String apiserviceJSON(Model model, String subwaynum, ServletResponse res) { // api 안내 페이지
@@ -62,16 +68,47 @@ public class apiController {
 	}
 
 	
+	//XML 형식으로 api 만드는 기능, GET형식으로 한다. 
 	@ResponseBody
 	@RequestMapping(value = "/apiservice/xml", method = RequestMethod.GET, produces = "application/xml; charset=utf-8")
 	public String apiserviceXML(Model model, String subwaynum) throws Exception {
 		// http://localhost:8888/densha/apiservice/sample?subwaynum=2002/
-		Document xml = apiModuleXML("2002");
+		Document xml = apiModuleXML(subwaynum);
 		String str = XMLToString(xml);
 		return str;
 
 	}
+	
+	// 창에서 입력받아서 만들어주는 예시, textarea에 표시 
+	@ResponseBody
+	@RequestMapping(value = "/example", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	public String example(String carnum) throws Exception {
+		// http://localhost:8888/densha/apiservice/sample?subwaynum=2002/
+		apiMake api = new apiMake();
+		Document xml = apiModuleXML(carnum);
+		String str = XMLToString(xml);
+		return str;
 
+	}
+	
+	// 테스트페이지, USER들은 안씀 
+	@RequestMapping(value = "/testDrive", method = RequestMethod.GET, produces = "application/xml; charset=utf-8")
+	public String testDrive(String carnum, Model model) throws Exception {
+		
+		realSeatAndHuman realApiXml = new realSeatAndHuman();
+		realSeatAndHumanJson realApiJson = new realSeatAndHumanJson();
+		ArrayList <SeatAndHuman> CarSeatHumanListXml= realApiXml.getSeatAndHuman(carnum);
+		String CarSeatHumanListJson = realApiJson.getSeatAndHuman(carnum);
+		
+//		model.addAttribute("carSeatList", CarSeatHumanListXml);
+		model.addAttribute("carSeatList", CarSeatHumanListJson);
+		
+		
+		return "testDrive";
+
+	}
+	
+	// json으로  api 만드는 메소드,
 	public JSONObject apiModule(String subwaynum) {
 		ArrayList<Subway> subwayList = new ArrayList<>();
 
@@ -91,7 +128,8 @@ public class apiController {
 				sObject.put("subwayNum", subwayList.get(i).getSubwayNum());
 				sObject.put("carNum", subwayList.get(i).getCarNum());
 				sObject.put("humanNum", subwayList.get(i).getHumanNum());
-
+				double percent = Math.round(Double.parseDouble(subwayList.get(i).getHumanNum())/160*100);
+				sObject.put("humanPercent", percent);
 				allHuman += Integer.parseInt(subwayList.get(i).getHumanNum());
 				// 총인원 구하는 부분
 
@@ -119,7 +157,8 @@ public class apiController {
 
 		return obj;
 	}
-
+	
+	// XML api 만드는 메소드 
 	public Document apiModuleXML(String subwaynums) {
 
 		// <?xml version="1.0" encoding="UTF-8"?>
@@ -130,6 +169,7 @@ public class apiController {
 		// </generator>
 		ArrayList<Subway> subwayList = new ArrayList<>();
 		subwayList = dao.selectSubwayArray(subwaynums);
+		
 		int getAllHuman = 0; // 모든 인원
 		String getSubwaynum = "";
 		System.out.println(subwayList.toString());
@@ -139,23 +179,57 @@ public class apiController {
 		}
 
 		Document doc = new Document();
-
+		
 		Element root = new Element("SubwayHumanAndSeatService"); // 1
 
 		Element subwaynum = new Element("SUBWAYNUM"); // 2
 		Element allHuman = new Element("ALLHUMAN"); // 2 String
-
+		
 		Element result = new Element("RESULT"); // 2
 		Element code = new Element("CODE"); // 3
 		Element message = new Element("MASSAGE"); // 3
 
-		root.addContent(subwaynum); // 1
-		root.addContent(allHuman); // 1
 
 		root.addContent(result);// 최초 구문 RESULT row 넣어주기 자동으로 닫아짐1
-
+		
 		result.addContent(code); // RESULT 2
 		result.addContent(message); // MESSAGE 2
+		
+		
+		if(subwayList.isEmpty()){
+			code.setText("INFO-500");
+			message.setText("없는 열차입니다.");
+			
+			
+			doc.setRootElement(root); // 마지막에 더해주기
+			
+			try {
+				FileOutputStream out = new FileOutputStream("test.xml");
+				// xml 파일을 떨구기 위한 경로와 파일 이름 지정해 주기
+				XMLOutputter serializer = new XMLOutputter();
+
+				Format f = serializer.getFormat();
+				f.setEncoding("UTF-8");
+				// encoding 타입을 UTF-8 로 설정
+				f.setIndent(" ");
+				f.setLineSeparator("\r\n");
+				f.setTextMode(Format.TextMode.TRIM);
+				serializer.setFormat(f);
+
+				serializer.output(doc, out);
+				out.flush();
+				out.close();
+
+				serializer.output(doc, new FileWriter("test.xml"));
+
+				return doc;
+			} catch (IOException e) {
+				System.err.println(e);
+			}
+		}
+		
+		root.addContent(subwaynum); // 1
+		root.addContent(allHuman); // 1
 
 		subwaynum.setText(getSubwaynum); // 2002 열차
 		allHuman.setText(getAllHuman + ""); // 모든사람
@@ -168,11 +242,17 @@ public class apiController {
 			String index = Integer.toString(i + 1);
 			Element row = new Element("row"); // 1
 			root.addContent(row);
+			Element subwaynumber = new Element("SUBWAYNUM"); // 2
+			row.addContent(subwaynumber);
 			Element humannum = new Element("HUMANNUM"); // 2
 			row.addContent(humannum);
 			Element carnum = new Element("CARNUM"); // 2
 			row.addContent(carnum);
 
+			double percent = Math.round(Double.parseDouble(subwayList.get(i).getHumanNum())/160*100);
+			Element humanPercent = new Element("HUMANPERCENT"); // 2
+			row.addContent(humanPercent);
+			
 			Element elderlyseat1 = new Element("ELDERLYSEAT1");
 			Element elderlyseat2 = new Element("ELDERLYSEAT2");
 			Element elderlyseat3 = new Element("ELDERLYSEAT3");
@@ -199,8 +279,10 @@ public class apiController {
 			row.addContent(elderlyseat11);
 			row.addContent(elderlyseat12);
 			
+			subwaynumber.setText(subwaynums);
 			carnum.setText(index);
 			humannum.setText(subwayList.get(i).getHumanNum());
+			humanPercent.setText(Integer.parseInt(String.valueOf(Math.round(percent)))+"");
 			elderlyseat1.setText(subwayList.get(i).getElderlySeat1());
 			elderlyseat2.setText(subwayList.get(i).getElderlySeat2());
 			elderlyseat3.setText(subwayList.get(i).getElderlySeat3());
@@ -244,6 +326,7 @@ public class apiController {
 
 	}
 
+	// XML을 String으로 출력하는 메소드 
 	public String XMLToString(Document doc) {
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat().setEncoding("UTF-8"));
 		return outputter.outputString(doc);

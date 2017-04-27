@@ -147,10 +147,10 @@ body, html {
 			
 			str+='<div id="'+item.stationCode+'"';
 		 	if(index%2==0 && index!=0){
-				str+=' style="clear: left; float: left; margin-right: 120px; width=2000px; ">';	
+				str+=' style="clear: left; float: left; margin-right: 60px; width=2000px; ">';	
 			}
 			else{
-				str+='style="float: left; margin-right: 120px; width=2000px;" >';	
+				str+='style="float: left; margin-right: 60px; width=2000px;" >';	
 			} 
 			
 			str+=	'<div class="panel panel-default">';
@@ -288,12 +288,23 @@ body, html {
 			<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
 		</div>
 	<!-- 디자인 바  -->
+	
+	
 
 	<!-- 	내부 div 창 하얀배경  -->
 
-	<div style="margin: 50px; overflow: auto; background: rgba(255, 255, 255, 0.85);"
+	<div style="margin: 50px; overflow: auto; background: rgba(255, 255, 255, 0.85); border-radius: 30px;"
 		class="first ">
+		
+		
+		
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px; float: left; ">
+
+	<!--메뉴바-->
+	<jsp:include page="Member/menu.jsp" />
+	<!--메뉴바-->
+
+		<div style="width: 80%; float: left;">
 
 			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0); padding-top: 30px; ">
 				<h1 >My Favorite</h1>
@@ -303,7 +314,7 @@ body, html {
 			
 			<!-- 이 부분은 개인정보에 대한 페이지 -->
 
-			<div style="float: left; height: 400px; width: 480px;  margin-right: 120px; padding-bottom: 100px;"
+			<div style="float: left; height: 400px; width: 480px;  margin-right: 60px; padding-bottom: 100px;"
 				class="float" >
 
 				<div class="panel panel-warning" style=" height: 400px;">
@@ -375,7 +386,7 @@ body, html {
 			
 		</div>
 	</div>
-
+</div>
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>
 </html>

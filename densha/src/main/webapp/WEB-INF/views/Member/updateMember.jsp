@@ -127,7 +127,7 @@ body, html {
 	<!-- 디자인 바  -->
 	
 	
-	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);"
+	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85); border-radius: 30px;"
 		class="first">
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 			
@@ -138,9 +138,11 @@ body, html {
 	
 	
 	<div style="width: 80%; float: left;">
-	<div class="deleteFrom"
+	
+	<!-- 	modifyForm -->
+	<div class="modifyFrom" style="width: 95%; float: left;"
 		>
-		<div class="alert alert-dismissible alert-success">
+		<div class="alert alert-dismissible alert-success" style="clear: left;">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<strong><h3>회원정보 수정</h3></strong> 회원정보를 수정할 수 있습니다.
 		</div>
@@ -193,9 +195,14 @@ body, html {
 		</div>
 		
 	</div>
+	<!-- 	modifyForm -->
+	
+	
+	<!-- 	deleteForm -->
+	
 	
 	<div class="deleteFrom"
-		style="width: 80%; float: left;">
+		style="width: 95%; float: left;">
 		<div class="alert alert-dismissible alert-info">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<strong>회원탈퇴</strong> ${loginId}님 아쉽지만 다음에 만나요 ㅜㅜ.
@@ -224,6 +231,8 @@ body, html {
 </form>
 
 	</div>
+	
+<!-- 	deleteForm -->
 	</div>
 	</div>
 	</div>

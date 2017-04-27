@@ -140,7 +140,7 @@ function get_station_popup() {
 //역 정보: 팝업 삭제
 function get_station_down() {
 	// 추가로 tab 초기화 코드 추가
-	location.href = '#stationInfoTab';
+	//location.href = '#stationInfoTab';
 
 	var layer = document.getElementById('station_info_popup_layer');
 	layer.style.visibility = 'hidden';

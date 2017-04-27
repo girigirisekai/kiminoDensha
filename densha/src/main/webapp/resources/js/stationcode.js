@@ -83,9 +83,9 @@ function nowLine(nowline, nowcode, nowfrcode) { // line은 버튼의 호선을 �
 	console.log(frcode);
 	console.log(subwayLine);
 	console.log(insertStation);
-	stationlasttime();
-	stationtimetableNexts();
-	realtimes();
+	stationlasttime(); // 막처 첫차 시간표 재생성
+	stationtimetableNexts(); // 호선별 시간표 재생성
+	realtimes(); // 새로 실시간 열차 부르기 
 
 }
 
@@ -781,7 +781,7 @@ function timetable(results) { // 역 시간표
 
 // 청소 HTML
 function removehtml() {
-	$('#exitTable').html(''); // 청소
+//	$('#exitTable').html(''); // 청소
 	$('#realtime').html(''); // 청소
 	$('#map').html(''); // 청소
 //$('#map').attr('style', ''); // 청소

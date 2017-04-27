@@ -12,6 +12,6 @@ public interface StartEndMapper {
 
 	public String select(String str);
 
-	public stationDB StationCodeParseName(String stationCode);
+	public ArrayList<stationDB> StationCodeParseName(String stationCode);
 
 }

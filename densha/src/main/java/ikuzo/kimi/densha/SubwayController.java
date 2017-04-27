@@ -59,14 +59,15 @@ public class SubwayController {
 	// 역 최초 최종시간 xml, MAP
 	@ResponseBody
 	@RequestMapping(value = "lastTime", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public HashMap<String, Object> lastTime(String station, String line, Model model) throws Exception {
+	public HashMap<String, Object> lastTime(String stationCode, String line, Model model) throws Exception {
 		System.out.println("line: " + line);
+		System.out.println("stationCode: " + stationCode);
 		StationCodeToLastTimetable lasttime = new StationCodeToLastTimetable();
 		// 1호선
 		// 1 평일, 2 토요일, 3 휴일 공휴일 123
 		// 1. 상행선, 내선 | 2. 하행선, 내선 12
 
-		HashMap<String, Object> map = lasttime.lastTimetable(station, line);
+		HashMap<String, Object> map = lasttime.lastTimetable(stationCode, line);
 		System.out.println(map.get("statue"));
 		// 역코드 라인넘 요일 123 상 하 12
 
@@ -110,7 +111,7 @@ public class SubwayController {
 	@ResponseBody
 	@RequestMapping(value = "realTime", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String realTime(String station, Model model) throws Exception {
-
+		System.out.println(station);
 		StationNameToRealtimeArrive realTime = new StationNameToRealtimeArrive();
 		String result = realTime.ArriveTime(station);
 
@@ -202,7 +203,7 @@ public class SubwayController {
 	@RequestMapping(value = "pars", method = RequestMethod.GET
 					, produces="application/json;charset=UTF-8")
 	public String pars(String str) {
-		
+		//역코드를 역이름으로 바꾸는거 
 		String result = sedao.select(str);
 		
 		return result;
@@ -212,12 +213,13 @@ public class SubwayController {
 	@ResponseBody
 	@RequestMapping(value = "StationCodeParseName", method = RequestMethod.GET
 					, produces="application/json;charset=UTF-8")
-	public stationDB StationCodeParseName(String stationCode) {
+	public ArrayList<stationDB> StationCodeParseName(String stationCode) {
+		// 환승역의 경우 Code와 역 이름이 2개인 관계로 Arraylist로 받는다. 
+		ArrayList<stationDB> StationList = new ArrayList<>();
+		StationList = sedao.StationCodeParseName(stationCode);
+		System.out.println(StationList.toString());
 		
-		stationDB result = sedao.StationCodeParseName(stationCode);
-		System.out.println(result.toString());
-		
-		return result;
+		return StationList;
 	}
 	
 	
@@ -237,8 +239,10 @@ public class SubwayController {
 			e.printStackTrace();
 		}
 		String minTravelMsg = sList.get(sList.size()-1);
+		System.out.println(minTravelMsg);
+		
 		sList.remove(sList.size()-1);
-		ArrayList<String> sList2 = sedao.path(sList);
+		ArrayList<String> sList2 = sedao.path(sList); // 이걸 보낸다.
 		sList2.add(minTravelMsg);
 		logger.debug("test{}", sList2);
 		

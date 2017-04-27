@@ -299,7 +299,7 @@ body, html {
 				<h1 >My Favorite</h1>
 				<p style="font-weight: bolder;">자주 이용하는 역을 추가하세요.</p>
 			</div>
-			
+			 
 			
 			<!-- 이 부분은 개인정보에 대한 페이지 -->
 

@@ -56,7 +56,7 @@ body, html {
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 			<!-- 	div -->
 
-			<div id="menu" class="btn-group-vertical" style="width: 15%;float: left; margin-right: 30px;">
+			<div id="menu" class="btn-group-vertical" style="width: 15%; float: left; margin-right: 30px;">
 				<a href="board?type=notice" class="btn btn-default">공지사항</a> <a
 					href="board?type=qna" class="btn btn-default">건의&QnA</a> <a
 					href="board?type=freeboard" class="btn btn-default">자유게시판</a>

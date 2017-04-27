@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="./resources/css/style.css">
 <link rel="stylesheet" href="./resources/css/loginModule.css">
-<title>너의 지하철 : 지하철 맵 </title>
+<title>너의 지하철 : 지하철 맵</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -33,22 +33,16 @@
 
 		<ul class="slides">
 			<li>
-<!-- 				<div class="embed-responsive embed-responsive-16by9"> -->
-<!-- 					<iframe class="embed-responsive-item" -->
-<!-- 						src="https://www.youtube.com/embed/a1XuwtF7OJY?autoplay=1&playlist=XLkSQKCEKeE&loop=1&autohide=1&controls=0&showinfo=0&fs=0&rel=0" -->
-<!-- 						frameborder="0" allowfullscreen></iframe> -->
-
-<!-- 				</div> -->
-			<img src="./resources/images/slider/slider1.jpg">
+				<!-- 				<div class="embed-responsive embed-responsive-16by9"> --> <!-- 					<iframe class="embed-responsive-item" -->
+				<!-- 						src="https://www.youtube.com/embed/a1XuwtF7OJY?autoplay=1&playlist=XLkSQKCEKeE&loop=1&autohide=1&controls=0&showinfo=0&fs=0&rel=0" -->
+				<!-- 						frameborder="0" allowfullscreen></iframe> --> <!-- 				</div> -->
+				<img src="./resources/images/slider/slider1.jpg">
 				<div class="caption">
-					<h2 style="color: white;">
-						지금 서울을 가지세요
-					</h2> 
+					<h2 style="color: white;">지금 서울을 가지세요</h2>
 					<h2>
 						<span>체험하세요</span>
 					</h2>
-					<p>이 좋은걸 모르셨다구요?
-					지금 서울을 가자세요!</p>
+					<p>이 좋은걸 모르셨다구요? 지금 서울을 가자세요!</p>
 					<button class="btn">Read More</button>
 				</div>
 			</li>
@@ -119,8 +113,8 @@
 						<div class="about-right-boot">
 							<div class="about-right-wrapper">
 								<a href="#"><h3>너의 지하철은 다릅니다.</h3></a>
-								<p>열차의 전체 인원수와 열차의 칸당 인원수  </p>
-								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알수있습니다.  </p>
+								<p>열차의 전체 인원수와 열차의 칸당 인원수</p>
+								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알수있습니다.</p>
 							</div>
 						</div>
 
@@ -146,52 +140,52 @@
 	</div>
 
 	<!--about bg-->
-<!-- 	<div id="about-bg"> -->
+	<!-- 	<div id="about-bg"> -->
 
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row"> -->
+	<!-- 		<div class="container"> -->
+	<!-- 			<div class="row"> -->
 
-<!-- 				<div class="about-bg-heading"> -->
-<!-- 					<h1>sucessfull stats about us</h1> -->
-<!-- 					<p>what we have achieved so far</p> -->
-<!-- 				</div> -->
+	<!-- 				<div class="about-bg-heading"> -->
+	<!-- 					<h1>sucessfull stats about us</h1> -->
+	<!-- 					<p>what we have achieved so far</p> -->
+	<!-- 				</div> -->
 
-<!-- 				<div class=" col-xs-12 col-md-3"> -->
-<!-- 					<div class="about-bg-wrapper"> -->
-<!-- 						<span class="count"><h1> -->
-<!-- 								<span class="border">32</span>15 -->
-<!-- 							</h1></span> -->
-<!-- 						<p>happy client</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+	<!-- 				<div class=" col-xs-12 col-md-3"> -->
+	<!-- 					<div class="about-bg-wrapper"> -->
+	<!-- 						<span class="count"><h1> -->
+	<!-- 								<span class="border">32</span>15 -->
+	<!-- 							</h1></span> -->
+	<!-- 						<p>happy client</p> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
 
-<!-- 				<div class="col-xs-12 col-md-3"> -->
-<!-- 					<div class="about-bg-wrapper"> -->
-<!-- 						<span class="count"><h1>2217</h1></span> -->
-<!-- 						<p>projects</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+	<!-- 				<div class="col-xs-12 col-md-3"> -->
+	<!-- 					<div class="about-bg-wrapper"> -->
+	<!-- 						<span class="count"><h1>2217</h1></span> -->
+	<!-- 						<p>projects</p> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
 
-<!-- 				<div class="col-xs-12 col-md-3"> -->
-<!-- 					<div class="about-bg-wrapper"> -->
-<!-- 						<span class="count"><h1>1522</h1></span> -->
-<!-- 						<p>branches</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+	<!-- 				<div class="col-xs-12 col-md-3"> -->
+	<!-- 					<div class="about-bg-wrapper"> -->
+	<!-- 						<span class="count"><h1>1522</h1></span> -->
+	<!-- 						<p>branches</p> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
 
-<!-- 				<div class="col-xs-12 col-md-3"> -->
-<!-- 					<div class="about-bg-wrapper"> -->
-<!-- 						<span class="count"><h1>3151</h1></span> -->
-<!-- 						<p>expert team</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+	<!-- 				<div class="col-xs-12 col-md-3"> -->
+	<!-- 					<div class="about-bg-wrapper"> -->
+	<!-- 						<span class="count"><h1>3151</h1></span> -->
+	<!-- 						<p>expert team</p> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
 
-<!-- 			</div> -->
-<!-- 		</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
 
-<!-- 		<div class="cover"></div> -->
+	<!-- 		<div class="cover"></div> -->
 
-<!-- 	</div> -->
+	<!-- 	</div> -->
 
 	<!--service-->
 	<div id="service">
@@ -200,8 +194,10 @@
 				<div class="col-xs-12 col-md-6 col-md-offset-3">
 					<div class="service-heading">
 						<h2>너의 지하철 service</h2>
-						<p>저희의 서비스는 지하철 지도의 제공과 지하철 차량의 총인원, 그리고 칸당 인원과 
-						노약좌석의 상황을 제공합니다. 또한 <strong>api</strong>도 제공을 합니다. 자세한 것은 API 페이지를 참조해 주세요 </p> 
+						<p>
+							저희의 서비스는 지하철 지도의 제공과 지하철 차량의 총인원, 그리고 칸당 인원과 노약좌석의 상황을 제공합니다. 또한
+							<strong>api</strong>도 제공을 합니다. 자세한 것은 API 페이지를 참조해 주세요
+						</p>
 					</div>
 				</div>
 			</div>
@@ -231,7 +227,8 @@
 										<i class="fa fa-bar-chart" aria-hidden="true"></i>
 									</div>
 									<h4>No Flash</h4>
-									<div class="text">svg를 이용한 HTML5 대응으로 다음과 네이버 지도와 다르게 플래시를 사용하지 않습니다.</div>
+									<div class="text">svg를 이용한 HTML5 대응으로 다음과 네이버 지도와 다르게
+										플래시를 사용하지 않습니다.</div>
 								</div>
 							</div>
 
@@ -250,7 +247,7 @@
 									<div class="icon-box">
 										<i class="fa fa-bullhorn" aria-hidden="true"></i>
 									</div>
-									<h4>가벼운 회원정보 </h4>
+									<h4>가벼운 회원정보</h4>
 									<div class="text">회원정보의 내용은 오직 메일! 회원정보는 중국에 팔지 않습니다.</div>
 								</div>
 							</div>
@@ -261,7 +258,8 @@
 										<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 									</div>
 									<h4>아우이노 활용</h4>
-									<div class="text">아두이노를 활용한 임베다드로, pc를 이용하지 않아 전력소모와 크기에서 우수한 성능을 가지고 있습니다.</div>
+									<div class="text">아두이노를 활용한 임베다드로, pc를 이용하지 않아 전력소모와 크기에서
+										우수한 성능을 가지고 있습니다.</div>
 								</div>
 							</div>
 
@@ -290,7 +288,8 @@
 							</div>
 							<div class="text">지도 서비스로 참고가 가능합니다.</div>
 
-							<button class="btn" onclick="location.href='stationcode';">체험하러 가기</button>
+							<button class="btn" onclick="location.href='stationcode';">체험하러
+								가기</button>
 						</div>
 					</div>
 				</div>
@@ -316,7 +315,7 @@
 
 					<div class="col-md-5">
 						<div class="service-footer-right">
-							<button class="btn"  onclick="location.href='api';">API</button>
+							<button class="btn" onclick="location.href='api';">API</button>
 						</div>
 					</div>
 				</div>
@@ -491,24 +490,24 @@
 
 
 	<!--contact-->
-<!-- 	<div id="contact"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div -->
-<!-- 					class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3"> -->
-<!-- 					<div class="contact-heading"> -->
-<!-- 						<h2>contact</h2> -->
-<!-- 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. -->
-<!-- 							Praesent metus magna,malesuada porta elementum vitae.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+	<!-- 	<div id="contact"> -->
+	<!-- 		<div class="container"> -->
+	<!-- 			<div class="row"> -->
+	<!-- 				<div -->
+	<!-- 					class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3"> -->
+	<!-- 					<div class="contact-heading"> -->
+	<!-- 						<h2>contact</h2> -->
+	<!-- 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. -->
+	<!-- 							Praesent metus magna,malesuada porta elementum vitae.</p> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
 
-<!-- 		<div id="google-map" data-latitude="40.713732" -->
-<!-- 			data-longitude="-74.0092704"></div> -->
+	<!-- 		<div id="google-map" data-latitude="40.713732" -->
+	<!-- 			data-longitude="-74.0092704"></div> -->
 
-<!-- 	</div> -->
+	<!-- 	</div> -->
 
 
 	<!--client-->
@@ -517,45 +516,36 @@
 			<div class="row">
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s1.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s1.jpg" alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s2.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s2.jpg" alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s3.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s3.jpg" alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s4.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s4.jpg" alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s5.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s5.jpg" alt="">
 				</div>
 
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s6.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s6.jpg" alt="">
 				</div>
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s7.jpg"
-						alt="">
+					<span></span><img src="./resources/image/company/s7.jpg" alt="">
 				</div>
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s8.png"
-						alt="">
+					<span></span><img src="./resources/image/company/s8.png" alt="">
 				</div>
 				<div class="col-sm-4 col-md-2">
-					<span></span><img src="./resources/image/company/s9.png"
-						alt="">
+					<span></span><img src="./resources/image/company/s9.png" alt="">
 				</div>
 
 			</div>
@@ -572,9 +562,8 @@
 							<span>about</span> us
 						</h3>
 						<p>'너의 지하철'은 32기 SCIT마스터 2차 역량 프로젝트의 일환으로 만들어졌습니다.</p>
-						<p>이 프로젝트는 비영리, 비상업 목적으로서 프로젝트의 완성을 위해서 사용될 것입니다.
-						IoT와 웹을 연동하는 프로젝트로 프로젝트의 조원은 장성길, 이민호, 전누리, 안병호, 조재용입니다.
-							</p>
+						<p>이 프로젝트는 비영리, 비상업 목적으로서 프로젝트의 완성을 위해서 사용될 것입니다. IoT와 웹을 연동하는
+							프로젝트로 프로젝트의 조원은 장성길, 이민호, 전누리, 안병호, 조재용입니다.</p>
 					</div>
 				</div>
 
@@ -622,7 +611,7 @@
 					<div class="footer-left">
 						&copy; 너의지하철 . All rights reserved
 						<div class="credits">
-						
+
 							Designed by <a href="http://localhost:8888/densha/">너의 지하철</a>
 						</div>
 					</div>
@@ -636,10 +625,10 @@
 							<li><a href="home#service">Service</a></li>
 							<li><a href="home#api">api</a></li>
 							<li><a href="join">가입하기</a></li>
-							<c:if test="${loginId !=null}"> 
-    					    <li><a href="favorite">Favorite</a></li>
-    					    <li><a href="myAccount">내정보</a></li>
-    					    </c:if>			
+							<c:if test="${loginId !=null}">
+								<li><a href="favorite">Favorite</a></li>
+								<li><a href="myAccount">내정보</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -647,93 +636,96 @@
 		</div>
 	</div>
 
-	
-<!-- 	로그인 성공  -->
+
+	<!-- 	로그인 성공  -->
 	<c:if test="${loginCheck == 1}">
-	
-	<script>
+
+		<script>
 	$(document).ready(function(){
 	        $(".modal").modal();
 	});
 	</script>
-	
-	<div class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">로그인 이 성공하였습니다.</h4>
-      </div>
-      <div class="modal-body">
-        <p>로그인 이 성공하였습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-	
+
+		<div class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">로그인 이 성공하였습니다.</h4>
+					</div>
+					<div class="modal-body">
+						<p>로그인 이 성공하였습니다.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</c:if>
-	
-	
-<!-- 	로그인실패 -->
+
+
+	<!-- 	로그인실패 -->
 	<c:if test="${loginCheck == 0}">
-	
-	<script>
+
+		<script>
 	$(document).ready(function(){
 	        $(".modal").modal();
 	});
 	</script>
-	
-	<div class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">로그인이 실패하였습니다.</h4>
-      </div>
-      <div class="modal-body">
-        <p>로그인 실패하였습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-	
+
+		<div class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">로그인이 실패하였습니다.</h4>
+					</div>
+					<div class="modal-body">
+						<p>로그인 실패하였습니다.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</c:if>
-	
-<!-- 	가입완료  -->
+
+	<!-- 	가입완료  -->
 	<c:if test="${joinCheck == 1}">
-	
-	<script>
+
+		<script>
 	$(document).ready(function(){
 	        $(".modal").modal();
 	});
 	</script>
-	
-	<div class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">가입이 성공하였습니다.</h4>
-      </div>
-      <div class="modal-body">
-        <p>가입이 성공하였습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-	
+
+		<div class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">가입이 성공하였습니다.</h4>
+					</div>
+					<div class="modal-body">
+						<p>가입이 성공하였습니다.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</c:if>
 
 

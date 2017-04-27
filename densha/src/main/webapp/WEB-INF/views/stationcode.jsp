@@ -8756,13 +8756,16 @@
 	<div id="station_info_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
 		
+		<div style="margin: 11px">
+		
 		<div class="btn-toolbar">
- <ul class="breadcrumb">
+ <ul class="btn-group">
   <li><a href="#">1</a></li>
   <li><a href="#">2</a></li>
 </ul>
 </div>
-		<div style="margin: 11px">
+		
+		
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title" ><span id = "stationNamebar">역 이름 넣기?</span></h3>

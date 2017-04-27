@@ -43,7 +43,7 @@ public class StationNameToRealtimeArrive {
 			BufferedInputStream reader = new BufferedInputStream(url.openStream());
 			StringBuffer buffer = new StringBuffer();
 			int i;
-			byte[] b = new byte[20000];
+			byte[] b = new byte[4096];
 			while ((i = reader.read(b)) != -1) { 
 				buffer.append(new String(b, 0, i));
 			}

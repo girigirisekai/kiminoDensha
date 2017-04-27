@@ -9,9 +9,10 @@ public class stationDB {
 	private String ypoint_wgs; // 경도 y
 	private String line_num;
 	private String cyber_st_code;
+	private String fr_code;
 
 	public stationDB(String station_nm, String station_nm2, String station_cd, String xpoint_wgs, String ypoint_wgs,
-			String line_num, String cyber_st_code) {
+			String line_num, String cyber_st_code, String fr_code) {
 		super();
 		this.station_nm = station_nm;
 		this.station_nm2 = station_nm2;
@@ -20,10 +21,19 @@ public class stationDB {
 		this.ypoint_wgs = ypoint_wgs;
 		this.line_num = line_num;
 		this.cyber_st_code = cyber_st_code;
+		this.fr_code = fr_code;
 	}
 
 	public stationDB() {
 		super();
+	}
+
+	public String getFr_code() {
+		return fr_code;
+	}
+
+	public void setFr_code(String fr_code) {
+		this.fr_code = fr_code;
 	}
 
 	public String getStation_cd() {
@@ -86,7 +96,7 @@ public class stationDB {
 	public String toString() {
 		return "stationDB [station_nm=" + station_nm + ", station_nm2=" + station_nm2 + ", station_cd=" + station_cd
 				+ ", xpoint_wgs=" + xpoint_wgs + ", ypoint_wgs=" + ypoint_wgs + ", line_num=" + line_num
-				+ ", cyber_st_code=" + cyber_st_code + "]";
+				+ ", cyber_st_code=" + cyber_st_code + ", fr_code=" + fr_code + "]";
 	}
 
 }

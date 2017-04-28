@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,20 +21,19 @@ $(document).ready(function(){
 	$('#bt1').on('click',update);
 });
 function update(){
-	alert('확인');
 	var id = '${loginId}';
 	var password = $('#password').val();
 	var question = $('#question').val();
 	var answer =$('#answer').val();
-	
+
 	 $.ajax({
 		url:'updateMember',
 		type:'post',
 		data:{
-			id:id,
-			password:password,
-			question:question,
-			answer:answer
+			'id':id,
+			'password':password,
+			'question':question,
+			'answer':answer
 		},
 		success : update1,
 		error: function(e){
@@ -50,6 +50,8 @@ $(document).ready(function() {
 	$('#btDelete').on('click', DeleteFirst);
 });
 function DeleteFirst() {
+	var test ='';
+	test += '';
 	var id1 = '${loginId}';
 	var delete1 = $('#deleteText').val();
 	$.ajax({
@@ -61,10 +63,32 @@ function DeleteFirst() {
 		},
 		dataType : 'json',
 		success : function(ob) {
+			if(ob != null){
+			$('#checkDelete').modal();
 			deleteBt(ob);
+			var str ="<div class="modal">";
+			var str ="<div class="modal-dialog">";
+			var str =" <div class="modal-content">";
+			var str =" <div class="modal-header">";
+			var str ="  <h4 class="modal-title">2차 비밀번호 확인</h4>";
+			var str ="</div>";
+			var str ="<div class="modal-body">";
+			var str ="2번째 비밀번호를 입력해 주세요<br>";
+			var str ="";
+			var str ="";
+			var str ="";
+			var str ="";
+			var str =" </div>";
+			var str ="  <div class="modal-footer">";
+			var str ="</div>";
+			var str ="</div>";
+			var str ="</div>";
+			var str ="</div>";
+			
+			}
 		},
 		error : function(e) {
-			alert(JSON.stringify(e));
+			alert('비밀번호가 오류났습니다');
 		}
 	});
 }
@@ -78,7 +102,6 @@ function deleteBt(resp) {
 	$('#deleteMemberBt').on('click', DeleteMember);
 }
 function DeleteMember() {
-	alert('버튼확인');
 	var id = '${loginId}';
 	var answer = $('#checkPw').val();
 	$.ajax({
@@ -91,7 +114,13 @@ function DeleteMember() {
 		success : function(ob) {
 			if (ob == 1) {
 				alert('삭제완료');
+				location.href="home";
+			}else{
+				alert('2차비밀번호에 오류가 났습니다.');
 			}
+		},
+		error : function(e) {
+			alert('2차비밀번호가 오류났습니다');
 		}
 	});
 }
@@ -184,7 +213,7 @@ body, html {
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-danger" id="bt1">수정하기</button>
+        <input type="button" class="btn btn-danger" id="bt1" value="수정하기">
       </div>
     </div>
   </fieldset>
@@ -217,16 +246,45 @@ body, html {
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" id="btDelete" class="btn btn-danger">탈퇴하기 ㅜㅜ</button>
+        <input type="button" id="btDelete" class="btn btn-danger" value="탈퇴하기 ㅜㅜ">
       </div>
     </div>
   </fieldset>
+		
+		<c:if test="${deleteMember != null }">
+		<div id="checkDelete"></div>
+		<script>
+	$(document).ready(function(){
+	        $(".modal1").modal();
+	});
+	</script>
+		<div class="modal1">
+ 	 <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="ture">&times;</button>
+        <h4 class="modal-title">2차 비밀번호를 눌러주세요.</h4>
+      </div>
+      <div class="modal-body">
+        <p>2차 비밀번호를 눌러주세요.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+		</c:if>
+
+		
 </form>
 
 	</div>
 	</div>
 	</div>
 	</div>
+
+
 
 
 	<script src="./resources/js/bootstrap.min.js"></script>

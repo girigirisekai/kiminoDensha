@@ -197,7 +197,8 @@ public class SubwayController {
 	}
 	
 	
-	// ajax인데 주석이 없다 하지만 민호가 달것이다.
+	// ajax인데 주석이 없다 하지만 민호가 달것이다..이거 누구야 쓴사람 정신 차려요 제발 ㅋㅋㅋ
+	// 시작 역코드를 받아 역 이름으로 바꾸는 작업입니다. 그렇답니다. 
 	@ResponseBody
 	@RequestMapping(value = "pars", method = RequestMethod.GET
 					, produces="application/json;charset=UTF-8")

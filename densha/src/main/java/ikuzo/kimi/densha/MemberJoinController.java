@@ -133,14 +133,12 @@ public class MemberJoinController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="deleteMember", method=RequestMethod.POST)
-	public int deleteMember(String id, String answer, HttpSession session, Model model){
+	public int deleteMember(String id, String answer, HttpSession session){
 		System.out.println("아이디"+id+"비밀번호"+answer);
 		int result = dao.deleteMember(id, answer);
-		model.addAttribute("deleteMember",result);
 		if(result==1){
 			session.removeAttribute("loginId");
 		}
-		
 		return result;
 	}
 	
@@ -156,7 +154,7 @@ public class MemberJoinController {
 	@RequestMapping(value="selectId1",  method=RequestMethod.POST)
 	public Member selectId1(String id, String password, Model model){
 		Member result = dao.selectId1(id,password); 
-	
+		model.addAttribute("Member",result);
 		return result;
 	}
 	
@@ -169,6 +167,7 @@ public class MemberJoinController {
 	 */
 	@RequestMapping(value="updateMember", method=RequestMethod.GET)
 	public String updateMember (){
+		
 		return "Member/updateMember";
 	}
 	
@@ -179,9 +178,10 @@ public class MemberJoinController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="updateMember", method=RequestMethod.POST)
-	public int updateMember(Model model, Member member){
+	public int updateMember(Member member){
 		logger.debug("업데이트 확인작업1{}",member);
 		int result = dao.updateMember(member);
+		
 		return result;
 	}
 	

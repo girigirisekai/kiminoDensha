@@ -52,7 +52,6 @@ public class MemberLoginController {
 	public String login(HttpSession ss, String loginId, String loginPassword, HttpServletRequest req,Model model, HttpSession ses) {
 		Member member = dao.login(loginId, loginPassword);
 		
-		
 		System.out.println(loginId +"//"+loginPassword );
 		
 		if(member == null){
@@ -97,6 +96,7 @@ public class MemberLoginController {
 		String id = (String) ses.getAttribute("loginId");
 		Member myMember = dao.selectId(id);
 		model.addAttribute("accountInfo", myMember);
+		ses.setAttribute("loginQustion", myMember.getQuestion());
 		ArrayList<loginCheck> loginCheck = dao.logincheck3(id);
 		model.addAttribute("loginCheck3",loginCheck);
 		System.out.println(loginCheck);

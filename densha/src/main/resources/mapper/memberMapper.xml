@@ -77,10 +77,10 @@
 	<delete id="deleteMember" parameterType="Member">
 		delete
 			member
-			where
-				id =#{0}
-			and
-				answer =#{1}
+				where
+						id =#{0}
+					and
+						answer =#{1}
 	</delete>
 
 	

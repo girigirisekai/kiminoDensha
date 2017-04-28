@@ -1,5 +1,7 @@
 package ikuzo.kimi.densha;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,8 +133,14 @@ public class MemberJoinController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="deleteMember", method=RequestMethod.POST)
-	public int deleteMember(String id, String answer){
+	public int deleteMember(String id, String answer, HttpSession session, Model model){
+		System.out.println("아이디"+id+"비밀번호"+answer);
 		int result = dao.deleteMember(id, answer);
+		model.addAttribute("deleteMember",result);
+		if(result==1){
+			session.removeAttribute("loginId");
+		}
+		
 		return result;
 	}
 	
@@ -146,8 +154,9 @@ public class MemberJoinController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="selectId1",  method=RequestMethod.POST)
-	public Member selectId1(String id, String password){
+	public Member selectId1(String id, String password, Model model){
 		Member result = dao.selectId1(id,password); 
+	
 		return result;
 	}
 	
@@ -171,7 +180,7 @@ public class MemberJoinController {
 	@ResponseBody
 	@RequestMapping(value="updateMember", method=RequestMethod.POST)
 	public int updateMember(Model model, Member member){
-		logger.debug("{}",member);
+		logger.debug("업데이트 확인작업1{}",member);
 		int result = dao.updateMember(member);
 		return result;
 	}

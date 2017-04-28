@@ -15,13 +15,17 @@
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="./resources/js/function.js"></script>
 <script>
+
 	$(document).ready(function() {
-		//비밀번호 확인버튼
-		$('#btDelete').on('click', DeleteFirst);
+	$('#btDelete').on('click',DeleteFirst);
 	});
+	
 	function DeleteFirst() {
+		alert('어레?');
 		var id1 = '${loginId}';
 		var delete1 = $('#deleteText').val();
+		alert(id1);
+		alert(delete1);
 		$.ajax({
 			url : 'selectId1',
 			type : 'post',
@@ -51,6 +55,9 @@
 		alert('버튼확인');
 		var id = '${loginId}';
 		var answer = $('#checkPw').val();
+		alert('어레?');
+		alert(id);
+		alert(answer);
 		$.ajax({
 			url : 'deleteMember',
 			type : 'post',
@@ -242,7 +249,7 @@
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" id="btDelete" class="btn btn-danger">탈퇴하기 ㅜㅜ</button>
+        <input type="button" id="btDelete" name="btDelete" class="btn btn-danger" value="탈퇴하기 ㅠㅠ">
       </div>
     </div>
   </fieldset>

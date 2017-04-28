@@ -56,8 +56,8 @@ public class MemberLoginController {
 		System.out.println(loginId +"//"+loginPassword );
 		
 		if(member == null){
-			model.addAttribute("loginCheck","0");
-			return "redirect:home";
+			model.addAttribute("loginCheck",0);
+			return "home";
 		}
 		
 		if(member.getId().equals(loginId) && member.getPassword().equals(loginPassword)){
@@ -68,7 +68,6 @@ public class MemberLoginController {
 			String ip = req.getRemoteAddr();
 			loginCheck logincheck  = new loginCheck(loginId,ip,null);
 			int logincheck1 = dao.logincheck(logincheck);
-			System.out.println(logincheck1+"들어갔어 안들어갔어 이노무 새키야");
 			model.addAttribute("loginCheck", logincheck1); 
 			return "home";
 			

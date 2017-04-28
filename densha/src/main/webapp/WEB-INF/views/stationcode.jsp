@@ -8740,7 +8740,7 @@
 			&nbsp;
 		</td>
 		<td style="text-align: center;">
-			앞 왼쪽 의자
+			뒤 오른쪽 의자
 		</td>
 		</tr>
 		
@@ -8760,7 +8760,7 @@
 		
 		<tr>
 		<td style="text-align: center;">
-			뒤 오른쪽 의자
+			앞 왼쪽 의자
 		</td>
 		<td >
 <!-- 			중간 비우기 -->

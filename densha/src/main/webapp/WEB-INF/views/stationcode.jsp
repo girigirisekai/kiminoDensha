@@ -9098,7 +9098,7 @@
 					</tr>
 					<tr>
 						<td>12시</td>
-						<td time12="12" id="timatbl12"></td>
+			 			<td time12="12" id="timatbl12"></td>
 					</tr>
 					<tr>
 						<td>1시</td>

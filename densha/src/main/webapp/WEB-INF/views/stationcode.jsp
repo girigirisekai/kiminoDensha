@@ -51,7 +51,8 @@
 <!-- 지도부분 한번 씌워준다. zoom위해서  -->
 <div class = "contents subwayMode" id="contents">
 	<svg width="2899.3469772338867" height="2293.159912109375"
-		xmlns="http://www.w3.org/2000/svg" class = "svgMaps">
+		xmlns="http://www.w3.org/2000/svg" class = "svgMaps"
+		viewBox="170 60 5000 4200">
 <g>
  <g>
   <title>background</title>

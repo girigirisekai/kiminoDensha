@@ -355,7 +355,7 @@ function train_popupOut() {
 
 //======================여기까지는 팝업담당===========================//
 
-//다음지도 부분인데 아직 작동 구현실패
+//다음지도 부분
 function daummap() {
 	/*var text = '';
 	var strings = 'daumMap';
@@ -371,6 +371,15 @@ function daummap() {
 
 	$('#daumMap').html(text);*/
 
+	$('#map').html(''); // 청소
+	
+	setTimeout("daummap2()", 160);//시간 텀을 줘서 에러 해결
+
+
+}
+
+function daummap2() {
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표

@@ -37,153 +37,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-	// 출발역 도착역 사용 변수
-	var scode, code, ecode, ecode2, scodes, ecodes;
-	var xPoint, yPoint;
-	var startCode = '<path fill="#9E1205" d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>'
-		  +'<path fill="#9E1205" d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>'
-		  +'<path fill="#FFFFFF" d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>';
-		  
-	var endCode = '<path fill="#1961BC" d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>'
-		  +'<path fill="#1961BC" d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>'
-		  +'<path fill="#FFFFFF" d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>';
-	
-	//드래그 줌 변수
-	var svg;
-	$(window.document).on("contextmenu", function(event){return false;});	
-	  
-			  
-	$(document).ready(function() { // 최초 시작점 
-		
-		 $('svg').mousedown(function(e) {
-// 			 console.log(e);
-			// 1:좌클릭, 2:휠클릭, 3:우클릭
-			if (e.which == 1) { // 일반 클릭
-				
-			} else if (e.which == 3) { // 우클릭
-				station_name_down(); // 역 이름 팝업 div 삭제
-				get_station_down(); // 역정보보기 div 삭제
-				$(this)[0].oncontextmenu = function() { // 우클릭시 띄워치는 contextmenu 막기 
-					return false; 
-				}
 
-			} 
-		}); 
-		$('#노선 circle').on('click', test1); 
-		$('#station').on('click', get_station_popup);
-		
-		//드래그 줌 기능
-		svg = new SVG($('#svg_1'));
-		svg.init();
-		$('#station_info_popup_layer').draggable();// 팝업창 드래그
 	
- 
-	}); 
-	   
-	 
-	
-	function pathTest1(){
-		
-		scode = code;
-		 $.ajax({
-			url : 'pars',
-			type : 'get',
-			data : {str: scode},
-			dataType: 'text',
-			success : function(abc){
-				scodes = abc; // 역 이름
-			}
-		}); 
-		$('#startEnd').off('click', pathTest1);
-		$('#startPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
-		$('#startPoint').html(startCode);
-		
-	}
-	
-	function pathTest2(){
-		ecode = code;
-			
-		//2중 ajax, 
-		 $.ajax({
-			url : 'pars',
-			type : 'get',
-			data : {str: ecode},
-			dataType: 'text',
-			success : function(bcd){
-				ecodes = bcd;
-					$.ajax({
-						url : 'path2',
-						type : 'get',
-						data : {start: scodes, end: ecodes},
-						dataType : 'json',
-						success : pathm 
-					});
-				
-			}
-		}); 
-		
-	}
-	
-	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
-		
-		$('#endPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
-		$('#endPoint').html(endCode);
-		$('#startEnd').off('click', pathTest2);
-		$.each(list, function(index, item){ //경로가 modal에 들어가는 부분
-			if(item.length > 4){
-				  $('.modal').modal(); // modal 띄우기
-				  var insertTitleModalPath = scodes +'<->'+ecodes; 
-				  $('.modal-title').text(insertTitleModalPath); // modal제목에 값 넣기 
-				 var kakaruJikan = item.split(',');
-				 
-				  $('.modal-body').html('<h5>'+item+'</h5>'); // modal내용에 값 넣기 
-					 
-			}else {
-			$('#'+item).attr('fill', 'orange');
-			}
-		});
-		scode = null;
-		
-	}
-	
-	function test1() { // 채우면서 데이터 보내는 역할
-
-		$('#'+ecode2).attr('fill', '#FFFFFF');
-		$('#'+scode).attr('fill', 'orange'); 
-		if(scode == null){ // 처음 출발하는 역 
-			$('#노선 circle').attr('fill', '#FFFFFF');
-			$('#startPoint').html('');
-			$('#endPoint').html('');
-		}
-	
-		$(this).attr('fill', 'orange');
-		
-		xPoint = $(this).attr('cx');
-		yPoint = $(this).attr('cy');
-		
-		var id = $(this).attr('id');
-		station_name_popup(id);
-		pathTest();
-	}
-
-	function pathTest(){
-		
-		code = $('#startEnd').attr('stationcode');
-		if(scode == null || scode == code){
-			
-			$('#startEnd').val('출발역');
-			$('#startEnd').on('click', pathTest1);
-			
-		}else {
-
-			$('#startEnd').val('도착역');
-			ecode2 = code;
-			$('#startEnd').on('click', pathTest2);
-			
-		}
-		
-	}
-
 </script>
 
 </head>
@@ -196,7 +51,8 @@
 <!-- 지도부분 한번 씌워준다. zoom위해서  -->
 <div class = "contents subwayMode" id="contents">
 	<svg width="2899.3469772338867" height="2293.159912109375"
-		xmlns="http://www.w3.org/2000/svg" class = "svgMaps">
+		xmlns="http://www.w3.org/2000/svg" class = "svgMaps"
+		viewBox="170 60 5000 4200">
 <g>
  <g>
   <title>background</title>
@@ -8765,27 +8621,39 @@
 			
 			
 	</div>
-	<!-- 	역 정보 띄우는 팝업  -->
+	<!-- 	역 이름 띄우는 팝업  -->
 	 
 	
-	
-	
-	<!-- 	좌석 상황을 띄우는 팝업 -->
-	
-	<!-- 		역 정보 띄우는 팝업   --> 
+	<!-- 	역 정보 띄우는 팝업   --> 
 	<div id="station_info_popup_layer"
-		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
+		style="position: absolute; border: none; top: 100px; left: 100px; width: 570px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
 		
 		<div style="margin: 11px">
 		
-		<div class="btn-toolbar">
- <ul class="btn-group">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-</ul>
-</div>
+
+
+ 
+
+<!-- 	환승역인 경우   -->
+
+
+   
+  <div class="btn-group" style="float:left;display: block;">
+  <a href="#" class="btn btn-primary"><span id="stationNameId"></span></a>
+  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+  <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+      <span id = "stationDrop"></span>
+  </ul>
+	</div>
+
+	
+	
+<!-- 환승역인 경우 -->
+
+
 		
-		
+<!-- 		실시간 팝업 부분 -->
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title" ><span id = "stationNamebar">역 이름 넣기?</span></h3>
@@ -8808,11 +8676,11 @@
 
 			</div>
 			
-				<!-- 	실시간 역 상황 보기   -->
+				<!-- 	실시간 전철 사람수 보기   -->
 			<div class="panel-body" >
 			<div style="">
 					
-					<table width="450">
+					<table >
 						<td colspan="12"><img src = "./resources/image/menu/station_info_car_menu.png"></td>
 						<tr>
 							<td>1호칸</td>
@@ -8843,7 +8711,9 @@
 						</tr>
 						<tr>
 				<td colspan="10">
-				<div id="train_seat_popup" style="position:absolute; display:none ; width:450px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">
+				
+<!-- 				열차 좌석 상황,테이블 안에 있습니다. -->
+				<div id="train_seat_popup" style="position:absolute; display:none ; width:530px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">
 		<div style="margin: 10px;">
 		
 		<table>
@@ -8855,8 +8725,8 @@
 		</tr>
 		
 		<tr>
-		<td colspan="3" background="./reour" width="400px">
-			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span>
+		<td colspan="3"  width="400px">
+			<span id = "seatTitle" style="text-align: center;margin: auto;">열차 이름과 열차 량</span>
 		</td>
 		</tr>
 		
@@ -8870,7 +8740,7 @@
 			&nbsp;
 		</td>
 		<td style="text-align: center;">
-			앞 왼쪽 의자
+			뒤 오른쪽 의자
 		</td>
 		</tr>
 		
@@ -8880,7 +8750,7 @@
 		</td>
 		<td >
 <!-- 			중간 비우기 -->
-			&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</td>
 		<td>
 			<span id = "trainSeat2"></span>
@@ -8890,7 +8760,7 @@
 		
 		<tr>
 		<td style="text-align: center;">
-			뒤 오른쪽 의자
+			앞 왼쪽 의자
 		</td>
 		<td >
 <!-- 			중간 비우기 -->
@@ -8949,11 +8819,7 @@
 <!-- 	안내메뉴바    -->
 
 
-<!-- 	환승역인 경우   -->
 
-
- 
-<!-- 환승역인 경우 -->
 		<!-- 		NAV System -->
 		
 		<ul class="nav nav-tabs">
@@ -9348,24 +9214,7 @@
 	<!-- 역 좌석 -->
 
 	
-		
-	<div class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">가입이 성공하였습니다.</h4>
-      </div>
-      <div class="modal-body">
-        <p>가입이 성공하였습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+
 
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>

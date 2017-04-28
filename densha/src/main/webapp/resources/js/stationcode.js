@@ -229,7 +229,7 @@ function station_name_popup(stationCode) { // stationNamePopup
 
 
 			});
-			$('.dropdown-menu').html(insertLineInfo);
+			$('#stationDrop').html(insertLineInfo);
 		}
 	});
 

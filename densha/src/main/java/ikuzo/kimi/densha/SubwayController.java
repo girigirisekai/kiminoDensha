@@ -1,3 +1,4 @@
+
 package ikuzo.kimi.densha;
 
 import java.util.ArrayList;

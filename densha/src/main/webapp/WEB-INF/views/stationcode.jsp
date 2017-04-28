@@ -9,15 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" href="./resources/css/loginModule.css">
 <meta charset="UTF-8">
-<style>
-/* #canvas_background {
-	pointer-events: all;
-} */
- #노선 circle{
- 	cursor: pointer;
- }
 
-</style>
 
 <title>지하철 지도 서비스</title>
 <script src="resources/js/jquery-3.1.1.min.js"></script>
@@ -35,11 +27,26 @@
 
 <!-- 팝업 파일 드래그 js -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+/* #canvas_background {
+	pointer-events: all;
+} */
+ #노선 circle{
+ 	cursor: pointer;
+ }
 
-<script>
 
-	
-</script>
+.tbl_detail {
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+}
+
+.tbl_detailTime {
+	border-bottom: 1px solid #ccc;
+}
+
+
+</style>
 
 </head>
 <body>
@@ -8590,22 +8597,6 @@
 
 </div>
 
-	<!-- <script>
-		/* var svg = d3.select("svg > g")
-			.call(d3.behavior.zoom().scaleExtent([ 1, 8 ]).on("zoom", zoom));
-	
-		// Zoom
-		function zoom() {
-			svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-		} */
-		
-		//new 줌 기능
-		/* var svg = d3.select("svg")
-		.call(d3.zoom().on("zoom", function () {
-	        svg.attr("transform", d3.event.transform)
-		})); */
-
-	</script> -->
 	
 	
 	<!-- 	역 이름 띄우는 팝업 -->
@@ -8636,19 +8627,22 @@
 
 <!-- 	환승역인 경우   -->
 
-
-   
   <div class="btn-group" style="float:left;display: block;">
-  <a href="#" class="btn btn-primary"><span id="stationNameId"></span></a>
+  
+  <a href="#" class="btn btn-primary" style="width:506px;">
+    <!--  역 이름 들어가는 부분(갈아타는 역 ) -->
+ <span id="stationNameId"></span> 
+    <!--  역 이름 들어가는 부분(갈아타는 역 ) -->
+  </a>
   <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
   <span class="caret"></span></a>
   <ul class="dropdown-menu">
-      <span id = "stationDrop"></span>
+  <!-- 		호선별  드롭다운  -->
+      <span id="stationDrop"></span>
+        <!-- 		호선별  드롭다운  -->
   </ul>
 	</div>
 
-	
-	
 <!-- 환승역인 경우 -->
 
 
@@ -8656,24 +8650,23 @@
 <!-- 		실시간 팝업 부분 -->
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title" ><span id = "stationNamebar">역 이름 넣기?</span></h3>
+				<h3 class="panel-title" >
+<!-- 				역 이름이들어가는 부분  -->
+				<center><span id = "stationNamebar"></span></center></h3>
+				<!-- 				역 이름이들어가는 부분  -->
 			</div>
-			<div class="panel-body">
 				<!-- 	실시간 역 상황 보기   -->
-				<div class="stationNames" style="height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat;">
-					<div style="">
+			<div class="panel-body">
+				<div class="stationNames" style="width : 500px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; margin: auto;">
+					<div style="margin:auto; width : 500px;">
 						<div class="upstation_real"
 							style="position: relative; right: -30px; top: 60px;"></div>
 						<div class="getStationName"
-							style="position: relative; left: 210px;"></div>
+							style="position: relative; left: 205px;"></div>
 						<div class="downstation_real"
-							style="position: relative; left: 340px; top: 15px;"></div>
+							style="position: relative; left: 360px; top: 15px;"></div>
 					</div>
-
-					
 				</div>
-
-
 			</div>
 			
 				<!-- 	실시간 전철 사람수 보기   -->
@@ -8681,7 +8674,7 @@
 			<div style="">
 					
 					<table >
-						<td colspan="12"><img src = "./resources/image/menu/station_info_car_menu.png"></td>
+						<td colspan="12"><img src = "./resources/image/menu/car_info_bar.png"></td>
 						<tr>
 							<td>1호칸</td>
 							<td>2호칸</td>
@@ -8713,14 +8706,14 @@
 				<td colspan="10">
 				
 <!-- 				열차 좌석 상황,테이블 안에 있습니다. -->
-				<div id="train_seat_popup" style="position:absolute; display:none ; width:530px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">
+		<div id="train_seat_popup" style="position:absolute; display:none ; width:530px; height:300px;  background: rgba(255, 255, 255, 0.7);  z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">
 		<div style="margin: 10px;">
 		
 		<table>
 		
 		<tr>
 		<td colspan="3" width="400px">
-			<img src = "./resources/image/menu/subway_seat_and_human.gif"> 
+			<img src = "./resources/image/menu/seat_info_bar.png"> 
 		</td>
 		</tr>
 		
@@ -8751,11 +8744,31 @@
 		<td >
 <!-- 			중간 비우기 -->
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
 		</td>
 		<td>
 			<span id = "trainSeat2"></span>
 		</td>
 		</tr>
+		
+		
+		
+		
+<!-- 	빈공간	 -->
+		<tr>
+		<td >
+				<p>&nbsp;</p>
+		</td>
+	
+		<td>
+<!-- 			중간 비우기 -->
+			
+		</td>
+		<td >
+			<p>&nbsp;</p>
+		</td>
+		</tr>
+<!-- 		빈공간 -->
 		
 		
 		<tr>
@@ -8815,7 +8828,7 @@
 		
 <!-- 	안내메뉴바   -->
 <div style="margin: 20px">
-<img src = "./resources/image/menu/station_info_car_menu.png">
+<img src = "./resources/image/menu/station_info_bar.png">
 <!-- 	안내메뉴바    -->
 
 
@@ -8854,24 +8867,36 @@
 
 
 
-				<table id="6" width="450">
-					<tr>
-						<td width="70">역명칭</td>
+				<table id="6" width="450" >
+				
+					<tr >
+						<td colspan="6">&nbsp;</td>
+						
+					</tr>
+				
+					<tr class= "tbl_detail">
+						<td width="70">역 명칭</td>
 						<td colspan="5" id="station_name"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detail">
 						<td>주소</td>
-						<td colspan="2" id="station_address"></td>
+						<td colspan="5" id="station_address"></td>
+						
+					</tr>
+					
+					<tr class= "tbl_detail">
 						<td>전화번호</td>
 						<td colspan="2" id="station_phone"></td>
-					</tr>
-					<tr>
-						<td>편의시설</td>
-						<td colspan="2" id="station_combini"></td>
 						<td>화장실위치</td>
-						<td id="station_toilet"></td>
+						<td  colspan="2" id="station_toilet"></td>
 					</tr>
-					<tr>
+					
+					<tr class= "tbl_detail">
+						<td>편의시설</td>
+						<td colspan="5" id="station_combini"></td>
+					</tr>
+					<tr class= "tbl_detail">
+					
 						<td>출구정보</td>
 						<td colspan="5" id="exitTable"></td>
 					</tr>
@@ -8884,7 +8909,7 @@
 				<!--   역 첫차 막차   -->
 				<table border="0" cellpadding="0" cellspacing="0" summary="첫차막차시간표">
 					<tbody>
-						<tr class="top">
+						<tr class="top" style="border-bottom: 1px solid #000;">
 							<td height="25" width="72">첫/막차</td>
 							<td width="74">방면</td>
 							<td width="107">시발역</td>
@@ -8894,8 +8919,8 @@
 							<td width="83">휴일</td>
 						</tr>
 
-						<tr>
-							<td height="25" width="72">첫차</td>
+						<tr  class= "tbl_detailTime">
+							<td height="25" width="72" >첫차</td>
 							<td width="74" id="firstStation11">헹</td>
 							<td width="107"></td>
 							<td width="107"></td>
@@ -8903,7 +8928,7 @@
 							<td width="83"></td>
 							<td width="83"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">첫차</td>
 							<td width="74" id="firstStation12"></td>
 							<td width="107"></td>
@@ -8914,7 +8939,7 @@
 						</tr>
 
 
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="lastStation11">헹</td>
 							<td width="107"></td>
@@ -8923,7 +8948,7 @@
 							<td width="83"></td>
 							<td width="83"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="lastStation12"></td>
 							<td width="107"></td>
@@ -8936,7 +8961,7 @@
 
 
 						<!-- 			토요일 -->
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="firstStation21"></td>
 							<td width="107"></td>
@@ -8945,7 +8970,7 @@
 							<td width="83" id="firstTime21"></td>
 							<td width="83"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="firstStation22"></td>
 							<td width="107"></td>
@@ -8954,7 +8979,7 @@
 							<td width="83" id="firstTime22"></td>
 							<td width="83"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="lastStation21"></td>
 							<td width="107"></td>
@@ -8963,7 +8988,7 @@
 							<td width="83" id="lastTime21"></td>
 							<td width="83"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="lastStation22"></td>
 							<td width="107"></td>
@@ -8973,7 +8998,7 @@
 							<td width="83"></td>
 						</tr>
 						<!-- 			일요일 -->
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="firstStation31"></td>
 							<td width="107"></td>
@@ -8982,7 +9007,7 @@
 							<td width="83"></td>
 							<td width="83" id="firstTime31"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="firstStation32"></td>
 							<td width="107"></td>
@@ -8991,7 +9016,7 @@
 							<td width="83"></td>
 							<td width="83" id="firstTime32"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="lastStation31"></td>
 							<td width="107"></td>
@@ -9000,7 +9025,7 @@
 							<td width="83"></td>
 							<td width="83" id="lastTime31"></td>
 						</tr>
-						<tr>
+						<tr  class= "tbl_detailTime">
 							<td height="25" width="72">막차</td>
 							<td width="74" id="lastStation32"></td>
 							<td width="107"></td>
@@ -9034,10 +9059,13 @@
 
 				<table>
 					<tr>
-						<td><a href="#timetableselect" class="timetableselect1"
-							yoil="1" updown="1" onclick="stationtimetableNext()">상행선</a> <a
-							href="#timetableselect" class="timetableselect2" yoil="1"
-							updown="2" onclick="stationtimetableNextDown()">하행선</a></td>
+						<td>
+						<input type="radio" name = "days" onclick="stationtimetableNext()"yoil="1" updown="1" class="timetableselect1"checked="checked"> 상행선  
+						<input type="radio" name = "days" onclick="stationtimetableNextDown()"yoil="1" updown="2" class="timetableselect2" > 하행선 
+						
+
+							
+						</td>
 					</tr>
 
 					<tr>
@@ -9152,66 +9180,6 @@
 
 	</div></div>
 
-<!-- 역 좌석 -->
-<!-- 		<div id="train_seat_popups" style="position:absolute ; visibility:hidden; width:450px; height:400px;  background: rgba(255, 255, 255, 0.7);  z-index: 2;"> -->
-		
-<!-- 		<div style="margin: 10px;"> -->
-<!-- 		<table> -->
-		
-<!-- 		<tr> -->
-<!-- 		<td colspan="2" width="400px"> -->
-<!-- 			<img src = "./resources/image/menu/subway_seat_and_human.gif">  -->
-<!-- 		</td> -->
-<!-- 		</tr> -->
-		
-<!-- 		<tr> -->
-<!-- 		<td colspan="2" background="./reour" width="400px"> -->
-<!-- 			<span id = "seatTitle" style="text-align: center;">열차 이름과 열차 량</span> -->
-<!-- 		</td> -->
-<!-- 		</tr> -->
-		
-<!-- 		<tr> -->
-<!-- 		<td style="text-align: center;"> -->
-<!-- 			앞 오른쪽 의자 -->
-<!-- 		</td> -->
-<!-- 		<td style="text-align: center;"> -->
-<!-- 			앞 왼쪽 의자 -->
-<!-- 		</td> -->
-<!-- 		</tr> -->
-		
-<!-- 		<tr> -->
-<!-- 		<td> -->
-<!-- 			<span id = "trainSeat1"></span> -->
-<!-- 		</td> -->
-<!-- 		<td> -->
-<!-- 			<span id = "trainSeat2"></span> -->
-<!-- 		</td> -->
-<!-- 		</tr> -->
-		
-		
-<!-- 		<tr> -->
-<!-- 		<td style="text-align: center;"> -->
-<!-- 			뒤 오른쪽 의자 -->
-<!-- 		</td> -->
-<!-- 		<td style="text-align: center;"> -->
-<!-- 			뒤 왼쪽 의자 -->
-<!-- 		</td> -->
-<!-- 		</tr> -->
-		
-		
-<!-- 		<tr> -->
-<!-- 		<td> -->
-<!-- 			<span id = "trainSeat3"></span> -->
-<!-- 		</td> -->
-<!-- 		<td> -->
-<!-- 			<span id = "trainSeat4"></span> -->
-<!-- 		</td> -->
-<!-- 		</tr> -->
-		
-<!-- 		</table> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-	<!-- 역 좌석 -->
 
 	
 

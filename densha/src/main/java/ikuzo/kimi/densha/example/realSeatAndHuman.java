@@ -61,6 +61,7 @@ public class realSeatAndHuman {
 					String subwaynums = rows.getChild("SUBWAYNUM").getValue();
 					String carNums = rows.getChild("CARNUM").getValue();
 					String human = rows.getChild("HUMANNUM").getValue();
+					String humanPercent = rows.getChild("HUMANPERCENT").getValue();
 					String elderlySeat1 = rows.getChild("ELDERLYSEAT1").getValue();
 					String elderlySeat2 = rows.getChild("ELDERLYSEAT2").getValue();
 					String elderlySeat3 = rows.getChild("ELDERLYSEAT3").getValue();
@@ -73,7 +74,7 @@ public class realSeatAndHuman {
 					String elderlySeat10 = rows.getChild("ELDERLYSEAT10").getValue();
 					String elderlySeat11 = rows.getChild("ELDERLYSEAT11").getValue();
 					String elderlySeat12 = rows.getChild("ELDERLYSEAT12").getValue();
-					SeatAndHuman vo = new SeatAndHuman(subwaynums, carNums, human, elderlySeat1, elderlySeat2,
+					SeatAndHuman vo = new SeatAndHuman(subwaynums, carNums, human, humanPercent,elderlySeat1, elderlySeat2,
 							elderlySeat3, elderlySeat4, elderlySeat5, elderlySeat6, elderlySeat7, elderlySeat8,
 							elderlySeat9, elderlySeat10, elderlySeat11, elderlySeat12);
 					alist.add(vo); // 저장

@@ -115,7 +115,7 @@ function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
 			  $('.modal').modal(); // modal 띄우기
 			  var insertTitleModalPath = scodes +'<->'+ecodes; 
 			  $('.modal-title').text(insertTitleModalPath); // modal제목에 값 넣기 
-			 var kakaruJikan = item.split(',');
+			  var kakaruJikan = item.split(',');
 			 
 			  $('.modal-body').html('<h5>'+item+'</h5>'); // modal내용에 값 넣기 
 				 
@@ -207,14 +207,16 @@ function station_name_popup(stationCode) { // stationNamePopup
   
 				if(item.length > 1){ // 환승역인 경우만 버튼을 생성해 줌
 				var spl = "'" + items.line_num + "','" + items.station_cd + "','" + items.fr_code + "'";	
-				insertLineInfo += '<li><a href ="javascript:nowLine(' + spl + ')" class="btn btn-default">' + items.line_num + '호선 </a></li>';
+				insertLineInfo += '<li><a href ="javascript:nowLine(' + spl + ')" class="btn btn-default" style="width:505px;">' + items.line_num + '호선 </a></li>';
 				
 				$('.btn-group').css('display','block'); // display를 on
  				$('#stationNameId').text(getStation); // dropdown에 역이름 넣어주기 
-				$('#stationNamebar').show(); // 기존 역 이름 숨키기
-				}else if(item.length == 1 ){ // 일반역인 경우 div 를 삭제한다.
+ 				$('#stationNamebar').empty(); // 기존 역 이름 비우기
+ 				
+				}else if(item.length == 1 ){ // 일반역인 경우 
 					$('#stationNamebar').show(); // 기존 역 이름 보이기
 					$('.btn-group').css('display','none'); // display를 off
+					$('#stationNamebar').text(getStation); // 기존 역 이름
 				}
 				cyber = items.cyber_st_code;
 				latitude = items.xpoint_wgs; // x좌표 받기
@@ -269,7 +271,7 @@ function station_name_down() { // stationNamediv 삭제 역할
 	$('#settingHelper').addClass("active");
 	$('#stationInfoTab').addClass("tab-pane fade active in");
 	
-	clearInterval(timeInterval);
+	clearInterval(timeInterval); 
 }
 
 
@@ -732,7 +734,7 @@ function stationinforesult(item) {
 
 	subwaySensorGet(); // 센서 ajax 겟 
 
-	$('#stationNamebar').text(getStation); // div 팝업 창에 역 이름 넣기 
+//	$('#stationNamebar').text(getStation); // div 팝업 창에 역 이름 넣기 
 
 
 	lineGifChange();
@@ -885,17 +887,20 @@ function stationtimetableNextDown() { // 역 시간표 (선택자)
 	var updown = $('.timetableselect2').attr('updown');
 
 	timeajax(yoil, updown);
+	$('.timetableselect1').attr('checked','checked');
 
 }
 
-function stationtimetableNexts() { // 역 시간표 평일
+function stationtimetableNexts() { // 역 시간표 최초 누름 
 	removes();
 	var yoil = 1;
 	var updown = 1;
-
+	
 	timeajax(yoil, updown);
 	$('.timetableselect1').attr('yoil', '1');
 	$('.timetableselect2').attr('yoil', '1');
+	
+$('.timetableselect1').attr('checked','checked');
 
 }
 function stationtimetableNext2() { // 역 시간표 토요일
@@ -906,6 +911,7 @@ function stationtimetableNext2() { // 역 시간표 토요일
 	timeajax(yoil, updown);
 	$('.timetableselect1').attr('yoil', '2');
 	$('.timetableselect2').attr('yoil', '2');
+	$('.timetableselect1').attr('checked','checked');
 }
 
 function stationtimetableNext3() { // 역 시간표 일요일
@@ -917,6 +923,7 @@ function stationtimetableNext3() { // 역 시간표 일요일
 
 	$('.timetableselect1').attr('yoil', '3');
 	$('.timetableselect2').attr('yoil', '3');
+	$('.timetableselect1').attr('checked','checked');
 }
 
 function timeajax(yoil, updown) { // 역 시간표

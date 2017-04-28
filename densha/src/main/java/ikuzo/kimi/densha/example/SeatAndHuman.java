@@ -5,6 +5,7 @@ public class SeatAndHuman {
 	private String subwayNum; // 지하철번호
 	private String carNum; // 칸번호
 	private String humanNum; // 사람수
+	private String humanPercent; // 사람수
 	private String elderlySeat1;// 노약자석1
 	private String elderlySeat2;// 노약자석2
 	private String elderlySeat3;// 노약자석3
@@ -23,14 +24,15 @@ public class SeatAndHuman {
 		super();
 	}
 
-	public SeatAndHuman(String subwayNum, String carNum, String humanNum, String elderlySeat1, String elderlySeat2,
-			String elderlySeat3, String elderlySeat4, String elderlySeat5, String elderlySeat6, String elderlySeat7,
-			String elderlySeat8, String elderlySeat9, String elderlySeat10, String elderlySeat11,
+	public SeatAndHuman(String subwayNum, String carNum, String humanNum, String humanPercent, String elderlySeat1,
+			String elderlySeat2, String elderlySeat3, String elderlySeat4, String elderlySeat5, String elderlySeat6,
+			String elderlySeat7, String elderlySeat8, String elderlySeat9, String elderlySeat10, String elderlySeat11,
 			String elderlySeat12) {
 		super();
 		this.subwayNum = subwayNum;
 		this.carNum = carNum;
 		this.humanNum = humanNum;
+		this.humanPercent = humanPercent;
 		this.elderlySeat1 = elderlySeat1;
 		this.elderlySeat2 = elderlySeat2;
 		this.elderlySeat3 = elderlySeat3;
@@ -167,12 +169,12 @@ public class SeatAndHuman {
 
 	@Override
 	public String toString() {
-		return "Subway [subwayNum=" + subwayNum + ", carNum=" + carNum + ", humanNum=" + humanNum + ", elderlySeat1="
-				+ elderlySeat1 + ", elderlySeat2=" + elderlySeat2 + ", elderlySeat3=" + elderlySeat3 + ", elderlySeat4="
-				+ elderlySeat4 + ", elderlySeat5=" + elderlySeat5 + ", elderlySeat6=" + elderlySeat6 + ", elderlySeat7="
-				+ elderlySeat7 + ", elderlySeat8=" + elderlySeat8 + ", elderlySeat9=" + elderlySeat9
-				+ ", elderlySeat10=" + elderlySeat10 + ", elderlySeat11=" + elderlySeat11 + ", elderlySeat12="
-				+ elderlySeat12 + "]";
+		return "SeatAndHuman [subwayNum=" + subwayNum + ", carNum=" + carNum + ", humanNum=" + humanNum
+				+ ", humanPercent=" + humanPercent + ", elderlySeat1=" + elderlySeat1 + ", elderlySeat2=" + elderlySeat2
+				+ ", elderlySeat3=" + elderlySeat3 + ", elderlySeat4=" + elderlySeat4 + ", elderlySeat5=" + elderlySeat5
+				+ ", elderlySeat6=" + elderlySeat6 + ", elderlySeat7=" + elderlySeat7 + ", elderlySeat8=" + elderlySeat8
+				+ ", elderlySeat9=" + elderlySeat9 + ", elderlySeat10=" + elderlySeat10 + ", elderlySeat11="
+				+ elderlySeat11 + ", elderlySeat12=" + elderlySeat12 + "]";
 	}
 
 }

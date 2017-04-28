@@ -417,7 +417,11 @@ function get_train_info(e) {
 	var carnum = e;
 	//	var carnumss = $('#carNum1').attr('trainnum');
 	console.log(carnum);
+<<<<<<< HEAD
 	
+=======
+	
+>>>>>>> branch 'master' of https://github.com/girigirisekai/kiminoDensha.git
 		$.ajax({
 			url : 'realTimeTrainSeat',
 			type : 'post',
@@ -549,7 +553,11 @@ function get_train_info(e) {
 				$('#seatTitle').html(insertTitle);
 				
 			}
+<<<<<<< HEAD
 		});
+=======
+		});
+>>>>>>> branch 'master' of https://github.com/girigirisekai/kiminoDensha.git
 		
 
 }
@@ -663,6 +671,7 @@ function resultSubwaySensorGet(datas) {
 	var nextCar100 = '';
 	var nextCar120 = '';
 
+<<<<<<< HEAD
 	
 		$.each(datas, function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
 			var humanIndex = index + 1; // 1234...\
@@ -719,6 +728,64 @@ function resultSubwaySensorGet(datas) {
 		$('.train10').mouseenter(train_popup).mouseleave(train_popupOut);
 		$('.train11').mouseenter(train_popup).mouseleave(train_popupOut);
 		$('.train12').mouseenter(train_popup).mouseleave(train_popupOut);
+=======
+	
+		$.each(datas, function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
+			var humanIndex = index + 1; // 1234...\
+			carHuman = Number(items.humanNum) / 160 * 100;
+			// 한칸당 인원한계는 160명이 된다 그리고 100을곱한다. 이러면 62.5 가 나옴
+			carHuman = Math.round(carHuman);
+			// 소수점 반올림 62 
+			var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex + '">';
+			//		var inserts = '<span class = "train' + humanIndex + '" trainNum = "' + humanIndex
+			//			+ '" onmouseover="train_popup(true)" onmouseout="train_popup(false)">';
+			//		onmouseover="train_popup(true)" onmouseout="train_popupOut(false)"
+			//		inserts += '<div style ="" class = "carColor'+humanIndex+'" num="'+humanIndex+'">';
+			if (0 <= carHuman && carHuman < 20) {
+				inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
+			} else if (21 <= carHuman && carHuman < 40) {
+				inserts += '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
+			} else if (41 <= carHuman && carHuman < 60) {
+				inserts += '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
+			} else if (61 <= carHuman && carHuman < 80) {
+				inserts += '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
+			} else if (81 <= carHuman && carHuman < 100) {
+				inserts += '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
+			} else if (101 <= carHuman) {
+				inserts += '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
+			}
+			
+			
+			//		inserts += '</div>';
+			inserts += '</span>';
+			
+			var insertVar = '';
+			
+			insertVar += items.humanNum + '명 <br>';
+			insertVar += carHuman + '%';
+			
+			$('#carNum' + humanIndex).html(inserts);
+			$('#carNumVar' + humanIndex).html(insertVar);
+			//		$('.carColor' + humanIndex).attr('style','{display: inline-block; position: relative;}; after{  position: absolute;display: block;content: "";top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 255, 0, 0.'+carHuman+');}');
+		});
+		//	for(var i = 1; i<10; i++){
+		//	$('.carColor'+i).hover(train_popup,train_popupOut);
+		//	}
+		//	$('.carColor1').mouseenter(train_popup);
+		//	$('.carColor1').mouseleave(train_popupOut);
+		$('.train1').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train2').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train3').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train4').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train5').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train6').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train7').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train8').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train9').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train10').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train11').mouseenter(train_popup).mouseleave(train_popupOut);
+		$('.train12').mouseenter(train_popup).mouseleave(train_popupOut);
+>>>>>>> branch 'master' of https://github.com/girigirisekai/kiminoDensha.git
 		
 	
 }

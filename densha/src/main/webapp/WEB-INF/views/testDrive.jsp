@@ -47,12 +47,14 @@ body, html {
 
 	<!-- 	내부 div 창 하얀배경  -->
 
-	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);border-radius: 30px;"
+	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);"
 		class="first">
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 			
 		
-			
+			<c:forEach var="item" items="${carSeatList}">
+			 ${item}
+			</c:forEach>
 
 
 		</div>

@@ -19,11 +19,27 @@ body, html {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	
 } 
 
 .first { 
 	overflow : hidden;
 }
+
+.clearfix:after {
+    content: ".";              /* the period is placed on the page as the last thing before the div closes */
+    display: block;          /* inline elements don't respond to the clear property */ 
+    height: 0;                  /* ensure the period is not visible */
+    clear: both;               /* make the container clear the period */
+    visibility: hidden;      /* further ensures the period is not visible */
+}
+ 
+.clearfix {display: inline-block;}   /* a fix for IE Mac */
+ 
+
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+
 
 </style>
 
@@ -42,7 +58,7 @@ body, html {
 		//새로운 즐겨찾기 추가 버튼 동작 실행 메소드 설정
 		$('#newFavorite').on('click', newFavorite);
 		//지하철의 센서 데이터 가져오기
-		subwaySensorGet();
+		//subwaySensorGet();
 		//현재 아이디의 즐겨찾기 목록 불러오기
 		searchFavoriteList();
 	});
@@ -99,6 +115,7 @@ body, html {
 
 	//새로운 역을 즐겨찾기 목록에 추가하기
 	function newFavorite() {
+		
 		//alert('즐겨찾기 추가 실행');
 		var stationName = $('.form-control option:selected').val(); // 선택된 이름
 		$.ajax({
@@ -111,79 +128,96 @@ body, html {
 			success: function(data) {
 				//alert("등록이 성공하였습니다.");
 				printFavoriteStations(data);
+				$('.form-control').html('');
+				$('#searchStation').val('');
 			}
 		});
 	}
 	
 	//불러온 즐겨찾기 리스트 출력하기
 	function printFavoriteStations(favoriteLists){
+		subwaySensorGet();
 		//alert('리스트 출력 실행');
+		
+		
+		
 		var str='';
+		str+='<div>';
 		$.each(favoriteLists, function(index, item){
-			str+='<div id='+item.stationCode;
-			str+='style="float: left; margin-right: 20px; width: 520px; height: 320px;">';
-			str+='<div class="panel panel-default">';
-			str+='<div class="panel-heading">';
-			str+='<div class="col-lg-12">';
-			str+='<h3>'+item.favoriteName+'</h3>';
-			str+='</div>';				
-			str+='</div>';
-			str+='<div class="panel-body">';
-			str+='<table>';
-			str+='<tr>';				
-			str+='<td>실시간 열차</td>';
-			str+='</tr>';
-			str+='<tr>';				
-			str+='<td>열차 량 상황</td>';						
-			str+='</tr>';
-			str+='</table>';
-			str+='<table>';
-			str+='<tr>';			
-			str+='<td>';			
-			str+='<table>';					
-			str+='<tr>';						
-			str+='<td>실시간 열차</td>';							
-			str+='</tr>';								
-			str+='<tr>';							
-			str+='<td><table width="450">';							
-			str+='<td colspan="12"><center>혼잡도</center></td>';								
-			str+='<tr>';										
-			str+='<td>1호칸</td>';										
-			str+='<td>2호칸</td>';
-			str+='<td>3호칸</td>';
-			str+='<td>4호칸</td>';
-			str+='<td>5호칸</td>';
-			str+='<td>6호칸</td>';
-			str+='<td>7호칸</td>';
-			str+='<td>8호칸</td>';
-			str+='<td>9호칸</td>';
-			str+='<td>10호칸</td>';
-			str+='</tr>';
-			str+='<tr>';										
-			str+='<td id="carNum1"></td>';
-			str+='<td id="carNum2"></td>';
-			str+='<td id="carNum3"></td>';
-			str+='<td id="carNum4"></td>';
-			str+='<td id="carNum5"></td>';
-			str+='<td id="carNum6"></td>';
-			str+='<td id="carNum7"></td>';
-			str+='<td id="carNum8"></td>';
-			str+='<td id="carNum9"></td>';
-			str+='<td id="carNum10"></td>';
-			str+='</tr>';
-			str+='</table>';										
-			str+='</td>';												
-			str+='</tr>';										
-			str+='</table>';
-			str+='</td>';											
-			str+='</tr>';													
-			str+='</table>';								
-			str+='</div>';						
-			str+='<input type="button" class="btn btn-danger favoriteStations"  atr1="'+item.id+'" atr2="'+item.favoriteName+'" atr3="'+item.stationCode+'" value="삭제하기"';	 					
-			str+='</div>';		
+			
+			str+='<div id="'+item.stationCode+'"';
+		 	if(index%2==0 && index!=0){
+				str+=' style="clear: left; float: left; margin-right: 60px; width=2000px; ">';	
+			}
+			else{
+				str+='style="float: left; margin-right: 60px; width=2000px;" >';	
+			} 
+			
+			str+=	'<div class="panel panel-default">';
+ 			str+=			'<h3 class="col-lg-12 panel-heading" style=" background-color: red; margin-top: 0px;  font-size: 25px; font-weight: bold; color: white;">'+item.favoriteName+'</h3>';				
+			str+=		'<div class="panel-body" style="height:300px; padding-top: 100px;"">';
+			str+=			'<table>';
+			str+=				'<tr>';				
+			str+=					'<td>실시간 열차</td>';
+			str+=				'</tr>';
+			str+=				'<tr>';				
+			str+=					'<td>열차 량 상황</td>';						
+			str+=				'</tr>';
+			str+=			'</table>';
+			str+=			'<table>';
+			str+=				'<tr>';			
+			str+=					'<td>';			
+			str+=						'<table >';					
+			str+=							'<tr>';						
+			str+=								'<td>실시간 열차</td>';							
+			str+=							'</tr>';								
+			str+=							'<tr>';							
+			str+=								'<td>';
+			str+=								'<div style="padding-top:30px;">';
+			str+=								'<table width="450; ">';	
+			str+=									'<td colspan="10"><center>혼잡도</center>';								
+			str+=									'<tr>';										
+			str+=										'<td>1호칸</td>';										
+			str+=										'<td>2호칸</td>';
+			str+=										'<td>3호칸</td>';
+			str+=										'<td>4호칸</td>';
+			str+=										'<td>5호칸</td>';
+			str+=										'<td>6호칸</td>';
+			str+=										'<td>7호칸</td>';
+			str+=										'<td>8호칸</td>';
+			str+=										'<td>9호칸</td>';
+			str+=										'<td>10호칸</td>';
+			str+=									'</tr>';
+			str+=									'<tr>';										
+			str+=										'<td class="carNum1"></td>';
+			str+=										'<td class="carNum2"></td>';
+			str+=										'<td class="carNum3"></td>';
+			str+=										'<td class="carNum4"></td>';
+			str+=										'<td class="carNum5"></td>';
+			str+=										'<td class="carNum6"></td>';
+			str+=										'<td class="carNum7"></td>';
+			str+=										'<td class="carNum8"></td>';
+			str+=										'<td class="carNum9"></td>';
+			str+=										'<td class="carNum10"></td>';
+			str+=									'</tr>';
+			str+=									'</td>';	
+			str+=								'</table>';
+			str+=								'</div>';
+			str+=								'</td>';																			
+			str+=							'</tr>';										
+			str+=						'</table>';
+			str+=					'</td>';											
+			str+=				'</tr>';													
+			str+=			'</table>';								
+			str+=		'</div>';
+			str+=		'<div style="padding-left:190px; padding-bottom: 20px;">';
+			str+=			'<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="'+item.id+'" atr2="'+item.favoriteName+'" atr3="'+item.stationCode+'"value="삭제하기" >';	 					
+			str+=		'</div>';
+			str+=	'</div>';		
 			str+='</div>';
 		});
-		$('#storedStations').html(str); 
+		str+='</div>';
+		$('#storedStations').html(str);	
 		$('.favoriteStations').on('click', deleteStation);
 	}
 	
@@ -206,7 +240,7 @@ body, html {
 			var humanIndex = index + 1;
 			var human = items.humanNum;
 			console.log(human);
-			$('#carNum' + humanIndex).text(human);
+			$('.carNum' + humanIndex).text(human);
 		});
 	}
 
@@ -242,7 +276,7 @@ body, html {
 </script>
 
 </head>
-<body>
+<body >
 	<!--top header-->
 	<jsp:include page="header.jsp" />
 	<!--top header-->
@@ -254,81 +288,79 @@ body, html {
 			<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
 		</div>
 	<!-- 디자인 바  -->
+	
+	
 
 	<!-- 	내부 div 창 하얀배경  -->
 
-	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);"
-		class="first">
-		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
+	<div style="margin: 50px; overflow: auto; background: rgba(255, 255, 255, 0.85); border-radius: 30px;"
+		class="first ">
+		
+		
+		
+		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px; float: left; ">
 
-			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0);">
-				<h1>My Favorite</h1>
-				<p>자주 이용하는 역을 추가하세요.</p>
+	<!--메뉴바-->
+	<jsp:include page="Member/menu.jsp" />
+	<!--메뉴바-->
+
+		<div style="width: 80%; float: left;">
+
+			<div class="jumbotron" style=" background: rgba(255, 255, 255, 0); padding-top: 30px; ">
+				<h1 >My Favorite</h1>
+				<p style="font-weight: bolder;">자주 이용하는 역을 추가하세요.</p>
 			</div>
-			
+			 
 			
 			<!-- 이 부분은 개인정보에 대한 페이지 -->
 
-			<div style="width: 500px; float: left; margin-right: 30px;"
-				class="float">
+			<div style="float: left; height: 400px; width: 480px;  margin-right: 60px; padding-bottom: 100px;"
+				class="float" >
 
-				<div class="panel panel-warning ">
+				<div class="panel panel-warning" style=" height: 400px;">
 					<div class="panel-heading">
-						<h3 class="panel-title">개인정보 페이지</h3>
+						<h3 class="panel-title" style="padding-top: 10px; padding-bottom: 10px; font-size: 20px; font-weight: bold;">개인정보 페이지</h3>
 					</div>
-					<div class="panel-body ">
-
-
+					<div class="panel-body">
 						<table>
 							<tr>
-								<td width="100">사진</td>
+								<td width="60" style="padding-bottom: 30px; padding-top: 70px; padding-left: 30px; padding-right: 0px; text-align: center; font-weight: bold; font-size: 15px;">사용자</td>
+								<td width="160" style="padding-bottom: 30px; padding-top: 70px; padding-left: 70px; padding-right: 0px; text-align: center; font-weight: bold; font-size: 20px;">${loginId}</td>
 							</tr>
-							<tr>
-								<td>사진을 넣으세요</td>
+							<tr >
+								<td style="padding-bottom: 3px; padding-top: 40px; padding-left: 30px; padding-right: 0px; text-align: center; text-align: center; font-weight: bold; font-size: 15px;">저장된 역 정보</td>
+								<td style="padding-bottom: 3px; padding-top: 40px; padding-left: 70px; padding-right: 0px; text-align: center; text-align: center; font-weight: bold; font-size: 20px;">
+									<!-- 고쳐야됌  -->
+									<c:forEach items="${favoriteLists}" var="station">
+										${station.favoriteName}
+									</c:forEach>
+								</td>
 							</tr>
-
-						</table>
-
-						<table>
-							<tr>
-								<td width="60">사용자</td>
-								<td width="160">${loginId}</td>
-							</tr>
-							<tr>
-								<td>현재 저정된 역 정보</td>
-								<td><c:forEach items="${favoriteLists}" var="station">
-						${station.favoriteName} 
-						</c:forEach></td>
-							</tr>
-
-						</table>
-						<a href="myaccount" class="btn btn-info">개인정보 수정하기</a>
+						</table>					
+					</div>
+					<div style="padding-left: 180px; padding-top: 25px; padding-bottom: 10px; ">
+						<a href="myaccount" class="btn btn-info" style="font-weight: bold;" >개인정보 수정</a>
 					</div>
 				</div>
+				
 			</div>
 
 
-
-
-		
-
-			<div class="panel panel-default"
-				style="width: 550px; height: 320px; float: left;"  class = "float" >
-				<div class="col-lg-12 ">
-					<h3>역 추가하기</h3>
+			<div class="panel panel-default "
+				style="width: 480px; float: left; margin-right: 30px; height: 400px; padding-bottom: 100px; " class = "float" >
+				<div class="panel-heading" style="background-color: green;">
+					<h3 class="panel-title" style="padding-top: 10px; padding-bottom: 10px;  padding-left:0px; padding-right:10px;  color:white; font-size: 20px; font-weight: bold;">역 추가하기</h3>
 				</div>
 
 				<div class="panel-body">
 
-					<div class="form-group">
-						<label for="inputEmail" class="col-lg-2 control-label">추가할 역</label>
-						<div class="col-lg-10">
-							<input type="text" class="form-control" id="searchStation"
-								placeholder="역 이름을 입력해 주세요"> 
-								<!--  <a href="javascript:searchStation()" class="btn btn-success">검색하기</a> -->
-								<input type="button" id="searchStations" class="btn btn-success" value="검색하기">
+					<div class="form-group" >
+						<label for="inputEmail" class="col-lg-2 control-label" style="padding-top: 30px; padding-left: 0px; padding-right:10px; font-size: 15px; font-weight: bold;">추가할 역</label>
+						<div class="col-lg-10" style="padding-top: 10px; padding-left: 0px; padding-right: 0px; ">
+							<input type="text" class="form-control" id="searchStation" placeholder="역 이름을 입력해 주세요"> 
+							<input type="button" id="searchStations" class="btn btn-success" style="font-weight: bold;" value="검색하기">
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-10" style="padding-top: 5px; padding-left: 0px; " >
 							<!-- 검색한 역을 추가 (아름이 중복되거나 여러가지 경우가 있으므로 ) -->
 							<br> <select multiple="" class="form-control">
 
@@ -339,18 +371,22 @@ body, html {
 
 					</div>
 					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-							<button type="reset" class="btn btn-default" id="newFavorite">초기화</button>
-							<a href="javascript:newFavorite()" class="btn btn-success"
-								id="newFavorite"> 등록하기</a>
+						<div class="col-lg-10 col-lg-offset-2" style="padding-top: 60px; padding-left: 60px;" >
+							<button type="reset" class="btn btn-default" id="newFavorite" style="font-weight: bold;" >초기화</button>
+							<a href="javascript:newFavorite()" class="btn btn-success" id="newFavorite" style="font-weight: bold;" > 등록하기</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id='storedStations'></div>
+			
+			<!-- 등록한 즐겨찾기 부분이 출력되는 부분  -->
+			<div style="float: left; width: 3000px; padding-top: 30px;">
+				<div id="storedStations"></div>
+			</div>
+			
 		</div>
 	</div>
-
+</div>
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>
 </html>

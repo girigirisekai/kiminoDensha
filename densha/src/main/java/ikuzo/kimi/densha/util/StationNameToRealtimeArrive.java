@@ -12,10 +12,10 @@ public class StationNameToRealtimeArrive {
 		// 역 이름으로 실시간 정보 출력
 		// json으로 보내기 위한 단계이다.
 		System.out.println(stationName);
-//		http://swopenAPI.seoul.go.kr/api/subway/(인증키)/xml/realtimeStationArrival/0/5/서울
+//		http://swopenAPI.seoul.go.kr/api/subway/(인증키)/json/realtimeStationArrival/0/5/서울
 		String seoulGoKr = "http://swopenAPI.seoul.go.kr/api/subway/";
 		String openApiKey = "416e574575696c693436756e7a6375";
-		String returnData = "/json/realtimeStationArrival/0/5/";
+		String returnData = "/json/realtimeStationArrival/0/30/";
 		String insertStation = stationName;
 		
 		// UTF 엔코딩으로 변경하기 위한 団 (%20 단어 형태)
@@ -44,7 +44,7 @@ public class StationNameToRealtimeArrive {
 			StringBuffer buffer = new StringBuffer();
 			int i;
 			byte[] b = new byte[4096];
-			while ((i = reader.read(b)) != -1) {
+			while ((i = reader.read(b)) != -1) { 
 				buffer.append(new String(b, 0, i));
 			}
 			return buffer.toString(); // String으로 보내기 

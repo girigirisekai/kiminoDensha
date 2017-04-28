@@ -44,7 +44,7 @@ body, html {
 	<!-- 디자인 바  -->
 
 
-	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85);"
+	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85); border-radius: 30px;"
 		class="first">
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 
@@ -54,7 +54,7 @@ body, html {
 			<!--메뉴바-->
 
 			<div style="width: 80%; float: left;">
-				<div class="jumbotron" style="background: rgba(255, 255, 255, 0);">
+				<div class="jumbotron" style="background: rgba(255, 255, 255, 0); width: 95%; float: left; padding: 10px;">
 					<h1>개인정보</h1>
 
 					<div class="form-group">
@@ -65,10 +65,10 @@ body, html {
 					<a href="updateMember" class="btn btn-info">개인정보 수정</a>
 				</div>
 
-				<div style="">최근 접속 기록</div>
+				<div style="width: 80%; float: left;"><p>최근 접속 기록</p>
 
-
-				<table class="table table-striped table-hover ">
+				
+				<table class="table table-striped table-hover " >
 					<thead>
 						<tr>
 							<th>#</th>
@@ -87,6 +87,7 @@ body, html {
 						</c:forEach>
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>

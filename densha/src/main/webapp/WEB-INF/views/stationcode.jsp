@@ -13,21 +13,31 @@
 /* #canvas_background {
 	pointer-events: all;
 } */
- 
+ #노선 circle{
+ 	cursor: pointer;
+ }
 
 </style>
 
 <title>지하철 지도 서비스</title>
 <script src="resources/js/jquery-3.1.1.min.js"></script>
 <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
 
 <!-- 지하철 팝업과 역 정보 팝업등의 자바스크립트 -->
 <script src="./resources/js/stationcode.js"></script>
 <script src="./resources/js/svgMap.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-<script>
 
+<!-- version3 줌 드래그 -->
+<script src="./resources/js/jquery.mousewheel.min.js"></script>
+<script src="./resources/js/odsaySvg.js"></script>
+
+<!-- 팝업 파일 드래그 js -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+	// 출발역 도착역 사용 변수
 	var scode, code, ecode, ecode2, scodes, ecodes;
 	var xPoint, yPoint;
 	var startCode = '<path fill="#9E1205" d="M0,16.834c0,1.619,0.21,3.182,0.636,4.663c0,0,0.17,0.644,0.687,1.886c0.005,0.013,0.002,0.006,0,0 c0.002,0.006,0.005,0.013,0,0c1.472,3.515,5.557,12.03,15.489,26.555V50c0.008-0.011,0.014-0.021,0.021-0.031V0 C7.537,0,0,7.537,0,16.834z"></path>'
@@ -38,46 +48,41 @@
 		  +'<path fill="#1961BC" d="M33.668,16.834C33.668,7.537,26.131,0,16.833,0v49.969c0.008,0.011,0.014,0.021,0.021,0.031v-0.063 c9.934-14.525,14.018-23.041,15.489-26.555c0.518-1.242,0.688-1.886,0.688-1.886C33.459,20.016,33.668,18.453,33.668,16.834z"></path>'
 		  +'<path fill="#FFFFFF" d="M16.45,14.197c-1.849,0.859-3.228,0.494-3.762,0.283v-0.938h-1.917v17.75h1.917v-8.53 c0.535,0.211,1.914,0.576,3.762-0.283c0,0,2.69-1.493,6.446-0.555v-8.281C19.141,12.703,16.45,14.197,16.45,14.197z"></path>';
 	
+	//드래그 줌 변수
+	var svg;
+	$(window.document).on("contextmenu", function(event){return false;});	
+	  
+			  
 	$(document).ready(function() { // 최초 시작점 
 		
 		 $('svg').mousedown(function(e) {
+// 			 console.log(e);
 			// 1:좌클릭, 2:휠클릭, 3:우클릭
-			if (e.which == '1') { // 일반 클릭
-			} else if (e.which != '1') { // 우클릭
+			if (e.which == 1) { // 일반 클릭
+				
+			} else if (e.which == 3) { // 우클릭
 				station_name_down(); // 역 이름 팝업 div 삭제
 				get_station_down(); // 역정보보기 div 삭제
-				
-			}
+				$(this)[0].oncontextmenu = function() { // 우클릭시 띄워치는 contextmenu 막기 
+					return false; 
+				}
+
+			} 
 		}); 
 		$('#노선 circle').on('click', test1); 
 		$('#station').on('click', get_station_popup);
+		
+		//드래그 줌 기능
+		svg = new SVG($('#svg_1'));
+		svg.init();
+		$('#station_info_popup_layer').draggable();// 팝업창 드래그
 	
-
-		 
  
 	}); 
 	   
 	 
 	
-	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
-		
-		$('#endPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
-		$('#endPoint').html(endCode);
-		$('#startEnd').off('click', pathTest2);
-		$.each(list, function(index, item){
-			if(item.length > 4){
-				alert(item);	
-			}else {
-			$('#'+item).attr('fill', 'orange');
-			}
-		});
-		scode = null;
-		
-	}
-	
-	
-	
-	function pathTest1(){ // 
+	function pathTest1(){
 		
 		scode = code;
 		 $.ajax({
@@ -86,8 +91,7 @@
 			data : {str: scode},
 			dataType: 'text',
 			success : function(abc){
-				scodes = abc;
-				
+				scodes = abc; // 역 이름
 			}
 		}); 
 		$('#startEnd').off('click', pathTest1);
@@ -98,7 +102,8 @@
 	
 	function pathTest2(){
 		ecode = code;
-		
+			
+		//2중 ajax, 
 		 $.ajax({
 			url : 'pars',
 			type : 'get',
@@ -111,11 +116,33 @@
 						type : 'get',
 						data : {start: scodes, end: ecodes},
 						dataType : 'json',
-						success : pathm
+						success : pathm 
 					});
 				
 			}
 		}); 
+		
+	}
+	
+	function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
+		
+		$('#endPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
+		$('#endPoint').html(endCode);
+		$('#startEnd').off('click', pathTest2);
+		$.each(list, function(index, item){ //경로가 modal에 들어가는 부분
+			if(item.length > 4){
+				  $('.modal').modal(); // modal 띄우기
+				  var insertTitleModalPath = scodes +'<->'+ecodes; 
+				  $('.modal-title').text(insertTitleModalPath); // modal제목에 값 넣기 
+				 var kakaruJikan = item.split(',');
+				 
+				  $('.modal-body').html('<h5>'+item+'</h5>'); // modal내용에 값 넣기 
+					 
+			}else {
+			$('#'+item).attr('fill', 'orange');
+			}
+		});
+		scode = null;
 		
 	}
 	
@@ -167,9 +194,9 @@
 	<!--top header-->
 
 <!-- 지도부분 한번 씌워준다. zoom위해서  -->
-<div class = "svgMap">
+<div class = "contents subwayMode" id="contents">
 	<svg width="2899.3469772338867" height="2293.159912109375"
-		xmlns="http://www.w3.org/2000/svg">
+		xmlns="http://www.w3.org/2000/svg" class = "svgMaps">
 <g>
  <g>
   <title>background</title>
@@ -8707,7 +8734,7 @@
 
 </div>
 
-	<script>
+	<!-- <script>
 		/* var svg = d3.select("svg > g")
 			.call(d3.behavior.zoom().scaleExtent([ 1, 8 ]).on("zoom", zoom));
 	
@@ -8717,12 +8744,12 @@
 		} */
 		
 		//new 줌 기능
-		var svg = d3.select("svg")
+		/* var svg = d3.select("svg")
 		.call(d3.zoom().on("zoom", function () {
 	        svg.attr("transform", d3.event.transform)
-		}));
+		})); */
 
-	</script>
+	</script> -->
 	
 	
 	<!-- 	역 이름 띄우는 팝업 -->
@@ -8749,8 +8776,16 @@
 	<div id="station_info_popup_layer"
 		style="position: absolute; border: none; top: 100px; left: 100px; width: 550px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
 		
-		
 		<div style="margin: 11px">
+		
+		<div class="btn-toolbar">
+ <ul class="btn-group">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+</ul>
+</div>
+		
+		
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title" ><span id = "stationNamebar">역 이름 넣기?</span></h3>
@@ -8916,13 +8951,7 @@
 
 <!-- 	환승역인 경우   -->
 
-<div class="btn-toolbar">
- <ul class="breadcrumb">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li class="active">3</li>
-</ul>
-</div>
+
  
 <!-- 환승역인 경우 -->
 		<!-- 		NAV System -->
@@ -9318,6 +9347,25 @@
 <!-- 	</div> -->
 	<!-- 역 좌석 -->
 
+	
+		
+	<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">가입이 성공하였습니다.</h4>
+      </div>
+      <div class="modal-body">
+        <p>가입이 성공하였습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>

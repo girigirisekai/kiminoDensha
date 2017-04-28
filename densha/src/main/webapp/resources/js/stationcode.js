@@ -204,7 +204,7 @@ function station_name_popup(stationCode) { // stationNamePopup
 				var i = index + 1; // 1234순
 				getCode[index] = items.station_cd; // 역 코드들
 				getStation = items.station_nm2; // 역 이름 받기
- 
+  
 				if(item.length > 1){ // 환승역인 경우만 버튼을 생성해 줌
 				var spl = "'" + items.line_num + "','" + items.station_cd + "','" + items.fr_code + "'";	
 				insertLineInfo += '<li><a href ="javascript:nowLine(' + spl + ')" class="btn btn-default">' + items.line_num + '호선 </a></li>';

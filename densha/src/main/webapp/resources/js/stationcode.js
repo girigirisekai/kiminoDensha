@@ -208,10 +208,13 @@ function station_name_popup(stationCode) { // stationNamePopup
 				if(item.length > 1){ // 환승역인 경우만 버튼을 생성해 줌
 				var spl = "'" + items.line_num + "','" + items.station_cd + "','" + items.fr_code + "'";	
 				insertLineInfo += '<li><a href ="javascript:nowLine(' + spl + ')" class="btn btn-default">' + items.line_num + '호선 </a></li>';
-				$('#stationNameId').text(getStation);
-				$('span').remove('#stationNamebar');
+				
+				$('.btn-group').css('display','block'); // display를 on
+ 				$('#stationNameId').text(getStation); // dropdown에 역이름 넣어주기 
+				$('#stationNamebar').show(); // 기존 역 이름 숨키기
 				}else if(item.length == 1 ){ // 일반역인 경우 div 를 삭제한다.
-					$('div').remove('.btn-group');
+					$('#stationNamebar').show(); // 기존 역 이름 보이기
+					$('.btn-group').css('display','none'); // display를 off
 				}
 				cyber = items.cyber_st_code;
 				latitude = items.xpoint_wgs; // x좌표 받기

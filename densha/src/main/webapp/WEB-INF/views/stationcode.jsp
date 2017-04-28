@@ -8638,7 +8638,7 @@
 
 
    
-  <div class="btn-group" style="float:left;">
+  <div class="btn-group" style="float:left;display: block;">
   <a href="#" class="btn btn-primary"><span id="stationNameId"></span></a>
   <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
   <span class="caret"></span></a>
@@ -9214,24 +9214,7 @@
 	<!-- 역 좌석 -->
 
 	
-		
-	<div class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">가입이 성공하였습니다.</h4>
-      </div>
-      <div class="modal-body">
-        <p>가입이 성공하였습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+
 
 	<script src="./resources/js/bootstrap.min.js"></script>
 </body>

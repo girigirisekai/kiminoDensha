@@ -129,7 +129,7 @@ body, html {
 	<!--top header-->
 	<jsp:include page="../header.jsp" />
 	<!--top header-->
-
+ 
 	<!-- 디자인 바  -->
 	<div class="progress" style="position: relative; top: 0px;">
 		<div class="progress-bar progress-bar-success" style="width: 35%"></div>

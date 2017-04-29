@@ -152,7 +152,7 @@ public class SubwayController {
 		/*StationNameToStationExit exitInfo = new StationNameToStationExit();
 		ArrayList<Exit> exitArray = exitInfo.exitInfo(station);*/
 		
-		//DB StationNearInfo를 이용한 역정보
+		//DB StationNearInfo를 이용한 역정보 
 		ArrayList<Exit> exitArray = sinfodao.getStationNearInfo(station);
 		logger.debug("exit확인 : {}", exitArray);
 		

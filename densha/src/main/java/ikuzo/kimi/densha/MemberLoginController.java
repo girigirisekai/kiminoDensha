@@ -98,6 +98,7 @@ public class MemberLoginController {
 		model.addAttribute("accountInfo", myMember);
 		ses.setAttribute("loginQustion", myMember.getQuestion());
 		ArrayList<loginCheck> loginCheck = dao.logincheck3(id);
+		System.out.println(loginCheck+"로그인 체크한번!!!!!");
 		model.addAttribute("loginCheck3",loginCheck);
 		System.out.println(loginCheck);
 		return "Member/myAccount";

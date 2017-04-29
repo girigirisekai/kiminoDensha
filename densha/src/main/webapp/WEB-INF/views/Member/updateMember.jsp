@@ -41,7 +41,7 @@
 			}
 		});
 		function update1() {
-			$(".modal2").modal();
+			$("#modalUpdate").modal();
 		}
 	}
 
@@ -64,7 +64,7 @@
 				// deleteBt(ob); // modal 만들기 전 코드입니다.
 				var question = ob.question;
 				$("#secondQuestion").html(question);
-				$(".modal").modal();
+				$("#modalDelete1").modal();
 				$('#deleteMemberBt').on('click', DeleteMember);
 
 			},
@@ -94,8 +94,11 @@
 			},
 			success : function(ob) {
 				if (ob == 1) {
-					alert('삭제완료');
-					location.href = "home";
+					//alert('삭제완료');
+					$('#modalDelete1').modal('hide')
+					$("#modalDelete").modal();
+					$('#DeleteBt').on('click', DeleteBt);
+
 				} else {
 					alert('2차비밀번호에 오류가 났습니다.');
 				}
@@ -104,6 +107,9 @@
 				alert('2차비밀번호가 오류났습니다');
 			}
 		});
+	}
+	function DeleteBt() {
+		location.href = "home";
 	}
 </script>
 <style type="text/css">
@@ -179,8 +185,8 @@ body, html {
 								<div class="form-group">
 									<label for="textArea" class="col-lg-2 control-label">암호</label>
 									<div class="col-lg-10">
-										<textarea class="form-control" rows="1" id="password"
-											name="password"></textarea>
+										<input type="password" class="form-control"  id="password"
+											name="password">
 										<span class="help-block">암호는 수정이 가능합니다.</span>
 									</div>
 								</div>
@@ -206,21 +212,24 @@ body, html {
 									</div>
 								</div>
 
-								<div class="modal2">
+								<div class="modal" id="modalUpdate">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"
 													aria-hidden="true">&times;</button>
+												<div>
+													<font size="3" style="color: green"><b>Kimino
+															Densha</b></font>
+												</div>
 											</div>
-											<div class="modal-body">
-												<p>수정완료 비밀번호를 까먹지 않도록 잘 기억해 두세요 ! ^^</p>
-											</div>
-											<div class="modal-footer">
+											<div class="modal-body" align="center">
+												<font size="4"><p>수정완료 비밀번호를 까먹지 않도록 잘 기억해 두세요 !
+														^^</p></font>
 												<button type="button" class="btn btn-default"
 													data-dismiss="modal">닫기</button>
-												<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
 											</div>
+											<div class="modal-footer" align="center"></div>
 										</div>
 									</div>
 								</div>
@@ -266,7 +275,7 @@ body, html {
 							</div>
 						</fieldset>
 
-						<div class="modal">
+						<div class="modal" id="modalDelete1">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -279,7 +288,7 @@ body, html {
 										<div class="col-lg-10">
 											<div class="modal-body">
 												<font size="4"> <span id="secondQuestion"></span>
-												</font> <input type="text" class="form-control" id="checkPw"
+												</font> <input type="password" class="form-control" id="checkPw"
 													name='checkPw' placeholder="비밀번호 입력">
 											</div>
 										</div>
@@ -288,7 +297,6 @@ body, html {
 										<div align="center">
 											<span class="input-group-btn"> <input type='button'
 												class="btn btn-default" id='deleteMemberBt' value='삭제완료'>
-												<!-- <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
 											</span>
 										</div>
 									</div>
@@ -304,7 +312,27 @@ body, html {
 		</div>
 	</div>
 
+	<div class="modal" id="modalDelete">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div>
+						<font size="3" style="color: green"><b>Kimino Densha</b></font>
+					</div>
+				</div>
+				<div class="modal-body" align="center">
+					<font size="4">${loginId}님 아쉽지만 다음에 또 봐요 </font>
 
+				</div>
+				<div class="modal-footer" align="center">
+				<button type="button" id="DeleteBt" class="btn btn-default"
+					data-dismiss="modal">닫기</button>
+					</div>
+			</div>
+		</div>
+	</div>
 
 
 	<script src="./resources/js/bootstrap.min.js"></script>

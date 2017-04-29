@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="ikuzo.kimi.densha.dao.StationInfoMapper">
+
+	
+	<select id="getStationInfo" parameterType="String" resultType="StationInfo">
+	
+		select
+			*
+		from
+			StationInfo
+		where
+			STATION_CD
+			= #{station}
+	
+	</select>
+	
+	<select id="getStationNearInfo" parameterType="String" resultType="Exit">
+		
+		SELECT 
+			EXIT_NO exitNum
+    		, SUBSTR(
+        		XMLAGG(
+            		XMLELEMENT(COL , ',' , AREA_NM)ORDER BY AREA_NM).EXTRACT('//text()'
+       		).GETSTRINGVAL()
+       		, 2) info
+  		FROM 
+  			STATIONNEARINFO
+  		where 
+  			STATION_CD
+  			= #{station}
+		GROUP BY 
+			EXIT_NO
+		ORDER BY 1		
+		
+	
+	</select>
+	
+	
+	
+</mapper>

@@ -51,6 +51,7 @@ public class favoriteController {
 	@ResponseBody
 	@RequestMapping(value = "FavoriteStationName", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String FavoriteStationName(String stationName) throws Exception {
+		
 		logger.debug("--입력한 역의 정보 불러오기--");
 		
 		logger.debug("입력한 역 정보: {}", stationName);

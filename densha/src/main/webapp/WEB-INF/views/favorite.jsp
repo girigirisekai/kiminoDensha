@@ -174,7 +174,7 @@ body, html {
 			str+=							'<tr>';							
 			str+=								'<td>';
 			str+=								'<div style="padding-top:30px;">';
-			str+=								'<table width="450; ">';	
+			str+=								'<table width="375; ">';	
 			str+=									'<td colspan="10"><center>혼잡도</center>';								
 			str+=									'<tr>';										
 			str+=										'<td>1호칸</td>';										
@@ -314,7 +314,7 @@ body, html {
 			
 			<!-- 이 부분은 개인정보에 대한 페이지 -->
 
-			<div style="float: left; height: 400px; width: 480px;  margin-right: 60px; padding-bottom: 100px;"
+			<div style="float: left; height: 400px; width: 400px;  margin-right: 60px; padding-bottom: 100px;"
 				class="float" >
 
 				<div class="panel panel-warning" style=" height: 400px;">
@@ -325,7 +325,7 @@ body, html {
 						<table>
 							<tr>
 								<td width="60" style="padding-bottom: 30px; padding-top: 70px; padding-left: 30px; padding-right: 0px; text-align: center; font-weight: bold; font-size: 15px;">사용자</td>
-								<td width="160" style="padding-bottom: 30px; padding-top: 70px; padding-left: 70px; padding-right: 0px; text-align: center; font-weight: bold; font-size: 20px;">${loginId}</td>
+								<td width="160" style="padding-bottom: 30px; padding-top: 70px; padding-left: 70px; padding-right: 0px; text-align: center; font-weight: bold; font-size: 20px;"><textarea>${loginId}</textarea></td>
 							</tr>
 							<tr >
 								<td style="padding-bottom: 3px; padding-top: 40px; padding-left: 30px; padding-right: 0px; text-align: center; text-align: center; font-weight: bold; font-size: 15px;">저장된 역 정보</td>
@@ -347,7 +347,7 @@ body, html {
 
 
 			<div class="panel panel-default "
-				style="width: 480px; float: left; margin-right: 30px; height: 400px; padding-bottom: 100px; " class = "float" >
+				style="width: 380px; float: left; margin-right: 30px; height: 400px; padding-bottom: 100px; " class = "float" >
 				<div class="panel-heading" style="background-color: green;">
 					<h3 class="panel-title" style="padding-top: 10px; padding-bottom: 10px;  padding-left:0px; padding-right:10px;  color:white; font-size: 20px; font-weight: bold;">역 추가하기</h3>
 				</div>

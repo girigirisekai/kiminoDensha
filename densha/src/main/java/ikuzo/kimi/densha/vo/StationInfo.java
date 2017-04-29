@@ -1,6 +1,6 @@
 package ikuzo.kimi.densha.vo;
 
-public class StatinInfo {
+public class StationInfo {
 
 	private String station_cd; // 전철역코드
 	private String station_nm; // 전철역명
@@ -40,7 +40,7 @@ public class StatinInfo {
 	private String xpoint_wgs; // x좌표(wgs)
 	private String ypoint_wgs; // y좌표(wgs)
 
-	public StatinInfo(String station_cd, String station_nm, String station_nm_eng, String line_num, String fr_code,
+	public StationInfo(String station_cd, String station_nm, String station_nm_eng, String line_num, String fr_code,
 			String cyber_st_code, String branch_office_code, String branch_office_nm, String regidate, String tel,
 			String fax, String post_code, String address, String minwon, String infotesk, String culture, String ticket,
 			String obstacle, String meetplace, String parking, String bicycle, String muin, String office,
@@ -85,7 +85,7 @@ public class StatinInfo {
 		this.ypoint_wgs = ypoint_wgs;
 	}
 
-	public StatinInfo() {
+	public StationInfo() {
 		super();
 	}
 

@@ -13,6 +13,8 @@
 		<typeAlias  type="ikuzo.kimi.densha.vo.Station" alias="Station"/>
 		<typeAlias  type="ikuzo.kimi.densha.vo.stationDB" alias="stationDB"/>
 		<typeAlias  type="ikuzo.kimi.densha.vo.checkCode" alias="checkCode"/>
+		<typeAlias  type="ikuzo.kimi.densha.vo.StationInfo" alias="StationInfo"/>
+		<typeAlias  type="ikuzo.kimi.densha.vo.StationNearInfo" alias="StationNearInfo"/>
 		
 	</typeAliases>
 	<mappers>
@@ -21,5 +23,6 @@
 		<mapper resource="mapper/startEndMapper.xml" />
 		<mapper resource="mapper/subwayMapper.xml"/>
 		<mapper resource="mapper/favoriteMapper.xml"/>
+		<mapper resource="mapper/stationInfoMapper.xml"/>
 	</mappers>
 </configuration>

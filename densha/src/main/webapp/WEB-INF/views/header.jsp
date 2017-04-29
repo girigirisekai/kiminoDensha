@@ -66,7 +66,7 @@
         <li><a href="stationcode">지하철서비스</a></li>
 <!--         로그인 시  -->
         <c:if test="${loginId !=null}"> 
-        <li><a href="myaccount">회원정보</a></li>
+        <li><a href="myAccount">회원정보</a></li>
         <li><a href="favorite">Favorite</a></li>
         </c:if>
         <!--         로그인 시  -->

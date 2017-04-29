@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ikuzo.kimi.densha.dao.StartEndDAO;
+import ikuzo.kimi.densha.dao.StationInfoDAO;
 import ikuzo.kimi.densha.dao.SubwayDAO;
 import ikuzo.kimi.densha.util.StationCodeToLastTimetable;
 import ikuzo.kimi.densha.util.StationCodeToStationInfo;
@@ -29,6 +30,7 @@ import ikuzo.kimi.densha.util.StationNameToRealtimeArrive;
 import ikuzo.kimi.densha.util.StationNameToStationExit;
 import ikuzo.kimi.densha.vo.BusInformation;
 import ikuzo.kimi.densha.vo.Exit;
+import ikuzo.kimi.densha.vo.StationInfo;
 import ikuzo.kimi.densha.vo.Subway;
 import ikuzo.kimi.densha.vo.Timetable;
 import ikuzo.kimi.densha.vo.stationDB;
@@ -46,6 +48,9 @@ public class SubwayController {
 	
 	@Autowired
 	SubwayDAO dao;
+	
+	@Autowired
+	StationInfoDAO sinfodao;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -79,12 +84,15 @@ public class SubwayController {
 	// 역 정보 xml, MAP
 	@ResponseBody
 	@RequestMapping(value = "stationInfo", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public HashMap<String, Object> stationInfo(String station, Model model) throws Exception {
+	public StationInfo stationInfo(String station, Model model) throws Exception {
 
-		StationCodeToStationInfo info = new StationCodeToStationInfo();
+		/*StationCodeToStationInfo info = new StationCodeToStationInfo();
 		HashMap<String, Object> map = info.stationInfo(station);
-		System.out.println(map.get("statue"));
-		return map;
+		System.out.println(map.get("statue"));*/
+		StationInfo result = sinfodao.getStationInfo(station);
+		
+		
+		return result;
 
 	}
 

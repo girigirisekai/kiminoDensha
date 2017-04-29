@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="ikuzo.kimi.densha.dao.StationInfoMapper">
+
+	
+	<select id="path" parameterType="map" resultType="String">
+	
+		<if test="list.size != 0">
+		select
+			distinct
+			CYBER_ST_CODE
+		from
+			station
+			where
+				STATION_NM in
+				<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+		
+		</if>
+	
+	</select>
+	
+	<select id="select" parameterType="String" resultType="String">
+		
+		select
+			distinct
+			STATION_NM2
+		from
+			station
+			where
+				CYBER_ST_CODE
+				= #{code}
+		
+	
+	</select>
+	
+	<select id="StationCodeParseName" parameterType="String" resultType="stationDB">
+		
+		select
+			
+			STATION_NM2
+			,xpoint_wgs, ypoint_wgs, line_num, station_cd, cyber_st_code, fr_code
+		from
+			station
+			where
+				cyber_st_code
+				= #{code}
+		
+	
+	</select>
+	
+</mapper>

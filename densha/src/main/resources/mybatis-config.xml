@@ -15,6 +15,7 @@
 		<typeAlias  type="ikuzo.kimi.densha.vo.checkCode" alias="checkCode"/>
 		<typeAlias  type="ikuzo.kimi.densha.vo.StationInfo" alias="StationInfo"/>
 		<typeAlias  type="ikuzo.kimi.densha.vo.StationNearInfo" alias="StationNearInfo"/>
+		<typeAlias  type="ikuzo.kimi.densha.vo.Exit" alias="Exit"/>
 		
 	</typeAliases>
 	<mappers>

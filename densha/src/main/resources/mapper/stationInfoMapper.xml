@@ -7,51 +7,39 @@
 <mapper namespace="ikuzo.kimi.densha.dao.StationInfoMapper">
 
 	
-	<select id="path" parameterType="map" resultType="String">
+	<select id="getStationInfo" parameterType="String" resultType="StationInfo">
 	
-		<if test="list.size != 0">
 		select
-			distinct
-			CYBER_ST_CODE
+			*
 		from
-			station
-			where
-				STATION_NM in
-				<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
-					#{item}
-				</foreach>
-		
-		</if>
+			StationInfo
+		where
+			STATION_CD
+			= #{station}
 	
 	</select>
 	
-	<select id="select" parameterType="String" resultType="String">
+	<select id="getStationNearInfo" parameterType="String" resultType="Exit">
 		
-		select
-			distinct
-			STATION_NM2
-		from
-			station
-			where
-				CYBER_ST_CODE
-				= #{code}
-		
-	
-	</select>
-	
-	<select id="StationCodeParseName" parameterType="String" resultType="stationDB">
-		
-		select
-			
-			STATION_NM2
-			,xpoint_wgs, ypoint_wgs, line_num, station_cd, cyber_st_code, fr_code
-		from
-			station
-			where
-				cyber_st_code
-				= #{code}
+		SELECT 
+			EXIT_NO exitNum
+    		, SUBSTR(
+        		XMLAGG(
+            		XMLELEMENT(COL , ',' , AREA_NM)ORDER BY AREA_NM).EXTRACT('//text()'
+       		).GETSTRINGVAL()
+       		, 2) info
+  		FROM 
+  			STATIONNEARINFO
+  		where 
+  			STATION_CD
+  			= #{station}
+		GROUP BY 
+			EXIT_NO
+		ORDER BY 1		
 		
 	
 	</select>
+	
+	
 	
 </mapper>

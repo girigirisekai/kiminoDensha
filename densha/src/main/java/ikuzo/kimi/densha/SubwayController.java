@@ -31,6 +31,7 @@ import ikuzo.kimi.densha.util.StationNameToStationExit;
 import ikuzo.kimi.densha.vo.BusInformation;
 import ikuzo.kimi.densha.vo.Exit;
 import ikuzo.kimi.densha.vo.StationInfo;
+import ikuzo.kimi.densha.vo.StationNearInfo;
 import ikuzo.kimi.densha.vo.Subway;
 import ikuzo.kimi.densha.vo.Timetable;
 import ikuzo.kimi.densha.vo.stationDB;
@@ -89,6 +90,8 @@ public class SubwayController {
 		/*StationCodeToStationInfo info = new StationCodeToStationInfo();
 		HashMap<String, Object> map = info.stationInfo(station);
 		System.out.println(map.get("statue"));*/
+		
+		//DB StationInfo를 이용한 역정보
 		StationInfo result = sinfodao.getStationInfo(station);
 		
 		
@@ -144,9 +147,15 @@ public class SubwayController {
 	@ResponseBody
 	@RequestMapping(value = "exitInfo", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public ArrayList<Exit> exit(String station, Model model) throws Exception {
-		StationNameToStationExit exitInfo = new StationNameToStationExit();
-		ArrayList<Exit> exitArray = exitInfo.exitInfo(station);
-
+		
+		
+		/*StationNameToStationExit exitInfo = new StationNameToStationExit();
+		ArrayList<Exit> exitArray = exitInfo.exitInfo(station);*/
+		
+		//DB StationNearInfo를 이용한 역정보
+		ArrayList<Exit> exitArray = sinfodao.getStationNearInfo(station);
+		logger.debug("exit확인 : {}", exitArray);
+		
 		return exitArray;
 
 	}

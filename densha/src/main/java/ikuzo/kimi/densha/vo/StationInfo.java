@@ -32,7 +32,7 @@ public class StationInfo {
 	private String escalator; // 에스컬레이터
 	private String wheelchair; // 휠체어리프트시설
 	private String speedgate; // 스피드게이트
-	private String speedgatetoilet; // 화장실
+	private String toilet; // 화장실
 	private String station_nm_han; // 역명한자
 	private String ure; // 유래
 	private String xpoint; // x좌표
@@ -44,9 +44,8 @@ public class StationInfo {
 			String cyber_st_code, String branch_office_code, String branch_office_nm, String regidate, String tel,
 			String fax, String post_code, String address, String minwon, String infotesk, String culture, String ticket,
 			String obstacle, String meetplace, String parking, String bicycle, String muin, String office,
-			String nursing, String elevator, String escalator, String wheelchair, String speedgate,
-			String speedgatetoilet, String station_nm_han, String ure, String xpoint, String ypoint, String xpoint_wgs,
-			String ypoint_wgs) {
+			String nursing, String elevator, String escalator, String wheelchair, String speedgate, String toilet,
+			String station_nm_han, String ure, String xpoint, String ypoint, String xpoint_wgs, String ypoint_wgs) {
 		super();
 		this.station_cd = station_cd;
 		this.station_nm = station_nm;
@@ -76,7 +75,7 @@ public class StationInfo {
 		this.escalator = escalator;
 		this.wheelchair = wheelchair;
 		this.speedgate = speedgate;
-		this.speedgatetoilet = speedgatetoilet;
+		this.toilet = toilet;
 		this.station_nm_han = station_nm_han;
 		this.ure = ure;
 		this.xpoint = xpoint;
@@ -313,12 +312,12 @@ public class StationInfo {
 		this.speedgate = speedgate;
 	}
 
-	public String getSpeedgatetoilet() {
-		return speedgatetoilet;
+	public String getToilet() {
+		return toilet;
 	}
 
-	public void setSpeedgatetoilet(String speedgatetoilet) {
-		this.speedgatetoilet = speedgatetoilet;
+	public void setToilet(String toilet) {
+		this.toilet = toilet;
 	}
 
 	public String getStation_nm_han() {
@@ -371,7 +370,7 @@ public class StationInfo {
 
 	@Override
 	public String toString() {
-		return "StatinInfo [station_cd=" + station_cd + ", station_nm=" + station_nm + ", station_nm_eng="
+		return "StationInfo [station_cd=" + station_cd + ", station_nm=" + station_nm + ", station_nm_eng="
 				+ station_nm_eng + ", line_num=" + line_num + ", fr_code=" + fr_code + ", cyber_st_code="
 				+ cyber_st_code + ", branch_office_code=" + branch_office_code + ", branch_office_nm="
 				+ branch_office_nm + ", regidate=" + regidate + ", tel=" + tel + ", fax=" + fax + ", post_code="
@@ -379,9 +378,8 @@ public class StationInfo {
 				+ culture + ", ticket=" + ticket + ", obstacle=" + obstacle + ", meetplace=" + meetplace + ", parking="
 				+ parking + ", bicycle=" + bicycle + ", muin=" + muin + ", office=" + office + ", nursing=" + nursing
 				+ ", elevator=" + elevator + ", escalator=" + escalator + ", wheelchair=" + wheelchair + ", speedgate="
-				+ speedgate + ", speedgatetoilet=" + speedgatetoilet + ", station_nm_han=" + station_nm_han + ", ure="
-				+ ure + ", xpoint=" + xpoint + ", ypoint=" + ypoint + ", xpoint_wgs=" + xpoint_wgs + ", ypoint_wgs="
-				+ ypoint_wgs + "]";
+				+ speedgate + ", toilet=" + toilet + ", station_nm_han=" + station_nm_han + ", ure=" + ure + ", xpoint="
+				+ xpoint + ", ypoint=" + ypoint + ", xpoint_wgs=" + xpoint_wgs + ", ypoint_wgs=" + ypoint_wgs + "]";
 	}
 
 }

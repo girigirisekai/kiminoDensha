@@ -797,7 +797,7 @@ function stationinforesult(item) {
 		url : 'exitInfo',
 		type : 'post',
 		data : {
-			station : getStation
+			station : cyber
 		},
 		dataType : 'json',
 		success : resultBusinfo

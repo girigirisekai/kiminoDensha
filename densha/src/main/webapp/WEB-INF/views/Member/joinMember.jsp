@@ -93,6 +93,8 @@
 			var checkCode = $('#checkCode').val();
 			if(code1 == checkCode){
 				alert('인증번호가 일치합니다');
+				clearInterval(tid);
+				$('#ViewTimer').html('인증번호 확인 완료');
 			$('#submit').on('click', submitBt);
 			}else{
 				alert('인증번호를 확인해주세요');

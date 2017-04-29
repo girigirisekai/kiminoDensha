@@ -47,10 +47,10 @@ fieldset {
 	}
 
 </style>
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css"
+<link rel="stylesheet" href="./resources/css/bootstrap.min2.css"
 	type="text/css">
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
-<script src="./resources/js/bootstrap.min2.js"></script>
+<script src="./resources/js/bootstrap.min.js"></script>
 <style type="text/css">
 body, html {
 	background: url(./resources/image/back/backapi.jpg) no-repeat center

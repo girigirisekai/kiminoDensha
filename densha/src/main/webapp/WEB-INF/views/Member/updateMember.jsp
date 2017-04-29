@@ -185,8 +185,8 @@ body, html {
 								<div class="form-group">
 									<label for="textArea" class="col-lg-2 control-label">암호</label>
 									<div class="col-lg-10">
-										<textarea class="form-control" rows="1" id="password"
-											name="password"></textarea>
+										<input type="password" class="form-control"  id="password"
+											name="password">
 										<span class="help-block">암호는 수정이 가능합니다.</span>
 									</div>
 								</div>
@@ -288,7 +288,7 @@ body, html {
 										<div class="col-lg-10">
 											<div class="modal-body">
 												<font size="4"> <span id="secondQuestion"></span>
-												</font> <input type="text" class="form-control" id="checkPw"
+												</font> <input type="password" class="form-control" id="checkPw"
 													name='checkPw' placeholder="비밀번호 입력">
 											</div>
 										</div>

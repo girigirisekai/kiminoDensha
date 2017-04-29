@@ -45,11 +45,14 @@
 	border-bottom: 1px solid #ccc;
 }
 
+#sidenav-overlay {
+    background-color: transparent;
+}
 
 </style>
 
 </head>
-<body>
+<body class="fixed-sn white-skin bg-skin-lp">
 
 	<!--top header-->
 	<jsp:include page="header.jsp" />
@@ -8605,10 +8608,10 @@
 
 		<a href="javascript:get_station_popup" 
 			id="station">
-			<img src = "./resources/image/menu/stationInfo.jpg">
+			<img src = "./resources/image/menu/stationInfo.jpg" border="0">
 			
-			</a> <input type="button" value="출발역"
-			id="startEnd" stationcode="역코드변환됨">
+			</a> <input type="image" value="출발역"
+			id="startEnd" stationcode="역코드변환됨" src = "./resources/image/menu/start.png" height="25px">
 			
 			
 	</div>
@@ -8898,7 +8901,9 @@
 					<tr class= "tbl_detail">
 					
 						<td>출구정보</td>
-						<td colspan="5" id="exitTable"></td>
+						<td colspan="5" id="exitTable">
+<!-- 						요기에 출구 테이블이 나온다. -->
+						</td>
 					</tr>
 				</table>
 				<!--   역 기본 정보 부분  -->
@@ -8909,7 +8914,7 @@
 				<!--   역 첫차 막차   -->
 				<table border="0" cellpadding="0" cellspacing="0" summary="첫차막차시간표">
 					<tbody>
-						<tr class="top" style="border-bottom: 1px solid #000;">
+						<tr class="top" >
 							<td height="25" width="72">첫/막차</td>
 							<td width="74">방면</td>
 							<td width="107">시발역</td>
@@ -9060,100 +9065,99 @@
 				<table>
 					<tr>
 						<td>
-						<input type="radio" name = "days" onclick="stationtimetableNext()"yoil="1" updown="1" class="timetableselect1"checked="checked"> 상행선  
-						<input type="radio" name = "days" onclick="stationtimetableNextDown()"yoil="1" updown="2" class="timetableselect2" > 하행선 
-						
-
-							
+									</td>
+						<td style="text-align: right; width: 450px"><input type="radio" value="up" name = "days" onclick="stationtimetableNext()"yoil="1" updown="1" class="timetableselect1" checked="checked"> 상행선  
+						<input type="radio"  value="down" name = "days" onclick="stationtimetableNextDown()"yoil="1" updown="2" class="timetableselect2" > 하행선 
 						</td>
 					</tr>
+					
 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>5시</td>
 						<td time05="05" id="timatbl05"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>6시</td>
 						<td time06="06" id="timatbl06"></td>
-					</tr>
-					<tr>
+					</tr >
+					<tr class= "tbl_detailTime">
 						<td>7시</td>
 						<td time07="07" id="timatbl07"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>8시</td>
 						<td time08="08" id="timatbl08"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>9시</td>
 						<td time09="09" id="timatbl09"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>10시</td>
 						<td time10="10" id="timatbl10"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>11시</td>
 						<td time11="11" id="timatbl11"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>12시</td>
 			 			<td time12="12" id="timatbl12"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>1시</td>
 						<td time13="13" id="timatbl13"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>2시</td>
 						<td time14="14" id="timatbl14"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>3시</td>
 						<td time15="15" id="timatbl15"></td>
 					</tr> 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>4시</td>
 						<td time16="16" id="timatbl16"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>5시</td>
 						<td time17="17" id="timatbl17"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>6시</td>
 						<td time18="18" id="timatbl18"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>7시</td>
 						<td time19="19" id="timatbl19"></td>
 					</tr>
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>8시</td>
 						<td time20="20" id="timatbl20"></td>
 					</tr>
 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>9시</td>
 						<td time21="21" id="timatbl21"></td>
 					</tr>
 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>10시</td>
 						<td time22="22" id="timatbl22"></td>
 					</tr>
 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>11시</td>
 						<td time23="23" id="timatbl23"></td>
 					</tr>
 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>12시</td>
 						<td time24="24" id="timatbl24"></td>
 					</tr>
 
-					<tr>
+					<tr class= "tbl_detailTime">
 						<td>새벽 1시</td>
 						<td time25="25" id="timatbl25"></td>
 					</tr>
@@ -9167,11 +9171,12 @@
 
 
 		<ul class="pager">
-
+<!-- 	그림으로 바꿀 것 -->
 			<span class="btn btn-default"
 				onclick="pagePrint(document.getElementById('stationInfoTab'));">인쇄하기</span>
-			<li class="next"><a href="javascript:get_station_down()"
-				id="delete_popup">팝업닫기 </a></li>
+				<span class="btn btn-default"
+				onclick="get_station_down();">팝업닫기</span>
+			<!-- 	그림으로 바꿀 것 -->
 		</ul>
 		<!--  	 메뉴들 -->
 
@@ -9181,7 +9186,36 @@
 	</div></div>
 
 
-	
+<!-- 	여기서부터는 임시  -->
+
+
+ <!-- SCRIPTS -->
+<!--     <script type="text/javascript" src="./resources/js/compiled.min.js"></script> -->
+
+
+<!-- 	여기서부터는 임시  -->
+
+
+
+<!-- modal -->
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 	<script src="./resources/js/bootstrap.min.js"></script>

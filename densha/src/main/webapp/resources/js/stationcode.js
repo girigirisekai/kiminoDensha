@@ -79,9 +79,11 @@ function pathTest1(){
 	$('#startPoint').attr('transform', 'translate('+(xPoint-17)+','+(yPoint-50)+')');
 	$('#startPoint').html(startCode);
 	
+	
 }
 
 function pathTest2(){
+	
 	ecode = code;
 		
 	//2중 ajax, 
@@ -116,7 +118,6 @@ function pathm(list){ // 경로들의 역을 좌표에 찍어주는 부분
 			  var insertTitleModalPath = scodes +'<->'+ecodes; 
 			  $('.modal-title').text(insertTitleModalPath); // modal제목에 값 넣기 
 			  var kakaruJikan = item.split(',');
-			 
 			  $('.modal-body').html('<h5>'+item+'</h5>'); // modal내용에 값 넣기 
 				 
 		}else {
@@ -147,16 +148,16 @@ function test1() { // 채우면서 데이터 보내는 역할
 	pathTest();
 }
 
-function pathTest(){
+function pathTest(){ 
 	
 	code = $('#startEnd').attr('stationcode');
 	if(scode == null || scode == code){
-		
+		$('#startEnd').attr('src', './resources/image/menu/start.png');
 		$('#startEnd').val('출발역');
 		$('#startEnd').on('click', pathTest1);
 		
 	}else {
-
+		$('#startEnd').attr('src', './resources/image/menu/end.png');
 		$('#startEnd').val('도착역');
 		ecode2 = code;
 		$('#startEnd').on('click', pathTest2);
@@ -181,6 +182,7 @@ function station_name_popup(stationCode) { // stationNamePopup
 	layer.style.visibility = "visible";
 	$('#station').attr('stationcode', stationCode);
 	$('#startEnd').attr('stationcode', stationCode);
+	
 
 	insertStation = $('#station').attr('stationcode');
 	cyber = insertStation;
@@ -797,7 +799,7 @@ function stationinforesult(item) {
 		url : 'exitInfo',
 		type : 'post',
 		data : {
-			station : getStation
+			station : cyber
 		},
 		dataType : 'json',
 		success : resultBusinfo
@@ -846,12 +848,12 @@ function resultBusinfo(result) {
 	$.each(result, function(index, items) {
 		text += '<table>';
 		text += '<tr>';
-		text += '<td width="70">' + items.exitNum + '번 출구</td>';
-		text += '<td> 출구정보: ' + items.info + '</td>';
+		text += '<td width="70" class= "tbl_detail">' + items.exitNum + '번 출구</td>';
+		text += '<td class= "tbl_detail"> 출구정보: ' + items.info + '</td>';
 		text += '</tr>';
 		text += '</table>';
 
-	});
+	}); 
 
 	$('#exitTable').html(text);
 
@@ -887,7 +889,9 @@ function stationtimetableNextDown() { // 역 시간표 (선택자)
 	var updown = $('.timetableselect2').attr('updown');
 
 	timeajax(yoil, updown);
-	$('.timetableselect1').attr('checked','checked');
+	
+	$("input:radio[name='days']").removeAttr('checked');
+	$("input:radio[name='days']:radio[value='up']").attr("checked",true);
 
 }
 
@@ -900,7 +904,8 @@ function stationtimetableNexts() { // 역 시간표 최초 누름
 	$('.timetableselect1').attr('yoil', '1');
 	$('.timetableselect2').attr('yoil', '1');
 	
-$('.timetableselect1').attr('checked','checked');
+	$("input:radio[name='days']").removeAttr('checked');
+	$("input:radio[name='days']:radio[value='up']").attr("checked",true);
 
 }
 function stationtimetableNext2() { // 역 시간표 토요일
@@ -911,7 +916,9 @@ function stationtimetableNext2() { // 역 시간표 토요일
 	timeajax(yoil, updown);
 	$('.timetableselect1').attr('yoil', '2');
 	$('.timetableselect2').attr('yoil', '2');
-	$('.timetableselect1').attr('checked','checked');
+	
+	$("input:radio[name='days']").removeAttr('checked');
+			$("input:radio[name='days']:radio[value='up']").attr("checked",true);
 }
 
 function stationtimetableNext3() { // 역 시간표 일요일
@@ -923,7 +930,8 @@ function stationtimetableNext3() { // 역 시간표 일요일
 
 	$('.timetableselect1').attr('yoil', '3');
 	$('.timetableselect2').attr('yoil', '3');
-	$('.timetableselect1').attr('checked','checked');
+	$("input:radio[name='days']").removeAttr('checked');
+	$("input:radio[name='days']:radio[value='up']").attr("checked",true);
 }
 
 function timeajax(yoil, updown) { // 역 시간표
@@ -970,10 +978,8 @@ function timetable(results) { // 역 시간표
 
 // 청소 HTML
 function removehtml() {
-//	$('#exitTable').html(''); // 청소
 	$('#realtime').html(''); // 청소
 	$('#map').html(''); // 청소
-//$('#map').attr('style', ''); // 청소
 }
 
 

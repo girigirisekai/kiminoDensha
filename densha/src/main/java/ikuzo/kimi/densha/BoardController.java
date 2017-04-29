@@ -96,7 +96,7 @@ public class BoardController {
 	 */
 	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String writeForm(String type, Model model) {
-
+		logger.debug("글쓰기 타입: {}", type);
 		model.addAttribute("type", type);
 		return "board/writeForm";
 	}
@@ -143,11 +143,17 @@ public class BoardController {
 	 * @return
 	 */
 	@RequestMapping(value = "read", method = RequestMethod.GET)
-	public String read(Board board, Model model, HttpSession session) {
+	public String read(Board board, Model model, int boardnum, HttpSession session) {
 		
 		Board b = null;
-		
+		logger.debug("읽어온 게시판 번호: {}", boardnum);
+		if(boardnum!=0){
+			board=dao.select(boardnum);
+		}
+		logger.debug("읽어온 게시판: {}",board);
 		//QNA와 아닌 글로 분기 나누어줌
+		
+		
 		if(board.getType().equals("qna")){
 			if( session.getAttribute("checkedBoardnum") == null){
 				return "redirect:board";
@@ -287,7 +293,8 @@ public class BoardController {
 	public String replyWrite(Model model, Reply reply, HttpSession session) {
 
 		String id = (String) session.getAttribute("loginId");
-		reply.setId("nooti77");
+		//reply.setId("nooti77");
+		reply.setId(id);
 		int result = dao.insertReply(reply);
 		logger.debug("리플개수:{}", result);
 

@@ -57,12 +57,6 @@ $(document).ready(function() { // 최초 시작점
 	svg.init();
 	$('#station_info_popup_layer').draggable();// 팝업창 드래그
 	
-//	열차 인터벌
-	timeInterval = setInterval(function() {
-		subwaySensorGet();
-	}, 5000);
-	
-	
 	// 탭 부분 
     $(".tab_content").hide();
     $(".tab_content:first").show();
@@ -276,7 +270,10 @@ function station_name_popup(stationCode) { // stationNamePopup
 		}
 	});
 
-
+//	열차 인터벌
+	timeInterval = setInterval(function() {
+		subwaySensorGet();
+	}, 5000);
 
 
 }
@@ -936,8 +933,9 @@ function stationtimetableNext3() { // 역 시간표 일요일
 }
 
 function radioRemove(){
-	$("input:radio[name='days']").removeAttr('checked');
-
+	//$("input:radio[name='days']").removeAttr('checked');
+	$('.timetableselect2').prop("checked", false);
+	$('.timetableselect1').prop("checked", true);
 }
 
 function timeajax(yoil, updown) { // 역 시간표

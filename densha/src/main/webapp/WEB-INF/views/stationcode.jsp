@@ -8754,7 +8754,7 @@ height: 50px;
 						<tr>
 						<td colspan="10"><img src = "./resources/image/menu/car_info_bar.png"></td>
 						</tr>
-						
+						 
 						
 <!-- 						열의 혼잡도 띄워주는 부분 탭으로 구현  -->
 						<tr>

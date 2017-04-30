@@ -6,7 +6,7 @@
 <!-- favortie 처리 SQL -->
 <mapper namespace="ikuzo.kimi.densha.dao.favoriteMapper">
 
-
+	
 	<select id="searchStation" parameterType="string" resultType="Station">
 		select
 		*
@@ -35,9 +35,9 @@
 	<insert id="newFavorite" parameterType="favorite">
 		insert into
 		favorite
-		values(#{id},#{favoriteName},#{stationCode},sysdate)
+		values(#{id},#{favoriteName},#{stationCode},sysdate,#{line})
 	</insert>
-
+<!-- 	insert -->
 	<delete id="deleteFavorite" parameterType="favorite">
 		delete 
 			favorite 

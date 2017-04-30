@@ -45,7 +45,7 @@ public class favoriteController {
 		
 		return "favorite";
 
-	}
+	} 
 
 	//입력한 역 정보 검색하기
 	@ResponseBody
@@ -57,7 +57,7 @@ public class favoriteController {
 		logger.debug("입력한 역 정보: {}", stationName);
 		
 		//검색결과 역 정보 불러오기
-		ArrayList<Station> result = dao.searchStation(stationName);
+		ArrayList<Station> result = dao.searchStation(stationName.replaceAll(" ", ""));
 		
 		//검색한 역 정보 String타입으로 변환
 		String stationArray = "";
@@ -112,7 +112,7 @@ public class favoriteController {
 		}
 		
 		//등록할 favorite 객체 생성  
-		favorite fa = new favorite(nowID,StationName,result.getStation_cd(),""); 
+		favorite fa = new favorite(nowID,StationName,result.getStation_cd(),"",line); 
 		logger.debug("등록할 즐겨찾기: {}",fa.toString());
 		//System.out.println(fa.toString());
 		
@@ -157,7 +157,7 @@ public class favoriteController {
 		//일치하면
 		if(nowID.equals(favoriteId)){
 			//삭제할 favorite 객체 생성
-			favorite favorite = new favorite(nowID,stationName, stationCode,""); 
+			favorite favorite = new favorite(nowID,stationName, stationCode,"",""); 
 			//삭제
 			result=dao.deleteFavorite(favorite);
 			//삭제성공 시

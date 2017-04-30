@@ -58,8 +58,9 @@ body, html {
 	</div>
 	<!-- 디자인 바  -->
 
-<!-- 	주 내용, 여기서부터 div틀 임  -->
-	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85); border-radius: 30px">
+	<!-- 	주 내용, 여기서부터 div틀 임  -->
+	<div
+		style="margin: 50px; background: rgba(255, 255, 255, 0.85); border-radius: 30px">
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">
 
 			<div class="jumbotron" style="background: rgba(255, 255, 255, 0);">
@@ -111,9 +112,24 @@ body, html {
 				<tr class="tbl_detail">
 					<td>
 
-						<h6>열차 번호를 입력하세요:</h6> <input type="text" id="carnum"
-						style="width: 90%;"> <input type="button" id="apiSubmit"
-						value="입력" onclick="resultGo()">
+						<div class="form-group">
+							<label class="control-label">샘플코드를 아래에 입력하세요</label>
+							<div class="input-group">
+								<span class="input-group-addon">
+								<img src="./resources/image/infoicon/arrow.png" width="30">
+								<img src="./resources/image/infoicon/arrow.png" width="30">
+								<img src="./resources/image/infoicon/arrow.png" width="30">
+								<img src="./resources/image/infoicon/arrow.png" width="30">
+								
+								</span> <input
+									type="text" class="form-control" id ="carnum"> <span
+									class="input-group-btn">
+									<button class="btn btn-default" type="button"
+										onclick="resultGo()" id="apiSubmit">입력하기</button>
+								</span>
+							</div>
+						</div>
+
 					</td>
 
 				</tr>
@@ -187,17 +203,17 @@ body, html {
 					<td>SUBWAYNUM</td>
 					<td>열차 번호</td>
 				</tr>
-			
+
 				<tr class="tbl_detail">
 					<td>2</td>
 					<td>CARNUM</td>
 					<td>열차 량 번호</td>
 				</tr>
-					<tr class="tbl_detail">
-				
+				<tr class="tbl_detail">
+
 					<td>3</td>
 					<td>HUMANNUM</td>
-					<td>한 량에 타고 있는 사람 수 </td>
+					<td>한 량에 타고 있는 사람 수</td>
 				</tr>
 				<tr class="tbl_detail">
 					<td>4</td>
@@ -290,7 +306,7 @@ body, html {
 					<td><h5>값설명</h5></td>
 
 				</tr>
-				
+
 				<tr class="tbl_detail">
 					<td>subwayNum</td>
 					<td>열차의 고유 번호입니다. 고유번호는 String 입니다.</td>
@@ -317,9 +333,9 @@ body, html {
 
 				<tr class="tbl_detail">
 					<td>humanPercent</td>
-					<td>량당 있는 사람의 퍼센트, 160명이 초과하면 100%를 초과하여 표시합니다.<br>
-						표시된 숫자는 퍼센트의 숫자를 표시하며, 소수점 1자리에서 반올림합니다.<br>
-						Example : '26%'인 경우 '26'을 표시 
+					<td>량당 있는 사람의 퍼센트, 160명이 초과하면 100%를 초과하여 표시합니다.<br> 표시된
+						숫자는 퍼센트의 숫자를 표시하며, 소수점 1자리에서 반올림합니다.<br> Example : '26%'인 경우
+						'26'을 표시
 					</td>
 				</tr>
 
@@ -341,50 +357,78 @@ body, html {
 				<li><a href="#ajaxjson" data-toggle="tab">AJAX - JSON</a></li>
 
 			</ul>
-			
-			<div id="myTabContent" class="tab-content" style="width: 84%; margin: auto;">
+
+			<div id="myTabContent" class="tab-content"
+				style="width: 84%; margin: auto;">
 				<div class="tab-pane fade active in" id="xmljava">
 					<div style="overflow: auto; width: 100%;">
 
-						<pre style="margin: 0; line-height: 125%"><span style="color: #0000aa">package</span> ikuzo.<span style="color: #1e90ff">kimi</span>.<span style="color: #1e90ff">densha</span>.<span style="color: #1e90ff">example</span>;
+						<pre style="margin: 0; line-height: 125%">
+							<span style="color: #0000aa">package</span> ikuzo.<span
+								style="color: #1e90ff">kimi</span>.<span style="color: #1e90ff">densha</span>.<span
+								style="color: #1e90ff">example</span>;
 
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.net.HttpURLConnection</span>;
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.net.URL</span>;
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.List</span>;
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">org.jdom.Document</span>;
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">org.jdom.Element</span>;
-<span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">org.jdom.input.SAXBuilder</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">java.net.HttpURLConnection</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">java.net.URL</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">java.util.List</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">org.jdom.Document</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">org.jdom.Element</span>;
+<span style="color: #0000aa">import</span> <span
+								style="color: #00aaaa; text-decoration: underline">org.jdom.input.SAXBuilder</span>;
 
 
-<span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">realSeatAndHuman</span> {
+<span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span
+								style="color: #00aa00; text-decoration: underline">realSeatAndHuman</span> {
 
-	<span style="color: #0000aa">public</span> ArrayList&lt;SeatAndHuman&gt; <span style="color: #00aa00">getSeatAndHuman</span>(String carNum) <span style="color: #0000aa">throws</span> Exception {
+	<span style="color: #0000aa">public</span> ArrayList&lt;SeatAndHuman&gt; <span
+								style="color: #00aa00">getSeatAndHuman</span>(String carNum) <span
+								style="color: #0000aa">throws</span> Exception {
 		<span style="color: #aaaaaa; font-style: italic">// 열차 넘버를 받아서 열차의 전체 인원과 각 량당 인원과 노약자석의 좌석의 상황</span>
 		<span style="color: #aaaaaa; font-style: italic">// XML 형식을 parsing하는 형태.</span>
 	
 		
-		System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(carNum);
+		System.<span style="color: #1e90ff">out</span>.<span
+								style="color: #1e90ff">println</span>(carNum);
 
 		String link = <span style="color: #aa5500">&quot;http://localhost:8888/densha/apiservice/xml?subwaynum=&quot;</span>;
-		String insertCarnum = carNum; <span style="color: #aaaaaa; font-style: italic">// 역코드</span>
+		String insertCarnum = carNum; <span
+								style="color: #aaaaaa; font-style: italic">// 역코드</span>
 
 		String addrResult = link + insertCarnum;
 
-		System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(addrResult);
+		System.<span style="color: #1e90ff">out</span>.<span
+								style="color: #1e90ff">println</span>(addrResult);
 
-		URL url = <span style="color: #0000aa">new</span> URL(addrResult.<span style="color: #1e90ff">toString</span>());
+		URL url = <span style="color: #0000aa">new</span> URL(addrResult.<span
+								style="color: #1e90ff">toString</span>());
 
-		ArrayList&lt;SeatAndHuman&gt; alist = <span style="color: #0000aa">new</span> ArrayList&lt;&gt;(); <span style="color: #aaaaaa; font-style: italic">// ArrayList 으로 전송한다.</span>
+		ArrayList&lt;SeatAndHuman&gt; alist = <span style="color: #0000aa">new</span> ArrayList&lt;&gt;(); <span
+								style="color: #aaaaaa; font-style: italic">// ArrayList 으로 전송한다.</span>
 
-		HttpURLConnection conn = (HttpURLConnection) url.<span style="color: #1e90ff">openConnection</span>();
-		conn.<span style="color: #1e90ff">setRequestMethod</span>(<span style="color: #aa5500">&quot;GET&quot;</span>); <span style="color: #aaaaaa; font-style: italic">// GET으로 보내줍니다.</span>
-		<span style="color: #0000aa">if</span> (conn.<span style="color: #1e90ff">getResponseCode</span>() &gt;= <span style="color: #009999">500</span>) { <span style="color: #aaaaaa; font-style: italic">// 에러団 처리</span>
+		HttpURLConnection conn = (HttpURLConnection) url.<span
+								style="color: #1e90ff">openConnection</span>();
+		conn.<span style="color: #1e90ff">setRequestMethod</span>(<span
+								style="color: #aa5500">&quot;GET&quot;</span>); <span
+								style="color: #aaaaaa; font-style: italic">// GET으로 보내줍니다.</span>
+		<span style="color: #0000aa">if</span> (conn.<span
+								style="color: #1e90ff">getResponseCode</span>() &gt;= <span
+								style="color: #009999">500</span>) { <span
+								style="color: #aaaaaa; font-style: italic">// 에러団 처리</span>
 
 			<span style="color: #aaaaaa; font-style: italic">// 실패라고 처리 후</span>
-			<span style="color: #0000aa">return</span> <span style="color: #0000aa">null</span>; <span style="color: #aaaaaa; font-style: italic">// java団에서 null 처리 부탁</span>
+			<span style="color: #0000aa">return</span> <span
+								style="color: #0000aa">null</span>; <span
+								style="color: #aaaaaa; font-style: italic">// java団에서 null 처리 부탁</span>
 
-		} <span style="color: #0000aa">else</span> { <span style="color: #aaaaaa; font-style: italic">// 정상 실행시 200</span>
+		} <span style="color: #0000aa">else</span> { <span
+								style="color: #aaaaaa; font-style: italic">// 정상 실행시 200</span>
 
 			<span style="color: #0000aa">try</span> {
 
@@ -397,40 +441,82 @@ body, html {
 				<span style="color: #aaaaaa; font-style: italic">// 이중 row를 여러 개체임으로 children을 쓴다.</span>
 
 				<span style="color: #aaaaaa; font-style: italic">// 차량의 번호와 차량의 전체인원수</span>
-				String subNum = root.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;SUBWAYNUM&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-				String allh = root.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ALLHUMAN&quot;</span>).<span style="color: #1e90ff">getValue</span>();
+				String subNum = root.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;SUBWAYNUM&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+				String allh = root.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ALLHUMAN&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
 
-				List&lt;Element&gt; list = root.<span style="color: #1e90ff">getChildren</span>(<span style="color: #aa5500">&quot;row&quot;</span>);
+				List&lt;Element&gt; list = root.<span style="color: #1e90ff">getChildren</span>(<span
+								style="color: #aa5500">&quot;row&quot;</span>);
 				<span style="color: #aaaaaa; font-style: italic">// row의 값들을 리스트로 받는다.</span>
 
-				<span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i = <span style="color: #009999">0</span>; i &lt; list.<span style="color: #1e90ff">size</span>(); i++) {
+				<span style="color: #0000aa">for</span> (<span
+								style="color: #00aaaa">int</span> i = <span
+								style="color: #009999">0</span>; i &lt; list.<span
+								style="color: #1e90ff">size</span>(); i++) {
 					Element rows = list.<span style="color: #1e90ff">get</span>(i);
 					<span style="color: #aaaaaa; font-style: italic">// 도착시간 급행선 출발지하철 역 도착 지하철 역</span>
-					String subwaynums = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;SUBWAYNUM&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String carNums = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;CARNUM&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String human = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;HUMANNUM&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String humanPercent = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;HUMANPERCENT&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat1 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT1&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat2 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT2&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat3 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT3&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat4 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT4&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat5 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT5&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat6 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT6&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat7 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT7&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat8 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT8&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat9 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT9&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat10 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT10&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat11 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT11&quot;</span>).<span style="color: #1e90ff">getValue</span>();
-					String elderlySeat12 = rows.<span style="color: #1e90ff">getChild</span>(<span style="color: #aa5500">&quot;ELDERLYSEAT12&quot;</span>).<span style="color: #1e90ff">getValue</span>();
+					String subwaynums = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;SUBWAYNUM&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String carNums = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;CARNUM&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String human = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;HUMANNUM&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String humanPercent = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;HUMANPERCENT&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat1 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT1&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat2 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT2&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat3 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT3&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat4 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT4&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat5 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT5&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat6 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT6&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat7 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT7&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat8 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT8&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat9 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT9&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat10 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT10&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat11 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT11&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
+					String elderlySeat12 = rows.<span style="color: #1e90ff">getChild</span>(<span
+								style="color: #aa5500">&quot;ELDERLYSEAT12&quot;</span>).<span
+								style="color: #1e90ff">getValue</span>();
 					SeatAndHuman vo = <span style="color: #0000aa">new</span> SeatAndHuman(subwaynums, carNums, human, humanPercent,elderlySeat1, elderlySeat2,
 							elderlySeat3, elderlySeat4, elderlySeat5, elderlySeat6, elderlySeat7, elderlySeat8,
 							elderlySeat9, elderlySeat10, elderlySeat11, elderlySeat12);
-					alist.<span style="color: #1e90ff">add</span>(vo); <span style="color: #aaaaaa; font-style: italic">// 저장</span>
+					alist.<span style="color: #1e90ff">add</span>(vo); <span
+								style="color: #aaaaaa; font-style: italic">// 저장</span>
 				}
 			} <span style="color: #0000aa">catch</span> (Exception e) {
 				e.<span style="color: #1e90ff">printStackTrace</span>();
 			}
-			<span style="color: #0000aa">return</span> alist; <span style="color: #aaaaaa; font-style: italic">// 정보 반환</span>
+			<span style="color: #0000aa">return</span> alist; <span
+								style="color: #aaaaaa; font-style: italic">// 정보 반환</span>
 		}
 
 	}
@@ -442,12 +528,11 @@ body, html {
 
 					</div>
 				</div>
-				
-				
-<!-- 				jsonjava -->
+
+
+				<!-- 				jsonjava -->
 				<div class="tab-pane fade" id="jsonjava">
 					<p>
-				
 					<div style="overflow: auto; width: auto;">
 						<pre style="margin: 0; line-height: 125%">
 
@@ -522,31 +607,52 @@ body, html {
 					</div>
 
 				</div>
-				
-<!-- 				vo -->
-<div class="tab-pane fade" id="vokata">
-  <div style="overflow:auto;width:auto;"><pre style="margin: 0; line-height: 125%">
 
-<pre style="margin: 0; line-height: 125%"><span style="color: #0000aa">package</span> ikuzo.<span style="color: #1e90ff">kimi</span>.<span style="color: #1e90ff">densha</span>.<span style="color: #1e90ff">example</span>;
+				<!-- 				vo -->
+				<div class="tab-pane fade" id="vokata">
+					<div style="overflow: auto; width: auto;">
+						<pre style="margin: 0; line-height: 125%">
 
-<span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">SeatAndHuman</span> {
+<pre style="margin: 0; line-height: 125%">
+								<span style="color: #0000aa">package</span> ikuzo.<span
+									style="color: #1e90ff">kimi</span>.<span style="color: #1e90ff">densha</span>.<span
+									style="color: #1e90ff">example</span>;
 
-	<span style="color: #0000aa">private</span> String subwayNum; <span style="color: #aaaaaa; font-style: italic">// 지하철번호</span>
-	<span style="color: #0000aa">private</span> String carNum; <span style="color: #aaaaaa; font-style: italic">// 칸번호</span>
-	<span style="color: #0000aa">private</span> String humanNum; <span style="color: #aaaaaa; font-style: italic">// 사람수</span>
-	<span style="color: #0000aa">private</span> String humanPercent; <span style="color: #aaaaaa; font-style: italic">// 사람수</span>
-	<span style="color: #0000aa">private</span> String elderlySeat1;<span style="color: #aaaaaa; font-style: italic">// 노약자석1</span>
-	<span style="color: #0000aa">private</span> String elderlySeat2;<span style="color: #aaaaaa; font-style: italic">// 노약자석2</span>
-	<span style="color: #0000aa">private</span> String elderlySeat3;<span style="color: #aaaaaa; font-style: italic">// 노약자석3</span>
-	<span style="color: #0000aa">private</span> String elderlySeat4;<span style="color: #aaaaaa; font-style: italic">// 노약자석4</span>
-	<span style="color: #0000aa">private</span> String elderlySeat5;<span style="color: #aaaaaa; font-style: italic">// 노약자석5</span>
-	<span style="color: #0000aa">private</span> String elderlySeat6;<span style="color: #aaaaaa; font-style: italic">// 노약자석6</span>
-	<span style="color: #0000aa">private</span> String elderlySeat7;<span style="color: #aaaaaa; font-style: italic">// 노약자석7</span>
-	<span style="color: #0000aa">private</span> String elderlySeat8;<span style="color: #aaaaaa; font-style: italic">// 노약자석8</span>
-	<span style="color: #0000aa">private</span> String elderlySeat9;<span style="color: #aaaaaa; font-style: italic">// 노약자석9</span>
-	<span style="color: #0000aa">private</span> String elderlySeat10;<span style="color: #aaaaaa; font-style: italic">// 노약자석10</span>
-	<span style="color: #0000aa">private</span> String elderlySeat11;<span style="color: #aaaaaa; font-style: italic">// 노약자석11</span>
-	<span style="color: #0000aa">private</span> String elderlySeat12;<span style="color: #aaaaaa; font-style: italic">// 노약자석12</span>
+<span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span
+									style="color: #00aa00; text-decoration: underline">SeatAndHuman</span> {
+
+	<span style="color: #0000aa">private</span> String subwayNum; <span
+									style="color: #aaaaaa; font-style: italic">// 지하철번호</span>
+	<span style="color: #0000aa">private</span> String carNum; <span
+									style="color: #aaaaaa; font-style: italic">// 칸번호</span>
+	<span style="color: #0000aa">private</span> String humanNum; <span
+									style="color: #aaaaaa; font-style: italic">// 사람수</span>
+	<span style="color: #0000aa">private</span> String humanPercent; <span
+									style="color: #aaaaaa; font-style: italic">// 사람수</span>
+	<span style="color: #0000aa">private</span> String elderlySeat1;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석1</span>
+	<span style="color: #0000aa">private</span> String elderlySeat2;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석2</span>
+	<span style="color: #0000aa">private</span> String elderlySeat3;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석3</span>
+	<span style="color: #0000aa">private</span> String elderlySeat4;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석4</span>
+	<span style="color: #0000aa">private</span> String elderlySeat5;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석5</span>
+	<span style="color: #0000aa">private</span> String elderlySeat6;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석6</span>
+	<span style="color: #0000aa">private</span> String elderlySeat7;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석7</span>
+	<span style="color: #0000aa">private</span> String elderlySeat8;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석8</span>
+	<span style="color: #0000aa">private</span> String elderlySeat9;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석9</span>
+	<span style="color: #0000aa">private</span> String elderlySeat10;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석10</span>
+	<span style="color: #0000aa">private</span> String elderlySeat11;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석11</span>
+	<span style="color: #0000aa">private</span> String elderlySeat12;<span
+									style="color: #aaaaaa; font-style: italic">// 노약자석12</span>
 
 	<span style="color: #aaaaaa; font-style: italic">// 생성자</span>
 	<span style="color: #0000aa">public</span> <span style="color: #00aa00">SeatAndHuman</span>() {
@@ -576,134 +682,177 @@ body, html {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat12</span> = elderlySeat12;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getSubwayNum</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getSubwayNum</span>() {
 		<span style="color: #0000aa">return</span> subwayNum;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setSubwayNum</span>(String subwayNum) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setSubwayNum</span>(String subwayNum) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">subwayNum</span> = subwayNum;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getCarNum</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getCarNum</span>() {
 		<span style="color: #0000aa">return</span> carNum;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setCarNum</span>(String carNum) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setCarNum</span>(String carNum) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">carNum</span> = carNum;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getHumanNum</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getHumanNum</span>() {
 		<span style="color: #0000aa">return</span> humanNum;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setHumanNum</span>(String humanNum) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setHumanNum</span>(String humanNum) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">humanNum</span> = humanNum;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat1</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat1</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat1;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat1</span>(String elderlySeat1) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat1</span>(String elderlySeat1) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat1</span> = elderlySeat1;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat2</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat2</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat2;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat2</span>(String elderlySeat2) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat2</span>(String elderlySeat2) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat2</span> = elderlySeat2;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat3</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat3</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat3;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat3</span>(String elderlySeat3) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat3</span>(String elderlySeat3) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat3</span> = elderlySeat3;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat4</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat4</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat4;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat4</span>(String elderlySeat4) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat4</span>(String elderlySeat4) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat4</span> = elderlySeat4;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat5</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat5</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat5;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat5</span>(String elderlySeat5) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat5</span>(String elderlySeat5) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat5</span> = elderlySeat5;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat6</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat6</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat6;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat6</span>(String elderlySeat6) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat6</span>(String elderlySeat6) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat6</span> = elderlySeat6;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat7</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat7</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat7;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat7</span>(String elderlySeat7) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat7</span>(String elderlySeat7) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat7</span> = elderlySeat7;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat8</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat8</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat8;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat8</span>(String elderlySeat8) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat8</span>(String elderlySeat8) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat8</span> = elderlySeat8;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat9</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat9</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat9;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat9</span>(String elderlySeat9) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat9</span>(String elderlySeat9) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat9</span> = elderlySeat9;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat10</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat10</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat10;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat10</span>(String elderlySeat10) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat10</span>(String elderlySeat10) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat10</span> = elderlySeat10;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat11</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat11</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat11;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat11</span>(String elderlySeat11) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat11</span>(String elderlySeat11) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat11</span> = elderlySeat11;
 	}
 
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">getElderlySeat12</span>() {
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">getElderlySeat12</span>() {
 		<span style="color: #0000aa">return</span> elderlySeat12;
 	}
 
-	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setElderlySeat12</span>(String elderlySeat12) {
+	<span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span
+									style="color: #00aa00">setElderlySeat12</span>(String elderlySeat12) {
 		<span style="color: #0000aa">this</span>.<span style="color: #1e90ff">elderlySeat12</span> = elderlySeat12;
 	}
 
 	<span style="color: #888888">@Override</span>
-	<span style="color: #0000aa">public</span> String <span style="color: #00aa00">toString</span>() {
-		<span style="color: #0000aa">return</span> <span style="color: #aa5500">&quot;SeatAndHuman [subwayNum=&quot;</span> + subwayNum + <span style="color: #aa5500">&quot;, carNum=&quot;</span> + carNum + <span style="color: #aa5500">&quot;, humanNum=&quot;</span> + humanNum
-				+ <span style="color: #aa5500">&quot;, humanPercent=&quot;</span> + humanPercent + <span style="color: #aa5500">&quot;, elderlySeat1=&quot;</span> + elderlySeat1 + <span style="color: #aa5500">&quot;, elderlySeat2=&quot;</span> + elderlySeat2
-				+ <span style="color: #aa5500">&quot;, elderlySeat3=&quot;</span> + elderlySeat3 + <span style="color: #aa5500">&quot;, elderlySeat4=&quot;</span> + elderlySeat4 + <span style="color: #aa5500">&quot;, elderlySeat5=&quot;</span> + elderlySeat5
-				+ <span style="color: #aa5500">&quot;, elderlySeat6=&quot;</span> + elderlySeat6 + <span style="color: #aa5500">&quot;, elderlySeat7=&quot;</span> + elderlySeat7 + <span style="color: #aa5500">&quot;, elderlySeat8=&quot;</span> + elderlySeat8
-				+ <span style="color: #aa5500">&quot;, elderlySeat9=&quot;</span> + elderlySeat9 + <span style="color: #aa5500">&quot;, elderlySeat10=&quot;</span> + elderlySeat10 + <span style="color: #aa5500">&quot;, elderlySeat11=&quot;</span>
-				+ elderlySeat11 + <span style="color: #aa5500">&quot;, elderlySeat12=&quot;</span> + elderlySeat12 + <span style="color: #aa5500">&quot;]&quot;</span>;
+	<span style="color: #0000aa">public</span> String <span
+									style="color: #00aa00">toString</span>() {
+		<span style="color: #0000aa">return</span> <span
+									style="color: #aa5500">&quot;SeatAndHuman [subwayNum=&quot;</span> + subwayNum + <span
+									style="color: #aa5500">&quot;, carNum=&quot;</span> + carNum + <span
+									style="color: #aa5500">&quot;, humanNum=&quot;</span> + humanNum
+				+ <span style="color: #aa5500">&quot;, humanPercent=&quot;</span> + humanPercent + <span
+									style="color: #aa5500">&quot;, elderlySeat1=&quot;</span> + elderlySeat1 + <span
+									style="color: #aa5500">&quot;, elderlySeat2=&quot;</span> + elderlySeat2
+				+ <span style="color: #aa5500">&quot;, elderlySeat3=&quot;</span> + elderlySeat3 + <span
+									style="color: #aa5500">&quot;, elderlySeat4=&quot;</span> + elderlySeat4 + <span
+									style="color: #aa5500">&quot;, elderlySeat5=&quot;</span> + elderlySeat5
+				+ <span style="color: #aa5500">&quot;, elderlySeat6=&quot;</span> + elderlySeat6 + <span
+									style="color: #aa5500">&quot;, elderlySeat7=&quot;</span> + elderlySeat7 + <span
+									style="color: #aa5500">&quot;, elderlySeat8=&quot;</span> + elderlySeat8
+				+ <span style="color: #aa5500">&quot;, elderlySeat9=&quot;</span> + elderlySeat9 + <span
+									style="color: #aa5500">&quot;, elderlySeat10=&quot;</span> + elderlySeat10 + <span
+									style="color: #aa5500">&quot;, elderlySeat11=&quot;</span>
+				+ elderlySeat11 + <span style="color: #aa5500">&quot;, elderlySeat12=&quot;</span> + elderlySeat12 + <span
+									style="color: #aa5500">&quot;]&quot;</span>;
 	}
 
 }
@@ -712,31 +861,40 @@ body, html {
 
 
 
-</div>
 
-  </div>
-  
-  
-  
-  
-  
-  
-<!--   ajax-xml -->
+					</div>
 
-<div class="tab-pane fade" id="ajaxxml">
-  <div style="overflow:auto;width:auto;">
-  
-  
-  <pre style="margin: 0; line-height: 125%">$(<span style="color: #00aaaa">document</span>).ready(<span style="color: #00aaaa">Function</span>(){		
+				</div>
+
+
+
+
+
+
+				<!--   ajax-xml -->
+
+				<div class="tab-pane fade" id="ajaxxml">
+					<div style="overflow: auto; width: auto;">
+
+
+						<pre style="margin: 0; line-height: 125%">$(<span
+								style="color: #00aaaa">document</span>).ready(<span
+								style="color: #00aaaa">Function</span>(){		
 		exampleXML(); 
 	});
 	
-	<span style="color: #0000aa">function</span> exampleXML(){ <span style="color: #aaaaaa; font-style: italic">//xml</span>
-		<span style="color: #0000aa">var</span> car = <span style="color: #aa5500">&#39;2002&#39;</span>; <span style="color: #aaaaaa; font-style: italic">// 열차 번호입니다. 이 부분은 id나 class로 받으시면 됩니다.</span>
+	<span style="color: #0000aa">function</span> exampleXML(){ <span
+								style="color: #aaaaaa; font-style: italic">//xml</span>
+		<span style="color: #0000aa">var</span> car = <span
+								style="color: #aa5500">&#39;2002&#39;</span>; <span
+								style="color: #aaaaaa; font-style: italic">// 열차 번호입니다. 이 부분은 id나 class로 받으시면 됩니다.</span>
 		 $.ajax({
-			 url : <span style="color: #aa5500">&#39;exampleXML&#39;</span>, <span style="color: #aaaaaa; font-style: italic">// Controller의 주소 </span>
-				type : <span style="color: #aa5500">&#39;post&#39;</span>, <span style="color: #aaaaaa; font-style: italic">// post로 하는게 더 좋을 겁니다.</span>
-				data : {carnum: car}, <span style="color: #aaaaaa; font-style: italic">// 열차 번호 </span>
+			 url : <span style="color: #aa5500">&#39;exampleXML&#39;</span>, <span
+								style="color: #aaaaaa; font-style: italic">// Controller의 주소 </span>
+				type : <span style="color: #aa5500">&#39;post&#39;</span>, <span
+								style="color: #aaaaaa; font-style: italic">// post로 하는게 더 좋을 겁니다.</span>
+				data : {carnum: car}, <span
+								style="color: #aaaaaa; font-style: italic">// 열차 번호 </span>
 				dataType: <span style="color: #aa5500">&#39;json&#39;</span>, 
 				<span style="color: #aaaaaa; font-style: italic">// ArrayList로 저장되었다면 Json으로 하시는게 편합니다. </span>
 				<span style="color: #aaaaaa; font-style: italic">// 제공한 VO를 이용한다면 아래의 형태로 부르면 됩니다.</span>
@@ -768,29 +926,37 @@ body, html {
 	}
 </pre>
 
-  
-  
-  </div>
-
-  </div>
-<!-- ajax-xml -->
 
 
-<!-- ajax-json -->
-<div class="tab-pane fade" id="ajaxjson">
-  <div style="overflow:auto;width:auto;">
-  
-  
- <pre style="margin: 0; line-height: 125%">$(<span style="color: #00aaaa">document</span>).ready(<span style="color: #00aaaa">Function</span>(){		
+					</div>
+
+				</div>
+				<!-- ajax-xml -->
+
+
+				<!-- ajax-json -->
+				<div class="tab-pane fade" id="ajaxjson">
+					<div style="overflow: auto; width: auto;">
+
+
+						<pre style="margin: 0; line-height: 125%">$(<span
+								style="color: #00aaaa">document</span>).ready(<span
+								style="color: #00aaaa">Function</span>(){		
 		exampleJSON();
 	});
 
-	<span style="color: #0000aa">function</span> exampleJSON(){ <span style="color: #aaaaaa; font-style: italic">//xml</span>
-		<span style="color: #0000aa">var</span> car = <span style="color: #aa5500">&#39;2002&#39;</span>; <span style="color: #aaaaaa; font-style: italic">// 열차 번호입니다. 이 부분은 id나 class로 받으시면 됩니다.</span>
+	<span style="color: #0000aa">function</span> exampleJSON(){ <span
+								style="color: #aaaaaa; font-style: italic">//xml</span>
+		<span style="color: #0000aa">var</span> car = <span
+								style="color: #aa5500">&#39;2002&#39;</span>; <span
+								style="color: #aaaaaa; font-style: italic">// 열차 번호입니다. 이 부분은 id나 class로 받으시면 됩니다.</span>
 		 $.ajax({
-			 url : <span style="color: #aa5500">&#39;exampleJSON&#39;</span>, <span style="color: #aaaaaa; font-style: italic">// Controller의 주소 </span>
-				type : <span style="color: #aa5500">&#39;post&#39;</span>, <span style="color: #aaaaaa; font-style: italic">// post로 하는게 더 좋을 겁니다.</span>
-				data : {carnum: car}, <span style="color: #aaaaaa; font-style: italic">// 열차 번호 </span>
+			 url : <span style="color: #aa5500">&#39;exampleJSON&#39;</span>, <span
+								style="color: #aaaaaa; font-style: italic">// Controller의 주소 </span>
+				type : <span style="color: #aa5500">&#39;post&#39;</span>, <span
+								style="color: #aaaaaa; font-style: italic">// post로 하는게 더 좋을 겁니다.</span>
+				data : {carnum: car}, <span
+								style="color: #aaaaaa; font-style: italic">// 열차 번호 </span>
 				dataType: <span style="color: #aa5500">&#39;json&#39;</span>, 
 				
 				success : <span style="color: #0000aa">function</span>(item){
@@ -818,14 +984,14 @@ body, html {
 		 });
 	}
 </pre>
-  
-  
-  
-  </div>
 
-  </div>
-<!-- ajax-json -->
-				
+
+
+					</div>
+
+				</div>
+				<!-- ajax-json -->
+
 
 			</div>
 

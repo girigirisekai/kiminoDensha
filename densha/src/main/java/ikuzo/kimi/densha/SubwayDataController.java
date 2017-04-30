@@ -158,10 +158,10 @@ public class SubwayDataController {
 	@RequestMapping(value = "subwaySensorGet", method = RequestMethod.POST)
 	public ArrayList<Subway> subwaySensorGet(String subwayNum) {
 		ArrayList<Subway> subwayList = new ArrayList<>();
-		System.out.println("이민호가 수정할 것이다.");
 		
 		subwayList = dao.selectSubwayArray(subwayNum);
-
+		System.out.println("들어오는  : " +subwayNum);
+		
 		// 지하철 넘버, 칸넘버를 넣어야 한다.
 		logger.debug("검색값확인: {}", subwayList);
 

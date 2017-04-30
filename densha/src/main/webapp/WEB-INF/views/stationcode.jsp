@@ -27,6 +27,14 @@
 
 <!-- 팝업 파일 드래그 js -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+
+// $(function () {
+
+	
+// });
+ 
+</script>
 <style>
 /* #canvas_background {
 	pointer-events: all;
@@ -49,8 +57,75 @@
     background-color: transparent;
 }
 
-</style>
 
+
+
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+ul.tabs li {
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:82px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #eee;
+    border-left: none;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+}
+ul.tabs li.active {
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+.tab_container {
+    border: 1px solid #eee;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 248px;
+    background: #FFFFFF;
+}
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    padding:5px;
+    list-style:none
+}
+;
+ #containers {
+    width: 249px;
+    margin: 0 auto;
+}
+
+</style>
+<style type="text/css">
+
+#modalTable{
+width: 50px;,
+height: 50px;
+}
+</style>
 </head>
 <body class="fixed-sn white-skin bg-skin-lp">
 
@@ -8620,8 +8695,7 @@
 	
 	<!-- 	역 정보 띄우는 팝업   --> 
 	<div id="station_info_popup_layer"
-		style="position: absolute; border: none; top: 100px; left: 100px; width: 570px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">
-		
+		style="position: absolute; border: none; top: 100px; left: 100px; width: 570px; height: 700px; z-index: 1; visibility: hidden; background-color: white; overflow-y :auto; overflow-x :hidden; border-radius: 15px; border: 1px; border-color: #A9D0F5;">		
 		<div style="margin: 11px">
 		
 
@@ -8677,8 +8751,26 @@
 			<div style="">
 					
 					<table >
-						<td colspan="12"><img src = "./resources/image/menu/car_info_bar.png"></td>
 						<tr>
+						<td colspan="10"><img src = "./resources/image/menu/car_info_bar.png"></td>
+						</tr>
+						
+						
+<!-- 						열의 혼잡도 띄워주는 부분 탭으로 구현  -->
+						<tr>
+						
+							<td colspan="10">
+							<div id="containers">
+    <ul class="tabs">
+        <li class="active" rel="tab1" carnum = "2002" id = "carnumTab1">상행선</li>
+        <li rel="tab2" carnum = "2003" id ="carnumTab2">하행선</li>
+       
+    </ul>
+    <div class="tab_container">
+        <div id="tab1" class="tab_content">
+           
+        <table>
+        <tr>
 							<td>1호칸</td>
 							<td>2호칸</td>
 							<td>3호칸</td>
@@ -8690,10 +8782,8 @@
 							<td>9호칸</td>
 							<td>10호칸</td>
 						</tr>
-						
-						
-						<tr>
-							<td id="carNum1" num = "1"></td>
+        <tr>
+   						     <td id="carNum1" num = "1"></td>
 							<td id="carNum2" num = "2"></td>
 							<td id="carNum3" num = "3"></td>
 							<td id="carNum4" num = "4"></td>
@@ -8703,6 +8793,38 @@
 							<td id="carNum8" num = "8"></td>
 							<td id="carNum9" num = "9"></td>
 							<td id="carNum10" num = "10"></td>
+			</tr>
+        </table>
+        </div>
+        <!-- #tab1 -->
+        <div id="tab2" class="tab_content">
+        
+         <table>
+        <tr>
+       						 <td id="carNum1" num = "1"></td>
+							<td id="carNum2" num = "2"></td>
+							<td id="carNum3" num = "3"></td>
+							<td id="carNum4" num = "4"></td>
+							<td id="carNum5" num = "5"></td>
+							<td id="carNum6" num = "6"></td>
+							<td id="carNum7" num = "7"></td>
+							<td id="carNum8" num = "8"></td>
+							<td id="carNum9" num = "9"></td>
+							<td id="carNum10" num = "10"></td>
+			</tr>
+        </table>
+        </div>
+        <!-- #tab2 -->
+      
+    </div>
+    <!-- .tab_container -->
+</div>
+<!-- #container -->
+
+<!-- 열차 혼잡도 보여주는 탭 끝 -->
+							
+							</td>
+					
 				
 						</tr>
 						<tr>
@@ -8878,7 +9000,7 @@
 					</tr>
 				
 					<tr class= "tbl_detail">
-						<td width="70">역 명칭</td>
+						<td width="80">역 명칭</td>
 						<td colspan="5" id="station_name"></td>
 					</tr>
 					<tr class= "tbl_detail">
@@ -8896,7 +9018,7 @@
 					
 					<tr class= "tbl_detail">
 						<td>편의시설</td>
-						<td colspan="5" id="station_combini"></td>
+						<td colspan="5" ><span id="stationConvenient"></span></td>
 					</tr>
 					<tr class= "tbl_detail">
 					
@@ -9203,10 +9325,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
+        
+        <div style=""><h4 class="modal-title">역 이름 </h4></div>
       </div>
       <div class="modal-body">
-        <p>One fine body…</p>
+         <table style="margin: auto;">
+         <tr>
+         <td><img src = "./resources/image/infoicon/time.png" id = "modalTable">소요시간:&nbsp;</td>
+             <td class = "spendTime"></td>
+              <td> <img src = "./resources/image/infoicon/transfer.png" id = "modalTable">정차역:&nbsp;</td>
+              <td class = "stopStation"> </td>
+              <td><img src = "./resources/image/infoicon/heros.gif" style="width:50px; height: 50px;">환승:&nbsp;</td>
+              <td class = "transStation">  </td>
+         </tr>
+         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

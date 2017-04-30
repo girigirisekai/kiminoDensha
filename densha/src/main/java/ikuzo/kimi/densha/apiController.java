@@ -84,6 +84,7 @@ public class apiController {
 	@RequestMapping(value = "/example", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String example(String carnum) throws Exception {
 		// http://localhost:8888/densha/apiservice/sample?subwaynum=2002/
+		
 		apiMake api = new apiMake();
 		Document xml = apiModuleXML(carnum);
 		String str = XMLToString(xml);

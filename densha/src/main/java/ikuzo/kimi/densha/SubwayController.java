@@ -94,6 +94,7 @@ public class SubwayController {
 		//DB StationInfo를 이용한 역정보
 		StationInfo result = sinfodao.getStationInfo(station);
 		
+		System.out.println(result);
 		
 		return result;
 

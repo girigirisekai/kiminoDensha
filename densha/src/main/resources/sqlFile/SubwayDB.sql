@@ -22,7 +22,6 @@ CREATE TABLE SUBWAYDATA(
 );
 
 //지하철 정보 추가
-INSERT INTO SUBWAYDATA VALUES('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
 INSERT INTO SUBWAYDATA VALUES('2002','1','48','1','0','1','0','0','1','1','1','0','0','0','0');
 INSERT INTO SUBWAYDATA VALUES('2002','2','1','0','0','0','0','0','0','0','0','0','0','0','0');
 INSERT INTO SUBWAYDATA VALUES('2002','3','1','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -33,6 +32,17 @@ INSERT INTO SUBWAYDATA VALUES('2002','7','181','1','0','0','0','0','1','0','0','
 INSERT INTO SUBWAYDATA VALUES('2002','8','108','0','0','1','0','0','0','0','0','0','0','0','0');
 INSERT INTO SUBWAYDATA VALUES('2002','9','131','1','1','0','0','0','0','0','0','0','1','0','0');
 INSERT INTO SUBWAYDATA VALUES('2002','10','69','0','0','0','1','0','0','0','0','0','0','0','0');
+
+INSERT INTO SUBWAYDATA VALUES('2003','1','48','1','0','0','0','0','1','1','1','0','9','9','9');
+INSERT INTO SUBWAYDATA VALUES('2003','2','1','0','1','0','0','0','0','0','0','0','0','0','0');
+INSERT INTO SUBWAYDATA VALUES('2003','3','1','0','0','0','0','1','0','0','0','1','0','0','0');
+INSERT INTO SUBWAYDATA VALUES('2003','4','73','0','0','1','0','0','1','0','0','1','0','0','0');
+INSERT INTO SUBWAYDATA VALUES('2003','5','21','0','1','0','0','0','0','0','0','0','1','0','0');
+INSERT INTO SUBWAYDATA VALUES('2003','6','69','0','0','0','1','0','0','0','0','1','0','0','1');
+INSERT INTO SUBWAYDATA VALUES('2003','7','181','1','0','0','0','0','1','0','0','0','0','1','0');
+INSERT INTO SUBWAYDATA VALUES('2003','8','108','0','0','1','1','0','0','0','0','0','0','0','0');
+INSERT INTO SUBWAYDATA VALUES('2003','9','131','1','1','0','0','0','0','0','1','0','1','0','0');
+INSERT INTO SUBWAYDATA VALUES('2003','10','69','0','0','0','1','0','0','1','0','0','1','0','0');
 
 //지하철 정보 수정
 UPDATE SUBWAYDATA SET HUMANNUM='100', ELDERLYSEAT1='1', ELDERLYSEAT2='1',ELDERLYSEAT3='1' WHERE SUBWAYNUM='0' AND CARNUM='0'; 

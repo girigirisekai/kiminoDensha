@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="./resources/css/style.css">
 <link rel="stylesheet" href="./resources/css/loginModule.css">
+<link rel="stylesheet" href="./resources/css/home.css">
 <title>너의 지하철 : 지하철 맵</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
@@ -29,52 +30,99 @@
 	<!--top header-->
 
 	<!--slider-->
-	<div id="slider" class="flexslider">
+<!-- 	<div id="slider" class="flexslider"> -->
 
-		<ul class="slides">
-			<li>
-				<!-- 				<div class="embed-responsive embed-responsive-16by9"> --> <!-- 					<iframe class="embed-responsive-item" -->
-				<!-- 						src="https://www.youtube.com/embed/a1XuwtF7OJY?autoplay=1&playlist=XLkSQKCEKeE&loop=1&autohide=1&controls=0&showinfo=0&fs=0&rel=0" -->
-				<!-- 						frameborder="0" allowfullscreen></iframe> --> <!-- 				</div> -->
-				<img src="./resources/images/slider/slider1.jpg">
-				<div class="caption">
-					<h2 style="color: white;">지금 서울을 가지세요</h2>
-					<h2>
-						<span>체험하세요</span>
-					</h2>
-					<p>이 좋은걸 모르셨다구요? 지금 서울을 가자세요!</p>
-					<button class="btn">Read More</button>
-				</div>
-			</li>
-			<li><img src="./resources/images/slider/slider2.jpg">
+<!-- 		<ul class="slides"> -->
+<!-- 			<li> -->
+<!-- 								<div class="embed-responsive embed-responsive-16by9"> 					<iframe class="embed-responsive-item" -->
+<!-- 										src="https://www.youtube.com/embed/a1XuwtF7OJY?autoplay=1&playlist=XLkSQKCEKeE&loop=1&autohide=1&controls=0&showinfo=0&fs=0&rel=0" -->
+<!-- 										frameborder="0" allowfullscreen></iframe> 				</div> -->
+<!-- 				<img src="./resources/images/slider/slider1.jpg"> -->
+<!-- 				<div class="caption"> -->
+<!-- 					<h2 style="color: white;">지금 서울을 가지세요</h2> -->
+<!-- 					<h2> -->
+<!-- 						<span>체험하세요</span> -->
+<!-- 					</h2> -->
+<!-- 					<p>이 좋은걸 모르셨다구요? 지금 서울을 가자세요!</p> -->
+<!-- 					<button class="btn">Read More</button> -->
+<!-- 				</div> -->
+<!-- 			</li> -->
+<!-- 			<li><img src="./resources/images/slider/slider2.jpg"> -->
 
-				<div class="caption">
-					<h2>
-						<span>yet another slide</span>
-					</h2>
-					<h2>
-						<span>html theme</span>
-					</h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and
-						typesetting industry.</p>
-					<button class="btn">Read More</button>
-				</div></li>
-			<li><img src="./resources/images/slider/slider3.jpg">
+<!-- 				<div class="caption"> -->
+<!-- 					<h2> -->
+<!-- 						<span>yet another slide</span> -->
+<!-- 					</h2> -->
+<!-- 					<h2> -->
+<!-- 						<span>html theme</span> -->
+<!-- 					</h2> -->
+<!-- 					<p>Lorem Ipsum is simply dummy text of the printing and -->
+<!-- 						typesetting industry.</p> -->
+<!-- 					<button class="btn">Read More</button> -->
+<!-- 				</div></li> -->
+<!-- 			<li><img src="./resources/images/slider/slider3.jpg"> -->
 
-				<div class="caption">
-					<h2>
-						<span>one more slide</span>
-					</h2>
-					<h2>
-						<span>html theme</span>
-					</h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and
-						typesetting industry.</p>
-					<button class="btn">Read More</button>
-				</div></li>
-		</ul>
+<!-- 				<div class="caption"> -->
+<!-- 					<h2> -->
+<!-- 						<span>one more slide</span> -->
+<!-- 					</h2> -->
+<!-- 					<h2> -->
+<!-- 						<span>html theme</span> -->
+<!-- 					</h2> -->
+<!-- 					<p>Lorem Ipsum is simply dummy text of the printing and -->
+<!-- 						typesetting industry.</p> -->
+<!-- 					<button class="btn">Read More</button> -->
+<!-- 				</div></li> -->
+<!-- 		</ul> -->
 
-	</div>
+<!-- 	</div> -->
+
+
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="5000" id="bs-carousel">
+  <!-- Overlay -->
+<!--   <div class="overlay"></div> -->
+
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#bs-carousel" data-slide-to="1"></li>
+    <li data-target="#bs-carousel" data-slide-to="2"></li>
+  </ol>
+  
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item slides active">
+      <div class="slide-1"></div>
+      <div class="hero">
+        <hgroup>
+            <h1>너의 지하철</h1>        
+            <h3 style="color: #E6E6E6;">지금 서울을 가지세요</h3>
+        </hgroup>
+        <button class="btn btn-hero btn-lg" role="button" style="width: 300px;" onclick="location.href='#service';">더 자세한 정보 보기</button>
+      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-2"></div>
+      <div class="hero">        
+        <hgroup>
+            <h1>체험하세요!</h1>        
+            <h3 style="color: #E6E6E6;">Example 서비스를 제공하고 있습니다.</h3>
+        </hgroup>       
+        <button class="btn btn-hero btn-lg" role="button" style="width: 300px;" onclick="location.href='stationcode';">바로가기</button>
+      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-3"></div>
+      <div class="hero">        
+        <hgroup>
+            <h1>API를 이용하세요!</h1>        
+            <h3 style="color: #E6E6E6;">개발자용 api를 제공하고 있습니다.</h3>
+        </hgroup>
+        <button class="btn btn-hero btn-lg" role="button"  style="width: 300px;" onclick="location.href='api';">api 이용하기</button>
+      </div>
+    </div>
+  </div> 
+</div>
 
 	<!--about-->
 	<div id="about">
@@ -140,52 +188,7 @@
 	</div>
 
 	<!--about bg-->
-	<!-- 	<div id="about-bg"> -->
 
-	<!-- 		<div class="container"> -->
-	<!-- 			<div class="row"> -->
-
-	<!-- 				<div class="about-bg-heading"> -->
-	<!-- 					<h1>sucessfull stats about us</h1> -->
-	<!-- 					<p>what we have achieved so far</p> -->
-	<!-- 				</div> -->
-
-	<!-- 				<div class=" col-xs-12 col-md-3"> -->
-	<!-- 					<div class="about-bg-wrapper"> -->
-	<!-- 						<span class="count"><h1> -->
-	<!-- 								<span class="border">32</span>15 -->
-	<!-- 							</h1></span> -->
-	<!-- 						<p>happy client</p> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-
-	<!-- 				<div class="col-xs-12 col-md-3"> -->
-	<!-- 					<div class="about-bg-wrapper"> -->
-	<!-- 						<span class="count"><h1>2217</h1></span> -->
-	<!-- 						<p>projects</p> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-
-	<!-- 				<div class="col-xs-12 col-md-3"> -->
-	<!-- 					<div class="about-bg-wrapper"> -->
-	<!-- 						<span class="count"><h1>1522</h1></span> -->
-	<!-- 						<p>branches</p> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-
-	<!-- 				<div class="col-xs-12 col-md-3"> -->
-	<!-- 					<div class="about-bg-wrapper"> -->
-	<!-- 						<span class="count"><h1>3151</h1></span> -->
-	<!-- 						<p>expert team</p> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-
-	<!-- 		<div class="cover"></div> -->
-
-	<!-- 	</div> -->
 
 	<!--service-->
 	<div id="service">

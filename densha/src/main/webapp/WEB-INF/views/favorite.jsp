@@ -140,7 +140,7 @@ body, html {
 			}
 		});
 	}
-
+	var stationIdcode = new Array();
 	//불러온 즐겨찾기 리스트 출력하기
 	function printFavoriteStations(favoriteLists) {
 		var str = '';
@@ -174,7 +174,7 @@ body, html {
 				lineColor = '';
 			}
 
-
+			stationIdcode [index]= item.stationCode;
 			str += '<div id="' + item.stationCode + '"';
 			if (index % 2 == 0 && index != 0) {
 				str += ' style="clear: left; float: left; margin-right: 60px; width=2000px; ">';
@@ -227,16 +227,16 @@ body, html {
 			str += '<td>10호칸</td>';
 			str += '</tr>';
 			str += '<tr>';
-			str += '<td class="carNum1"></td>';
-			str += '<td class="carNum2"></td>';
-			str += '<td class="carNum3"></td>';
-			str += '<td class="carNum4"></td>';
-			str += '<td class="carNum5"></td>';
-			str += '<td class="carNum6"></td>';
-			str += '<td class="carNum7"></td>';
-			str += '<td class="carNum8"></td>';
-			str += '<td class="carNum9"></td>';
-			str += '<td class="carNum10"></td>';
+			str += '<td id="carNum1'+item.stationCode+'"></td>';
+			str += '<td id="carNum2'+item.stationCode+'"></td>';
+			str += '<td id="carNum3'+item.stationCode+'"></td>';
+			str += '<td id="carNum4'+item.stationCode+'"></td>';
+			str += '<td id="carNum5'+item.stationCode+'"></td>';
+			str += '<td id="carNum6'+item.stationCode+'"></td>';
+			str += '<td id="carNum7'+item.stationCode+'"></td>';
+			str += '<td id="carNum8'+item.stationCode+'"></td>';
+			str += '<td id="carNum9'+item.stationCode+'"></td>';
+			str += '<td id="carNum10'+item.stationCode+'"></td>';
 			str += '</tr>';
 			str += '</td>';
 			str += '</table>';
@@ -253,11 +253,12 @@ body, html {
 			str += '</div>';
 			str += '</div>';
 			str += '</div>';
+			
 		});
 		str += '</div>';
 		$('#storedStations').html(str);
 		$('.favoriteStations').on('click', deleteStation);
-		subwaySensorGet();
+		subwaySensorGet(); 
 	}
 
 	//지하철 센서 데이터 불러오기
@@ -329,10 +330,13 @@ body, html {
 // 				insertVar += items.humanNum + '명 <br>';
 // 				insertVar += carHuman + '%';
 				console.log(inserts);
-				$('#carNum' + humanIndex).html(inserts); // carnum 1~10까지 html 자동으로 넣기
-// 				$('#carNumVar' + humanIndex).html(insertVar); // %넣기
+				for (i = 0; i < stationIdcode.length; i++) { 
+					$('#carNum' + humanIndex+stationIdcode[i]).html(inserts);// carnum 1~10까지 html 자동으로 넣기
+				}
+				//$('#carNumVar' + humanIndex).html(insertVar); // %넣기
 				
 			});
+			
 	}
 
 	// 선택한 즐겨찾기 역 삭제

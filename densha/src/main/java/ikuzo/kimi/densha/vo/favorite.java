@@ -1,22 +1,24 @@
 package ikuzo.kimi.densha.vo;
+
 public class favorite {
 
 	String id; // 즐겨찾기 등록한 아이디
 	String favoriteName; // 즐겨찾기 명
 	String stationCode; // 즐겨찾기 역 코드번호
 	String favoriteOrder; // 즐겨찾기 등록 시간
+	String line; // 호선
 
-	public favorite(String id, String favoriteName, String stationCode, String favoriteOrder) {
+	public favorite(String id, String favoriteName, String stationCode, String favoriteOrder, String line) {
 		super();
 		this.id = id;
 		this.favoriteName = favoriteName;
 		this.stationCode = stationCode;
 		this.favoriteOrder = favoriteOrder;
+		this.line = line;
 	}
 
 	public favorite() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getId() {
@@ -51,10 +53,18 @@ public class favorite {
 		this.favoriteOrder = favoriteOrder;
 	}
 
+	public String getLine() {
+		return line;
+	}
+
+	public void setLine(String line) {
+		this.line = line;
+	}
+
 	@Override
 	public String toString() {
 		return "favorite [id=" + id + ", favoriteName=" + favoriteName + ", stationCode=" + stationCode
-				+ ", favoriteOrder=" + favoriteOrder + "]";
+				+ ", favoriteOrder=" + favoriteOrder + ", line=" + line + "]";
 	}
 
 }

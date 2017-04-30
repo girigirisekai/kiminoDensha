@@ -1,4 +1,4 @@
-
+﻿
 /* Drop Tables */
 
 DROP TABLE checkCode CASCADE CONSTRAINTS;
@@ -39,6 +39,7 @@ CREATE TABLE favorite
 	stationCode varchar2(10),
 	-- 즐겨찾기 등록시간
 	favoriteOrder date
+	,line varchar2(10)
 );
 
 

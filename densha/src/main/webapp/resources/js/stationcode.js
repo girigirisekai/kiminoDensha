@@ -434,7 +434,7 @@ function get_train_info(e) {
 				var insert3 = ''; // 
 				var insert4 = '';
 				
-				var insertTitle = subwaynum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
+				var insertTitle = subwayNum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
 				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
 				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
 				

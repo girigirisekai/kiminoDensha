@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import ikuzo.kimi.densha.dao.MemberDAO;
+import ikuzo.kimi.densha.email.FindPassword;
 import ikuzo.kimi.densha.email.SendMail;
 import ikuzo.kimi.densha.vo.Member;
 import ikuzo.kimi.densha.vo.checkCode;
@@ -83,6 +84,15 @@ public class MemberJoinController {
 		return Code;
 	}
 	
+	//비밀번호 분실시 임시 비밀번호 이메일로 보내기 
+	@ResponseBody
+	@RequestMapping(value="findPassword", method=RequestMethod.GET)
+	public int findPassword(String user){
+		FindPassword mail = new FindPassword("", null, null);
+		int Code = mail.test(user);
+		int result = dao.ChangePassword(Code+"",user);
+		return Code;
+	}
 	
 	
 	/**

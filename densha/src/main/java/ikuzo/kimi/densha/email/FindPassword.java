@@ -14,13 +14,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
-public class SendMail {
+public class FindPassword {
 
 	   private String user; // 받을 사람
 	   private String title; //제목
 	   private String message;//내용
 
-	   public SendMail(String user,String title,String message) {
+	   public FindPassword(String user,String title,String message) {
 	      this.user = user; 
 	      this.title = title; // 안쓰고
 	      this.message = message; // 안쓰고
@@ -93,8 +93,8 @@ public class SendMail {
 	   
 	   public int test(String user){
 	      int accreditation = (int) (Math.random() * 1000000);
-	      String title = "[KiminoDensha] 인증 번호";
-	      String message = "<h1>Welcome to kimino densha</h1><br> 인증번호 : <b>" + accreditation+"</b><br> <h2>저희 kimino densha에 오신 것을 환영합니다.</h2>";
+	      String title = "[KiminoDensha] 비밀번호 분실";
+	      String message = "<h1>Welcome to kimino densha</h1><br> 임시비밀번호 : <b>" + accreditation+"</b><br> <h2>하루 빨리 개인정보를 바꾸세요</h2>";
 	      new SendMail(user, title, message);
 	      return accreditation;
 	   }

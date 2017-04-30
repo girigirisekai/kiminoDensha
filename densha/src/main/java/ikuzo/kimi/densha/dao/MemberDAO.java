@@ -106,7 +106,17 @@ public class MemberDAO {
 		public ArrayList<loginCheck> logincheck3 (String id){
 			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 			ArrayList<loginCheck> result = mapper.logincheck3(id);
-			System.out.println(result+"가나다라마바사");
+			return result;
+		}
+		/**
+		 * 비밀번호 변경
+		 * @param Code 임시 비밀번호
+		 * @param user 이메일 전송한 아이디
+		 * @return
+		 */
+		public int ChangePassword(String Code, String user){
+			MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+			int result = mapper.ChangePassword(user,Code);
 			return result;
 		}
 }

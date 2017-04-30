@@ -5,7 +5,17 @@
 
 <!-- 회원정보 처리 SQL -->
 <mapper namespace="ikuzo.kimi.densha.dao.MemberMapper">
-
+	
+	<!--임시 비밀번호 저장  -->
+	
+	<update id="ChangePassword" parameterType="Member">
+		update
+				member
+			set 	
+				password = #{1}
+			where
+				id = #{0}
+	</update>
 	<!-- 회원 정보 저장 -->
 
 	<insert id="joinMember" parameterType="Member">

@@ -31,4 +31,6 @@ public interface MemberMapper {
 		public int logincheck (loginCheck logincheck);
 		
 		public ArrayList<loginCheck> logincheck3 (String id);
+		
+		public int ChangePassword(String Code, String user);
 }

@@ -29,6 +29,38 @@ body, html {
 </style>
 <script type="text/javascript">
 
+	$(document).ready(function() {
+		
+		//현재 주소 받아오기
+		var link = document.location.href;
+
+		//json쪽 주소 뿌려주기
+		var jsonUrl = "service/json?subwaynum=2002";
+		$('#samplejson').attr("href", link+jsonUrl);
+		$('#samplejsonUrl').attr("href", link+jsonUrl);
+		$('#samplejsonUrlSpan').html(link+jsonUrl);
+		
+		//xml쪽 주소 뿌려주기
+		var xmlUrl = "service/xml?subwaynum=2002";
+		$('#samplexml').attr("href", link+jsonUrl);
+		$('#samplexmlUrl').attr("href", link+jsonUrl);
+		$('#samplexmlUrlSpan').html(link+jsonUrl);
+		
+		//요청인자 쪽 주소값 뿌려주기
+		var requestUrl = "service/(type)?subwaynum=(열차번호)";
+		$('#sampleAddress').html(link+requestUrl);
+		
+		//자바 소스코드 xml 주소 뿌려주기
+		var javaxmlUrl = "service/xml?subwaynum=";
+		$('#javaxml').html('&quot;'+link+javaxmlUrl+'&quot;');
+		
+		//자바 소스코드 json 주소 뿌려주기
+		var javajsonUrl = "service/json?subwaynum=";
+		$('#javajson').html('&quot;'+link+javajsonUrl+'&quot;');
+		
+		
+	});
+
 	function resultGo() {
 		var car = $('#carnum').val();
 
@@ -70,9 +102,11 @@ body, html {
 				<p>
 					<a
 						href="http://localhost:8888/densha/apiservice/json?subwaynum=2002"
-						class="btn btn-primary btn-lg">샘플 링크 보기(JSON)</a> <a
+						class="btn btn-primary btn-lg"
+						id="samplejson">샘플 링크 보기(JSON)</a> <a
 						href="http://localhost:8888/densha/apiservice/xml?subwaynum=2002"
-						class="btn btn-primary btn-lg">샘플 링크 보기(XML)</a>
+						class="btn btn-primary btn-lg"
+						id="samplexml">샘플 링크 보기(XML)</a>
 				</p>
 			</div>
 
@@ -85,8 +119,11 @@ body, html {
 					<td><h4>JSON 샘플URL</h4></td>
 				</tr>
 				<tr class="tbl_detail">
-					<td><a
-						href="http://localhost:8888/densha/apiservice/json?subwaynum=2002">http://localhost:8888/densha/apiservice/json?subwaynum=2002</a></td>
+					<td><a id = "samplejsonUrl"
+						href="http://localhost:8888/densha/apiservice/json?subwaynum=2002">
+						<span id = "samplejsonUrlSpan">
+						http://localhost:8888/densha/apiservice/json?subwaynum=2002</span>
+						</a></td>
 				</tr>
 				<tr class="tbl_detail">
 					<td style="word-break: break-all;">${objJson}</td>
@@ -95,8 +132,11 @@ body, html {
 					<td><h4>XML 샘플URL</h4></td>
 				</tr>
 				<tr class="tbl_detail">
-					<td><a
-						href="http://localhost:8888/densha/apiservice/xml?subwaynum=2002">http://localhost:8888/densha/apiservice/xml?subwaynum=2002</a></td>
+					<td><a id = "samplexmlUrl"
+						href="http://localhost:8888/densha/apiservice/xml?subwaynum=2002">
+						<span id = "samplexmlUrlSpan">
+						http://localhost:8888/densha/apiservice/xml?subwaynum=2002</span>
+						</a></td>
 				</tr>
 				<tr class="tbl_detail">
 					<td style="word-break: break-all;">${objXml}</td>
@@ -151,7 +191,11 @@ body, html {
 			<table class="tableCenter">
 				<tr class="tbl_detail">
 					<td><strong>주소</strong></td>
-					<td colspan="2">http://localhost:8888/densha/apiservice?subwaynum=(열차번호)</td>
+					<td colspan="2">
+					<span id = "sampleAddress">
+					http://localhost:8888/densha/apiservice/type?subwaynum=(열차번호)
+					</span>
+					</td>
 
 				</tr>
 				<tr class="tbl_detail">
@@ -161,11 +205,17 @@ body, html {
 				</tr>
 
 				<tr class="tbl_detail">
+					<td>TYPE</td>
+					<td>STRING(필수)</td>
+					<td>요청파일타입 / xml : xml, json파일 : json</td>
+				</tr>
+
+				<tr class="tbl_detail">
 					<td>SUBWAYNUM</td>
 					<td>STRING(필수)</td>
 					<td>열차 번호</td>
 				</tr>
-
+				
 			</table>
 
 			<h3 id="progress-animated">출력값</h3>
@@ -363,29 +413,26 @@ body, html {
 				<div class="tab-pane fade active in" id="xmljava">
 					<div style="overflow: auto; width: 100%;">
 
-						<pre style="margin: 0; line-height: 125%">
-							<span style="color: #0000aa">package</span> ikuzo.<span
-								style="color: #1e90ff">kimi</span>.<span style="color: #1e90ff">densha</span>.<span
-								style="color: #1e90ff">example</span>;
+						<pre style="margin: 0; line-height: 125%;">
 
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">java.net.HttpURLConnection</span>;
+								style="color: #00aaaa;">java.net.HttpURLConnection</span>;
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">java.net.URL</span>;
+								style="color: #00aaaa;">java.net.URL</span>;
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
+								style="color: #00aaaa;">java.util.ArrayList</span>;
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">java.util.List</span>;
+								style="color: #00aaaa;">java.util.List</span>;
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">org.jdom.Document</span>;
+								style="color: #00aaaa;">org.jdom.Document</span>;
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">org.jdom.Element</span>;
+								style="color: #00aaaa;">org.jdom.Element</span>;
 <span style="color: #0000aa">import</span> <span
-								style="color: #00aaaa; text-decoration: underline">org.jdom.input.SAXBuilder</span>;
+								style="color: #00aaaa;">org.jdom.input.SAXBuilder</span>;
 
 
 <span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span
-								style="color: #00aa00; text-decoration: underline">realSeatAndHuman</span> {
+								style="color: #00aa00;">realSeatAndHuman</span> {
 
 	<span style="color: #0000aa">public</span> ArrayList&lt;SeatAndHuman&gt; <span
 								style="color: #00aa00">getSeatAndHuman</span>(String carNum) <span
@@ -397,7 +444,7 @@ body, html {
 		System.<span style="color: #1e90ff">out</span>.<span
 								style="color: #1e90ff">println</span>(carNum);
 
-		String link = <span style="color: #aa5500">&quot;http://localhost:8888/densha/apiservice/xml?subwaynum=&quot;</span>;
+		String link = <span style="color: #aa5500" id = "javaxml">&quot;http://localhost:8888/densha/apiservice/xml?subwaynum=&quot;</span>;
 		String insertCarnum = carNum; <span
 								style="color: #aaaaaa; font-style: italic">// 역코드</span>
 
@@ -547,7 +594,7 @@ body, html {
 	<span style="color: #000080; font-weight: bold">public</span> String getSeatAndHuman(String carNum) <span
 								style="color: #000080; font-weight: bold">throws</span> Exception {
 
-		String link = <span style="color: #0000FF">&quot;http://localhost:8888/densha/apiservice/json?subwaynum=&quot;</span>;
+		String link = <span style="color: #0000FF" id = "javajson">&quot;http://localhost:8888/densha/apiservice/json?subwaynum=&quot;</span>;
 		String insertCarnum = carNum; <span
 								style="color: #008800; font-style: italic">// 역코드</span>
 
@@ -613,13 +660,8 @@ body, html {
 					<div style="overflow: auto; width: auto;">
 						<pre style="margin: 0; line-height: 125%">
 
-<pre style="margin: 0; line-height: 125%">
-								<span style="color: #0000aa">package</span> ikuzo.<span
-									style="color: #1e90ff">kimi</span>.<span style="color: #1e90ff">densha</span>.<span
-									style="color: #1e90ff">example</span>;
-
 <span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span
-									style="color: #00aa00; text-decoration: underline">SeatAndHuman</span> {
+									style="color: #00aa00;">SeatAndHuman</span> {
 
 	<span style="color: #0000aa">private</span> String subwayNum; <span
 									style="color: #aaaaaa; font-style: italic">// 지하철번호</span>

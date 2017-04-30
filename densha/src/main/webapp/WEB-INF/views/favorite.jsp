@@ -294,7 +294,7 @@ body, html {
 		var nextCar120 = '';
  
 		
-			$.each(datas, function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
+			$.each(datas, function (index, items) { // arraylist로 받아서 안에 있는 VO를 사용
 			
 				var humanIndex = index + 1; // 1234...\
 				carHuman = Number(items.humanNum) / 160 * 100;

@@ -45,7 +45,7 @@ public class favoriteController {
 		
 		return "favorite";
 
-	}
+	} 
 
 	//입력한 역 정보 검색하기
 	@ResponseBody

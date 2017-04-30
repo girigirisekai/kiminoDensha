@@ -8758,7 +8758,7 @@ height: 50px;
 						
 <!-- 						열의 혼잡도 띄워주는 부분 탭으로 구현  -->
 						<tr>
-					 	
+					 	  
 							<td colspan="10">
 							<div id="containers">
     <ul class="tabs">

@@ -67,6 +67,7 @@ public class BoardController {
 		int totalRecordsCount = dao.getTotal(searchText, type);
 
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, totalRecordsCount);
+		logger.debug("페이지네비게이터:{}", navi);
 		ArrayList<Board> boardlist = dao.list(navi.getStartRecord(), countPerPage, searchText, type);
 		model.addAttribute("boardlist", boardlist);
 		model.addAttribute("navi", navi);
@@ -98,15 +99,19 @@ public class BoardController {
 	public String writeForm(String type, Model model) {
 		logger.debug("글쓰기 타입: {}", type);
 		model.addAttribute("type", type);
-		return "board/writeForm";
+		if(type.equals("freeboard")){
+			return "board/writeForm_Freeboard";
+		}else if(type.equals("qna")){
+			return "board/writeForm_QnA";
+		}
+		return "";
 	}
 
 	@RequestMapping(value = "write", method = RequestMethod.POST)
 	public String write(Board board, HttpSession session, Model model, MultipartFile upload) {
 
 		// MultipartFile 객체의 정보 확인
-
-		logger.debug("파일첨부 여부:{}", upload.isEmpty());
+		logger.debug("파일첨부 안 한 여부:{}", upload.isEmpty());
 		logger.debug("파일명:{}", upload.getOriginalFilename());
 		logger.debug("이름:{}", upload.getName());
 		logger.debug("종류:{}", upload.getContentType());
@@ -114,24 +119,28 @@ public class BoardController {
 
 		// 첨부 파일이 있으면 서버의 하드디스크에 파일을 생성하여 복사하기
 		if (!upload.isEmpty()) {
+			logger.debug("업로드할 파일 존재");
 			String savedFile = FileService.saveFile(upload, uploadPath);
 
 			// 원래 파일명과 저장된 파일명을 board객체에 담아 DB에 저장
 			board.setOriginalfile(upload.getOriginalFilename());
 			board.setSavedfile(savedFile);
 		}
-
+		
 		// 로그인 한 사람에 한에 글을 쓸 수 있게 제한해놓음
-		String id = (String) session.getAttribute("loginId");
-			if (id == null) {
+		String loginID = (String) session.getAttribute("loginId");
+			
+		if (loginID == null) {
+			logger.debug("잘못된 접근- 아이디 존재x");
 			return "redirect:board";
 		}
-
+			
 		// 게시판 보드에 아이디 세팅해주기
-		board.setId(id);
-
+		board.setId(loginID);
+		logger.debug("DB에 저장 실행");
 		// 게시판에 글 쓰는 dao 호출
 		dao.insert(board);
+		logger.debug("글쓰기 성공");
 		return "redirect:board";
 	}
 
@@ -151,9 +160,9 @@ public class BoardController {
 			board=dao.select(boardnum);
 		}
 		logger.debug("읽어온 게시판: {}",board);
+		
+		
 		//QNA와 아닌 글로 분기 나누어줌
-		
-		
 		if(board.getType().equals("qna")){
 			if( session.getAttribute("checkedBoardnum") == null){
 				return "redirect:board";
@@ -231,16 +240,19 @@ public class BoardController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(Model model, int boardnum, HttpSession session) {
+		logger.debug("수정 버튼 눌림");
 
+		logger.debug("수정될 게시판 글 번호: {}", boardnum);
 		// 세션에서 아이디 받아오기
-		String id = (String) session.getAttribute("loginId");
+		String loginId = (String) session.getAttribute("loginId");
 		Board board = dao.select(boardnum);
 
 		// 로그인 한 아이디와 보드의 아이디의 일치여부를 미리 확인
-		// if(!id.equals(board.getId())){
-		// return "redirect:list";
-		// }
+		if(!loginId.equals(board.getId())){
+			return "redirect:list";
+		}
 		model.addAttribute("board", board);
+		logger.debug("수정할 게시판 글: {}", board);
 		return "board/update";
 	}
 
@@ -255,13 +267,18 @@ public class BoardController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(Model model, Board board, HttpSession session, MultipartFile upload) {
-
-		String id = (String) session.getAttribute("loginId");
+		logger.debug("수정 실행");
+		String loginId = (String) session.getAttribute("loginId");
+		
+		
 		Board b = dao.select(board.getBoardnum());
-
-//		if (!b.getId().equals(id)) {
-//			return "redirect:list";
-//		}
+		logger.debug("불러온 게시판글:{}", b);
+		logger.debug("게시판 수정 글:{}",board);
+		
+		if (!b.getId().equals(loginId)) {
+			logger.debug("아이디 불일치");
+			return "redirect:list";
+		}
 
 		if (!upload.isEmpty()) {
 
@@ -274,9 +291,12 @@ public class BoardController {
 			board.setOriginalfile(upload.getOriginalFilename());
 			board.setSavedfile(savefile);
 		}
-
+		
 		dao.update(board);
-
+		logger.debug("업데이트 완료");
+		
+		model.addAttribute("board",board);
+		
 		return "redirect:read?boardnum=" + board.getBoardnum();
 
 	}

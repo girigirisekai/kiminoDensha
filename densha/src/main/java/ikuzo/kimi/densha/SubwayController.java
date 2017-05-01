@@ -3,6 +3,7 @@ package ikuzo.kimi.densha;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
@@ -123,12 +124,16 @@ public class SubwayController {
 	// 실시간 도착 json, String
 	@ResponseBody
 	@RequestMapping(value = "realTime", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public String realTime(String station, Model model) throws Exception {
+	public Map<String, String> realTime(String station, String index, Model model) throws Exception {
 		System.out.println(station);
 		StationNameToRealtimeArrive realTime = new StationNameToRealtimeArrive();
 		String result = realTime.ArriveTime(station);
 
-		return result;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("resultjson", result);
+		map.put("arraynum", index);
+		
+		return map;
 
 	}
 

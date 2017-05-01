@@ -52,6 +52,11 @@ body, html {
 #searchStation {
 	width: 200px;
 }
+
+td{
+	text-align: center;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -196,15 +201,15 @@ body, html {
 			str += '<td>';
 
 			str += '<div class="panel-body">';
-			str += '<div class="stationNames' + item.stationCode + '" style="width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; margin: auto;">';
+			str += '<div id="stationNames' + item.stationCode + '" style="width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; background-size:cover; margin: auto;">';
 
 			str += '<div style="margin:auto; width : 500px;">';
 
-			str += '<div class="upstation_real' + item.stationCode + '"';
+			str += '<div id="upstation_real' + item.stationCode + '"';
 			str += 'style="position: relative; right: -30px; top: 60px;"></div>';
-			str += '<div class="getStationName' + item.stationCode + '"';
+			str += '<div id="getStationName' + item.stationCode + '"';
 			str += 'style="position: relative; left: 205px;"></div>';
-			str += '<div class="downstation_real' + item.stationCode + '"';
+			str += '<div id="downstation_real' + item.stationCode + '"';
 			str += 'style="position: relative; left: 360px; top: 15px;"></div>';
 			str += '</div>';
 			str += '</div>';
@@ -342,7 +347,7 @@ body, html {
 
 							str += '</div>';
 
-							str += '<div style="padding-left:190px; padding-bottom: 20px;">';
+							str += '<div style="padding-left:215px; padding-bottom: 20px;">';
 							str += '<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="' + item.id + '" atr2="' + item.favoriteName + '" atr3="' + item.stationCode + '"value="삭제하기" >';
 							str += '</div>';
 							str += '</div>';
@@ -356,7 +361,7 @@ body, html {
 		
 		for(var i = 0; i<stationIdcode.length; i++){
 		
-			realtimes(	stationIdName[i],stationIdcode[i],stationIdLine[i],stationIdfrCode[i]) ;
+			realtimes(stationIdName[i],stationIdcode[i],stationIdLine[i],stationIdfrCode[i], i);
 		}
 		
 	}
@@ -645,20 +650,23 @@ body, html {
 	
 	
 	// 실시간 열차 
-	var stationRealCode ='';
-	var stationRealName ='';
-	var stationRealLine ='';
-	var stationRealFcode ='';
-	function realtimes(fNames, code, subwayLine, fcode ) {
-		stationRealCode = code;
-		stationRealName = fNames;
-		stationRealLine  =subwayLine ;
-		stationRealFcode = fcode;
+	var stationRealCode = new Array();
+	var stationRealName = new Array();
+	var stationRealLine = new Array();
+	var stationRealFcode = new Array();
+	function realtimes(fNames, code, subwayLine, fcode , i) {
+		
+		stationRealCode[i] = code;
+		stationRealName[i] = fNames;
+		stationRealLine[i]  =subwayLine ;
+		stationRealFcode[i] = fcode;
+		
 		$.ajax({
 			url : 'realTime',
 			type : 'post',
 			data : {
-				station : fNames
+				station : fNames,
+				index : i
 			},
 			dataType : 'json',
 			success : resultRealTime,
@@ -670,13 +678,17 @@ body, html {
 
 	function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 		var nowCode = '';
-		$.each(result.realtimeArrivalList, function(index, items) {
+	
+		var resultjson = result.resultjson;
+		var jsonFile = JSON.parse(resultjson);
+	
+		$.each(jsonFile.realtimeArrivalList, function(index, items) {
 			nowCode = items.statnId.substr(7, 3); // 역외코드 
 
-			console.log(nowCode);
-			console.log(items.arvlMsg2);
-			console.log(stationRealFcode);
-			if (nowCode == stationRealFcode) { 
+			//console.log(nowCode);
+			//console.log(items.arvlMsg2);
+			//console.log(stationRealFcode);
+			if (nowCode == stationRealFcode[result.arraynum]) { 
 				// 열차가 가진 번호가 역외코드와 같은 역인지 확인하여 찾는다.
 				
 				var ordkey = items.ordkey; // 열차의 순번이다. 
@@ -689,47 +701,48 @@ body, html {
 				앞의 두 글자를 substring으로 가져와서 비교를 해야 한다.
 				*/
 				var list = ordkey.substr(0, 2);
-				$('.getStationName'+stationRealCode).html('<strong>' + stationRealLine + '호선 ' + stationRealName + '</strong>');
+				$('#getStationName'+stationRealCode[result.arraynum]).html('<strong>' + stationRealLine[result.arraynum] + '호선 ' + stationRealName[result.arraynum] + '</strong>');
 				// 역 이름을 넣어준다. 역 이름은 호선과 역 이름을 입력한다.	
 				
 				if ( list== '01') { // 
-					$('.upstation_real'+stationRealCode).text(items.arvlMsg2);
+					$('#upstation_real'+stationRealCode[result.arraynum]).text(items.arvlMsg2);
 				}
 				if (list == '11') {
-					$('.downstation_real'+stationRealCode).text(items.arvlMsg2);
+					$('#downstation_real'+stationRealCode[result.arraynum]).text(items.arvlMsg2);
 				}
 				
 				
 				
 			}
 
-			lineGifChange(stationRealCode); // 백 패널의 이미지를 교체한다.
 		});
+		
+		lineGifChange(stationRealCode[result.arraynum], stationRealLine[result.arraynum]); // 백 패널의 이미지를 교체한다.
 	}
 	
-	function lineGifChange() {
+	function lineGifChange(code, line) {
 		//라인에 따른 백그라운드 역 실시간 시간판 교체
-		console.log("stationRealCode: "+stationRealCode);
-		if (stationRealLine == '1') { // 호선
-			$('.stationNames'+stationRealCode).css('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName1.gif) no-repeat;');
-		} else if (stationRealLine == '2') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName2.gif) no-repeat;');
-		} else if (stationRealLine == '3') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName3.gif) no-repeat;');
-		} else if (stationRealLine == '4') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName4.gif) no-repeat;');
-		} else if (stationRealLine == '5') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName5.gif) no-repeat;');
-		} else if (stationRealLine == '6') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName6.gif) no-repeat;');
-		} else if (stationRealLine == '7') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName7.gif) no-repeat;');
-		} else if (stationRealLine == '8') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName8.gif) no-repeat;');
-		} else if (stationRealLine == '9') {
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat;');
-		} else if (stationRealLine == 'S') { // 신분당선
-			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat;');
+		console.log("stationRealCode: "+code);
+		if (line == '1') { // 호선
+			$('#stationNames'+code).css('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName1.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '2') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName2.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '3') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName3.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '4') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName4.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '5') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName5.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '6') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName6.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '7') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName7.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '8') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName8.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == '9') {
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat; background-size:96% 100%;');
+		} else if (line == 'S') { // 신분당선
+			$('#stationNames'+code).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat; background-size:96% 100%;');
 		}
 
 	}

@@ -42,9 +42,9 @@ body, html {
 		
 		//xml쪽 주소 뿌려주기
 		var xmlUrl = "service/xml?subwaynum=2002";
-		$('#samplexml').attr("href", link+jsonUrl);
-		$('#samplexmlUrl').attr("href", link+jsonUrl);
-		$('#samplexmlUrlSpan').html(link+jsonUrl);
+		$('#samplexml').attr("href", link+xmlUrl);
+		$('#samplexmlUrl').attr("href", link+xmlUrl);
+		$('#samplexmlUrlSpan').html(link+xmlUrl);
 		
 		//요청인자 쪽 주소값 뿌려주기
 		var requestUrl = "service/(type)?subwaynum=(열차번호)";

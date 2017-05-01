@@ -109,6 +109,7 @@
 					,savedfile
 					= #{savedfile}
 				</if>
+				,hits = #{hits}
 		where 
 			boardnum = #{boardnum}		
 	</update>

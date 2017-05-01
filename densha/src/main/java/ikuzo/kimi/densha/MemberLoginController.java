@@ -62,7 +62,7 @@ public class MemberLoginController {
 		if(member.getId().equals(loginId) && member.getPassword().equals(loginPassword)){
 			
 			ss.setAttribute("loginId", loginId);// 세션저장
-			
+			ss.setAttribute("loginType", member.getType());
 			req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 			String ip = req.getRemoteAddr();
 			loginCheck logincheck  = new loginCheck(loginId,ip,null);

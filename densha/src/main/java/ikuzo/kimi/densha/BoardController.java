@@ -103,6 +103,8 @@ public class BoardController {
 			return "board/writeForm_Freeboard";
 		}else if(type.equals("qna")){
 			return "board/writeForm_QnA";
+		}else if(type.equals("notice")){
+			return "board/writeForm_Notice";
 		}
 		return "";
 	}
@@ -161,6 +163,9 @@ public class BoardController {
 		}
 		logger.debug("읽어온 게시판: {}",board);
 		
+		board.setHits(board.getHits()+1);
+		dao.update(board);
+		logger.debug("힛트다 히트:{} ",board.getHits());
 		
 		//QNA와 아닌 글로 분기 나누어줌
 		if(board.getType().equals("qna")){
@@ -216,10 +221,11 @@ public class BoardController {
 			return "redirect:board";
 		}
 
-		if (loginID.equals(board.getId())) {
+		if (loginID.equals(board.getId()) || loginID.equals("admin")) {
 			if (board.getSavedfile() == null) {
 				dao.delete(loginID, boardnum);
-			} else {
+			} 
+			else {
 				String fullpath = uploadPath + "/" + board.getSavedfile();
 				boolean check = FileService.deleteFile(fullpath);
 				dao.delete(loginID, boardnum);

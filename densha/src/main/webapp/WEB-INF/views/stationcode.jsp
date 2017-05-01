@@ -8743,7 +8743,7 @@ height: 50px;
 						<div class="downstation_real"
 							style="position: absolute; text-align:center; font-size:15px; width:200px; left:60%; right:0%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">asd</div>
 					</div>
-				</div>
+				</div> 
 			</div>
 			
 				<!-- 	실시간 전철 사람수 보기   -->

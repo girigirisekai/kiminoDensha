@@ -564,20 +564,24 @@ function realtimes() {
 		dataType : 'json',
 		success : resultRealTime,
 		error: function () {
-			$('.getStationName').html('<strong>' + subwayLine + '호선 ' + getStation + '</strong>');
+//			$('.getStationName').html('<strong>' + subwayLine + '호선 ' + getStation + '</strong>');
 			// 역 이름을 넣어준다. 역 이름은 호선과 역 이름을 입력한다.
-			realtimes();
+//			realtimes();
 	}
 	});
 }
 
 function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 	var nowCode = '';
-	$.each(result.realtimeArrivalList, function(index, items) {
+	
+	var resultjson = result.resultjson;
+	var jsonFile = JSON.parse(resultjson);
+
+	
+	$.each(jsonFile.realtimeArrivalList, function(index, items) {
 		nowCode = items.statnId.substr(7, 3); // 역외코드 
-
-		console.log(nowCode);
-
+		console.log("데이터 ㅑㅜ");
+		
 		if (nowCode == frcode) { 
 			// 열차가 가진 번호가 역외코드와 같은 역인지 확인하여 찾는다.
 			
@@ -593,9 +597,10 @@ function resultRealTime(result) { // 실시간 지하철 상하행선 도착
 			var list = ordkey.substr(0, 2);
 			$('.getStationName').html('<strong>' + subwayLine + '호선 ' + getStation + '</strong>');
 			// 역 이름을 넣어준다. 역 이름은 호선과 역 이름을 입력한다.	
-			
+			console.log(list);
 			if ( list== '01') { // 
 				$('.upstation_real').text(items.arvlMsg2);
+				console.log(items.arvlMsg2);
 			}
 			if (list == '11') {
 				$('.downstation_real').text(items.arvlMsg2);
@@ -727,8 +732,7 @@ function stationinforesult(item) {
 
 	//역 이름 넣기 
 	$('.getStationName').html('<strong>' + subwayLine + '호선 ' + getStation + '</strong>');
-	$('.upstation_real').text(' ');
-	$('.downstation_real').text(' ');
+	
 	
 	subwaySensorGet(); // 센서 ajax 겟 
 	lineGifChange();

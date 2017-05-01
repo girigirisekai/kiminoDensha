@@ -8735,13 +8735,13 @@ height: 50px;
 				<!-- 	실시간 역 상황 보기   -->
 			<div class="panel-body">
 				<div class="stationNames" style="width : 500px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; margin: auto;">
-					<div style="margin:auto; width : 500px;">
+					<div style="margin:auto; width : 500px; height:84px;">
 						<div class="upstation_real"
-							style="position: relative; right: -30px; top: 60px;"></div>
+							style="position: absolute; text-align:center; font-size:15px; width:200px; left:0%; right:60%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">zX</div>
 						<div class="getStationName"
-							style="position: relative; left: 205px;"></div>
+							style="position: absolute; text-align:center; font-size:18px; font-weight:bold;width:200px; left:0%; right:0; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:85px;"></div>
 						<div class="downstation_real"
-							style="position: relative; left: 360px; top: 15px;"></div>
+							style="position: absolute; text-align:center; font-size:15px; width:200px; left:60%; right:0%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">asd</div>
 					</div>
 				</div>
 			</div>
@@ -8769,18 +8769,18 @@ height: 50px;
     <div class="tab_container">
         <div id="tab1" class="tab_content">
            
-        <table>
+        <table  style="text-align:center;">
         <tr>
-							<td>1호칸</td>
-							<td>2호칸</td>
-							<td>3호칸</td>
-							<td>4호칸</td>
-							<td>5호칸</td>
-							<td>6호칸</td>
-							<td>7호칸</td>
-							<td>8호칸</td>
-							<td>9호칸</td>
-							<td>10호칸</td>
+							<td>1호선</td>
+							<td>2호선</td>
+							<td>3호선</td>
+							<td>4호선</td>
+							<td>5호선</td>
+							<td>6호선</td>
+							<td>7호선</td>
+							<td>8호선</td>
+							<td>9호선</td>
+							<td>10호선</td>
 						</tr>
         <tr>
    						     <td id="carNum1" num = "1"></td>
@@ -8794,26 +8794,23 @@ height: 50px;
 							<td id="carNum9" num = "9"></td>
 							<td id="carNum10" num = "10"></td>
 			</tr>
+			<tr >
+							<td id="carNumVar1" num = "1" class="carNumVar1"></td>
+							<td id="carNumVar2" num = "2" class="carNumVar2"></td>
+							<td id="carNumVar3" num = "3" class="carNumVar3"></td>
+							<td id="carNumVar4" num = "4" class="carNumVar4"></td>
+							<td id="carNumVar5" num = "5" class="carNumVar5"></td>
+							<td id="carNumVar6" num = "6" class="carNumVar6"></td>
+							<td id="carNumVar7" num = "7" class="carNumVar7"></td>
+							<td id="carNumVar8" num = "8" class="carNumVar8"></td>
+							<td id="carNumVar9" num = "9" class="carNumVar9"></td>
+							<td id="carNumVar10" num = "10"  class="carNumVar10"></td>
+				
+						</tr>
         </table>
         </div>
         <!-- #tab1 -->
-        <div id="tab2" class="tab_content">
         
-         <table>
-        <tr>
-       						 <td id="carNum1" num = "1"></td>
-							<td id="carNum2" num = "2"></td>
-							<td id="carNum3" num = "3"></td>
-							<td id="carNum4" num = "4"></td>
-							<td id="carNum5" num = "5"></td>
-							<td id="carNum6" num = "6"></td>
-							<td id="carNum7" num = "7"></td>
-							<td id="carNum8" num = "8"></td>
-							<td id="carNum9" num = "9"></td>
-							<td id="carNum10" num = "10"></td>
-			</tr>
-        </table>
-        </div>
         <!-- #tab2 -->
       
     </div>

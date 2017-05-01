@@ -75,6 +75,13 @@
 	<!--top header-->
 	<jsp:include page="../header.jsp" />
 	<!--top header-->
+			<!-- 디자인 바  -->
+	<div class="progress" style="position: relative; top: -23px;">
+		<div class="progress-bar progress-bar-success" style="width: 35%"></div>
+		<div class="progress-bar progress-bar-warning" style="width: 20%"></div>
+		<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
+	</div>
+	<!-- 디자인 바  -->
 
 	<div style="margin: 50px; background: rgba(255, 255, 255, 0.85); border-radius: 30px;" class="first">
 		<div style="margin: 25px; padding-top: 20px; padding-bottom: 20px;">

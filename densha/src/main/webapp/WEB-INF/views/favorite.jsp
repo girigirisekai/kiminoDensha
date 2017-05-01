@@ -6,9 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>즐겨찾기</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Raleway"
+	rel="stylesheet">
 <script src="resources/js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/css/loginModule.css">
+<link rel="stylesheet" href="./resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="./resources/css/flexslider.css">
+<link rel="stylesheet" href="./resources/css/style.css">
 
 <style type="text/css">
 body, html {
@@ -757,14 +763,12 @@ td{
 	<!--top header-->
 
 	<!-- 디자인 바  -->
-	<div class="progress" style="position: relative; top: -23px;">
+	<div class="progress" style="position: relative; top: 0px;">
 		<div class="progress-bar progress-bar-success" style="width: 35%"></div>
 		<div class="progress-bar progress-bar-warning" style="width: 20%"></div>
 		<div class="progress-bar progress-bar-danger" style="width: 10%"></div>
 	</div>
 	<!-- 디자인 바  -->
-
-
 
 	<!-- 	내부 div 창 하얀배경  -->
 

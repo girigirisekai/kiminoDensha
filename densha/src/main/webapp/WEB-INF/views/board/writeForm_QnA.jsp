@@ -92,29 +92,35 @@
 				<div id="gesipan" style="width: 80%;">
 					<form class="table table-striped table-hover" action="write" method="post" id="writeform" enctype="multipart/form-data" onsubmit="writeform;">
 						<input type="hidden" id="type" name="type" value="qna">
-						<table style="float: left; width: 700px;">
+						<table style="float: left; ">
+						
+						
 							<tr>
-								<td>븐류</td>
-								<td>건의&QnA</td>
+								
+								<td colspan="2">
+								<img src = "./resources/image/board/qnaWrite.gif">
+					
+								
+								</td>
 							</tr>
 							<tr>
-								<td>제목</td>
-								<td><input type="text" name="title" id="title" style="width: 99%;"></td>
+								<td width="80"><h5><img src = "./resources/image/infoicon/arrow.png" width="30">제목</h5></td>
+								<td><input type="text" name="title" id="title" style="width: 99%; " class="form-control"></td>
 							</tr>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="secretpassword" id="secretpassword" style="width: 20%;"></td>
+								<td><input type="password" name="secretpassword" id="secretpassword" style="width: 20%;" class="form-control"></td>
 							</tr>
 							<tr>
-								<td>내용</td>
-								<td><textarea name="content" id="content" style="width: 400px; height: 200px; resize: none;"></textarea></td>
+							
+								<td colspan="2"><textarea name="content" id="content" style="width: 400px; height: 200px; resize: none;"></textarea></td>
 							</tr>
 							<tr>
 								<td>첨부파일</td>
 								<td><input type="file" name="upload" id="upload"  size="30" multiple="multiple"></td>
 							</tr>
 							<tr>
-								<th colspan="2"><input type="submit" value="저장"></th>
+								<th colspan="2"><input type="submit" value="저장" class="btn btn-primary" style="width: 100px; position: relative; left:90%"></th>
 							</tr>
 						</table>
 					</form>

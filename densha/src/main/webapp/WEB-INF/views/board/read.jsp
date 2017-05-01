@@ -55,7 +55,7 @@
 		}
 		
 		body, html {
-			background: url(./resources/image/back/backapi.jpg) no-repeat center center fixed;
+			background: url(./resources/image/back/back3.jpg) no-repeat center center fixed;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -81,6 +81,9 @@
 			width: 80%;
 			float: left;
 		}
+		.tbl_detail {
+	border-bottom: 1px solid #ccc
+}
 	</style>
 	<title>너의지하철 :</title>
 	
@@ -123,14 +126,15 @@
 					</fieldset>
 				</div>
 				<!-- 게시판글읽기 div -->
-				<div style="float: left; margin-bottom: 50px; width:80%; display:inline-block; padding-left:50px; margin:30px;">
+				<div style="float: left; margin-bottom: 50px; width:70%; display:inline-block; padding-left:50px; margin:30px;">
 					<table style="float:left; width:100%;"> 
-						<tr> 
-							<th colspan="2"><p2> [ 게시판 글읽기 ] </p2></th>
+						<tr  class = "tbl_detail"> 
+							<th colspan="2"> <img src = "./resources/image/board/readBoard.gif"><p></th>
+<!-- 							글 읽기 -->
 						</tr>
-						<tr>
-							<th style="width: 100px;">작성자</th>
-							<td style="width: 600px;">${board.id.replace("<", "&lt;").replace(">", "&gt;") }</td>
+						<tr >
+							<th style="width: 80px;">작성자</th>
+							<td >${board.id.replace("<", "&lt;").replace(">", "&gt;") }</td>
 						</tr>
 		
 						<tr>
@@ -138,46 +142,49 @@
 							<td>${board.inputdate }</td>
 						</tr>
 	
-						<tr>
+						<tr class = "tbl_detail">
 							<th>조회수</th>
 							<td>${board.hits }</td>
 						</tr>
 	
-						<tr>
-							<th>제목</th>
-							<td>${board.title.replace("<", "&lt;").replace(">", "&gt;") }</td>
+						<tr  class = "tbl_detail">
+							<th><h5>제목</h5></th>
+							<td><h5>${board.title.replace("<", "&lt;").replace(">", "&gt;") }</h5></td>
 						</tr>
 	
-						<tr>
+						<tr class = "tbl_detail">
 							<th>내용</th>
-							<td>${board.content}</td>
+							<td><p></p>${board.content}</td>
 						</tr>
 	
 						<tr>
 							<th>파일첨부</th>
 							<td>
+							<p></p>
 								<c:if test="${board.originalfile!=null }">
-									<a href="download?boardnum=${board.boardnum }">${board.originalfile.replace("<", "&lt;").replace(">", "&gt;") }</a>		
-									<br/>
 									<img src="download?boardnum=${board.boardnum }" width="600px">
+									<br>
+									<a href="download?boardnum=${board.boardnum }" class="btn btn-success">${board.originalfile.replace("<", "&lt;").replace(">", "&gt;") }</a>		
 								</c:if>
 							</td>
 						</tr>
-						<tr>
-							<td><br/></td>
+						<tr >
+							<td colspan="2"><p></td>
 						</tr>
-						<tr>
+						<tr  class = "tbl_detail">
 							<td>
-								<div>
-								<c:if test="${board.id.equals(loginId) }">
-									<a href="delete?boardnum=${board.boardnum }">삭제</a>
-						
-									<a href="update?boardnum=${board.boardnum }">수정</a>
-								</c:if> 
-							</div>	
+								
 							</td>
 							<td>
-								<a href="board" style="display:block;  text-align:left;">목록보기</a>
+								
+								<div style="position: relative; left:70%;">
+								<c:if test="${board.id.equals(loginId) }">
+									<a href="delete?boardnum=${board.boardnum }" class="btn btn-danger">삭제</a>
+									
+									<a href="update?boardnum=${board.boardnum }" class="btn btn-warning" >수정</a>
+								</c:if> 
+								<a href="board" style=" width: 100px;" class="btn btn-default" >목록보기</a>
+								</div>	
 							</td>
 						</tr>
 						<tr>
@@ -189,7 +196,7 @@
 						<input type="hidden" name="boardnum" value="${board.boardnum}">
 						<table style="width: 100%; ">	
 							<tr>
-								<td>리플내용 &nbsp;&nbsp;</td><td><input type="text" name="text" style="width: 400px;">&nbsp;&nbsp;<input type="submit" value="확인" class="btn"/>
+								<td>리플내용 &nbsp;&nbsp;</td><td><input type="text" name="text" style="width: 400px;">&nbsp;&nbsp;<input type="submit" value="확인" class="btn btn-primary" />
 								&nbsp;&nbsp;
 							</tr>
 						</table>

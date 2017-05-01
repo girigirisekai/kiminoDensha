@@ -156,7 +156,7 @@ body, html {
 			<!--메뉴바-->
 
 
-			<div style="width: 80%; float: left;">
+			<div style="width: 75%; float: left;">
 
 				<!-- 	modifyForm -->
 				<div class="modifyFrom" style="width: 95%; float: left;">

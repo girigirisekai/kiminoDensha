@@ -21,7 +21,7 @@
 		.cke_bottom{display:none}
 	
 		body, html {
-			background: url(./resources/image/back/backapi.jpg) no-repeat center center fixed;
+			background: url(./resources/image/back/back8.jpg) no-repeat center center fixed;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -92,21 +92,25 @@
 					</fieldset>
 				</div>
 
-			<div style="float: left; padding: 30px;">
+			<div style="float: left; padding: 30px;  width:85%;">
 				<form action="write" method="post" id="writeform" enctype="multipart/form-data" onsubmit="writeform">
 					<input type="hidden" id="type" name="type" value="freeboard">
-					<table style="float: left; width: 700px;">
+					<table style="float: left; ">
 						<tr>
-							<td>분류</td>
-							<td>자유게시판</td>
+					
+							<td colspan="2">
+								 <img src = "./resources/image/board/generalWrite.gif">
+					
+								
+								</td>
+						</tr> 
+						<tr>
+							<td width="120"><h5><img src = "./resources/image/infoicon/arrow.png" width="30">제목</h5></td>
+							<td><input type="text" name="title" id="title" style="width: 99%;"class="form-control"></td>
 						</tr>
 						<tr>
-							<td>제목</td>
-							<td><input type="text" name="title" id="title" style="width: 99%;"></td>
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td>
+						
+							<td colspan="2">
 								<textarea name="content"  style="width: 400px; height: 200px; resize: none;"></textarea>
 							</td>
 						</tr>
@@ -115,7 +119,7 @@
 							<td><input type="file" name="upload" id="upload" size="30" multiple="multiple"></td>
 						</tr>
 						<tr>
-							<th colspan="2"><input type="submit" value="저장"></th>
+							<th colspan="2"><input type="submit" value="저장" class="btn btn-primary"style="width: 100px; position: relative; left:90%"></th>
 						</tr>
 					</table>
 				</form>

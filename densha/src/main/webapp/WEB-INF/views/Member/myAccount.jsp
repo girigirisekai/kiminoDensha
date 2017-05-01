@@ -53,7 +53,7 @@ body, html {
 			<jsp:include page="menu.jsp" />
 			<!--메뉴바-->
 
-			<div style="width: 80%; float: left;">
+			<div style="width: 75%; float: left;">
 				<div class="jumbotron" style="background: rgba(255, 255, 255, 0); width: 95%; float: left; padding: 10px;">
 					<h1>개인정보</h1>
 

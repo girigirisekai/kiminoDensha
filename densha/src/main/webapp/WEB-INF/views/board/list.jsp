@@ -277,7 +277,11 @@ legend {
 							<tr>
 								<td colspan="4" height="55">전체글 : ${navi.totalRecordsCount}
 									&nbsp;페이지 : ${navi.currentPage}/${navi.totalPageCount}</td>
-								<td id="writeButton"><c:if
+								<td id="writeButton">
+								<c:if test="${type=='notice' && loginId!=null && loginType=='admin'}">
+										<input type="button" value="글쓰기" class="btn btn-default" onclick="location.href='write?type=${type}';">
+									</c:if>
+								<c:if
 										test="${(type=='qna' || type=='freeboard') && loginId!=null}">
 										<input type="button" value="글쓰기" class="btn btn-default"
 											onclick="location.href='write?type=${type}';">

@@ -201,7 +201,7 @@ td{
 			str += '<td>';
 
 			str += '<div class="panel-body">';
-			str += '<div id="stationNames' + item.stationCode + '" style="width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; background-size:cover; margin: auto;">';
+			str += '<div id="stationNames' + item.stationCode + '" style="width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; background-size:96% 100%; margin: auto;">';
 
 			str += '<div style="margin:auto; width : 500px;">';
 

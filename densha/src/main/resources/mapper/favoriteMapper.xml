@@ -35,7 +35,7 @@
 	<insert id="newFavorite" parameterType="favorite">
 		insert into
 		favorite
-		values(#{id},#{favoriteName},#{stationCode},sysdate,#{line})
+		values(#{id},#{favoriteName},#{stationCode},sysdate,#{line},#{fcode})
 	</insert>
 <!-- 	insert -->
 	<delete id="deleteFavorite" parameterType="favorite">

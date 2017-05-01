@@ -2,7 +2,7 @@ package ikuzo.kimi.densha.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-/*@ControllerAdvice*/
+@ControllerAdvice
 public class exception {
 	
 /*	웹 어플리케이션의 공통 예외터리 클래스 */

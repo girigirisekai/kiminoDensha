@@ -13,7 +13,7 @@
 <style type="text/css">
 
 body, html {
-	background: url(./resources/image/back/backapi.jpg) no-repeat center
+	background: url(./resources/image/back/error.jpg) no-repeat center
 		center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

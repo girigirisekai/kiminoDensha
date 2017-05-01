@@ -90,6 +90,7 @@ public class favoriteController {
 		
 		//?? 역 검색하기 
 		Station result = dao.DBstation(StationName, line); 
+		String fcode = result.getFr_code();
 		logger.debug("모르는 결과: {}", result);
 		
 		//현재 아이디 
@@ -111,8 +112,9 @@ public class favoriteController {
 			}
 		}
 		
+		
 		//등록할 favorite 객체 생성  
-		favorite fa = new favorite(nowID,StationName,result.getStation_cd(),"",line); 
+		favorite fa = new favorite(nowID,StationName,result.getStation_cd(),"",line,fcode); 
 		logger.debug("등록할 즐겨찾기: {}",fa.toString());
 		//System.out.println(fa.toString());
 		
@@ -157,7 +159,7 @@ public class favoriteController {
 		//일치하면
 		if(nowID.equals(favoriteId)){
 			//삭제할 favorite 객체 생성
-			favorite favorite = new favorite(nowID,stationName, stationCode,"",""); 
+			favorite favorite = new favorite(nowID,stationName, stationCode,"","",""); 
 			//삭제
 			result=dao.deleteFavorite(favorite);
 			//삭제성공 시

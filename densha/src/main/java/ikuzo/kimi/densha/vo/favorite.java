@@ -7,14 +7,17 @@ public class favorite {
 	String stationCode; // 즐겨찾기 역 코드번호
 	String favoriteOrder; // 즐겨찾기 등록 시간
 	String line; // 호선
+	String fcode; // 외부코드
 
-	public favorite(String id, String favoriteName, String stationCode, String favoriteOrder, String line) {
+	public favorite(String id, String favoriteName, String stationCode, String favoriteOrder, String line,
+			String fcode) {
 		super();
 		this.id = id;
 		this.favoriteName = favoriteName;
 		this.stationCode = stationCode;
 		this.favoriteOrder = favoriteOrder;
 		this.line = line;
+		this.fcode = fcode;
 	}
 
 	public favorite() {
@@ -61,10 +64,18 @@ public class favorite {
 		this.line = line;
 	}
 
+	public String getFcode() {
+		return fcode;
+	}
+
+	public void setFcode(String fcode) {
+		this.fcode = fcode;
+	}
+
 	@Override
 	public String toString() {
 		return "favorite [id=" + id + ", favoriteName=" + favoriteName + ", stationCode=" + stationCode
-				+ ", favoriteOrder=" + favoriteOrder + ", line=" + line + "]";
+				+ ", favoriteOrder=" + favoriteOrder + ", line=" + line + ", fcode=" + fcode + "]";
 	}
 
 }

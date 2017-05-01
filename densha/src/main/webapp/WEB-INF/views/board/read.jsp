@@ -29,7 +29,7 @@ legend{
 <title>너의지하철 :</title>
 <style type="text/css">
 body, html {
-	background: url(./resources/image/back/backapi.jpg) no-repeat center
+	background: url(./resources/image/back/back5.jpg) no-repeat center
 		center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

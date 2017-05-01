@@ -140,12 +140,15 @@ body, html {
 			}
 		});
 	}
-	var stationIdcode = new Array();// 안에 역코드
+	var stationIdcode = new Array();// 역 코드 array
+	var stationIdName = new Array();// 역 이름 array
+	var stationIdLine = new Array();// 역 라인 array
+	var stationIdfrCode = new Array();// 역 외부코드 array
 	//불러온 즐겨찾기 리스트 출력하기
 	function printFavoriteStations(favoriteLists) {
 		var str = '';
 		str += '<div>';
-		$.each(favoriteLists, function(index, item) {
+		$.each(favoriteLists, function(index, item) { // 역의 갯수만큼 
 			var lineColor = '';
 
 			if (item.line == '1') {
@@ -173,16 +176,18 @@ body, html {
 			} else if (item.line == '') { // 경의중앙선
 				lineColor = '';
 			}
-
+			stationIdName[index] = item.favoriteName;
 			stationIdcode[index] = item.stationCode;
+			stationIdLine[index] = item.line;
+			stationIdfrCode [index]= item.fcode;
 			str += '<div id="' + item.stationCode + '"';
 			if (index % 2 == 0 && index != 0) {
-				str += ' style="clear: left; float: left; margin-right: 60px; width=2000px; ">';
-			} else {
-				str += 'style="float: left; margin-right: 60px; width=2000px;" >';
+				str += ' style="clear: left; float: left; margin-right: 20px;  ">';
+			} else { //1개일 때
+				str += 'style="float: left; margin-right: 30px; " >';
 			}
 
-			str += '<div class="panel panel-default" style= "width: 510px;">';
+			str += '<div class="panel panel-default" style= "width: 520px;">';
 			str += '<h3 class="col-lg-12 panel-heading" style=" background-color: ' + lineColor + '; margin-top: 0px;  font-size: 25px; font-weight: bold; color: white;">' + item.line + '호선 ' + item.favoriteName + '</h3>';
 			str += '<div class="panel-body" style="height:300px; padding-top: 50px;"">';
 
@@ -191,15 +196,15 @@ body, html {
 			str += '<td>';
 
 			str += '<div class="panel-body">';
-			str += '<div class="stationNames" style="width : 470px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; margin: auto;">';
+			str += '<div class="stationNames' + item.stationCode + '" style="width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; margin: auto;">';
 
 			str += '<div style="margin:auto; width : 500px;">';
 
-			str += '<div class="upstation_real"';
+			str += '<div class="upstation_real' + item.stationCode + '"';
 			str += 'style="position: relative; right: -30px; top: 60px;"></div>';
-			str += '<div class="getStationName"';
+			str += '<div class="getStationName' + item.stationCode + '"';
 			str += 'style="position: relative; left: 205px;"></div>';
-			str += '<div class="downstation_real"';
+			str += '<div class="downstation_real' + item.stationCode + '"';
 			str += 'style="position: relative; left: 360px; top: 15px;"></div>';
 			str += '</div>';
 			str += '</div>';
@@ -246,126 +251,114 @@ body, html {
 			
 // 			조심히가세요
 			
-			str += '<div id="train_seat_popup"';
-				str += 'style="position: absolute ;display: none; width: 530px; height: 300px; background: rgba(255, 255, 255, 0.7); z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">';
-					str += '<div style="margin: 10px;">';
-						str += '	<table>';
+	str += '<div id="train_seat_popup'+item.stationCode+'"';
+							str += 'style="position: absolute ;display: none; width: 530px; height: 300px; background: rgba(255, 255, 255, 0.7); z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">';
+							str += '<div style="margin: 10px;">';
+							str += '	<table>';
 
 							str += '<tr>';
-								str += '	<td colspan="3" width="400px"><img';
+							str += '	<td colspan="3" width="400px"><img';
 									str += '		src="./resources/image/menu/seat_info_bar.png"></td>';
-										str += '</tr>';
+							str += '</tr>';
 
-											str += '<tr>';
-												str += '	<td colspan="3" width="400px"><span id="seatTitle"';
+							str += '<tr>';
+							str += '	<td colspan="3" width="400px"><span id="seatTitle"';
 													str += '		style="text-align: center; margin: auto;">열차 이름과 열차 량</span></td>';
-														str += '</tr>';
+							str += '</tr>';
 
-															str += '<tr>';
-																str += '	<td style="text-align: center;">앞 오른쪽 의자</td>';
+							str += '<tr>';
+							str += '	<td style="text-align: center;">앞 오른쪽 의자</td>';
 
-																	str += '	<td>';
-																		str += '&nbsp;';
-																			str += '</td>';
-																				str += '<td style="text-align: center;">뒤 오른쪽 의자</td>';
-																					str += '</tr>';
+							str += '	<td>';
+							str += '&nbsp;';
+							str += '</td>';
+							str += '<td style="text-align: center;">뒤 오른쪽 의자</td>';
+							str += '</tr>';
 
-																						str += '<tr>';
-																							str += '	<td><span id="trainSeat1"></span></td>';
-																								str += '	<td>';
-						
-																									str += '	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-																										str += '&nbsp;&nbsp;&nbsp;&nbsp;';
-																											str += '	</td>';
-																												str += '							<td><span id="trainSeat2"></span></td>';
-																													str += '		</tr>';
+							str += '<tr>';
+							str += '	<td><span id="trainSeat1' + item.stationCode + '"></span></td>';
+							str += '	<td>';
 
+							str += '	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+							str += '&nbsp;&nbsp;&nbsp;&nbsp;';
+							str += '	</td>';
+							str += '							<td><span id="trainSeat2' + item.stationCode + '"></span></td>';
+							str += '		</tr>';
 
-
-
-							
 							str += '	<tr>';
-								str += '	<td>';
-									str += '		<p>&nbsp;</p>';
-										str += '	</td>';
+							str += '	<td>';
+							str += '		<p>&nbsp;</p>';
+							str += '	</td>';
 
-											str += '<td>';
-								
+							str += '<td>';
 
-												str += '</td>';
-													str += '<td>';
-														str += '	<p>&nbsp;</p>';
-															str += '	</td>';
-																str += '</tr>';
-						
+							str += '</td>';
+							str += '<td>';
+							str += '	<p>&nbsp;</p>';
+							str += '	</td>';
+							str += '</tr>';
 
+							str += '<tr>';
+							str += '	<td style="text-align: center;">앞 왼쪽 의자</td>';
+							str += '	<td>';
+							str += ' &nbsp;';
+							str += '</td>';
+							str += '<td style="text-align: center;">뒤 왼쪽 의자</td>';
+							str += '	</tr>';
 
-																	str += '<tr>';
-																		str += '	<td style="text-align: center;">앞 왼쪽 의자</td>';
-																			str += '	<td>';
-																				str += ' &nbsp;';
-																					str += '</td>';
-																						str += '<td style="text-align: center;">뒤 왼쪽 의자</td>';
-																							str += '	</tr>';
+							str += '		<tr>';
+							str += '	<td><span id="trainSeat3' + item.stationCode + '"></span></td>';
+							str += '	<td>';
+							str += ' &nbsp;';
+							str += '	</td>';
+							str += '<td><span id="trainSeat4' + item.stationCode + '"></span></td>';
+							str += '				</tr>';
 
+							str += '	</table>';
+							str += '	</div>';
+							str += '	</div>';
 
-																								str += '		<tr>';
-																									str += '	<td><span id="trainSeat3"></span></td>';
-																										str += '	<td>';
-																											str += ' &nbsp;';
-																												str += '	</td>';
-																													str += '<td><span id="trainSeat4"></span></td>';
-																														str += '				</tr>';
+							// 			조심히가세요
 
-																															str += '	</table>';
-																																str += '	</div>';
-																																	str += '	</div>';
-			
-			
-			
-			
-			
-// 			조심히가세요
-			
-			
-			
-			str += '</td>';
-			str += '</tr>';
-			
-			
-			str += '<tr>';
-			str += '<td id="carNumVar1' + item.stationCode + '" num = "1" class="carNumVar1"></td>';
-			str += '<td id="carNumVar2' + item.stationCode + '" num = "2" class="carNumVar2"></td>';
-			str += '<td id="carNumVar3' + item.stationCode + '" num = "3" class="carNumVar3"></td>';
-			str += '<td id="carNumVar4' + item.stationCode + '" num = "4" class="carNumVar4"></td>';
-			str += '<td id="carNumVar5' + item.stationCode + '" num = "5" class="carNumVar5"></td>';
-			str += '<td id="carNumVar6' + item.stationCode + '" num = "6" class="carNumVar6"></td>';
-			str += '<td id="carNumVar7' + item.stationCode + '" num = "7" class="carNumVar7"></td>';
-			str += '<td id="carNumVar8' + item.stationCode + '" num = "8" class="carNumVar8"></td>';
-			str += '<td id="carNumVar9' + item.stationCode + '" num = "9" class="carNumVar9"></td>';
-			str += '<td id="carNumVar10' + item.stationCode + '" num = "10"  class="carNumVar10"></td>';
-			str += '</tr>';
-			str += '</td>';
-			str += '</table>';
-			str += '</div>';
-			// 			혼잡도
+							str += '</td>';
+							str += '</tr>';
 
+							str += '<tr>';
+							str += '<td id="carNumVar1' + item.stationCode + '" num = "1" class="carNumVar1"></td>';
+							str += '<td id="carNumVar2' + item.stationCode + '" num = "2" class="carNumVar2"></td>';
+							str += '<td id="carNumVar3' + item.stationCode + '" num = "3" class="carNumVar3"></td>';
+							str += '<td id="carNumVar4' + item.stationCode + '" num = "4" class="carNumVar4"></td>';
+							str += '<td id="carNumVar5' + item.stationCode + '" num = "5" class="carNumVar5"></td>';
+							str += '<td id="carNumVar6' + item.stationCode + '" num = "6" class="carNumVar6"></td>';
+							str += '<td id="carNumVar7' + item.stationCode + '" num = "7" class="carNumVar7"></td>';
+							str += '<td id="carNumVar8' + item.stationCode + '" num = "8" class="carNumVar8"></td>';
+							str += '<td id="carNumVar9' + item.stationCode + '" num = "9" class="carNumVar9"></td>';
+							str += '<td id="carNumVar10' + item.stationCode + '" num = "10"  class="carNumVar10"></td>';
+							str += '</tr>';
+							str += '</td>';
+							str += '</table>';
+							str += '</div>';
+							// 			혼잡도
 
+							str += '</div>';
 
+							str += '<div style="padding-left:190px; padding-bottom: 20px;">';
+							str += '<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="' + item.id + '" atr2="' + item.favoriteName + '" atr3="' + item.stationCode + '"value="삭제하기" >';
+							str += '</div>';
+							str += '</div>';
+							str += '</div>';
 
-			str += '</div>';
-
-			str += '<div style="padding-left:190px; padding-bottom: 20px;">';
-			str += '<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="' + item.id + '" atr2="' + item.favoriteName + '" atr3="' + item.stationCode + '"value="삭제하기" >';
-			str += '</div>';
-			str += '</div>';
-			str += '</div>';
-
-		});
+						});
 		str += '</div>';
 		$('#storedStations').html(str);
 		$('.favoriteStations').on('click', deleteStation);
 		subwaySensorGet();
+		
+		for(var i = 0; i<stationIdcode.length; i++){
+		
+			realtimes(	stationIdName[i],stationIdcode[i],stationIdLine[i],stationIdfrCode[i]) ;
+		}
+		
 	}
 
 	//지하철 센서 데이터 불러오기
@@ -401,60 +394,51 @@ body, html {
 		var nextCar100 = '';
 		var nextCar120 = '';
 
+		$.each(datas,function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
 
-		$.each(datas, function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
+							var humanIndex = index + 1; // 1234...\
+							carHuman = Number(items.humanNum) / 160 * 100;
+							// 한칸당 인원한계는 160명이 된다 그리고 100을곱한다. 이러면 62.5 가 나옴
+							carHuman = Math.round(carHuman);
+							// 소수점 반올림 62 
+							for (i = 0; i < stationIdcode.length; i++) {
+								var inserts = '<span class = "train' + humanIndex + stationIdcode[i] + '" trainNum = "' + humanIndex + '" stationcode="'+stationIdcode[i]+'">';
 
-			var humanIndex = index + 1; // 1234...\
-			carHuman = Number(items.humanNum) / 160 * 100;
-			// 한칸당 인원한계는 160명이 된다 그리고 100을곱한다. 이러면 62.5 가 나옴
-			carHuman = Math.round(carHuman);
-			// 소수점 반올림 62 
-			for (i = 0; i < stationIdcode.length; i++) {
-			var inserts = '<span class = "train' + humanIndex + stationIdcode[i] + '" trainNum = "' + humanIndex + '">';
-			
-			if (0 <= carHuman && carHuman < 20) {
-				inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
-			} else if (21 <= carHuman && carHuman < 40) {
-				inserts += '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
-			} else if (41 <= carHuman && carHuman < 60) {
-				inserts += '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
-			} else if (61 <= carHuman && carHuman < 80) {
-				inserts += '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
-			} else if (81 <= carHuman && carHuman < 100) {
-				inserts += '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
-			} else if (101 <= carHuman) {
-				inserts += '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
-			}
+								if (0 <= carHuman && carHuman < 20) {
+									inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
+								} else if (21 <= carHuman && carHuman < 40) {
+									inserts += '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
+								} else if (41 <= carHuman && carHuman < 60) {
+									inserts += '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
+								} else if (61 <= carHuman && carHuman < 80) {
+									inserts += '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
+								} else if (81 <= carHuman && carHuman < 100) {
+									inserts += '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
+								} else if (101 <= carHuman) {
+									inserts += '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
+								}
 
+								//		inserts += '</div>';
+								inserts += '</span>';
 
-			//		inserts += '</div>';
-			inserts += '</span>';
+								var insertVar = '';
 
-			var insertVar = '';
+								insertVar += items.humanNum + '명 <br>';
+								insertVar += carHuman + '%';
 
-			insertVar += items.humanNum + '명 <br>';
-			insertVar += carHuman + '%';
+								$('#carNum' + humanIndex + stationIdcode[i])
+										.html(inserts); // carnum 1~10까지 html 자동으로 넣기
+								$('#carNumVar' + humanIndex + stationIdcode[i])
+										.html(insertVar); // %넣기
 
-			
-			$('#carNum' + humanIndex + stationIdcode[i]).html(inserts); // carnum 1~10까지 html 자동으로 넣기
-			$('#carNumVar' + humanIndex + stationIdcode[i]).html(insertVar); // %넣기
-				
-			$('.train'+ humanIndex + stationIdcode[i]).mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train2').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train3').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train4').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train5').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train6').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train7').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train8').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train9').mouseenter(train_popup).mouseleave(train_popupOut);
-// 				$('.train10').mouseenter(train_popup).mouseleave(train_popupOut);
+								$('.train' + humanIndex + stationIdcode[i])
+										.mouseenter(train_popup).mouseleave(
+												train_popupOut);
+					
+							}
 
-			}
+						});
 
-		});
-
-	
 	}
 
 	// 열차량당 좌석: 아래의 기능들은 좌석에 대한 위치팝업
@@ -463,176 +447,172 @@ body, html {
 	// 열차량당 좌석: 팝업on
 	function train_popup() {
 		
+		var trainnum = $(this).attr('trainnum');
+		var getStationcode = $(this).attr('stationcode');
 		
-		$('#train_seat_popup').css('display', 'block');
-		var x = $(this).attr('trainnum');
+		$('#train_seat_popup'+getStationcode).css('display', 'block'); // 보이게 함 
 		
-		// 좌표 받을것
-		var topY = $('#train_seat_popup').css('top');
-		console.log(topY);
-		
-		$('#train_seat_popup').css('top',topY);
-		
-		get_train_info(x);
-		
-		
-	}
+		get_train_info(trainnum,getStationcode);
 
+	}
 
 	//열차량당 좌석: 팝업off
 	function train_popupOut() {
-		
+		var getStationcode = $(this).attr('stationcode');
+		$('#train_seat_popup'+getStationcode).css('display', 'none');
 	
-		train_seat_popup.style.display = "none";
-		
 
 	}
 
 	//역열차의 좌석 정보를 롤오버로 구현하느 부분
-	function get_train_info(e) {
+	function get_train_info(trainnum, InStationCode) {
 
 		//	var carnum = '2'; // 열차량번호 가져오기
 
 		var subwayNum = '2002';
-		var carnum = e;
+		var carnum = trainnum;
 		//	var carnumss = $('#carNum1').attr('trainnum');
 		console.log(carnum);
+		var index
 
-		$.ajax({
-			url : 'realTimeTrainSeat',
-			type : 'post',
-			data : {
-				subwaynum : subwayNum,
-				carnum : carnum
-			},
-			dataType : 'json',
-			success : function(items) {
-				//1 3
-				//2 4
-				var insert1 = ''; // 왼쪽 위
-				var insert2 = ''; // 오른쪽 위
-				var insert3 = ''; // 
-				var insert4 = '';
+		$
+				.ajax({
+					url : 'realTimeTrainSeat',
+					type : 'post',
+					data : {
+						subwaynum : subwayNum,
+						carnum : carnum
+					},
+					dataType : 'json',
+					success : function(items) {
+						//1 3
+						//2 4
+						var insert1 = ''; // 왼쪽 위
+						var insert2 = ''; // 오른쪽 위
+						var insert3 = ''; // 
+						var insert4 = '';
 
-				var insertTitle = subwayNum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
-				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
-				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
+						var insertTitle = subwayNum + '번호 열차의 ' + carnum
+								+ '량 열차 좌석정보';
+						var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
+						var seaton = '<img src = "./resources/image/seat/seaton.gif">';
 
-				if (items.elderlySeat1 == 1) { // 사람이 있다면
-					insert1 += seaton;
-				} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
-					insert1 += seatoff;
-				} else if (items.elderlySeat1 == 9) { // 좌석이 없다면 
+						if (items.elderlySeat1 == 1) { // 사람이 있다면
+							insert1 += seaton;
+						} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
+							insert1 += seatoff;
+						} else if (items.elderlySeat1 == 9) { // 좌석이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat2 == 1) {
-					insert1 += seaton;
-				} else if (items.elderlySeat2 == 0) { // 좌석에 사람이 없다면 
-					insert1 += seatoff;
-				} else if (items.elderlySeat2 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat2 == 1) {
+							insert1 += seaton;
+						} else if (items.elderlySeat2 == 0) { // 좌석에 사람이 없다면 
+							insert1 += seatoff;
+						} else if (items.elderlySeat2 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat3 == 1) { //3
-					insert1 += seaton;
-					$('#trainSeat1').html(insert1);
-				} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
-					insert1 += seatoff;
-					$('#trainSeat1').html(insert1);
-				} else if (items.elderlySeat3 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat3 == 1) { //3
+							insert1 += seaton;
+							
+						} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
+							insert1 += seatoff;
+							
+						} else if (items.elderlySeat3 == null) { // 좌석에 사람이 없다면 
 
-				}
-				// 1 end
+						}
+						
+						$('#trainSeat1'+InStationCode).html(insert1);
+						// 1 end
 
-				if (items.elderlySeat4 == 1) {
-					insert2 += seaton;
-				} else if (items.elderlySeat4 == 0) { // 좌석에 사람이 없다면 
-					insert2 += seatoff;
-				} else if (items.elderlySeat4 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat4 == 1) {
+							insert2 += seaton;
+						} else if (items.elderlySeat4 == 0) { // 좌석에 사람이 없다면 
+							insert2 += seatoff;
+						} else if (items.elderlySeat4 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat5 == 1) {
-					insert2 += seaton;
-				} else if (items.elderlySeat5 == 0) { // 좌석에 사람이 없다면 
-					insert2 += seatoff;
-				} else if (items.elderlySeat5 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat5 == 1) {
+							insert2 += seaton;
+						} else if (items.elderlySeat5 == 0) { // 좌석에 사람이 없다면 
+							insert2 += seatoff;
+						} else if (items.elderlySeat5 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat6 == 1) {
-					insert2 += seaton;
-					$('#trainSeat3').html(insert2);
-				} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
-					insert2 += seatoff;
-					$('#trainSeat3').html(insert2);
-				} else if (items.elderlySeat6 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat6 == 1) {
+							insert2 += seaton;
+						
+						} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
+							insert2 += seatoff;
+						
+						} else if (items.elderlySeat6 == null) { // 좌석에 사람이 없다면 
 
-				}
-				// 1 end
+						}
+						
+						$('#trainSeat3'+InStationCode).html(insert2);
+						// 3 end
 
-				if (items.elderlySeat7 == 1) {
-					insert3 += seaton;
-				} else if (items.elderlySeat7 == 0) { // 좌석에 사람이 없다면 
-					insert3 += seatoff;
-				} else if (items.elderlySeat7 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat7 == 1) {
+							insert3 += seaton;
+						} else if (items.elderlySeat7 == 0) { // 좌석에 사람이 없다면 
+							insert3 += seatoff;
+						} else if (items.elderlySeat7 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat8 == 1) {
-					insert3 += seaton;
-				} else if (items.elderlySeat8 == 0) { // 좌석에 사람이 없다면 
-					insert3 += seatoff;
-				} else if (items.elderlySeat8 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat8 == 1) {
+							insert3 += seaton;
+						} else if (items.elderlySeat8 == 0) { // 좌석에 사람이 없다면 
+							insert3 += seatoff;
+						} else if (items.elderlySeat8 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat9 == 1) {
-					insert3 += seaton;
-					$('#trainSeat2').html(insert3);
-				} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
-					insert3 += seatoff;
-					$('#trainSeat2').html(insert3);
-				} else if (items.elderlySeat9 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat9 == 1) {
+							insert3 += seaton;
+							
+						} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
+							insert3 += seatoff;
+						} else if (items.elderlySeat9 == null) { // 좌석에 사람이 없다면 
 
-				}
-				// 3 end
+						}
+							$('#trainSeat2'+InStationCode).html(insert3);
+						// 3 end
 
-				if (items.elderlySeat10 == 1) {
-					insert4 += seaton;
-				} else if (items.elderlySeat10 == 0) { // 좌석에 사람이 없다면 
-					insert4 += seatoff;
-				} else if (items.elderlySeat10 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat10 == 1) {
+							insert4 += seaton;
+						} else if (items.elderlySeat10 == 0) { // 좌석에 사람이 없다면 
+							insert4 += seatoff;
+						} else if (items.elderlySeat10 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
 
-				if (items.elderlySeat11 == 1) {
-					insert4 += seaton;
-				} else if (items.elderlySeat11 == 0) { // 좌석에 사람이 없다면 
-					insert4 += seatoff;
-				} else if (items.elderlySeat11 == null) { // 좌석에 사람이 없다면 
+						if (items.elderlySeat11 == 1) {
+							insert4 += seaton;
+						} else if (items.elderlySeat11 == 0) { // 좌석에 사람이 없다면 
+							insert4 += seatoff;
+						} else if (items.elderlySeat11 == null) { // 좌석에 사람이 없다면 
 
-				}
-				if (items.elderlySeat12 == 1) {
-					insert4 += seaton;
-					$('#trainSeat4').html(insert4);
-				} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
-					insert4 += seatoff;
-					$('#trainSeat4').html(insert4);
-				} else if (items.elderlySeat12 == null) { // 좌석에 사람이 없다면 
+						}
+						if (items.elderlySeat12 == 1) {
+							insert4 += seaton;
+					
+						} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
+							insert4 += seatoff;
+							
+						} else if (items.elderlySeat12 == null) { // 좌석에 사람이 없다면 
 
-				}
+						}
+						$('#trainSeat4'+InStationCode).html(insert4);
+						$('#seatTitle').html(insertTitle);
 
-
-				$('#seatTitle').html(insertTitle);
-
-			}
-		});
-
+					}
+				});
 
 	}
-
 
 	// 선택한 즐겨찾기 역 삭제
 	function deleteStation() {
@@ -662,6 +642,99 @@ body, html {
 	function modifyPersonInfo() {
 		console.log('개인정보 수정 동작');
 	}
+	
+	
+	// 실시간 열차 
+	var stationRealCode ='';
+	var stationRealName ='';
+	var stationRealLine ='';
+	var stationRealFcode ='';
+	function realtimes(fNames, code, subwayLine, fcode ) {
+		stationRealCode = code;
+		stationRealName = fNames;
+		stationRealLine  =subwayLine ;
+		stationRealFcode = fcode;
+		$.ajax({
+			url : 'realTime',
+			type : 'post',
+			data : {
+				station : fNames
+			},
+			dataType : 'json',
+			success : resultRealTime,
+			error: function () {
+				
+		}
+		});
+	}
+
+	function resultRealTime(result) { // 실시간 지하철 상하행선 도착
+		var nowCode = '';
+		$.each(result.realtimeArrivalList, function(index, items) {
+			nowCode = items.statnId.substr(7, 3); // 역외코드 
+
+			console.log(nowCode);
+			console.log(items.arvlMsg2);
+			console.log(stationRealFcode);
+			if (nowCode == stationRealFcode) { 
+				// 열차가 가진 번호가 역외코드와 같은 역인지 확인하여 찾는다.
+				
+				var ordkey = items.ordkey; // 열차의 순번이다. 
+				/*2호선 외선의 순서는 01 02순이다. : 01001 02002 
+				2호선 내선의 순서는 11 12순이다. : 11001 12002
+				
+				일반 역의 순서는 다음과 같다.
+				상행 01 02 : 01001 02006
+				하행 11 12 : 11001 12004
+				앞의 두 글자를 substring으로 가져와서 비교를 해야 한다.
+				*/
+				var list = ordkey.substr(0, 2);
+				$('.getStationName'+stationRealCode).html('<strong>' + stationRealLine + '호선 ' + stationRealName + '</strong>');
+				// 역 이름을 넣어준다. 역 이름은 호선과 역 이름을 입력한다.	
+				
+				if ( list== '01') { // 
+					$('.upstation_real'+stationRealCode).text(items.arvlMsg2);
+				}
+				if (list == '11') {
+					$('.downstation_real'+stationRealCode).text(items.arvlMsg2);
+				}
+				
+				
+				
+			}
+
+			lineGifChange(stationRealCode); // 백 패널의 이미지를 교체한다.
+		});
+	}
+	
+	function lineGifChange() {
+		//라인에 따른 백그라운드 역 실시간 시간판 교체
+		console.log("stationRealCode: "+stationRealCode);
+		if (stationRealLine == '1') { // 호선
+			$('.stationNames'+stationRealCode).css('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName1.gif) no-repeat;');
+		} else if (stationRealLine == '2') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName2.gif) no-repeat;');
+		} else if (stationRealLine == '3') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName3.gif) no-repeat;');
+		} else if (stationRealLine == '4') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName4.gif) no-repeat;');
+		} else if (stationRealLine == '5') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName5.gif) no-repeat;');
+		} else if (stationRealLine == '6') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName6.gif) no-repeat;');
+		} else if (stationRealLine == '7') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName7.gif) no-repeat;');
+		} else if (stationRealLine == '8') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName8.gif) no-repeat;');
+		} else if (stationRealLine == '9') {
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat;');
+		} else if (stationRealLine == 'S') { // 신분당선
+			$('.stationNames'+stationRealCode).attr('style', 'width :480px;height: 84px;background: url(./resources/image/lineBack/subwayStationName9.gif) no-repeat;');
+		}
+
+	}
+	
+	
 </script>
 
 </head>
@@ -683,7 +756,7 @@ body, html {
 	<!-- 	내부 div 창 하얀배경  -->
 
 	<div
-		style="margin: 50px; overflow: auto; background: rgba(255, 255, 255, 0.85); border-radius: 30px;"
+		style="margin: 50px; margin-bottom:200px; overflow: none; background: rgba(255, 255, 255, 0.85); border-radius: 30px;"
 		class="first ">
 
 
@@ -695,7 +768,7 @@ body, html {
 			<jsp:include page="Member/menu.jsp" />
 			<!--메뉴바-->
 
-			<div style="width: 80%; float: left;">
+			<div style="width: 800px; float: left;">
 				<div style="width: 45%; float: left;">
 					<div class="jumbotron"
 						style="background: rgba(255, 255, 255, 0); padding-top: 30px;">
@@ -749,14 +822,18 @@ body, html {
 				<!-- 이 부분은 개인정보에 대한 페이지 -->
 
 				<!-- 등록한 즐겨찾기 부분이 출력되는 부분  -->
-				<div style="float: left; width: 950px; padding-top: 30px;">
-					<div id="storedStations"></div>
-				</div>
 
 
 
 			</div>
 		</div>
+		
+		
+		
+				<div style="float: left; padding-top: 0px; margin-left: 80px;">
+					<div id="storedStations"></div>
+				</div>
+		
 	</div>
 	<!-- 등록한 즐겨찾기 부분이 출력되는 부분  -->
 

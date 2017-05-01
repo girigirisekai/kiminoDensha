@@ -39,7 +39,8 @@ CREATE TABLE favorite
 	stationCode varchar2(10),
 	-- 즐겨찾기 등록시간
 	favoriteOrder date
-	,line varchar2(10)
+	,line varchar2(10) --호선라인
+	,fcode varchar2(10) --외부코드
 );
 
 

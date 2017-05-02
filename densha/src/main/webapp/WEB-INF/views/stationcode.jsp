@@ -8847,7 +8847,7 @@ height: 50px;
 		
 		<tr>
 		<td style="text-align: center;">
-			앞 오른쪽 의자
+			<span id = "frontRightSeat">앞 오른쪽 의자</span>
 		</td>
 	
 		<td>
@@ -8855,7 +8855,7 @@ height: 50px;
 			&nbsp;
 		</td>
 		<td style="text-align: center;">
-			뒤 오른쪽 의자
+			<span id = "backRightSeat">뒤 오른쪽 의자</span>
 		</td>
 		</tr>
 		
@@ -8895,14 +8895,14 @@ height: 50px;
 		
 		<tr>
 		<td style="text-align: center;">
-			앞 왼쪽 의자
+			<span id = "frontLeftSeat">앞 왼쪽 의자</span>
 		</td>
 		<td >
 <!-- 			중간 비우기 -->
 			&nbsp;
 		</td>
 		<td style="text-align: center;">
-			뒤 왼쪽 의자
+			<span id = "backLeftSeat">뒤 왼쪽 의자</span>
 		</td>
 		</tr>
 		

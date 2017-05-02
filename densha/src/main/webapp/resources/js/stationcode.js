@@ -464,12 +464,15 @@ function get_train_info(e) {
 				
 				if (items.elderlySeat3 == 1) { //3
 					insert1 += seaton;
+					$('#frontRightSeat').html('앞 오른쪽 의자');
 					$('#trainSeat1').html(insert1);
 				} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
 					insert1 += seatoff;
+					$('#frontRightSeat').html('앞 오른쪽 의자');
 					$('#trainSeat1').html(insert1);
 				} else if (items.elderlySeat3 == 9) { // 좌석에 사람이 없다면 
 					insert1 += dummy;
+					$('#frontRightSeat').html('');
 					$('#trainSeat1').html(insert1);
 				}
 				// 1 end
@@ -492,12 +495,15 @@ function get_train_info(e) {
 				
 				if (items.elderlySeat6 == 1) {
 					insert2 += seaton;
+					$('#frontLeftSeat').html('앞 왼쪽 의자');
 					$('#trainSeat3').html(insert2);
 				} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
 					insert2 += seatoff;
 					$('#trainSeat3').html(insert2);
+					$('#frontLeftSeat').html('앞 왼쪽 의자');
 				} else if (items.elderlySeat6 == 9) { // 좌석에 사람이 없다면 
 					insert2 += dummy;
+					$('#frontLeftSeat').html('');
 					$('#trainSeat3').html(insert2);
 				}
 				// 1 end
@@ -523,12 +529,15 @@ function get_train_info(e) {
 				if (items.elderlySeat9 == 1) {
 					insert3 += seaton;
 					$('#trainSeat2').html(insert3);
+					$('#backRightSeat').html('뒤 오른쪽 의자');
 				} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
 					insert3 += seatoff;
 					$('#trainSeat2').html(insert3);
+					$('#backRightSeat').html('뒤 오른쪽 의자');
 				} else if (items.elderlySeat9 == 9) { // 좌석에 사람이 없다면 
 					insert3 += dummy;
 					$('#trainSeat2').html(insert3);
+					$('#backRightSeat').html('');
 				}
 				// 3 end
 				
@@ -552,12 +561,15 @@ function get_train_info(e) {
 				if (items.elderlySeat12 == 1) {
 					insert4 += seaton;
 					$('#trainSeat4').html(insert4);
+					$('#backLeftSeat').html('뒤 왼쪽 의자');
 				} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
 					insert4 += seatoff;
 					$('#trainSeat4').html(insert4);
+					$('#backLeftSeat').html('뒤 왼쪽 의자');
 				} else if (items.elderlySeat12 == 9) { // 좌석에 사람이 없다면 
 					insert4 += dummy;
 					$('#trainSeat4').html(insert4);
+					$('#backLeftSeat').html('');
 				}
 				
 				

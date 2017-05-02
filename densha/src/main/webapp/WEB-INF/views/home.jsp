@@ -261,7 +261,7 @@
 									<div class="icon-box">
 										<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 									</div>
-									<h4>아우이노 활용</h4>
+									<h4>아두이노 활용</h4>
 									<div class="text">아두이노를 활용한 임베디드로, pc를 이용하지 않아 전력소모와 크기에서
 										우수한 성능을 가지고 있습니다.</div>
 								</div>
@@ -616,7 +616,7 @@
 						&copy; 너의지하철 . All rights reserved
 						<div class="credits">
 
-							Designed by <a href="http://localhost:8888/densha/">너의 지하철</a>
+							Designed by <a href="http://localhost:8888/densha/">이쿠조</a>
 						</div>
 					</div>
 				</div>
@@ -627,7 +627,7 @@
 							<li><a href="home">Home</a></li>
 							<li><a href="stationcode">지하철지도</a></li>
 							<li><a href="home#service">Service</a></li>
-							<li><a href="home#api">api</a></li>
+							<li><a href="api">api</a></li>
 							<li><a href="join">가입하기</a></li>
 							<c:if test="${loginId !=null}">
 								<li><a href="favorite">Favorite</a></li>

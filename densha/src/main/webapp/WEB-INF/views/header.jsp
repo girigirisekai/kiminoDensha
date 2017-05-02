@@ -81,7 +81,7 @@
 													id="loginPassword" name="loginPassword"
 													placeholder="Password" required>
 												<div class="help-block text-right">
-													<a href="forgotpassword">암호를 잊어버리셨나요?</a>
+													<a href="join">암호를 잊어버리셨나요?</a>
 												</div>
 											</div>
 											<div class="form-group">

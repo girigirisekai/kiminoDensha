@@ -18,14 +18,20 @@
 <script src="./resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="./resources/js/function.js"></script>
 <script>
+	window.onkeydown = function(event) {
+	    if ( event.keyCode == 32 ) { // SpaceBar 이면
+	        event.preventDefault(); // 키보드 이벤트를 막아라
+	    }
+	};
+	
 	$(document).ready(function() {
 		$('#id').on('keyup', selectId);
 		$('#btCheckCode').on('click', CheckCode);
 		$('#submit').on('click',join);
 		$('#forgotpassword').on('click',findPassword);
 		$('#btChange').on('click',ChangePassword);
-	
 	});
+	
 	//비밀번호 분실 시
 	function findPassword(){
 		$('#FindPassword').modal();
@@ -49,9 +55,9 @@
 		});
 	}
 	// 아이디 중복검사
-	function selectId() {
+	function selectId(event) {
 		var checkId = $('#id').val();
-
+		
 		$.ajax({
 			url : 'selectId',
 			type : 'POST',
@@ -65,7 +71,17 @@
 			} */
 			complete : output1
 		});
+	
+		if ( event.keyCode == 8 || event.keyCode == 32 ) {
+			setTimeout(function(){
+				console.log
+				if(checkId==''){
+					$('#searchId').html('');
+				}	
+			}, 300);
+		}
 	}
+	
 	function output1(result) {
 		//var check = result.id;
 		console.log(result);
@@ -79,9 +95,6 @@
 			str = '사용가능한 아이디입니다';
 			$('#searchId').html(str);
 		}
-		    
-			
-
 	}
 	// 아이디 중복검사 끝
 	function CheckCode() {
@@ -89,14 +102,8 @@
 		var password = $('#password').val();
 		var question = $('#question').val();
 		var answer = $('#answer').val();
-		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-	
-		if(regex.test(id) === false){
-			alert('아이디가 이메일 형식이 아닙니다');
-			return false;
-
-		}else{
 		
+		alert(id);
 		 $.ajax({
 			url : 'CheckCode',
 			type : 'POST',
@@ -111,7 +118,6 @@
 				alert(JSON.stringify(e));
 			}
 		});
-		}
 	}
 	var tid;
 	function output2(data) {
@@ -442,10 +448,8 @@ body, html {
 					<option value="졸업한 초등학교는 어디입니까?">보물 1호는 무엇입니까?</option>
 				</select> <br>답 작성:<input type="text" id="answer" name="answer"
 					class="form-control"> 인증코드 작성<input type="text"
-					id="checkCode" name="checkCode" class="form-control"> 
-					<input
+					id="checkCode" name="checkCode" class="form-control"> <input
 					type="button" id="btCheckCode" value="인증코드 전송" class="btn">
-					
 				<div id="ViewTimer"></div>
 				<button class="btn btn-lg btn-primary btn-block btn-signin"
 					type="submit">Sign in</button>

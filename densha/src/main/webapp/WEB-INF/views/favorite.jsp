@@ -200,7 +200,7 @@ td{
 
 			str += '<div class="panel panel-default" style= "width: 520px;">';
 			str += '<h3 class="col-lg-12 panel-heading" style=" background-color: ' + lineColor + '; margin-top: 0px;  font-size: 25px; font-weight: bold; color: white;">' + item.line + '호선 ' + item.favoriteName + '</h3>';
-			str += '<div class="panel-body" style="height:300px; padding-top: 50px;"">';
+			str += '<div class="panel-body" style="height:300px; padding-top: 0px;"">';
 
 			str += '<table>';
 			str += '<tr>';
@@ -212,11 +212,11 @@ td{
 			str += '<div style="margin:auto; width : 500px;">';
 
 			str += '<div id="upstation_real' + item.stationCode + '"';
-			str += 'style="position: relative; right: -30px; top: 60px;"></div>';
+			str += 'style="position: relative; right: 170px; top: 60px;"></div>';
 			str += '<div id="getStationName' + item.stationCode + '"';
-			str += 'style="position: relative; left: 205px;"></div>';
+			str += 'style="position: relative; right: 15px;"></div>';
 			str += '<div id="downstation_real' + item.stationCode + '"';
-			str += 'style="position: relative; left: 360px; top: 15px;"></div>';
+			str += 'style="position: relative; left: 130px; top: 10px;"></div>';
 			str += '</div>';
 			str += '</div>';
 			str += '</div>';
@@ -227,8 +227,8 @@ td{
 			str += '</table>';
 
 			// 			혼잡도
-			str += '<div style="padding-top:10px;">';
-			str += '<table width="375; ">';
+			str += '<div style="padding-top:0px;">';
+			str += '<table width="490; ">';
 			str += '<td colspan="10"><center>혼잡도</center>';
 			str += '<tr>';
 			str += '<td>1호칸</td>';
@@ -263,7 +263,7 @@ td{
 // 			조심히가세요
 			
 	str += '<div id="train_seat_popup'+item.stationCode+'"';
-							str += 'style="position: absolute ;display: none; width: 530px; height: 300px; background: rgba(255, 255, 255, 0.7); z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">';
+							str += 'style="position: absolute ;display: none; width: 440px; height: 300px; background: rgba(255, 255, 255, 0.7); z-index: 2; border-radius: 10px; border: 1px; border-color: #A9D0F5;">';
 							str += '<div style="margin: 10px;">';
 							str += '	<table>';
 
@@ -353,7 +353,7 @@ td{
 
 							str += '</div>';
 
-							str += '<div style="padding-left:215px; padding-bottom: 20px;">';
+							str += '<div style="padding-left:200px; padding-bottom: 20px;">';
 							str += '<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="' + item.id + '" atr2="' + item.favoriteName + '" atr3="' + item.stationCode + '"value="삭제하기" >';
 							str += '</div>';
 							str += '</div>';
@@ -503,25 +503,26 @@ td{
 						var insert3 = ''; // 
 						var insert4 = '';
 
-						var insertTitle = subwayNum + '번호 열차의 ' + carnum
-								+ '량 열차 좌석정보';
+						var insertTitle = '<center>'+subwayNum + '번호 열차의 ' + carnum
+								+ '량 열차 좌석정보</center>';
 						var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
 						var seaton = '<img src = "./resources/image/seat/seaton.gif">';
-
+						var dummy = '<img src = "./resources/image/seat/dummy.gif">';
+						
 						if (items.elderlySeat1 == 1) { // 사람이 있다면
 							insert1 += seaton;
 						} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
 							insert1 += seatoff;
 						} else if (items.elderlySeat1 == 9) { // 좌석이 없다면 
-
+							insert1 += dummy;
 						}
 
 						if (items.elderlySeat2 == 1) {
 							insert1 += seaton;
 						} else if (items.elderlySeat2 == 0) { // 좌석에 사람이 없다면 
 							insert1 += seatoff;
-						} else if (items.elderlySeat2 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat2 == 9) { // 좌석에 사람이 없다면 
+							insert1 += dummy;
 						}
 
 						if (items.elderlySeat3 == 1) { //3
@@ -530,8 +531,8 @@ td{
 						} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
 							insert1 += seatoff;
 							
-						} else if (items.elderlySeat3 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat3 == 9) { // 좌석에 사람이 없다면 
+							insert1 += dummy;
 						}
 						
 						$('#trainSeat1'+InStationCode).html(insert1);
@@ -541,16 +542,16 @@ td{
 							insert2 += seaton;
 						} else if (items.elderlySeat4 == 0) { // 좌석에 사람이 없다면 
 							insert2 += seatoff;
-						} else if (items.elderlySeat4 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat4 == 9) { // 좌석에 사람이 없다면 
+							insert2 += dummy;
 						}
 
 						if (items.elderlySeat5 == 1) {
 							insert2 += seaton;
 						} else if (items.elderlySeat5 == 0) { // 좌석에 사람이 없다면 
 							insert2 += seatoff;
-						} else if (items.elderlySeat5 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat5 == 9) { // 좌석에 사람이 없다면 
+							insert2 += dummy;
 						}
 
 						if (items.elderlySeat6 == 1) {
@@ -559,8 +560,8 @@ td{
 						} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
 							insert2 += seatoff;
 						
-						} else if (items.elderlySeat6 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat6 == 9) { // 좌석에 사람이 없다면 
+							insert2 += dummy;
 						}
 						
 						$('#trainSeat3'+InStationCode).html(insert2);
@@ -570,16 +571,16 @@ td{
 							insert3 += seaton;
 						} else if (items.elderlySeat7 == 0) { // 좌석에 사람이 없다면 
 							insert3 += seatoff;
-						} else if (items.elderlySeat7 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat7 == 9) { // 좌석에 사람이 없다면 
+							insert3 += dummy;
 						}
 
 						if (items.elderlySeat8 == 1) {
 							insert3 += seaton;
 						} else if (items.elderlySeat8 == 0) { // 좌석에 사람이 없다면 
 							insert3 += seatoff;
-						} else if (items.elderlySeat8 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat8 == 9) { // 좌석에 사람이 없다면 
+							insert3 += dummy;
 						}
 
 						if (items.elderlySeat9 == 1) {
@@ -587,8 +588,8 @@ td{
 							
 						} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
 							insert3 += seatoff;
-						} else if (items.elderlySeat9 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat9 == 9) { // 좌석에 사람이 없다면 
+							insert3 += dummy;
 						}
 							$('#trainSeat2'+InStationCode).html(insert3);
 						// 3 end
@@ -597,16 +598,16 @@ td{
 							insert4 += seaton;
 						} else if (items.elderlySeat10 == 0) { // 좌석에 사람이 없다면 
 							insert4 += seatoff;
-						} else if (items.elderlySeat10 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat10 == 9) { // 좌석에 사람이 없다면 
+							insert4 += dummy;
 						}
 
 						if (items.elderlySeat11 == 1) {
 							insert4 += seaton;
 						} else if (items.elderlySeat11 == 0) { // 좌석에 사람이 없다면 
 							insert4 += seatoff;
-						} else if (items.elderlySeat11 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat11 == 9) { // 좌석에 사람이 없다면 
+							insert4 += dummy;
 						}
 						if (items.elderlySeat12 == 1) {
 							insert4 += seaton;
@@ -614,8 +615,8 @@ td{
 						} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
 							insert4 += seatoff;
 							
-						} else if (items.elderlySeat12 == null) { // 좌석에 사람이 없다면 
-
+						} else if (items.elderlySeat12 == 9) { // 좌석에 사람이 없다면 
+							insert4 += dummy;
 						}
 						$('#trainSeat4'+InStationCode).html(insert4);
 						$('#seatTitle').html(insertTitle);

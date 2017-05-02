@@ -133,7 +133,8 @@
 					class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 					<div class="about-heading">
 						<h2>이 서비스는...</h2>
-						<p>이 서비스는 지하철 정보 제공 서비스와 실시간 좌석, 그리고 지하철 칸을 제공하고 있습니다.</p>
+						<p>이 서비스는 지하철 정보 제공 서비스와 <br>
+						지하철 각 칸의 인구밀집도 정보, 그리고 노약자석의 실시간 정보를 제공하고 있습니다.</p>
 					</div>
 				</div>
 			</div>
@@ -162,7 +163,7 @@
 							<div class="about-right-wrapper">
 								<a href="#"><h3>너의 지하철은 다릅니다.</h3></a>
 								<p>열차의 전체 인원수와 열차의 칸당 인원수</p>
-								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알수있습니다.</p>
+								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알 수 있습니다.</p>
 							</div>
 						</div>
 
@@ -261,7 +262,7 @@
 										<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 									</div>
 									<h4>아우이노 활용</h4>
-									<div class="text">아두이노를 활용한 임베다드로, pc를 이용하지 않아 전력소모와 크기에서
+									<div class="text">아두이노를 활용한 임베디드로, pc를 이용하지 않아 전력소모와 크기에서
 										우수한 성능을 가지고 있습니다.</div>
 								</div>
 							</div>

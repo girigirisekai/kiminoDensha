@@ -8726,8 +8726,8 @@ height: 50px;
 		
 <!-- 		실시간 팝업 부분 -->
 		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title" >
+			<div class="panel-heading" >
+				<h3 class="panel-title" style="width : 531px;height: 16px;">
 <!-- 				역 이름이들어가는 부분  -->
 				<center><span id = "stationNamebar"></span></center></h3>
 				<!-- 				역 이름이들어가는 부분  -->
@@ -8737,11 +8737,11 @@ height: 50px;
 				<div class="stationNames" style="width : 500px;height: 84px;background: url(./resources/image/lineBack/subwayStationName.gif) no-repeat; margin: auto;">
 					<div style="margin:auto; width : 500px; height:84px;">
 						<div class="upstation_real"
-							style="position: absolute; text-align:center; font-size:15px; width:200px; left:0%; right:60%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">zX</div>
+							style="position: absolute; text-align:center; font-size:15px; width:200px; left:0%; right:60%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">대기중</div>
 						<div class="getStationName"
 							style="position: absolute; text-align:center; font-size:18px; font-weight:bold;width:200px; left:0%; right:0; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:85px;"></div>
 						<div class="downstation_real"
-							style="position: absolute; text-align:center; font-size:15px; width:200px; left:60%; right:0%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">asd</div>
+							style="position: absolute; text-align:center; font-size:15px; width:200px; left:60%; right:0%; margin-left:auto; margin-right:auto;height:40px; top: 0; bottom:0; top:125px;">대기중</div>
 					</div>
 				</div> 
 			</div>
@@ -9035,7 +9035,7 @@ height: 50px;
 					<tbody>
 						<tr class="top" >
 							<td height="25" width="72">첫/막차</td>
-							<td width="74">방면</td>
+							<td width="92">방면</td>
 							<td width="107">시발역</td>
 							<td width="107">종착역</td>
 							<td width="83">평일</td>

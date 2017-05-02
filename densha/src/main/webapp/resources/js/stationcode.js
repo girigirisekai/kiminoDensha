@@ -17,6 +17,7 @@ var subwayNum = '2002'; // 전철 번호 (탭기능을 위해서 전역변수로
 var realTimeStation = '';
 
 var timeInterval; // 실시간 좌석 setTime, clearInterval을 위해서 전역으로 한다.
+var seatTimeInterval; // 실시간 좌석 setTime, clearInterval을 위해서 전역으로 한다.
 // 출발역 도착역 사용 변수
 var scode, code, ecode, ecode2, scodes, ecodes;
 var xPoint, yPoint;
@@ -216,7 +217,9 @@ function station_name_popup(stationCode) { // stationNamePopup
 	$('#station').attr('stationcode', stationCode);
 	$('#startEnd').attr('stationcode', stationCode);
 	
-
+	clearInterval(timeInterval); 
+	clearInterval(seatTimeInterval);
+	
 	insertStation = $('#station').attr('stationcode');
 	cyber = insertStation;
 
@@ -273,7 +276,7 @@ function station_name_popup(stationCode) { // stationNamePopup
 //	열차 인터벌
 	timeInterval = setInterval(function() {
 		subwaySensorGet();
-	}, 5000);
+	}, 3000);
 
 
 }
@@ -309,6 +312,7 @@ function station_name_down() { // stationNamediv 삭제 역할
 	$('#settingHelper').addClass("active");
 	$('#stationInfoTab').addClass("tab-pane fade active in");
 	clearInterval(timeInterval); 
+	clearInterval(seatTimeInterval);
 }
 
 
@@ -358,17 +362,20 @@ function get_station_down() {
 
 
 // 열차량당 좌석: 팝업on
+var tarainX;
 function train_popup() {
 	train_seat_popup.style.display = "block";
-	var x = $(this).attr('trainnum');
-	get_train_info(x);
+	tarainX = $(this).attr('trainnum');
+	seatTimeInterval = setInterval(function() {
+		get_train_info(tarainX);
+	}, 3000);
 }
 
 
 //열차량당 좌석: 팝업off
 function train_popupOut() {
 	train_seat_popup.style.display = "none";
-
+	clearInterval(seatTimeInterval);
 }
 
 //======================여기까지는 팝업담당===========================//
@@ -434,24 +441,25 @@ function get_train_info(e) {
 				var insert3 = ''; // 
 				var insert4 = '';
 				
-				var insertTitle = subwayNum + '번호 열차의 ' + carnum + '량 열차 좌석정보';
+				var insertTitle = '<center>'+subwayNum + '번호 열차의 ' + carnum + '량 열차 좌석정보</center>';
 				var seatoff = '<img src = "./resources/image/seat/seatoff.gif">';
 				var seaton = '<img src = "./resources/image/seat/seaton.gif">';
+				var dummy = '<img src = "./resources/image/seat/dummy.gif">';
 				
 				if (items.elderlySeat1 == 1) { // 사람이 있다면
 					insert1 += seaton;
 				} else if (items.elderlySeat1 == 0) { // 좌석에 사람이 없다면 
 					insert1 += seatoff;
 				} else if (items.elderlySeat1 == 9) { // 좌석이 없다면 
-					
+					insert1 += dummy;
 				}
 				
 				if (items.elderlySeat2 == 1) {
 					insert1 += seaton;
 				} else if (items.elderlySeat2 == 0) { // 좌석에 사람이 없다면 
 					insert1 += seatoff;
-				} else if (items.elderlySeat2 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat2 == 9) { // 좌석에 사람이 없다면 
+					insert1 += dummy;
 				}
 				
 				if (items.elderlySeat3 == 1) { //3
@@ -460,8 +468,9 @@ function get_train_info(e) {
 				} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
 					insert1 += seatoff;
 					$('#trainSeat1').html(insert1);
-				} else if (items.elderlySeat3 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat3 == 9) { // 좌석에 사람이 없다면 
+					insert1 += dummy;
+					$('#trainSeat1').html(insert1);
 				}
 				// 1 end
 				
@@ -469,16 +478,16 @@ function get_train_info(e) {
 					insert2 += seaton;
 				} else if (items.elderlySeat4 == 0) { // 좌석에 사람이 없다면 
 					insert2 += seatoff;
-				} else if (items.elderlySeat4 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat4 == 9) { // 좌석에 사람이 없다면 
+					insert2 += dummy;
 				}
 				
 				if (items.elderlySeat5 == 1) {
 					insert2 += seaton;
 				} else if (items.elderlySeat5 == 0) { // 좌석에 사람이 없다면 
 					insert2 += seatoff;
-				} else if (items.elderlySeat5 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat5 == 9) { // 좌석에 사람이 없다면 
+					insert2 += dummy;
 				}
 				
 				if (items.elderlySeat6 == 1) {
@@ -487,8 +496,9 @@ function get_train_info(e) {
 				} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
 					insert2 += seatoff;
 					$('#trainSeat3').html(insert2);
-				} else if (items.elderlySeat6 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat6 == 9) { // 좌석에 사람이 없다면 
+					insert2 += dummy;
+					$('#trainSeat3').html(insert2);
 				}
 				// 1 end
 				
@@ -496,7 +506,8 @@ function get_train_info(e) {
 					insert3 += seaton;
 				} else if (items.elderlySeat7 == 0) { // 좌석에 사람이 없다면 
 					insert3 += seatoff;
-				} else if (items.elderlySeat7 == null) { // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat7 == 9) { // 좌석에 사람이 없다면 
+					insert3 += dummy;
 					
 				}
 				
@@ -504,7 +515,8 @@ function get_train_info(e) {
 					insert3 += seaton;
 				} else if (items.elderlySeat8 == 0) { // 좌석에 사람이 없다면 
 					insert3 += seatoff;
-				} else if (items.elderlySeat8 == null) { // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat8 == 9) { // 좌석에 사람이 없다면 
+					insert3 += dummy;
 					
 				}
 				
@@ -514,8 +526,9 @@ function get_train_info(e) {
 				} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
 					insert3 += seatoff;
 					$('#trainSeat2').html(insert3);
-				} else if (items.elderlySeat9 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat9 == 9) { // 좌석에 사람이 없다면 
+					insert3 += dummy;
+					$('#trainSeat2').html(insert3);
 				}
 				// 3 end
 				
@@ -523,7 +536,8 @@ function get_train_info(e) {
 					insert4 += seaton;
 				} else if (items.elderlySeat10 == 0) { // 좌석에 사람이 없다면 
 					insert4 += seatoff;
-				} else if (items.elderlySeat10 == null) { // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat10 == 9) { // 좌석에 사람이 없다면 
+					insert4 += dummy;
 					
 				}
 				
@@ -531,7 +545,8 @@ function get_train_info(e) {
 					insert4 += seaton;
 				} else if (items.elderlySeat11 == 0) { // 좌석에 사람이 없다면 
 					insert4 += seatoff;
-				} else if (items.elderlySeat11 == null) { // 좌석에 사람이 없다면 
+				} else if (items.elderlySeat11 == 9) { // 좌석에 사람이 없다면 
+					insert4 += dummy;
 					
 				}
 				if (items.elderlySeat12 == 1) {
@@ -540,8 +555,9 @@ function get_train_info(e) {
 				} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
 					insert4 += seatoff;
 					$('#trainSeat4').html(insert4);
-				} else if (items.elderlySeat12 == null) { // 좌석에 사람이 없다면 
-					
+				} else if (items.elderlySeat12 == 9) { // 좌석에 사람이 없다면 
+					insert4 += dummy;
+					$('#trainSeat4').html(insert4);
 				}
 				
 				
@@ -787,7 +803,7 @@ function stationinforesult(item) {
 	}
 	
 	if (item.ticket == 'Y') {
-		insertHtml +='<img src = "./resources/image/infoicon/heros.gif" style="width:30px;height:30px;">'; // 장애인시설  이미지
+		insertHtml +='<img src = "./resources/image/infoicon/ticket.png" style="width:30px;height:30px;">'; // 장애인시설  이미지
 		insertHtml +='티켓 ';
 	}
 	

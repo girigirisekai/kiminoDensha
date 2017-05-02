@@ -62,6 +62,79 @@ body, html {
 td{
 	text-align: center;
 }
+.tbl_detail {
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+}
+
+.tbl_detailTime {
+	border-bottom: 1px solid #ccc;
+}
+
+#sidenav-overlay {
+    background-color: transparent;
+}
+
+
+
+
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+ul.tabs li {
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:82px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #eee;
+    border-left: none;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+}
+ul.tabs li.active {
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+.tab_container {
+    border: 1px solid #eee;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 248px;
+    background: #FFFFFF;
+}
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    padding:5px;
+    list-style:none
+}
+;
+ #containers {
+    width: 249px;
+    margin: 0 auto;
+}
 
 </style>
 
@@ -198,7 +271,7 @@ td{
 				str += 'style="float: left; margin-right: 30px; " >';
 			}
 
-			str += '<div class="panel panel-default" style= "width: 520px;">';
+			str += '<div class="panel panel-default" style= "width: 520px; height: 415px;">';
 			str += '<h3 class="col-lg-12 panel-heading" style=" background-color: ' + lineColor + '; margin-top: 0px;  font-size: 25px; font-weight: bold; color: white;">' + item.line + '호선 ' + item.favoriteName + '</h3>';
 			str += '<div class="panel-body" style="height:300px; padding-top: 0px;"">';
 
@@ -227,8 +300,19 @@ td{
 			str += '</table>';
 
 			// 			혼잡도
-			str += '<div style="padding-top:0px;">';
-			str += '<table width="490; ">';
+			str += '<div class="panel-body"  style="padding-top:0px;">';
+			str += '<table width="460; ">';
+			str += '<tr>';
+			str += '<td colspan="10"><img src = "./resources/image/menu/car_info_bar.png"></td>';
+			str += '</tr>';
+			str += '<tr>';
+			str += '<td colspan="10">';
+			str += '<div id="containers">';
+			str += '<ul class="tabs">';
+			str += '<li class="active" rel="tab1" carnum = "2002" id = "carnumTab1' + item.stationCode + '">상행선</li>';
+			str += '<li rel="tab2" carnum = "2003" id ="carnumTab2' + item.stationCode + '">하행선</li>';
+			str += '</ul>';
+			str += '</tr>';
 			str += '<td colspan="10"><center>혼잡도</center>';
 			str += '<tr>';
 			str += '<td>1호칸</td>';
@@ -278,12 +362,12 @@ td{
 							str += '</tr>';
 
 							str += '<tr>';
-							str += '	<td style="text-align: center;">앞 오른쪽 의자</td>';
+							str += '	<td style="text-align: center;"><span id = "frontRightSeat' + item.stationCode + '">앞 오른쪽 의자</span></td>';
 
 							str += '	<td>';
 							str += '&nbsp;';
 							str += '</td>';
-							str += '<td style="text-align: center;">뒤 오른쪽 의자</td>';
+							str += '<td style="text-align: center;"><span id = "backRightSeat' + item.stationCode + '">뒤 오른쪽 의자</span></td>';
 							str += '</tr>';
 
 							str += '<tr>';
@@ -310,11 +394,11 @@ td{
 							str += '</tr>';
 
 							str += '<tr>';
-							str += '	<td style="text-align: center;">앞 왼쪽 의자</td>';
+							str += '	<td style="text-align: center;"><span id = "frontLeftSeat' + item.stationCode + '">앞 왼쪽 의자</span></td>';
 							str += '	<td>';
 							str += ' &nbsp;';
 							str += '</td>';
-							str += '<td style="text-align: center;">뒤 왼쪽 의자</td>';
+							str += '<td style="text-align: center;"><span id = "backLeftSeat' + item.stationCode + '">뒤 왼쪽 의자</span></td>';
 							str += '	</tr>';
 
 							str += '		<tr>';
@@ -346,18 +430,24 @@ td{
 							str += '<td id="carNumVar9' + item.stationCode + '" num = "9" class="carNumVar9"></td>';
 							str += '<td id="carNumVar10' + item.stationCode + '" num = "10"  class="carNumVar10"></td>';
 							str += '</tr>';
+							
+							
+							str += '<tr>';
+							str += '<td colspan="10">';
+							str += '<div style="padding-top: 10px;">';
+							str += '<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="' + item.id + '" atr2="' + item.favoriteName + '" atr3="' + item.stationCode + '"value="삭제하기" >';
+							str += '</div>';
+							str += '</td>';
+							str += '</tr>';
 							str += '</td>';
 							str += '</table>';
 							str += '</div>';
 							// 			혼잡도
 
 							str += '</div>';
-
-							str += '<div style="padding-left:200px; padding-bottom: 20px;">';
-							str += '<input style="font-weight: bold;" type="button" class="btn btn-danger favoriteStations" atr1="' + item.id + '" atr2="' + item.favoriteName + '" atr3="' + item.stationCode + '"value="삭제하기" >';
 							str += '</div>';
 							str += '</div>';
-							str += '</div>';
+							
 
 						});
 		str += '</div>';
@@ -527,12 +617,15 @@ td{
 
 						if (items.elderlySeat3 == 1) { //3
 							insert1 += seaton;
+							$('#frontRightSeat'+InStationCode).html('앞 오른쪽 의자');
 							
 						} else if (items.elderlySeat3 == 0) { // 좌석에 사람이 없다면 
 							insert1 += seatoff;
+							$('#frontRightSeat'+InStationCode).html('앞 오른쪽 의자');
 							
 						} else if (items.elderlySeat3 == 9) { // 좌석에 사람이 없다면 
 							insert1 += dummy;
+							$('#frontRightSeat'+InStationCode).html('');
 						}
 						
 						$('#trainSeat1'+InStationCode).html(insert1);
@@ -556,12 +649,15 @@ td{
 
 						if (items.elderlySeat6 == 1) {
 							insert2 += seaton;
+							$('#frontLeftSeat'+InStationCode).html('앞 왼쪽 의자');
 						
 						} else if (items.elderlySeat6 == 0) { // 좌석에 사람이 없다면 
 							insert2 += seatoff;
+							$('#frontLeftSeat'+InStationCode).html('앞 왼쪽 의자');
 						
 						} else if (items.elderlySeat6 == 9) { // 좌석에 사람이 없다면 
 							insert2 += dummy;
+							$('#frontLeftSeat'+InStationCode).html('');
 						}
 						
 						$('#trainSeat3'+InStationCode).html(insert2);
@@ -585,11 +681,13 @@ td{
 
 						if (items.elderlySeat9 == 1) {
 							insert3 += seaton;
-							
+							$('#backRightSeat'+InStationCode).html('뒤 오른쪽 의자');
 						} else if (items.elderlySeat9 == 0) { // 좌석에 사람이 없다면 
 							insert3 += seatoff;
+							$('#backRightSeat'+InStationCode).html('뒤 오른쪽 의자');
 						} else if (items.elderlySeat9 == 9) { // 좌석에 사람이 없다면 
 							insert3 += dummy;
+							$('#backRightSeat'+InStationCode).html('');
 						}
 							$('#trainSeat2'+InStationCode).html(insert3);
 						// 3 end
@@ -611,12 +709,13 @@ td{
 						}
 						if (items.elderlySeat12 == 1) {
 							insert4 += seaton;
-					
+							$('#backLeftSeat'+InStationCode).html('뒤 왼쪽 의자');
 						} else if (items.elderlySeat12 == 0) { // 좌석에 사람이 없다면 
 							insert4 += seatoff;
-							
+							$('#backLeftSeat'+InStationCode).html('뒤 왼쪽 의자');
 						} else if (items.elderlySeat12 == 9) { // 좌석에 사람이 없다면 
 							insert4 += dummy;
+							$('#backLeftSeat'+InStationCode).html('');
 						}
 						$('#trainSeat4'+InStationCode).html(insert4);
 						$('#seatTitle').html(insertTitle);

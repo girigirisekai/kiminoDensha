@@ -174,7 +174,7 @@
 							</div>
 						</div>
 
-						<div class="about-right-support">
+						<div class="about-right-best">
 							<div class="about-right-wrapper">
 								<a href="#"><h3>지하철 서비스도 제공</h3></a>
 								<p>지하철 지도로 테스트를 해 보세요!</p>
@@ -352,7 +352,7 @@
 							<img src="./resources/images/portfolio/portfolio1.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>neotérĭcus ratio</p>
 							</div>
 						</div>
 					</div>
@@ -362,7 +362,7 @@
 							<img src="./resources/images/portfolio/portfolio2.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>magnus idea</p>
 							</div>
 						</div>
 					</div>
@@ -372,7 +372,7 @@
 							<img src="./resources/images/portfolio/portfolio3.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>peculiáris Experientia</p>
 							</div>
 						</div>
 					</div>
@@ -382,7 +382,7 @@
 							<img src="./resources/images/portfolio/portfolio4.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>luculéntus fetus</p>
 							</div>
 						</div>
 					</div>
@@ -392,7 +392,7 @@
 							<img src="./resources/images/portfolio/portfolio5.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>what you see</p>
+								<p>Ferrivia subterranea</p>
 							</div>
 						</div>
 					</div>
@@ -402,7 +402,7 @@
 							<img src="./resources/images/portfolio/portfolio6.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>consístens comparátĭo</p>
 							</div>
 						</div>
 					</div>
@@ -412,7 +412,7 @@
 							<img src="./resources/images/portfolio/portfolio7.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>aestuósus pathos</p>
 							</div>
 						</div>
 					</div>
@@ -422,7 +422,7 @@
 							<img src="./resources/images/portfolio/portfolio8.jpg" alt="">
 							<div class="caption">
 								<i class="fa fa-search" aria-hidden="true"></i>
-								<p>lorem ipsum amet</p>
+								<p>Ex stúdiis gáudium próvenit</p>
 							</div>
 						</div>
 					</div>

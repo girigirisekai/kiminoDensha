@@ -8771,16 +8771,16 @@ height: 50px;
            
         <table  style="text-align:center;">
         <tr>
-							<td>1호선</td>
-							<td>2호선</td>
-							<td>3호선</td>
-							<td>4호선</td>
-							<td>5호선</td>
-							<td>6호선</td>
-							<td>7호선</td>
-							<td>8호선</td>
-							<td>9호선</td>
-							<td>10호선</td>
+							<td>1호칸</td>
+							<td>2호칸</td>
+							<td>3호칸</td>
+							<td>4호칸</td>
+							<td>5호칸</td>
+							<td>6호칸</td>
+							<td>7호칸</td>
+							<td>8호칸</td>
+							<td>9호칸</td>
+							<td>10호칸</td>
 						</tr>
         <tr>
    						     <td id="carNum1" num = "1"></td>

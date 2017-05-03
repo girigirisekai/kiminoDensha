@@ -264,7 +264,7 @@
 									<div class="icon-box">
 										<i class="xi-all" aria-hidden="true"></i>
 									</div>
-									<h4>아우이노 활용</h4>
+									<h4>아두이노 활용</h4>
 									<div class="text">아두이노를 활용한 임베디드로, pc를 이용하지 않아 전력소모와 크기에서
 										우수한 성능을 가지고 있습니다.</div>
 								</div>

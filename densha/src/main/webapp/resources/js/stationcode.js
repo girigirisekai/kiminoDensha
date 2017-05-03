@@ -218,7 +218,7 @@ function station_name_popup(stationCode) { // stationNamePopup
 	$('#startEnd').attr('stationcode', stationCode);
 	
 	clearInterval(timeInterval); 
-	clearInterval(seatTimeInterval);
+	//clearInterval(seatTimeInterval);
 	
 	insertStation = $('#station').attr('stationcode');
 	cyber = insertStation;
@@ -312,7 +312,7 @@ function station_name_down() { // stationNamediv 삭제 역할
 	$('#settingHelper').addClass("active");
 	$('#stationInfoTab').addClass("tab-pane fade active in");
 	clearInterval(timeInterval); 
-	clearInterval(seatTimeInterval);
+	//clearInterval(seatTimeInterval);
 }
 
 
@@ -366,16 +366,16 @@ var tarainX;
 function train_popup() {
 	train_seat_popup.style.display = "block";
 	tarainX = $(this).attr('trainnum');
-	seatTimeInterval = setInterval(function() {
+	//seatTimeInterval = setInterval(function() {
 		get_train_info(tarainX);
-	}, 3000);
+	//}, 3000);
 }
 
 
 //열차량당 좌석: 팝업off
 function train_popupOut() {
 	train_seat_popup.style.display = "none";
-	clearInterval(seatTimeInterval);
+	//clearInterval(seatTimeInterval);
 }
 
 //======================여기까지는 팝업담당===========================//

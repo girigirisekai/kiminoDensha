@@ -112,7 +112,7 @@ function pathTest2(){
 		success : function(bcd){
 			ecodes = bcd;
 				$.ajax({
-					url : 'path2',
+					url : 'path1',
 					type : 'get',
 					data : {start: scodes, end: ecodes},
 					dataType : 'json',

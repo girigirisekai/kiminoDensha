@@ -429,7 +429,7 @@ textarea:focus {
 }
 
 #about .about-right:before {
-	content: "";
+	content: "\25f7";
     border: 8px solid #e5eef0;
 	width: 120%;
     height: 100%;
@@ -451,12 +451,12 @@ textarea:focus {
 }
 
 #about .about-right-boot:before {
-	content: "\f080";
+	content: "\25f7";
 	font-family: 'FontAwesome';
 	font-size: 45px;
 	padding: 65px 30px 0 0;
 	float: left;
-	color: #01b1d7;
+	color: #01b1d7; 
 }
 
 #about .about-right-wrapper {
@@ -483,7 +483,7 @@ textarea:focus {
 }
 
 #about .about-right-best:before {
-	content: "\f201";
+	content: "\25f7";
 	font-family: 'FontAwesome';
 	font-size: 45px;
 	padding: 65px 30px 0 0;

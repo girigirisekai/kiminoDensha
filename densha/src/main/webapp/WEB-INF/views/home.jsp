@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./resources/css/style.css">
 <link rel="stylesheet" href="./resources/css/loginModule.css">
 <link rel="stylesheet" href="./resources/css/home.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
 <title>너의 지하철 : 지하철 맵</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
@@ -220,7 +221,7 @@
 							<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="inner-box">
 									<div class="icon-box">
-										<i class="fa fa-briefcase" aria-hidden="true"></i>
+											<i class="xi-cog" aria-hidden="true"></i>
 									</div>
 									<h4>api</h4>
 									<div class="text">강력한 API를 제공하며 좌석의 상황과 열차의 인원을 알수 있습니다.</div>
@@ -230,7 +231,7 @@
 							<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="inner-box">
 									<div class="icon-box">
-										<i class="fa fa-bar-chart" aria-hidden="true"></i>
+										<i class="xi-facebook" aria-hidden="true"></i>
 									</div>
 									<h4>No Flash</h4>
 									<div class="text">svg를 이용한 HTML5 대응으로 다음과 네이버 지도와 다르게
@@ -241,7 +242,7 @@
 							<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="inner-box">
 									<div class="icon-box">
-										<i class="fa fa-trophy" aria-hidden="true"></i>
+										<i class="xi-star-o" aria-hidden="true"></i>
 									</div>
 									<h4>즐겨찾기 기능</h4>
 									<div class="text">즐겨찾기 기능이 있어 어느 역이든 추가가 가능합니다.</div>
@@ -251,7 +252,7 @@
 							<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="inner-box">
 									<div class="icon-box">
-										<i class="fa fa-bullhorn" aria-hidden="true"></i>
+										<i class="xi-profile-o" aria-hidden="true"></i>
 									</div>
 									<h4>가벼운 회원정보</h4>
 									<div class="text">회원정보의 내용은 오직 메일! 회원정보는 중국에 팔지 않습니다.</div>
@@ -261,9 +262,9 @@
 							<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="inner-box">
 									<div class="icon-box">
-										<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+										<i class="xi-all" aria-hidden="true"></i>
 									</div>
-									<h4>아두이노 활용</h4>
+									<h4>아우이노 활용</h4>
 									<div class="text">아두이노를 활용한 임베디드로, pc를 이용하지 않아 전력소모와 크기에서
 										우수한 성능을 가지고 있습니다.</div>
 								</div>
@@ -272,7 +273,7 @@
 							<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="inner-box">
 									<div class="icon-box">
-										<i class="fa fa-money" aria-hidden="true"></i>
+										<i class="xi-spinner-2" aria-hidden="true"></i>
 									</div>
 									<h4>기능은 추가됩니다!</h4>
 									<div class="text">앱으로도 출시될 것이며 기능은 추가될 것입니다!</div>

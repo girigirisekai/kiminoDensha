@@ -30,7 +30,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="home">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="home">Home <span class="sr-only">(current)</span></a></li>
  		
         <li><a href="stationcode">지하철서비스</a></li>
 <!--         로그인 시  -->

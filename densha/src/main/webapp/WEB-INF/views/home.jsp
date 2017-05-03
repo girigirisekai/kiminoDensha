@@ -154,38 +154,89 @@
 				</div>
 
 				<!--about wrapper right-->
-				<div class="col-xs-12 col-md-7">
-					<div class="about-right">
-						<div class="about-right-heading">
-							<h1>이 서비스의 특징</h1>
-						</div>
-
-						<div class="about-right-boot">
-							<div class="about-right-wrapper">
-								<a href="#"><h3>너의 지하철은 다릅니다.</h3></a>
-								<p>열차의 전체 인원수와 열차의 칸당 인원수</p>
-								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알 수 있습니다.</p>
-							</div>
-						</div>
-						<br>
-						<br>
-						<div class="about-right-best">
-							<div class="about-right-wrapper">
-								<a href="#"><h3>API를 사용하고 싶은가요?</h3></a>
-								<p>너의 지하철은 API를 제공하고 있습니다.</p>
-							</div>
-						</div>
-						<br>
-						<br>
-						<div class="about-right-best">
-							<div class="about-right-wrapper">
-								<a href="#"><h3>지하철 서비스도 제공</h3></a>
-								<p>지하철 지도로 테스트를 해 보세요!</p>
-							</div>
-						</div>
-
-					</div>
-				</div>
+            <div class="col-xs-12 col-md-7">
+               <div class="about-right">
+                  <div class="about-right-heading">
+                     <h1>이 서비스의 특징</h1>
+                  </div>
+                  <br>
+                  <table>
+                     <tr>
+                        <td style="padding-right: 50px; font-size: 50px;  ">
+                           <div class="icon-box" >
+                              <i  class="xi-tags" style="width: 50%; color: deepskyblue;" aria-hidden="true"></i>
+                           </div>
+                           
+                        </td>   
+                        <td>
+                           <table>
+                              <tr>
+                                 <td>
+                                    <h3>너의 지하철은 다릅니다.</h3>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>열차의 전체 인원수와 열차의 칸당 인원수</p>
+                                    <p>그리고 열차의 노약좌석에 앉아있는 사람을 알 수 있습니다.</p>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+                  <br>
+                  <table>
+                     <tr>
+                        <td style="padding-right: 50px; font-size: 50px;  ">
+                           <div class="icon-box" >
+                              <i  class="xi-paperclip" style="width: 50%; color: deepskyblue; aria-hidden="true"></i>
+                           </div>
+                           
+                        </td>   
+                        <td>
+                           <table>
+                              <tr>
+                                 <td>
+                                    <h3>API를 사용하고 싶은가요?</h3>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>너의 지하철은 API를 제공하고 있습니다.</p>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+                  <Br><Br>
+                  <table>
+                     <tr>
+                        <td style="padding-right: 50px; font-size: 50px;  ">
+                           <div class="icon-box" >
+                              <i  class="xi-subway" style="width: 50%; color: deepskyblue;  aria-hidden="true"></i>
+                           </div>
+                           
+                        </td>   
+                        <td>
+                           <table>
+                              <tr>
+                                 <td>
+                                    <h3>지하철 서비스도 제공</h3>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>지하철 지도로 테스트를 해 보세요!</p>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
 			</div>
 
 		</div>

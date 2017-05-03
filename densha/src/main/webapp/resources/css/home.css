@@ -35,7 +35,6 @@ Image credits: unsplash.com
     left: 50%;
     z-index: 3;
  	color: #E6E6E6;
-    
     text-align: center;
     text-transform: uppercase;
     text-shadow: 1px 1px 0 rgba(0,0,0,.75);
@@ -44,6 +43,10 @@ Image credits: unsplash.com
           -ms-transform: translate3d(-50%,-50%,0);
            -o-transform: translate3d(-50%,-50%,0);
               transform: translate3d(-50%,-50%,0);
+              
+    background: rgba(255,255,255,0.5);
+    border-radius: 30px;
+    padding: 30px;
 }
 .hero h1 {
     font-size: 6em;    
@@ -121,7 +124,7 @@ Image credits: unsplash.com
 /*          Media Queries       */
 /********************************/
 @media screen and (min-width: 980px){
-    .hero { width: 980px; }    
+    .hero { width: 750px; }    
 }
 @media screen and (max-width: 640px){
     .hero h1 { font-size: 4em; }    

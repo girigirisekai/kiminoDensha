@@ -24,7 +24,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="home">브랜드</a>
+      <a class="navbar-brand" href="home" >
+      <img src="./resources/image/logo/logo.gif" width="102.31" height="64"style="padding-bottom: 40px;"></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

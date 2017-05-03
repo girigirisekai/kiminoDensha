@@ -8683,10 +8683,10 @@ height: 50px;
 
 		<a href="javascript:get_station_popup" 
 			id="station">
-			<img src = "./resources/image/menu/stationInfo.jpg" border="0">
+			<img src = "./resources/image/menu/stationInfo.jpg" border="0" style="width: 100px;">
 			
 			</a> <input type="image" value="출발역"
-			id="startEnd" stationcode="역코드변환됨" src = "./resources/image/menu/start.png" height="25px">
+			id="startEnd" stationcode="역코드변환됨" src = "./resources/image/menu/start.png" height="29.41px">
 			
 			
 	</div>

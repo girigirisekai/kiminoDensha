@@ -106,7 +106,7 @@
       <div class="hero">        
         <hgroup>
             <h1>체험하세요!</h1>        
-            <h3 style="color: #E6E6E6;">Example 서비스를 제공하고 있습니다.</h3>
+            <h3 style="color: #E6E6E6;">다양한 지하철 서비스를 제공하고 있습니다.</h3>
         </hgroup>       
         <button class="btn btn-hero btn-lg" role="button" style="width: 300px;" onclick="location.href='stationcode';">바로가기</button>
       </div>
@@ -166,14 +166,16 @@
 								<p>그리고 열차의 노약좌석에 앉아있는 사람을 알 수 있습니다.</p>
 							</div>
 						</div>
-
+						<br>
+						<br>
 						<div class="about-right-best">
 							<div class="about-right-wrapper">
 								<a href="#"><h3>API를 사용하고 싶은가요?</h3></a>
 								<p>너의 지하철은 API를 제공하고 있습니다.</p>
 							</div>
 						</div>
-
+						<br>
+						<br>
 						<div class="about-right-best">
 							<div class="about-right-wrapper">
 								<a href="#"><h3>지하철 서비스도 제공</h3></a>
@@ -560,7 +562,17 @@
 	<div id="footer">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="footer-heading" align="center" style="font-size: 16px; font-family:'Nanum Pen Script'; padding-right: 100px; ">
+						<h2>
+							<i><b><span>About us</span></b></i>
+						</h2>
+						<i>
+							<b><p>'너의 지하철'은 32기 SCIT마스터 2차 역량 프로젝트의 일환으로 만들어졌습니다.</p></b>
+							<b><p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 프로젝트는 비영리, 비상업 목적으로서 프로젝트의 완성을 위해서 사용될 것입니다.</p></b> 
+							<b><p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IoT와 웹을 연동하는 프로젝트로 프로젝트의 조원은 장성길, 이민호, 전누리, 안병호, 조재용입니다.</p></b>
+						</i>
+				</div>
+				<!-- <div class="col-md-4">
 					<div class="footer-heading">
 						<h3>
 							<span>about</span> us
@@ -569,7 +581,7 @@
 						<p>이 프로젝트는 비영리, 비상업 목적으로서 프로젝트의 완성을 위해서 사용될 것입니다. IoT와 웹을 연동하는
 							프로젝트로 프로젝트의 조원은 장성길, 이민호, 전누리, 안병호, 조재용입니다.</p>
 					</div>
-				</div>
+				</div> -->
 
 <!-- 				<div class="col-md-4"> -->
 <!-- 					<div class="footer-heading"> -->

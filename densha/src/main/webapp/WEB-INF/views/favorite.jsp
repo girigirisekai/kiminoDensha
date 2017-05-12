@@ -140,6 +140,8 @@ ul.tabs li.active {
 
 <script type="text/javascript">
 
+	var subwayNum=2002;
+
 	$(document).ready(function() {
 		//검색 버튼 동작 실행 메소드 설정
 		$('#searchStations').on('click', searchStation);
@@ -453,6 +455,16 @@ ul.tabs li.active {
 		str += '</div>';
 		$('#storedStations').html(str);
 		$('.favoriteStations').on('click', deleteStation);
+		$('.tabs li').mouseover(function () { // 마우스 룰 오버시 실행 
+
+			subwayNum = $(this).attr('carnum'); // 번호 바꾸기
+	        $('.tabs li').removeClass("active").css("color", "#333");
+	        $(this).addClass("active").css("color", "darkred");
+	        $(".tab_content").hide()
+	        $("#" + "tab1").fadeIn();
+	        
+	        subwaySensorGet();
+	    });
 		subwaySensorGet();
 		
 		for(var i = 0; i<stationIdcode.length; i++){
@@ -468,7 +480,7 @@ ul.tabs li.active {
 			url : 'subwaySensorGet',
 			type : 'post',
 			data : {
-				subwayNum : '2002' // 2호선 2002열차 
+				subwayNum : subwayNum // 2호선 2002열차 
 			},
 			dataType : 'json',
 			success : resultSubwaySensorGet
@@ -570,7 +582,7 @@ ul.tabs li.active {
 
 		//	var carnum = '2'; // 열차량번호 가져오기
 
-		var subwayNum = '2002';
+		//var subwayNum = '2002';
 		var carnum = trainnum;
 		//	var carnumss = $('#carNum1').attr('trainnum');
 		console.log(carnum);

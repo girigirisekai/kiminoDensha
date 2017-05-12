@@ -141,6 +141,7 @@ ul.tabs li.active {
 <script type="text/javascript">
 
 	var subwayNum=2002;
+	var changeStationCode;
 
 	$(document).ready(function() {
 		//검색 버튼 동작 실행 메소드 설정
@@ -311,8 +312,8 @@ ul.tabs li.active {
 			str += '<td colspan="10">';
 			str += '<div id="containers">';
 			str += '<ul class="tabs">';
-			str += '<li class="active" rel="tab1" carnum = "2002" id = "carnumTab1' + item.stationCode + '">상행선</li>';
-			str += '<li rel="tab2" carnum = "2003" id ="carnumTab2' + item.stationCode + '">하행선</li>';
+			str += '<li class="active" rel="tab1" carnum = "2002" id = "carnumTab1' + item.stationCode + '" updown="up" code = "' + item.stationCode + '">상행선</li>';
+			str += '<li rel="tab2" carnum = "2003" id ="carnumTab2' + item.stationCode + '" updown="down" code = "' + item.stationCode + '">하행선</li>';
 			str += '</ul>';
 			str += '</tr>';
 			str += '<td colspan="10"><center>혼잡도</center>';
@@ -359,7 +360,7 @@ ul.tabs li.active {
 							str += '</tr>';
 
 							str += '<tr>';
-							str += '	<td colspan="3" width="400px"><span id="seatTitle"';
+							str += '	<td colspan="3" width="400px"><span id="seatTitle' + item.stationCode + '"';
 													str += '		style="text-align: center; margin: auto;">열차 이름과 열차 량</span></td>';
 							str += '</tr>';
 
@@ -456,14 +457,23 @@ ul.tabs li.active {
 		$('#storedStations').html(str);
 		$('.favoriteStations').on('click', deleteStation);
 		$('.tabs li').mouseover(function () { // 마우스 룰 오버시 실행 
-
+			
 			subwayNum = $(this).attr('carnum'); // 번호 바꾸기
-	        $('.tabs li').removeClass("active").css("color", "#333");
-	        $(this).addClass("active").css("color", "darkred");
-	        $(".tab_content").hide()
-	        $("#" + "tab1").fadeIn();
-	        
-	        subwaySensorGet();
+			var updown = $(this).attr('updown');
+			changeStationCode = $(this).attr('code');
+			if(updown == 'down'){
+				$('#carnumTab1'+changeStationCode).removeClass("active").css("color", "#333");
+				$('#carnumTab2'+changeStationCode).addClass("active").css("color", "darkred");
+			} 
+			if(updown == 'up'){
+				$('#carnumTab2'+changeStationCode).removeClass("active").css("color", "#333");
+				$('#carnumTab1'+changeStationCode).addClass("active").css("color", "darkred");
+			} 
+	        //$('.tabs li').removeClass("active").css("color", "#333");
+	        //$(this).addClass("active").css("color", "darkred");
+	        //$(".tab_content").hide()
+	       // $("#" + "tab1").fadeIn();
+	        subwaySensorGet2();
 	    });
 		subwaySensorGet();
 		
@@ -553,6 +563,84 @@ ul.tabs li.active {
 						});
 
 	}
+	
+	//지하철 센서 데이터 불러오기22
+		function subwaySensorGet2() { // map 이름과 같다. 
+			$.ajax({
+				url : 'subwaySensorGet',
+				type : 'post',
+				data : {
+					subwayNum : subwayNum // 2호선 2002열차 
+				},
+				dataType : 'json',
+				success : resultSubwaySensorGet2
+			});
+		}
+
+		//불러온 지하철 센서 데이터 결과를 출력하기22
+		function resultSubwaySensorGet2(datas) { //10
+			var carHuman = 0;
+
+			var firstCar0 = '<img src ="./resources/image/subwayCar/subway_general.png">';
+			var firstCar20 = '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
+			var firstCar40 = '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
+			var firstCar60 = '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
+			var firstCar80 = '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
+			var firstCar100 = '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
+			var firstCar120 = '<img src ="./resources/image/subwayCar/subway_general_red120.png">';
+
+			var nextCar0 = '';
+			var nextCar20 = '';
+			var nextCar40 = '';
+			var nextCar60 = '';
+			var nextCar80 = '';
+			var nextCar100 = '';
+			var nextCar120 = '';
+
+			$.each(datas,function(index, items) { // arraylist로 받아서 안에 있는 VO를 사용
+
+								var humanIndex = index + 1; // 1234...\
+								carHuman = Number(items.humanNum) / 160 * 100;
+								// 한칸당 인원한계는 160명이 된다 그리고 100을곱한다. 이러면 62.5 가 나옴
+								carHuman = Math.round(carHuman);
+								// 소수점 반올림 62 
+									var inserts = '<span class = "train' + humanIndex + changeStationCode + '" trainNum = "' + humanIndex + '" stationcode="'+changeStationCode+'">';
+
+									if (0 <= carHuman && carHuman < 20) {
+										inserts += '<img src ="./resources/image/subwayCar/subway_general.png">';
+									} else if (21 <= carHuman && carHuman < 40) {
+										inserts += '<img src ="./resources/image/subwayCar/subway_general_red20.png">';
+									} else if (41 <= carHuman && carHuman < 60) {
+										inserts += '<img src ="./resources/image/subwayCar/subway_general_red40.png">';
+									} else if (61 <= carHuman && carHuman < 80) {
+										inserts += '<img src ="./resources/image/subwayCar/subway_general_red60.png">';
+									} else if (81 <= carHuman && carHuman < 100) {
+										inserts += '<img src ="./resources/image/subwayCar/subway_general_red80.png">';
+									} else if (101 <= carHuman) {
+										inserts += '<img src ="./resources/image/subwayCar/subway_general_red100.png">';
+									}
+
+									//		inserts += '</div>';
+									inserts += '</span>';
+
+									var insertVar = '';
+
+									insertVar += items.humanNum + '명 <br>';
+									insertVar += carHuman + '%';
+
+									$('#carNum' + humanIndex + changeStationCode)
+											.html(inserts); // carnum 1~10까지 html 자동으로 넣기
+									$('#carNumVar' + humanIndex + changeStationCode)
+											.html(insertVar); // %넣기
+
+									$('.train' + humanIndex + changeStationCode)
+											.mouseenter(train_popup).mouseleave(
+													train_popupOut);
+						
+
+							});
+
+		}
 
 	// 열차량당 좌석: 아래의 기능들은 좌석에 대한 위치팝업
 	//var train_seat_popup = document.getElementById('train_seat_popup');
@@ -730,7 +818,7 @@ ul.tabs li.active {
 							$('#backLeftSeat'+InStationCode).html('');
 						}
 						$('#trainSeat4'+InStationCode).html(insert4);
-						$('#seatTitle').html(insertTitle);
+						$('#seatTitle'+InStationCode).html(insertTitle);
 
 					}
 				});

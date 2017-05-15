@@ -74,12 +74,6 @@ CREATE TABLE member
 
 /* Create Foreign Keys */
 
-ALTER TABLE checkCode
-	ADD FOREIGN KEY (id)
-	REFERENCES member (id)
-;
-
-
 ALTER TABLE favorite
 	ADD FOREIGN KEY (id)
 	REFERENCES member (id)

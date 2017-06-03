@@ -168,37 +168,50 @@ public class BoardController {
 		logger.debug("힛트다 히트:{} ",board.getHits());
 		
 		//QNA와 아닌 글로 분기 나누어줌
-		if(board.getType().equals("qna")){
-			if( session.getAttribute("checkedBoardnum") == null){
-				return "redirect:board";
-			}
-			int checkedNum = (int) session.getAttribute("checkedBoardnum");
-			if(board.getBoardnum() == checkedNum){
+		if(session.getAttribute("loginId").equals("admin")){
+			b = dao.select(board.getBoardnum());
+			session.removeAttribute("checkedBoardnum");
+			model.addAttribute("board", b);
+
+			ArrayList<Reply> rlist= dao.selectReply(board.getBoardnum());
+			logger.debug("리플:{}", rlist);
+			model.addAttribute("rlist", rlist);
+			
+			return "board/read";
+		}else{
+			if(board.getType().equals("qna")){
 				
-				b = dao.select(board.getBoardnum());
-				if(!(b.getType().equals("qna")) || b == null){
+				if( session.getAttribute("checkedBoardnum") == null){
 					return "redirect:board";
 				}
-			}else{
-				return "redirect:board";
+				int checkedNum = (int) session.getAttribute("checkedBoardnum");
+				if(board.getBoardnum() == checkedNum){
+					
+					b = dao.select(board.getBoardnum());
+					if(!(b.getType().equals("qna")) || b == null){
+						return "redirect:board";
+					}
+				}else{
+					return "redirect:board";
+				}
+				
 			}
+			else{
+				b = dao.select(board.getBoardnum());
+				if((b.getType().equals("qna")) || b == null){
+					return "redirect:board";
+				}
+			}
+	
+			session.removeAttribute("checkedBoardnum");
+			model.addAttribute("board", b);
+	
+			ArrayList<Reply> rlist= dao.selectReply(board.getBoardnum());
+			logger.debug("리플:{}", rlist);
+			model.addAttribute("rlist", rlist);
 			
+			return "board/read";
 		}
-		else{
-			b = dao.select(board.getBoardnum());
-			if((b.getType().equals("qna")) || b == null){
-				return "redirect:board";
-			}
-		}
-
-		session.removeAttribute("checkedBoardnum");
-		model.addAttribute("board", b);
-
-		ArrayList<Reply> rlist= dao.selectReply(board.getBoardnum());
-		logger.debug("리플:{}", rlist);
-		model.addAttribute("rlist", rlist);
-		
-		return "board/read";
 	}
 
 	/**
@@ -424,4 +437,8 @@ public class BoardController {
 		return result;
 		
 	}
+	
+	
+	
+	
 }

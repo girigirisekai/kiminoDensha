@@ -79,55 +79,70 @@ legend {
 
 <script type="text/javascript">
 
+	
+
 	$(document).ready(function() {
-		$('.titleNames').on('click', readPasswordCheckStep1);
-
-		// 		$('#passwordCheckPopup').css('top', screen.height / 4);
-		// 		$('#passwordCheckPopup').css('left', screen.width / 2.5);
-
-		$('body').mousedown(function(e) {
-			// 1:좌클릭, 2:휠클릭, 3:우클릭
-			if (e.which == 1) { // 일반 클릭
-			} else if (e.which == 3) { // 우클릭
-				$('#passwordCheckPopup').css('visibility', 'hidden');
-				$('#checkPassword').val('');
-				$('#checkButton').off('click', readPasswordCheckStep2);
-
-				$(this)[0].oncontextmenu = function() { // 우클릭시 띄워치는 contextmenu 막기 
-					return false;
+		
+		
+			$('.titleNames').on('click', readPasswordCheckStep1);
+	
+			// 		$('#passwordCheckPopup').css('top', screen.height / 4);
+			// 		$('#passwordCheckPopup').css('left', screen.width / 2.5);
+	
+			$('body').mousedown(function(e) {
+				// 1:좌클릭, 2:휠클릭, 3:우클릭
+				if (e.which == 1) { // 일반 클릭
+				} else if (e.which == 3) { // 우클릭
+					$('#passwordCheckPopup').css('visibility', 'hidden');
+					$('#checkPassword').val('');
+					$('#checkButton').off('click', readPasswordCheckStep2);
+	
+					$(this)[0].oncontextmenu = function() { // 우클릭시 띄워치는 contextmenu 막기 
+						return false;
+					}
+	
 				}
-
-			}
-		});
+			});
+	
 	});
 
 	function readPasswordCheckStep1() { // 패스워드 div 팝업 띄우기 
 		var boardnum = $(this).attr('boardnum');
 		var type = $(this).attr('type');
-
-		if (type == 'qna') {
-
-			var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
-			var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
-			var layer = document.getElementById("passwordCheckPopup");
-
-
-			if (_x < 0)
-				_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
-			if (_y < 0)
-				_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
-
-			layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-			layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
-
-			$('#checkType').val(type);
-			$('#checkBoardnum').val(boardnum);
-			$('#checkButton').on('click', readPasswordCheckStep2);
-			$('#passwordCheckPopup').css('visibility', 'visible');
-		//$("#passwordCheckPopup").click(function(){$(this).append(" <b>Appended text</b>.");
-		//});
-		} else {
+		
+		var property = "<%=session.getAttribute("loginId")%>";
+		
+		if(property=="admin"){
 			location.href = 'read?boardnum=' + boardnum + '&type=' + type + '';
+			
+			
+		}else{
+		
+			if (type == 'qna') {
+	
+				var _x = event.clientX + document.body.scrollLeft; //마우스로 선택한곳의 x축(화면에서 좌측으로부터의 거리)를 얻는다. 
+				var _y = event.clientY + document.body.scrollTop; //마우스로 선택한곳의 y축(화면에서 상단으로부터의 거리)를 얻는다. 
+				var layer = document.getElementById("passwordCheckPopup");
+	
+	
+				if (_x < 0)
+					_x = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+				if (_y < 0)
+					_y = 0; //마우스로 선택한 위치의 값이 -값이면 0으로 초기화. (화면은 0,0으로 시작한다.) 
+	
+				layer.style.left = _x + "px"; //레이어팝업의 좌측으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+				layer.style.top = _y + "px"; //레이어팝업의 상단으로부터의 거리값을 마우스로 클릭한곳의 위치값으로 변경. 
+	
+				$('#checkType').val(type);
+				$('#checkBoardnum').val(boardnum);
+				$('#checkButton').on('click', readPasswordCheckStep2);
+				$('#passwordCheckPopup').css('visibility', 'visible');
+			//$("#passwordCheckPopup").click(function(){$(this).append(" <b>Appended text</b>.");
+			//});
+			} else {
+				location.href = 'read?boardnum=' + boardnum + '&type=' + type + '';
+			}
+		
 		}
 	}
 
@@ -300,7 +315,7 @@ legend {
 								<tr>
 									<td style="text-align: center">${list.boardnum}</td>
 									<td style="text-align: center"><span class="titleNames"
-										boardnum="${list.boardnum}" type="${type}">
+										boardnum="${list.boardnum}" type="${type}" user = "${list.id}">
 											${list.title.replace("<", "&lt;") }</span> &nbsp;&nbsp; <a href="#"
 										onclick="showmap(spot${list.boardnum}, ${list.boardnum});"
 										class="dd" num="${list.boardnum }">[${list.totalreply }]</a>

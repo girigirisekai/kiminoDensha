@@ -8,8 +8,8 @@ DROP TABLE BOARD CASCADE CONSTRAINTS;
 
 /* Drop Sequences */
 
-DROP SEQUENCE boardnum_seq;
-DROP SEQUENCE replynum_seq;
+DROP SEQUENCE board_seq;
+DROP SEQUENCE reply_seq;
 
 
 
@@ -35,7 +35,7 @@ CREATE TABLE BOARD
 	-- 글제목
 	TITLE varchar2(100) NOT NULL,
 	-- 글내용
-	CONTENT varchar2(1000) NOT NULL,
+	CONTENT varchar2(4000) NOT NULL,
 	INPUTDATE date DEFAULT SYSDATE,
 	-- 조회수
 	HITS number DEFAULT 0,

@@ -42,6 +42,7 @@ public class apiController {
 	SubwayDAO dao;
 
 	// api페이지 
+	
 	@RequestMapping(value = "/api", method = RequestMethod.GET)
 	public String api(Model model) { // api 안내 페이지
 

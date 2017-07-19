@@ -12,7 +12,7 @@ public class favorite {
 	public favorite(String id, String favoriteName, String stationCode, String favoriteOrder, String line,
 			String fcode) {
 		super();
-		this.id = id;
+		this.id = id; 
 		this.favoriteName = favoriteName;
 		this.stationCode = stationCode;
 		this.favoriteOrder = favoriteOrder;

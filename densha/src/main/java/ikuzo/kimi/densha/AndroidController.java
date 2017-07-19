@@ -44,14 +44,22 @@ public class AndroidController {
 
 		// 로그인된 계정의 즐겨찾기 역 정보 리스트 불러오기
 		ArrayList<favorite> favoriteLists = dao.myFavorites(nowID);
-
-		//JSON으로 데이터 빼내기 
-		JSONObject jsonResult = StationJsonApiModule(nowID);
 		
-		res.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html; charset=utf-8");
+		if(favoriteLists == null ){ // 데이터가 없는 경우
+			JSONObject jsonResultNull =   new JSONObject();
+			jsonResultNull.put("RESULT", "NULL"); // 결과
+			res.setCharacterEncoding("UTF-8");
+			res.setContentType("text/html; charset=utf-8");
+			return jsonResultNull.toString();
+			
+			
+		}else{ //  데이터가 있는 경우
+			JSONObject jsonResult = StationJsonApiModule(nowID);
+			res.setCharacterEncoding("UTF-8");
+			res.setContentType("text/html; charset=utf-8");
+			return jsonResult.toString();
+		}
 
-		return jsonResult.toString();
 		
 		/*개발 방식
 		1. favorite의 내용을 읽는다 json
@@ -91,7 +99,7 @@ public class AndroidController {
 		favoriteList = dao.myFavorites(nowID);
 
 		JSONObject obj = new JSONObject();
-		obj.put("ID", favoriteList.get(0).getId()); // id
+		obj.put("RESULT", "OK"); // 결과
 
 		try {
 			JSONArray jArray = new JSONArray(); // 배열이 필요할때
